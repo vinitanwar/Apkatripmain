@@ -28,7 +28,7 @@ export default function page() {
               href="/about"
               className="bg-white text-gray-600 py-2 px-6 rounded-lg font-semibold shadow-md hover:bg-gray-100"
             >
-              Learn More
+              Learn 
             </Link>
           </div>
         </section>
