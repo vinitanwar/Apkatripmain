@@ -1,774 +1,294 @@
 "use client";
+import React from "react";
 
-import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
 
 import "swiper/css";
-import "swiper/css/navigation";
-import { FaRegCalendarAlt } from "react-icons/fa";
-import { FaUser } from "react-icons/fa6";
+import "swiper/css/pagination";
+import { Autoplay, Navigation } from "swiper/modules";
 
-import { IoIosArrowForward } from "react-icons/io";
-import { FaStar } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
-import { FaShareAlt } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
-import { IoMdArrowForward } from "react-icons/io";
-import { GiEarthAmerica } from "react-icons/gi";
-import { MdOutlineTour } from "react-icons/md";
-import { MdOutlineGroups3 } from "react-icons/md";
-import { GoQuestion } from "react-icons/go";
-
-import { IoIosArrowDown } from "react-icons/io";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 export default function page() {
-  const [closer, setCloser] = useState("Overview");
-
-  const closerFunc = (closerValue) => {
-    setCloser((preval)=>preval==closerValue?"":closerValue);
-  };
-
-  console.log(closer)
-  const tours = [
+  const explore = [
     {
-      title: "Singapore Skylines: Urban Exploration",
-      image: "/Images/Resort.jpg",
-      price: 48.25,
-      originalPrice: 60.75,
-    },
-
-    {
-      title: "Singapore Garden City Tour",
-      image: "/Images/Resort.jpg",
-      price: 45.0,
-      originalPrice: 58.0,
+      exploreImage: "/Images/desert.avif",
+      placeName: "Royal Rajasthan",
     },
     {
-      title: "Island Adventures and Cultural Tour",
-      image: "/Images/Resort.jpg",
-      price: 53.0,
-      originalPrice: 68.0,
+      exploreImage: "/Images/temple.jpg",
+      placeName: "Golden Temple",
+    },
+    {
+      exploreImage: "/Images/desert.avif",
+      placeName: "Royal Rajasthan",
+    },
+    {
+      exploreImage: "/Images/desert.avif",
+      placeName: "Royal Rajasthan",
+    },
+    {
+      exploreImage: "/Images/desert.avif",
+      placeName: "Royal Rajasthan",
+    },
+    {
+      exploreImage: "/Images/desert.avif",
+      placeName: "Royal Rajasthan",
+    },
+    {
+      exploreImage: "/Images/desert.avif",
+      placeName: "Royal Rajasthan",
+    },
+    {
+      exploreImage: "/Images/desert.avif",
+      placeName: "Royal Rajasthan",
     },
   ];
 
   return (
-    <div>
-      <div className="Travila ">
-        <div className="top-home-tour px-3 sm:px-5 gap-2 lg:px-20  xl:px-40 flex flex-col lg:flex-row lg:items-center md:gap-5 pt-10">
-          <div className="flex items-center  gap-5">
-            <div className="flex items-center gap-2 text-gray-600 text-sm sm:text-base">
-              Home
-              <IoIosArrowForward />
+    <div className="exploreBharat">
+      <div className="Banner-Image px-4 md:px-20 lg:px-40 relative bg-[url('/Images/exploreIndia.jpg')] bg-cover bg-center   min-h-[80vh] md:min-h-[100vh] flex justify-center items-center">
+        <div className="content relative z-10 text-center text-white">
+          <h3 className="text-3xl md:text-4xl lg:text-5xl tracking-widest font-bold">
+            WELCOME TO
+          </h3>
+          <h2 className="text-6xl md:text-7xl xl:text-9xl text-white uppercase font-extrabold">
+            Bharat
+          </h2>
+          <p className="px-4 md:px-20 xl:px-60 mt-4 text-sm md:text-base lg:text-lg">
+            Bharat, known globally as India, is a land of rich cultural
+            heritage, diverse landscapes, and deep-rooted traditions. With a
+            history spanning thousands of years, Bharat is home to ancient
+            civilizations, spiritual teachings, and remarkable achievements in
+            art, science, and philosophy, offering a vibrant tapestry of unity
+            in diversity.
+          </p>
+        </div>
+      </div>
+
+      <div className="cardss-Section   xl:px-20 mt-5 md:mt-0 pt-10  px-2">
+        <div className="grid items-center  grid-cols-1 xl:grid-cols-2  gap-6 lg:gap-10 px-2 md:px-8 lg:px-16">
+          <div className="flex flex-col gap-3 xl:block lg:space-y-10">
+            <div className="md:flex items-center xl:block">
+              <h3 className="text-xl text-center md:text-start md:text-3xl lg:text-4xl ps-2 font-extrabold   lg:leading-snug">
+                Immerse Yourself in the Mesmerizing Wonders of{" "}
+                <span className="text-[#C09552]">India</span>
+              </h3>
+
+              
+              <div className="xl:hidden rounded-3xl  lg:px-10 py-5">
+                <img
+                  src="/Images/indiamap.jpg"
+                  alt="Map of India"
+                  className="w-full md:w-[40vw] h-auto rounded-3xl"
+                />
+              </div>
             </div>
-            <div className="flex items-center gap-2 text-gray-600 text-sm sm:text-base">
-              Tour
-              <IoIosArrowForward />
+
+          
+            <div className="bg-[#FFF6E8] shadow-lg text-sm md:text-base lg:text-lg space-y-3 md:space-y-4 font-normal px-4 md:px-5 py-3 rounded-lg">
+              <p>
+                India, a land steeped in rich history and vibrant culture,
+                offers a treasure trove of experiences waiting to be explored.
+                From the majestic Himalayas to the serene backwaters of Kerala,
+                each region showcases its unique beauty and charm. Whether India
+                reveals a story.
+              </p>
+              <p>
+                As you embark on your journey through this incredible country,
+                prepare to uncover hidden gems that are often overshadowed by
+                popular destinations. Discover the lesser-known towns, each with
+                its own distinctive allure, where time seems to. From the
+                intricate craftsmanship of artisans to the breathtaking
+                landscapes that stretch across the horizon, India invites you to
+                experience its treasures firsthand.
+              </p>
             </div>
           </div>
-          <h5 className="font-bold text-gray-700 text-sm sm:text-base lg:text-lg">
-            The High Roller Experience: Tickets for The LINQ Observation Wheel,
-            Las Vegas Strip
-          </h5>
+
+       
+          <div className="hidden xl:flex justify-center rounded-3xl px-4 lg:px-10 py-5">
+            <img
+              src="/Images/indiamap.jpg"
+              alt="Map of India"
+              className="w-[80%] h-auto rounded-full"
+            />
+          </div>
         </div>
 
-        <div className="Swiper-section  px-2 lg:px-10 mt-6 lg:mt-10 bg-sgreen-500 relative  rounded-3xl">
-          <div className="swiper">
+        <div className="space-y-4 lg:space-y-10 explore px-2 lg:px-20 xl:px-20 ">
+          <div className="discover pt-5 lg:pt-10">
+            <h3 className="text-2xl text-center lg:text-start md:text-3xl ps-2 font-extrabold  lg:leading-relaxed font-serif">
+              Find Your Dream Adventure in {""}
+              <span className="text-[#C09552]">India</span>{" "}
+            </h3>
+          </div>
+          <div className="cardParent grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 ">
+            {explore.map((elm) => (
+              <div className="h-64 w-full lg:w-64 relative">
+                <img
+                  src={elm.exploreImage}
+                  alt=""
+                  className="h-full w-full lg:w-auto rounded-3xl object-cover"
+                />
+                <div className="absolute bottom-3 w-full right-6">
+                  <h5 className="text-xl  text-center font-bold   text-white w-full">
+                    {elm.placeName}{" "}
+                  </h5>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="india unveiled py-10 px-3 lg:px-10 xl:px-20">
+          <h3 className="text-2xl text-center lg:text-start md:text-3xl ps-2 font-extrabold  lg:leading-relaxed font-serif">
+            India {""}
+            <span className="text-[#C09552]">Rediscovered</span>{" "}
+          </h3>
+
+          <div className="swiperSection">
             <Swiper
-              className="mySwiper"
               spaceBetween={30}
-              loop={true}
-              navigation={{
-                nextEl: ".swiper-button-next-custom",
-                prevEl: ".swiper-button-prev-custom",
-              }}
               autoplay={{
                 delay: 2500,
                 disableOnInteraction: false,
               }}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              loop={true}
               modules={[Autoplay, Navigation]}
+              className="mySwiper mt-5 xl:mt-10 px-4 sm:px-10 "
+              breakpoints={{
+                320: {
+                  slidesPerView: 1,
+                  spaceBetween: 10,
+                },
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 30,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 20,
+                },
+                1280: {
+                  slidesPerView: 4,
+                  spaceBetween: 30,
+                },
+                1800: {
+                  slidesPerView: 6,
+                  spaceBetween: 20,
+                },
+              }}
             >
-              <SwiperSlide>
-                <img
-                  src="/Images/hotelss.avif"
-                  alt="Hotel"
-                  className="max-h-[25vh]  sm:max-h-[60vh] lg:max-h-[80vh] w-full rounded-lg lg:rounded-3xl object-cover"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="/Images/Resort.jpg"
-                  alt="Resort"
-                  className="max-h-[25vh] sm:max-h-[60vh] lg:max-h-[80vh] w-full rounded-lg lg:rounded-3xl object-cover"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="/Images/beach.avif"
-                  alt="Beach"
-                  className="max-h-[25vh] sm:max-h-[60vh] lg:max-h-[80vh] w-full rounded-lg lg:rounded-3xl object-cover"
-                />
-              </SwiperSlide>
-
-              <div className="swiper-button-next-custom">
-                <IoMdArrowForward />
-              </div>
-              <div className="swiper-button-prev-custom">
-                <IoMdArrowForward className="rotate-180" />
-              </div>
-            </Swiper>
-          </div>
-
-          <div className=" mt-5 space-y-5 lg:mt-0  lg:absolute lg:bottom-5 xl:bottom-10 md:space-y-4 lg:space-y-0 lg:z-20 lg:flex Swiper-overLay flex-col gap-6 px-2 md:px-10 lg:px-10 xl:px-20 ">
-            <div>
-              <button className="flex px-5 py-2 sm:py-3 rounded-full items-center gap-2 bg-gray-300 lg:bg-white text-xs sm:text-sm">
-                <FaStar className="text-yellow-400" />
-                <span className="font-bold">4.56</span>
-                <span className="text-gray-400">(672 reviews)</span>
-              </button>
-            </div>
-            <div>
-              <h3 className="text-xl leading-snug lg:text-2xl xl:text-3xl xl:pe-48 font-bold lg:text-white">
-                The High Roller Experience Tickets for The LINQ Observation
-                Wheel, Las Vegas Strip
-              </h3>
-            </div>
-            <div className=" flex flex-col gap-5 lg:flex-row lg:justify-between lg:items-center  ">
-              <div className="lg:text-white flex items-center gap-3 sm:gap-5">
-                <div className="flex  items-center gap-1 sm:gap-2 text-xs sm:text-sm lg:text-base">
-                  <FaLocationDot />
-                  <h3>Las Vegas, USA</h3>
-                </div>
-                <h5 className="font-bold underline text-xs sm:text-sm lg:text-base">
-                  Show on map
-                </h5>
-              </div>
-              <div className="flex items-center gap-2 sm:gap-4 font-bold">
-                <button className=" bg-gray-300 lg:bg-white flex items-center gap-2  rounded-full px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm">
-                  <FaShareAlt />
-                  Share
-                </button>
-                <button className=" bg-gray-300 lg:bg-white flex items-center gap-2 rounded-full px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm">
-                  <FaHeart />
-                  Wishlist
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="Main-content-section  px-5 lg:px-9 xl:px-40 py-10 ">
-          <div className="grid grid-cols-1 lg:grid-cols-6 lg:gap-10">
-            <div className="left-side col-span-4 space-y-7">
-              <div className="fist-child grid sm:grid-cols-2  md:grid-cols-4 gap-10 border shadow-lg px-6  py-5 rounded-xl">
-                <div className="calendar flex md:flex-col xl:flex-row  items-center gap-2 xl:gap-5">
-                  <div className="bg-[#E4F9F9] text-lg p-4 rounded-lg border">
-                    <FaRegCalendarAlt />
-                  </div>
-                  <div className="text-center">
-                    <p className="text-gray-400">Duration</p>
-                    <h5 className="font-bold ">5-7 Days</h5>
-                  </div>
-                </div>
-                <div className="Group-size flex md:flex-col xl:flex-row  items-center gap-2 xl:gap-5">
-                  <div className="bg-[#FFF0EC] text-lg p-4 rounded-lg border">
-                    <MdOutlineGroups3 />
-                  </div>
-                  <div className="text-center">
-                    <p className="text-gray-400">Group size</p>
-                    <h5 className="font-bold ">0 8 people</h5>
-                  </div>
-                </div>
-                <div className="Tour-type flex md:flex-col xl:flex-row  items-center gap-2 xl:gap-5">
-                  <div className="bg-[#FCF2FA] text-lg p-4 rounded-lg border">
-                    <MdOutlineTour />
-                  </div>
-                  <div className="text-center">
-                    <p className="text-gray-400">Tour Type</p>
-                    <h5 className="font-bold ">Daily Tour</h5>
-                  </div>
-                </div>
-                <div className="Languages flex md:flex-col xl:flex-row  items-center gap-2 xl:gap-5">
-                  <div className="bg-[#E3F0FF] text-lg p-4 rounded-lg border">
-                    <GiEarthAmerica />
-                  </div>
-                  <div className="text-center">
-                    <p className="text-gray-400">Languages</p>
-                    <h5 className="font-bold ">English</h5>
-                  </div>
-                </div>
-              </div>
-              <div className="second-child-overView space-y-5  border shadow-lg px-6  py-8 rounded-xl">
-                <div onClick={()=>closerFunc("Overview")} className="cursor-pointer flex group justify-between items-center">
-                  <h3 className=" font-bold text-2xl group-hover:text-orange-400 duration-100">
-                    Overview
-                  </h3>
-                  <IoIosArrowDown className={`${closer=="Overview"?"rotate-180":""}`}  />
-                </div>
-                
-                <div className={`space-y-5 ${closer == "Overview" ? ' opacity-100' : 'max-h-0 opacity-0'}`}>
-                <p className="text-gray-500">
-                  Traveling is an enriching experience that broadens our
-                  horizons and opens us to new cultures, landscapes, and
-                  perspectives. It provides a break from daily routines,
-                  offering a chance to explore the unknown and embrace
-                  adventure. Whether it's wandering through ancient cities,
-                  trekking in the mountains, relaxing on serene beaches, or
-                  experiencing vibrant local markets, each journey brings its
-                  own unique stories and memories.
-                </p>
-                <p className="text-gray-500">
-                  Travel encourages personal growth, pushing us out of our
-                  comfort zones. It challenges us to adapt to new environments,
-                  communicate across language barriers, and immerse ourselves in
-                  different ways of life. Through travel, we develop empathy and
-                  understanding for people from diverse backgrounds, breaking
-                  down prejudices and misconceptions.
-                </p>
-              </div>
-              </div>
-              <div className="third-child-HighLight space-y-5  border shadow-lg px-6  py-5 rounded-xl">
-               
-                <div onClick={()=>closerFunc("Highlight")} className="cursor-pointer flex group justify-between items-center">
-                  <h3 className="font-bold text-2xl group-hover:text-orange-400 duration-100">
-                  Highlight
-                  </h3>
-                  <IoIosArrowDown />
-                </div>
-                <div className={`space-y-5  ${closer== "Highlight" ? ' opacity-100' : 'max-h-0 opacity-0'}`}>
-              <p className="text-gray-500">
-                  Ultimately, traveling creates lasting memories and
-                  connections, whether through meaningful interactions with
-                  locals, shared moments with fellow travelers, or the profound
-                  impact of new experiences. It is a journey that continuously
-                  reshapes our understanding of the world, leaving us with a
-                  greater appreciation for its beauty,{" "}
-                </p>
-                <p className="text-gray-500">
-                  Adventure and exploration lie at the heart of travel, driving
-                  us to venture beyond our everyday boundaries. Whether it’s
-                  scaling rugged mountains, navigating through bustling markets,
-                  vast and varied wonders.
-                </p>
-              </div>
-              </div>
-              <div className="fourth-child-Included-Excluded space-y-5 border shadow-lg px-4 md:px-6 py-6 rounded-xl">
-  <div onClick={()=>closerFunc("Included")} className="flex cursor-pointer group justify-between items-center">
-    <h3 className="font-bold text-xl md:text-2xl group-hover:text-orange-400 duration-100">
-      Included/Excluded
-    </h3>
-    <IoIosArrowDown />
-  </div>
-
-  <div className={`${closer== "Included" ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}      flex flex-col md:flex-row justify-between items-start md:items-center space-y-5 md:space-y-0`}>
-    <div className="space-y-3 md:space-y-5">
-      <h4 className="font-semibold text-base md:text-lg">Included:</h4>
-      <ul className="list-disc text-gray-700 space-y-2 md:space-y-3 text-sm md:text-base pl-5">
-        <li>Round-trip airfare</li>
-        <li>3-star hotel accommodations</li>
-        <li>Daily breakfast</li>
-        <li>Guided city tours</li>
-      </ul>
-    </div>
-
-    <div className="space-y-3 md:space-y-5">
-      <h4 className="font-semibold text-base md:text-lg">Excluded:</h4>
-      <ul className="list-disc text-gray-700 space-y-2 md:space-y-3 text-sm md:text-base pr-5 pl-5 md:pl-0">
-        <li>Travel insurance</li>
-        <li>Lunch and dinner</li>
-        <li>Personal expenses</li>
-        <li>Optional excursions</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-              <div className="fifth-child-Duration space-y-5  border shadow-lg px-6  py-5 rounded-xl">
-                <div onClick={()=>closerFunc("Duration")} className="flex cursor-pointer group justify-between items-center">
-                  <h3 className="font-bold text-2xl group-hover:text-orange-400 duration-100">
-                    Duration
-                  </h3>
-                  <IoIosArrowDown />
-                </div>
-             <div className={`space-y-5 ${closer== "Duration" ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0'}` }>
-             <p className="text-gray-500">
-                  capture the thrill and excitement of exploring new territories
-                  and engaging in exhilarating activities. These experiences are
-                  often defined by their unique challenges and the sense of
-                  discovery they bring. memories.
-                </p>
-                <ul class="list-decimal pl-3 text-gray-700 space-y-5 text-sm">
-                  <li>
-                    <strong>Epic Landscapes:</strong> Encountering breathtaking
-                    natural wonders such as rugged mountains, vast deserts, and
-                    serene lakes.
-                  </li>
-                  <li>
-                    <strong>Thrilling Activities:</strong> Engaging in
-                    high-energy pursuits like rock climbing, white-water
-                    rafting, zip-lining, and paragliding.
-                  </li>
-
-                  <li>
-                    <strong>Unforgettable Memories:</strong> Creating lasting
-                    stories and cherished memories through unexpected
-                    discoveries, camaraderie, and personal growth.
-                  </li>
-                </ul>
-                <p>
-                  Adventure highlights are not just about the activities
-                  themselves but also about the emotions and personal growth
-                  they inspire. Each adventure offers a unique mix of
-                  excitement, challenge, and discovery that contributes to a
-                  deeper appreciation of the world.
-                </p>
-             </div>
-              </div>
-              <div className="sixth-child-Question-answer space-y-5  border shadow-lg px-6  py-6 rounded-xl">
-                
-                <div onClick={()=>closerFunc("Question")} className="cursor-pointer flex group justify-between items-center">
-                  <h3 className="font-bold text-2xl group-hover:text-orange-400 duration-100">
-                  Question Answers                  </h3>
-                  <IoIosArrowDown />
-                </div>
-                <div className={`space-y-5  ${closer== "Question" ? ' opacity-100' : 'max-h-0 opacity-0'}`}>
-              <div className="border shadow-lg px-5 py-6 space-y-3 rounded-lg hover:bg-gray-100 ">
-                  <div className="flex items-center text-sm font-bold gap-2">
-                    <GoQuestion />
-                    Is The High Roller suitable for all ages?
-                  </div>
-                  <p>
-                    Absolutely! The High Roller offers a family-friendly
-                    experience suitable for visitors of all ages. Children must
-                    be accompanied by an adult.
-                  </p>
-                </div>
-                <div className="border shadow-lg px-5 py-6 space-y-3 rounded-lg hover:bg-gray-100 ">
-                  <div className="flex items-center text-sm font-bold gap-2">
-                    <GoQuestion />
-                    Can I bring food or drinks aboard The High Roller?
-                  </div>
-                  <p>
-                    Outside food and beverages are not permitted on The High
-                    Roller. However, there are nearby dining options at The LINQ
-                    Promenade where you can enjoy a meal before or after your
-                    ride.
-                  </p>
-                </div>
-                <div className="border shadow-lg px-5 py-6 space-y-3 rounded-lg hover:bg-gray-100 ">
-                  <div className="flex items-center text-sm font-bold gap-2">
-                    <GoQuestion />
-                    Is The High Roller wheelchair accessible?
-                  </div>
-                  <p>
-                    es, The High Roller cabins are wheelchair accessible, making
-                    it possible for everyone to enjoy the breathtaking views of
-                    Las Vegas.
-                  </p>
-                </div>
-              </div>
-              </div>
-
-
-              <div className="seventh-child-Rates-Reviews space-y-5 border shadow-lg px-4 md:px-6 py-6 rounded-xl">
-  <div  onClick={()=>closerFunc("Question")} className="cursor-pointer flex group justify-between items-center">
-    <h3 className="font-bold text-xl md:text-2xl group-hover:text-orange-400 duration-100">
-      Rates-Reviews
-    </h3>
-    <IoIosArrowDown />
-  </div>
-  <div className={`space-y-5  ${closer== "Question" ? ' opacity-100' : 'max-h-0 opacity-0'}`}>
-  
-<div className="flex flex-col md:flex-row ratings gap-5 md:gap-10">
-    <div className="bg-[#FCFCF3] flex justify-center items-center h-40 md:h-60 w-full md:w-1/3 lg:w-1/4 border shadow-lg">
-      <div className="space-y-2 text-center">
-        <h3 className="font-bold text-lg md:text-xl">4.92/5</h3>
-        <p className="text-sm md:text-base">(672 reviews)</p>
-        <div className="text-yellow-600 flex justify-center items-center">
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStar />
-        </div>
-      </div>
-    </div>
-
-    <div className="flex flex-col md:flex-row gap-3 md:gap-5 items-start">
-      <div className="flex flex-col gap-2">
-        <span className="text-sm md:text-base">Price</span>
-        <span className="text-sm md:text-base">Services</span>
-        <span className="text-sm md:text-base">Safety</span>
-        <span className="text-sm md:text-base">Entertainment</span>
-        <span className="text-sm md:text-base">Accessibility</span>
-        <span className="text-sm md:text-base">Support</span>
-      </div>
-
-      <div className="flex flex-col gap-2 md:gap-3">
-        <div className="flex items-center gap-2">
-          <div className="rounded-full w-full md:w-[220px] bg-gray-300">
-            <div className="py-1 rounded-full w-[180px] bg-orange-400"></div>
-          </div>
-          <span className="text-sm md:text-base">4.8/5</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="rounded-full w-full md:w-[220px] bg-gray-300">
-            <div className="py-1 rounded-full w-[190px] bg-orange-400"></div>
-          </div>
-          <span className="text-sm md:text-base">4.2/5</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="rounded-full w-full md:w-[220px] bg-gray-300">
-            <div className="py-1 rounded-full w-[180px] bg-orange-400"></div>
-          </div>
-          <span className="text-sm md:text-base">4.3/5</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="rounded-full w-full md:w-[220px] bg-gray-300">
-            <div className="py-1 rounded-full w-[190px] bg-orange-400"></div>
-          </div>
-          <span className="text-sm md:text-base">4.4/5</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="rounded-full w-full md:w-[220px] bg-gray-300">
-            <div className="py-1 rounded-full w-[200px] bg-orange-400"></div>
-          </div>
-          <span className="text-sm md:text-base">4.3/5</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="rounded-full w-full md:w-[220px] bg-gray-300">
-            <div className="py-1 rounded-full w-[220px] bg-orange-400"></div>
-          </div>
-          <span className="text-sm md:text-base">5/5</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div className="border space-y-6 shadow-lg px-4 md:px-6 py-4 md:py-6 rounded-xl">
-    <div className="border-b-2 flex justify-between pb-3">
-      <div className="flex items-center gap-5">
-        <img
-          src="/Images/Resort.jpg"
-          alt="User"
-          className="w-12 md:w-16 rounded-full h-12 md:h-16"
-        />
-        <div>
-          <h4 className="font-bold text-base md:text-lg">Sarah Johnson</h4>
-          <p className="text-xs md:text-sm">December 4, 2024 at 3:12 pm</p>
-        </div>
-      </div>
-      <div className="flex items-center text-yellow-300">
-        <FaStar />
-        <FaStar />
-        <FaStar />
-        <FaStar />
-        <FaStar />
-        <FaStar />
-      </div>
-    </div>
-    <p className="text-sm md:text-base">
-      The [Travel Website Name] offers a comprehensive and user-friendly platform
-      for planning and booking trips. The website features an intuitive
-      navigation system that makes it easy for users to search for destinations,
-      accommodations, and activities.
-    </p>
-  </div>
-  <div className="border space-y-6 shadow-lg px-4 md:px-6 py-4 md:py-6 rounded-xl">
-    <div className="border-b-2 flex justify-between pb-3">
-      <div className="flex items-center gap-5">
-        <img
-          src="/Images/Resort.jpg"
-          alt="User"
-          className="w-12 md:w-16 rounded-full h-12 md:h-16"
-        />
-        <div>
-          <h4 className="font-bold text-base md:text-lg">Sarah Johnson</h4>
-          <p className="text-xs md:text-sm">December 4, 2024 at 3:12 pm</p>
-        </div>
-      </div>
-      <div className="flex items-center text-yellow-300">
-        <FaStar />
-        <FaStar />
-        <FaStar />
-        <FaStar />
-        <FaStar />
-        <FaStar />
-      </div>
-    </div>
-    <p className="text-sm md:text-base">
-      The  offers a comprehensive and user-friendly platform
-      for planning and booking trips. The website features an intuitive
-      navigation system that makes it easy for users to search for destinations,
-      accommodations, and activities.
-    </p>
-  </div>
-  <div className="border space-y-6 shadow-lg px-4 md:px-6 py-4 md:py-6 rounded-xl">
-    <div className="border-b-2 flex justify-between pb-3">
-      <div className="flex items-center gap-5">
-        <img
-          src="/Images/Resort.jpg"
-          alt="User"
-          className="w-12 md:w-16 rounded-full h-12 md:h-16"
-        />
-        <div>
-          <h4 className="font-bold text-base md:text-lg">Sarah Johnson</h4>
-          <p className="text-xs md:text-sm">December 4, 2024 at 3:12 pm</p>
-        </div>
-      </div>
-      <div className="flex items-center text-yellow-300">
-        <FaStar />
-        <FaStar />
-        <FaStar />
-        <FaStar />
-        <FaStar />
-        <FaStar />
-      </div>
-    </div>
-    <p className="text-sm md:text-base">
-      The offers a comprehensive and user-friendly platform
-      for planning and booking trips. The website features an intuitive
-      navigation system that makes it easy for users to search for destinations,
-      accommodations, and activities.
-    </p>
-  </div>
-
-</div>
-</div>
-
-
-              <div className=" eigth-child-add-reviews space-y-5 border shadow-lg px-5 py-6 rounded-xl sm:px-7 sm:py-8">
-                <h3 className="font-bold text-xl hover:text-orange-400 duration-100 sm:text-2xl">
-                  Add a Review
-                </h3>
-                <div className="space-y-5 border-b pb-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                    <div className="flex items-center gap-5">
-                      <p className="flex-shrink-0">Price</p>
-                      <div className="flex items-center text-yellow-300">
-                        <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />{" "}
-                        <FaStar />
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-5">
-                      <p className="flex-shrink-0">Safety</p>
-                      <div className="flex items-center text-yellow-300">
-                        <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />{" "}
-                        <FaStar />
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-5">
-                      <p className="flex-shrink-0">Accessibility</p>
-                      <div className="flex items-center text-yellow-300">
-                        <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />{" "}
-                        <FaStar />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                    <div className="flex items-center gap-5">
-                      <p className="flex-shrink-0">Services</p>
-                      <div className="flex items-center text-yellow-300">
-                        <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />{" "}
-                        <FaStar />
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-5">
-                      <p className="flex-shrink-0">Entertainment</p>
-                      <div className="flex items-center text-yellow-300">
-                        <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />{" "}
-                        <FaStar />
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-5">
-                      <p className="flex-shrink-0">Support</p>
-                      <div className="flex items-center text-yellow-300">
-                        <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />{" "}
-                        <FaStar />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="Leave-feedBack space-y-3">
-                  <h3 className="font-bold text-lg hover:text-orange-400 duration-100 sm:text-lg">
-                    Leave Feedback
-                  </h3>
-                  <div className="space-y-5">
-                    <div className="flex flex-col gap-5 w-full sm:flex-row">
-                      <input
-                        type="text"
-                        placeholder="Your Name"
-                        className="border w-full px-5 rounded-lg py-4"
-                      />
-                      <input
-                        type="text"
-                        placeholder="Email address"
-                        className="border w-full px-5 rounded-lg py-4"
-                      />
-                    </div>
-                    <div>
-                      <textarea
-                        id="description"
-                        name="description"
-                        className="w-full min-h-40 p-2 border border-gray-300 rounded-md outline-none focus:border-blue-500 hover:border-blue-200"
-                        placeholder="Your Comment"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <button className="flex hover:bg-gray-200 hover:text-black px-5 py-3 rounded-lg font-bold items-center gap-3 bg-black text-white">
-                      Submit review <IoMdArrowForward />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="right-side  lg:col-span-2">
-            <div className="  space-y-11">
-            <div className="child1 space-y-5 bg-white border shadow-lg rounded-lg">
-                <div className="bg-gray-100 text-xl font-bold py-3 px-4 rounded-t-lg">
-                  Booking Form
-                </div>
-
-                <div className="px-4 border-b pb-3">
-                  <div className="flex items-center space-x-4">
-                    <h6 className="text-gray-700 font-bold">From:</h6>
-                    <div className="relative w-full">
-                      <input
-                        type="text"
-                        aria-label="Date input"
-                        className="w-full focus:outline-none border py-2 px-4 rounded-md shadow-sm"
-                      />
-                      <FaRegCalendarAlt className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="px-4 border-b pb-3">
-                  <div className="flex items-center justify-between space-x-4">
-                    <h6 className="text-gray-700 font-bold">Time:</h6>
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center gap-1">
-                        <input type="radio" name="time" id="time-12" />
-                        <label htmlFor="time-12">12:00</label>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <input type="radio" name="time" id="time-17" />
-                        <label htmlFor="time-17">17:00</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="px-4 border-b pb-3">
-                  <div className="space-y-4">
-                    <h6 className="text-gray-700 font-bold">Tickets:</h6>
-                    <div className="flex items-center justify-between">
-                      <p>Adult (18+ Years)</p>
-                      <p>$42.50</p>
-                      <div className="flex items-center">
-                        <p>01</p>
-                        <IoIosArrowDown className="ml-2 text-gray-500" />
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <p>Child (5-17 Years)</p>
-                      <p>$30.00</p>
-                      <div className="flex items-center">
-                        <p>01</p>
-                        <IoIosArrowDown className="ml-2 text-gray-500" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="px-4 border-b pb-3">
-                  <div className="space-y-4">
-                    <h6 className="text-gray-700 font-bold">Add Extra:</h6>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <input id="extra-1" type="checkbox" />
-                        <label htmlFor="extra-1">Add service Booking</label>
-                      </div>
-                      <p>$32.00</p>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <input id="extra-2" type="checkbox" />
-                        <label htmlFor="extra-2">Add service Booking</label>
-                      </div>
-                      <p>$32.00</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="px-4 pb-3 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <h6>Total:</h6>
-                    <h5 className="text-lg font-bold">$124.00</h5>
-                  </div>
-                  <button className="bg-black text-yellow-300 rounded-lg py-4 w-full text-center font-bold hover:bg-yellow-500 hover:text-black transition-all">
-                    Book Now
-                  </button>
-                  <div className="flex items-center gap-2 justify-center text-gray-700">
-                    <FaUser />
-                    <p>Need Some Help?</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="child2 bg-white space-y-5 border shadow-lg rounded-lg px-4 py-6">
-                <h3 className="text-gray-700 font-bold text-lg">
-                  Popular Tours
-                </h3>
-                <div className="space-y-8">
-                  {tours.map((tour, index) => (
-                    <div key={index} className="flex gap-4  ">
-                      <div>
+              {Array(16)
+                .fill(null)
+                .map((_, index) => (
+                  <SwiperSlide key={index} className="flex justify-center ">
+                    <div className="w-72 transition-transform duration-300 hover:scale-105">
+                      <div className="h-80 overflow-hidden rounded-xl shadow-lg bg-white relative group">
                         <img
-                          src={tour.image}
-                          alt={tour.title}
-                          className="w-24 h-24 rounded object-cover"
+                          src="/Images/young.webp"
+                          alt="Young & Buzzing"
+                          className="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-75"
                         />
+
+                        <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition duration-500"></div>
                       </div>
-                      <div className="flex flex-col justify-between ">
-                        <h4 className=" text-gray-800 font-bold">
-                          {tour.title}
-                        </h4>
-                        <p className="flex items-center space-x-2 text-sm text-gray-600">
-                          <span className="text-gray-800 font-semibold">
-                            ${tour.price.toFixed(2)}
-                          </span>
-                          <span className="line-through text-gray-400">
-                            ${tour.originalPrice.toFixed(2)}
-                          </span>
+
+                      <div className="relative z-40 p-4 bg-white rounded-b-xl shadow-lg">
+                        <h5 className="font-bold text-black text-xl mb-2">
+                          Young & Buzzing
+                        </h5>
+                        <p className="text-sm text-gray-600">
+                          Witness the thrilling vibe of India’s young and
+                          buzzing places.
                         </p>
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
+                  </SwiperSlide>
+                ))}
 
-              <div className="child3">
-                <img
-                  src="/Images/Resort.jpg"
-                  alt=""
-                  className="w-full rounded-lg  "
-                />
+              <div className="swiper-button-prev custom-nav-button hidden lg:flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg  transition duration-300">
+                <FaArrowLeftLong className="text-[#C09552] " />
               </div>
-              <div className="child4">
-                <img
-                  src="/Images/hotelss.avif "
-                  alt=""
-                  className="w-full rounded-lg  "
-                />
+              <div className="swiper-button-next custom-nav-button hidden lg:flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg  transition duration-300">
+                <FaArrowLeftLong className="rotate-180 text-[#C09552] " />
               </div>
-            </div>
-            </div>
+            </Swiper>
           </div>
+        </div>
+      </div>
+
+      <div className="Incredible-Bharat  lg:py-10 px-3 ">
+        <div className="w-full min-h-[60vh] bg-[url('/Images/desert.avif')] rounded-3xl px-5 xl:px-40 py-16 bg-no-repeat bg-cover  bg-center">
+          <div className="flex flex-col gap-5 justify-center items-start">
+            <h3 className="text-2xl xl:text-5xl font-extrabold font-serif text-white">
+              Amazing <br />
+              India Awaits
+            </h3>
+            <p className="text-white ">
+              Here’s an expanded version of your content that adds more detail
+              and excitement: Embark on an unforgettable adventure through the
+              iconic UNESCO World Heritage sites, towering skyscrapers,
+              breathtaking natural landscapes, and majestic palaces like the Taj
+              Mahal. From the ancient temples of Khajuraho to the vibrant
+              streets of Jaipur, every corner of Bharat tells a story waiting to
+              be explored. Delve into the rich tapestry of cultures, where
+              tradition meets modernity, and every experience is a celebration
+              of diversity. Immerse yourself in the bustling markets, savor the
+              delectable flavors of regional cuisines, and engage with the
+              warm-hearted locals who embody the spirit of Bharat. Create
+              lasting memories with our meticulously crafted itineraries,
+              designed to cater to every traveler's desire. Whether you seek
+              adventure in the serene backwaters of Kerala, a spiritual journey
+              in Varanasi, or a wildlife safari in the heart of Ranthambore, we
+              have something for everyone. Our knowledgeable guides are ready to
+              lead you through hidden gems and iconic landmarks, ensuring you
+              experience the very best of this enchanting land..
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-5 xl:px-40 items-center">
+        <div className="flex flex-col  gap-2">
+          <img src="/Images/india.jpg" alt="" className="w-16 rounded-full" />
+          <p>
+            Introducing Explore Bharat, a pioneering travel initiative by the
+            renowned online platform, Apka Trip. This unique program presents
+            thoughtfully curated tour packages with tailor-made itineraries,
+            carefully designed by a team of expert travel planners to offer you
+            an exceptional holiday experience.
+          </p>
+        </div>
+        <div className="flex flex-col gap-2">
+          <div className="bg-orange-800 py-[2px] w-10"></div>
+          <p>
+            Indulge in unmatched luxury with world-class infrastructure,
+            exceptional travel amenities, versatile transportation choices, and
+            upscale accommodations, ensuring every detail of your trip reflects
+            the highest standards. With each package, you’ll enjoy the services
+            of a dedicated and expert personal guide, offering customized
+            assistance throughout your journey, making your experience truly
+            worthwhile.
+          </p>
+        </div>
+        <div className="flex flex-col gap-2">
+          <div className="bg-green-800 py-[2px] w-10"></div>
+
+          <p>
+            Discover unmatched luxury with a selection of world-class
+            infrastructure, exceptional travel amenities, diverse transport
+            options, and premium accommodations, ensuring every part of your
+            journey is marked by sophistication and quality. Each package offers
+            the added value of a skilled personal guide, dedicated to providing
+            personalized support and enriching your travel experience from start
+            to finish.
+          </p>
         </div>
       </div>
     </div>
