@@ -11,7 +11,7 @@ class AirportController extends Controller
 
     public function index(Request $request)
     {
-        $page = $request->query('page', 1);
+        $page = $request->query('page', 20);
         $query = $request->query('query', ''); 
     
      
