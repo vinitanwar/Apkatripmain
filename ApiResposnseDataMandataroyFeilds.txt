@@ -1,0 +1,23 @@
+
+When I click On ANY Flight Then passed this Key  its mandatory
+"ResultIndex": "OB3[TBO]DEL-DEL-IN$BOM-BOM-IN$QP$3228$BC$Economy$Saver$2024-10-06T16:00:00$2024-10-06T18:20:00$$7 Kg$$$$7YH$140$0$B0O7RBIX$$$1[TBO]1097$550$Adult$1$0[TBO]109$UVBERUw3MDA1Ql8wMw==$$PUB$A-0[CM] |O-0[CM] |S-0$550$547$1$INR$INR$True$INR$1$False$False$OneWay$$QP$RegularFare$85624430-f0b7-44fa-96b7-b68f27637feb$$BookingAPI$0$False$INR$False$False$TBOIndia$False$0$97$$$False$True$False$False$-1$Normal$57809$QPDEL7005B_03$1097.00$$550$547$Fixed$QP$$0$True[TBO]$$$$$$$[TBO]None",
+
+
+Airline Source 
+(NotSet = 0 SpiceJet = 3 
+Amadeus = 4 Galileo = 5 
+Indigo = 6 GoAir = 10 AirArabia = 13 
+AirIndiaExpress = 14 AirIndiaExpressDom = 15 
+FlyDubai = 17 AirAsia = 19 IndigoCoupon = 24 
+SpiceJetCoupon = 25 GoAirCoupon = 26 IndigoTBF = 27 
+SpiceJetTBF = 28 GoAirTBF = 29 IndigoSPLCoupon = 30 
+SpiceJetSPLCoupon = 31 GoAirSPLCoupon = 32
+IndigoCrpFare = 36 SpiceJetCrpFare = 37 
+GoAirCrpFare = 38 IndigoDstInv = 42 
+SpiceJetDstInv = 43 GoAirDstInv = 44 AirCosta = 46 
+MalindoAir = 47 BhutanAirlines = 48 
+AirPegasus = 49 TruJet = 50)
+
+
+
+
