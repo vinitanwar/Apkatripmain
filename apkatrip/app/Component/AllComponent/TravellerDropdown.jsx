@@ -114,7 +114,7 @@ const AutoSearch = ({ value,setAdultCount,adultCount,childCount,setChildCount,in
                 type="radio"
                 name="optClass"
                 value="All"
-                checked={selectedClass === 'All'}
+                checked={selectedClass === 1}
                 onChange={handleClassChange(1)}
                 className="form-radio"
               />
@@ -125,7 +125,7 @@ const AutoSearch = ({ value,setAdultCount,adultCount,childCount,setChildCount,in
                 type="radio"
                 name="optClass"
                 value="Economy"
-                checked={selectedClass === 'Economy'}
+                checked={selectedClass === 2}
                 onChange={handleClassChange(2)}
                 className="form-radio"
               />
@@ -136,7 +136,7 @@ const AutoSearch = ({ value,setAdultCount,adultCount,childCount,setChildCount,in
                 type="radio"
                 name="optClass"
                 value="Premium Economy"
-                checked={selectedClass === 'Premium Economy'}
+                checked={selectedClass === 3}
                 onChange={handleClassChange(3)}
                 className="form-radio"
               />
@@ -147,7 +147,7 @@ const AutoSearch = ({ value,setAdultCount,adultCount,childCount,setChildCount,in
                 type="radio"
                 name="optClass"
                 value="Business"
-                checked={selectedClass === 'Business'}
+                checked={selectedClass === 4}
                 onChange={handleClassChange(4)}
                 className="form-radio"
               />
@@ -158,7 +158,7 @@ const AutoSearch = ({ value,setAdultCount,adultCount,childCount,setChildCount,in
                 type="radio"
                 name="optClass"
                 value="PremiumBusiness"
-                checked={selectedClass === 'PremiumBusiness'}
+                checked={selectedClass === 5}
                 onChange={handleClassChange(5)}
                 className="form-radio"
               />
@@ -169,7 +169,7 @@ const AutoSearch = ({ value,setAdultCount,adultCount,childCount,setChildCount,in
                 type="radio"
                 name="optClass"
                 value="First Class"
-                checked={selectedClass === 'First Class'}
+                checked={selectedClass === 6}
                 onChange={handleClassChange(6)}
                 className="form-radio"
               />

@@ -6,15 +6,17 @@ import TravellerDropdown from "./TravellerDropdown";
 import Link from "next/link";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
+import axios from "axios";
 
 const Header = () => {
   const [selected, setSelected] = useState(new Date(Date.now()));
+  const [ip,setip]=useState()
   const [selectedReturn, setSelectedReturn] = useState( );
   const [adultCount, setAdultCount] = useState(1);
   const [childCount, setChildCount] = useState(0);
   const [infantCount, setInfantCount] = useState(0);
   const [isGroup, setIsGroup] = useState(false);
-  const [selectedClass, setSelectedClass] = useState("Business");
+  const [selectedClass, setSelectedClass] = useState(1);
   const [activeTab, setActiveTab] = useState(1);
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
@@ -81,47 +83,36 @@ const Header = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
 
-  // Array of day names
-  const daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+useEffect(()=>{
 
-  const getDateComponents = (date) => {
-    return {
-      year: date.getFullYear(),
-      month: date.getMonth(),
-      day: String(date.getDate()).padStart(2, "0"),
-      dayOfWeek: daysOfWeek[date.getDay()],
-    };
-  };
+  const getip=async()=>{
+    const data= await axios.get("https://api.ipify.org?format=json")
 
-  const currentDate = new Date();
-  const futureDate = new Date();
-  futureDate.setDate(currentDate.getDate() + 3);
+    setip(data.data.ip)
+  }
+  getip()
+},[])
 
-  const currentDateComponents = getDateComponents(currentDate);
-  const futureDateComponents = getDateComponents(futureDate);
+
+  // const getDateComponents = (date) => {
+  //   return {
+  //     year: date.getFullYear(),
+  //     month: date.getMonth(),
+  //     day: String(date.getDate()).padStart(2, "0"),
+  //     dayOfWeek: daysOfWeek[date.getDay()],
+  //   };
+  // };
+
+  // const currentDate = new Date();
+  // const futureDate = new Date();
+  // futureDate.setDate(currentDate.getDate() + 3);
+
+  // const currentDateComponents = getDateComponents(currentDate);
+  // const futureDateComponents = getDateComponents(futureDate);
+  
+  
+  
   const [isVisible, setIsVisible] = useState(false);
 
   const [selectedOption, setSelectedOption] = useState("");
@@ -168,12 +159,15 @@ const Header = () => {
     // Your logic for 'To' click
     console.log("To clicked");
   };
+const handelSearch=()=>{
+  console.log("search",selected,selectedReturn,fromCity,toCity,adultCount,childCount,infantCount,selectedClass)
+}
 
-
-
+console.log(ip)
 
   return (
     <>
+  
       <div className="flex flex-col hidden lg:block custom-color text-white md:px-10 lg:px-52  py-10">
         <div>
           <div className="tabs flex gap-2 pb-2">
@@ -247,6 +241,7 @@ const Header = () => {
                       <div ref={dropdownRef}>
                         <AutoSearch
                           value="To"
+                          fromCity={fromCity}
                           Click={setIsVisible}
                           handleClosed={handleVisibilityChange}
                           onSelect={handleCitySelect}
@@ -315,7 +310,7 @@ Select a Day
                         {selectedReturn.toLocaleString('default', { month: 'short' })}'
                       </span>
                       <span className="text-sm font-semibold">
-                        {futureDateComponents.year}
+                        {selectedReturn.toLocaleDateString()}
                       </span>
                       <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
                     </div>
@@ -367,12 +362,12 @@ Select a Day
                       </div>
                     )}
                   </div>
-                  <Link
-                    href="/flightSearch"
+                  <button
+                  onClick={handelSearch}
                     className="text-white flex items-center justify-center text-2xl font-bold p-4 bg-[#ef6614] rounded-br-lg rounded-tr-lg"
                   >
                     Search
-                  </Link>
+                  </button>
                 </div>
               </>
             )}

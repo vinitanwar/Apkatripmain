@@ -4,17 +4,36 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllAirports } from '../Store/slices/Allairportslice';
-const AutoSearch = ({ value, onSelect ,Click}) => {
+import { toast,Flip } from 'react-toastify';
+
+
+
+const AutoSearch = ({ value, onSelect ,Click,fromCity}) => {
   const state=  useSelector(state=>state.Allairport);
   const dispatch=useDispatch();
   const [allport,setAllport]=useState()
 
+console.log(fromCity)
   const handleSelect = (city) => {
+    
 
 
 
-   
-   onSelect(city); 
+   if(fromCity && fromCity.id==city.id){
+    toast.warn('You choese same airport', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Flip,
+      });
+   }
+   else{   onSelect(city); 
+   }
 
    Click(false)
     console.log(false)
@@ -58,9 +77,12 @@ dispatch(getAllAirports(e.target.value))
         { allport &&  !allport.isLoading &&<>
         {allport && allport.info && allport.info.data && allport.info.data.map((city)=>( <li
               key={city.id}
-              onClick={() => handleSelect(city)}
+              
+                onClick={() => handleSelect(city)}
               className="border-b border-[#ececec] py-3 px-2 hover:bg-[#f7f7f7]"
+              
             >
+
               <div className="flex px-2">
                 <img
                   src="/Images/planeicon.svg"

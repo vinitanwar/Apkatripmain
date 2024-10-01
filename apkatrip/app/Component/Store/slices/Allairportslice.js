@@ -3,7 +3,7 @@ import axios from "axios";
 import { localurl } from "../flightUrls";
 
 export const getAllAirports=createAsyncThunk("/airports",async(info)=>{
-const res=await axios.get(`${localurl}airports?page=10&query=${info}`)
+const res=await axios.get(`${localurl}/airports?query=${info}`)
 
 return res.data;
 })
