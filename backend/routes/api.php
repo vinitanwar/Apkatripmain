@@ -9,3 +9,7 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get("/airports",[AirportController::class,"getallPorts"]);
+
+
+
+// age = [1,2,3,0,null,2,4]
