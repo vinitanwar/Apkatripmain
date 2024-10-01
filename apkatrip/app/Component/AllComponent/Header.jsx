@@ -16,16 +16,46 @@ const Header = () => {
   };
   const handleCheckboxChange = (event) => {};
 
-  const [fromCity, setFromCity] = useState({
-    code: "DEL",
-    name: "Delhi",
-    airport: "Indira Gandhi International Airport",
-  });
+  const [fromCity, setFromCity] = useState(  {
+    id: 26555,
+    ident: "VIDP",   
+     type: "large_airport",
+    name: "Indira Gandhi International Airport",
+    latitude_deg: "28.55563",
+    longitude_deg: "77.09519",
+    elevation_ft: "777",
+    continent: "AS",
+    iso_country: "IN",
+    iso_region: "IN-DL",
+    municipality: "New Delhi",
+    scheduled_service: "yes",
+    gps_code: "VIDP",
+    iata_code: "DEL",
+    local_code: "",
+    home_link: "http://www.newdelhiairport.in/",
+    wikipedia_link: "https://en.wikipedia.org/wiki/Indira_Gandhi_International_Airport",
+    keywords: "Palam Air Force Station"
+});
   const [toCity, setToCity] = useState({
-    code: "MUM",
-    name: "Mumbai",
-    airport: "Chhatrapati Shivaji Maharaj International Airport",
-  });
+     id: 26434,
+    ident: "VABB",
+    type: "large_airport",
+    name: "Chhatrapati Shivaji International Airport",
+    latitude_deg: "19.0886993408",
+    longitude_deg: "72.8678970337",
+    elevation_ft: "39",
+    continent: "AS",
+    iso_country: "IN",
+    iso_region: "IN-MM",
+    municipality: "Mumbai",
+    scheduled_service: "yes",
+    gps_code: "VABB",
+    iata_code: "BOM",
+    local_code: "",
+    home_link: "http://www.csia.in/",
+    wikipedia_link: "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_International_Airport",
+    keywords: "Bombay, Sahar International Airport"
+});
 
   const handleCitySelect = (city) => {
     if (selectedOption === "from") {
@@ -174,15 +204,17 @@ const Header = () => {
                   >
                     <p className="text-sm text-[#7E7979] font-medium">From</p>
                     <span className="text-3xl py-1 text-black font-bold">
-                      {fromCity.name}
+                      {fromCity.municipality}
                     </span>
                     <p className="text-black text-xs truncate">
-                      [{fromCity.code}] {fromCity.airport}
+                      [{fromCity.name}] {fromCity.iata_code}
                     </p>
+
                     {isVisible && selectedOption === "from" && (
                       <div ref={dropdownRef}>
                         <AutoSearch
                           value="From"
+                      Click={setIsVisible}
                           handleClosed={handleVisibilityChange}
                           onSelect={handleCitySelect}
                         />
@@ -198,15 +230,16 @@ const Header = () => {
                       To
                     </label>
                     <span className="text-3xl py-1 text-black font-bold">
-                      {toCity.name}
+                      {toCity.municipality}
                     </span>
                     <p className="text-black text-xs truncate">
-                      [{toCity.code}] {toCity.airport}
+                      [{toCity.name}] {toCity.iata_code}
                     </p>
                     {isVisible && selectedOption === "to" && (
                       <div ref={dropdownRef}>
                         <AutoSearch
                           value="To"
+                          Click={setIsVisible}
                           handleClosed={handleVisibilityChange}
                           onSelect={handleCitySelect}
                         />
@@ -451,10 +484,10 @@ const Header = () => {
                 >
                   <p className="text-sm text-[#7E7979] font-medium">From</p>
                   <span className="text-3xl py-1 text-black font-bold">
-                    {fromCity.name}
+                    {fromCity.municipality}
                   </span>
                   <p className="text-black text-xs truncate">
-                    [{fromCity.code}] {fromCity.airport}
+                    [{fromCity.name}] {fromCity.airport}
                   </p>
                   {isVisible && selectedOption === "from" && (
                     <div ref={dropdownRef}>
@@ -474,10 +507,10 @@ const Header = () => {
                     To
                   </label>
                   <span className="text-3xl py-1 text-black font-bold">
-                    {toCity.name}
+                    {toCity.municipality}
                   </span>
                   <p className="text-black text-xs truncate">
-                    [{toCity.code}] {toCity.airport}
+                    [{toCity.name}] {toCity.airport}
                   </p>
                   {isVisible && selectedOption === "to" && (
                     <div ref={dropdownRef}>

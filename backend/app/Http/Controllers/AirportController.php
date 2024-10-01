@@ -16,7 +16,7 @@ class AirportController extends Controller
 
         $page = $request->query('page', 1); 
         $query = $request->query('query', '');
-         $res=airport::where('name', 'like', '%' . $query . '%')->paginate($page);
+         $res=airport::where('name', 'like', '%' . $query . '%')->orWhere('name', 'like', '%' . $query . '%' )->paginate($page);
          if ($res->currentPage() > $res->lastPage()) {
            
             return redirect()->to('/api/airports?page='.urlencode($page-1).' &query=' . urlencode($query));
