@@ -8,8 +8,11 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::get("/airports",[AirportController::class,"getallPorts"]);
 
 
 
-// age = [1,2,3,0,null,2,4]
+
+
+Route::apiResource('v1/airports', AirportController::class);
+
+
