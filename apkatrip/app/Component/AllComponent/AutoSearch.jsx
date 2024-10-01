@@ -20,7 +20,7 @@ console.log(fromCity)
 
 
    if(fromCity && fromCity.id==city.id){
-    toast.warn('You choese same airport', {
+    toast.info('You choese same airport', {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,
