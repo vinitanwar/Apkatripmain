@@ -2,12 +2,10 @@
 import React ,{useState} from "react";
 import { FaUsers } from "react-icons/fa";
 
-const AutoSearch = ({ value }) => {
-  const [adultCount, setAdultCount] = useState(1);
-  const [childCount, setChildCount] = useState(0);
-  const [infantCount, setInfantCount] = useState(0);
-  const [isGroup, setIsGroup] = useState(false);
-  const [selectedClass, setSelectedClass] = useState("Business");
+const AutoSearch = ({ value,setAdultCount,adultCount,childCount,setChildCount,infantCount,setInfantCount,isGroup
+ , setIsGroup,selectedClass,setSelectedClass
+ }) => {
+
 
   const handleChange = (setter) => (change) => {
     setter((prev) => Math.max(0, prev + change));
@@ -111,13 +109,24 @@ const AutoSearch = ({ value }) => {
 
           {/* Class Selection */}
           <div className="space-y-1 text-black" >
+          <label className="flex items-center gap-2">
+              <input
+                type="radio"
+                name="optClass"
+                value="All"
+                checked={selectedClass === 'All'}
+                onChange={handleClassChange(1)}
+                className="form-radio"
+              />
+              <span>All</span>
+            </label>
             <label className="flex items-center gap-2">
               <input
                 type="radio"
                 name="optClass"
                 value="Economy"
                 checked={selectedClass === 'Economy'}
-                onChange={handleClassChange('Economy')}
+                onChange={handleClassChange(2)}
                 className="form-radio"
               />
               <span>Economy</span>
@@ -128,7 +137,7 @@ const AutoSearch = ({ value }) => {
                 name="optClass"
                 value="Premium Economy"
                 checked={selectedClass === 'Premium Economy'}
-                onChange={handleClassChange('Premium Economy')}
+                onChange={handleClassChange(3)}
                 className="form-radio"
               />
               <span>Premium Economy</span>
@@ -139,10 +148,21 @@ const AutoSearch = ({ value }) => {
                 name="optClass"
                 value="Business"
                 checked={selectedClass === 'Business'}
-                onChange={handleClassChange('Business')}
+                onChange={handleClassChange(4)}
                 className="form-radio"
               />
               <span>Business</span>
+            </label>
+            <label className="flex items-center gap-2">
+              <input
+                type="radio"
+                name="optClass"
+                value="PremiumBusiness"
+                checked={selectedClass === 'PremiumBusiness'}
+                onChange={handleClassChange(5)}
+                className="form-radio"
+              />
+              <span>PremiumBusiness</span>
             </label>
             <label className="flex items-center gap-2 m-0 p-0">
               <input
@@ -150,7 +170,7 @@ const AutoSearch = ({ value }) => {
                 name="optClass"
                 value="First Class"
                 checked={selectedClass === 'First Class'}
-                onChange={handleClassChange('First Class')}
+                onChange={handleClassChange(6)}
                 className="form-radio"
               />
               <span>First Class</span>

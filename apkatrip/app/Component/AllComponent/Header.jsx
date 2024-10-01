@@ -8,8 +8,13 @@ import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 
 const Header = () => {
-  const [selected, setSelected] = useState();
-
+  const [selected, setSelected] = useState(new Date(Date.now()));
+  const [selectedReturn, setSelectedReturn] = useState( );
+  const [adultCount, setAdultCount] = useState(1);
+  const [childCount, setChildCount] = useState(0);
+  const [infantCount, setInfantCount] = useState(0);
+  const [isGroup, setIsGroup] = useState(false);
+  const [selectedClass, setSelectedClass] = useState("Business");
   const [activeTab, setActiveTab] = useState(1);
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
@@ -164,6 +169,9 @@ const Header = () => {
     console.log("To clicked");
   };
 
+
+
+
   return (
     <>
       <div className="flex flex-col hidden lg:block custom-color text-white md:px-10 lg:px-52  py-10">
@@ -210,7 +218,7 @@ const Header = () => {
                       [{fromCity.name}] {fromCity.iata_code}
                     </p>
 
-                    {isVisible && selectedOption === "from" && (
+                    {isVisible && selectedOption === "from" && 
                       <div ref={dropdownRef}>
                         <AutoSearch
                           value="From"
@@ -219,7 +227,7 @@ const Header = () => {
                           onSelect={handleCitySelect}
                         />
                       </div>
-                    )}
+                    }
                   </div>
 
                   <div
@@ -235,7 +243,7 @@ const Header = () => {
                     <p className="text-black text-xs truncate">
                       [{toCity.name}] {toCity.iata_code}
                     </p>
-                    {isVisible && selectedOption === "to" && (
+                    {isVisible && selectedOption === "to" && 
                       <div ref={dropdownRef}>
                         <AutoSearch
                           value="To"
@@ -244,7 +252,7 @@ const Header = () => {
                           onSelect={handleCitySelect}
                         />
                       </div>
-                    )}
+                    }
                   </div>
 
                   <div
@@ -254,23 +262,28 @@ const Header = () => {
                     <label className="text-sm text-[#7E7979] font-medium">
                       Departure Date
                     </label>
+{!selected && <div className="text-black font-bold">
+Select a Day
+
+</div> }
+                    { selected && <>
                     <div className="flex  items-baseline text-black">
                       <span className="text-3xl py-1 pr-1 text-black font-bold">
                         {" "}
-                        {currentDateComponents.day}
+                        {selected.getDate()}
                       </span>
                       <span className="text-sm font-semibold">
-                        {months[currentDateComponents.month]}'
+                        {selected.toLocaleString('default', { month: 'short' })}'
                       </span>
                       <span className="text-sm font-semibold">
                         {" "}
-                        {currentDateComponents.year}
+                        {selected.getFullYear()}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl"  />
                     </div>
                     <p className="text-black text-xs">
-                      {currentDateComponents.dayOfWeek}
-                    </p>
+                      {selected.toLocaleDateString()}
+                    </p></>}
 
                     {isVisible && selectedOption === "date" && (
                       <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
@@ -287,14 +300,19 @@ const Header = () => {
                     <label className="text-sm text-[#7E7979] font-medium">
                       Return Date
                     </label>
+                    {!selectedReturn && <div className="text-black font-bold h-full align-bottom">
+                      Select Return Flight
+                      </div>}
+{ selectedReturn &&   <>
+
                     <div className="flex items-baseline text-black">
                       <span className="text-3xl py-1 pr-1 text-black font-bold">
                         {" "}
-                        {futureDateComponents.day}
+                        {selectedReturn.getDate()}
                       </span>
                       <span className="text-sm font-semibold">
                         {" "}
-                        {months[futureDateComponents.month]}'
+                        {selectedReturn.toLocaleString('default', { month: 'short' })}'
                       </span>
                       <span className="text-sm font-semibold">
                         {futureDateComponents.year}
@@ -302,15 +320,15 @@ const Header = () => {
                       <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
                     </div>
                     <p className="text-black text-xs">
-                      {futureDateComponents.dayOfWeek}
-                    </p>
-
+                      {selectedReturn.getFullYear()}
+                    </p></>
+}
                     {isVisible && selectedOption === "return" && (
                       <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
                         <DayPicker
                           mode="single"
-                          selected={selected}
-                          onSelect={setSelected}
+                          selected={selectedReturn}
+                          onSelect={setSelectedReturn}
                         />
                       </div>
                     )}
@@ -334,7 +352,18 @@ const Header = () => {
 
                     {isVisible && selectedOption === "traveller" && (
                       <div ref={dropdownRef}>
-                        <TravellerDropdown value="From" />
+                        <TravellerDropdown
+                        setIsGroup={setIsGroup} 
+                        adultCount={adultCount}
+                        setAdultCount={setAdultCount}
+                        childCount={childCount}
+                        setChildCount={setChildCount}
+                        infantCount={infantCount}
+                        setInfantCount={setInfantCount}
+                        isGroup={isGroup}
+                        setSelectedClass={setSelectedClass}
+                        selectedClass={selectedClass}
+                        value="From" />
                       </div>
                     )}
                   </div>
@@ -366,6 +395,8 @@ const Header = () => {
                   {isVisible && selectedOption === "from" && (
                     <div ref={dropdownRef}>
                       <AutoSearch
+                    Click={setIsVisible}
+
                         value="From"
                         handleClosed={handleVisibilityChange}
                         onSelect={handleCitySelect}
@@ -390,6 +421,7 @@ const Header = () => {
                   {isVisible && selectedOption === "to" && (
                     <div ref={dropdownRef}>
                       <AutoSearch
+                      Click={setIsVisible}
                         value="To"
                         handleClosed={handleVisibilityChange}
                         onSelect={handleCitySelect}
@@ -402,6 +434,7 @@ const Header = () => {
                   <label className="text-sm text-[#7E7979] font-medium">
                     Departure Date
                   </label>
+                  
                   <div className="flex items-baseline text-black">
                     <span className="text-3xl py-1 pr-1 text-black font-bold">
                       {" "}
@@ -492,7 +525,8 @@ const Header = () => {
                   {isVisible && selectedOption === "from" && (
                     <div ref={dropdownRef}>
                       <AutoSearch
-                        value="From"
+
+                          Click={setIsVisible}                        value="From"
                         handleClosed={handleVisibilityChange}
                         onSelect={handleCitySelect}
                       />
@@ -515,6 +549,7 @@ const Header = () => {
                   {isVisible && selectedOption === "to" && (
                     <div ref={dropdownRef}>
                       <AutoSearch
+                                                Click={setIsVisible}
                         value="To"
                         handleClosed={handleVisibilityChange}
                         onSelect={handleCitySelect}
@@ -573,6 +608,7 @@ const Header = () => {
                   {isVisible && selectedOption === "from" && (
                     <div ref={dropdownRef}>
                       <AutoSearch
+                       Click={setIsVisible}
                         value="From"
                         handleClosed={handleVisibilityChange}
                         onSelect={handleCitySelect}
@@ -597,6 +633,7 @@ const Header = () => {
                   {isVisible && selectedOption === "to" && (
                     <div ref={dropdownRef}>
                       <AutoSearch
+                       Click={setIsVisible}
                         value="To"
                         handleClosed={handleVisibilityChange}
                         onSelect={handleCitySelect}

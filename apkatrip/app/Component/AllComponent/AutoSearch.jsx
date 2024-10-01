@@ -14,9 +14,10 @@ const AutoSearch = ({ value, onSelect ,Click}) => {
 
 
    
-    if (onSelect) onSelect(city); 
+   onSelect(city); 
 
-    Click(false)
+   Click(false)
+    console.log(false)
   };
   
 
