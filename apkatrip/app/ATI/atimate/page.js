@@ -41,6 +41,14 @@ const Page = () => {
         "Easily keep track of reservations for travel to improve the overall productivity of the business.",
     },
   ];
+
+  
+  const getTodayYear = new Date().getFullYear(); // Get the current year
+  const startYear = 1999; // The year you started the business
+  const yearsInBusiness = getTodayYear - startYear;
+  
+  console.log(`I have been in business for ${yearsInBusiness} years.`);
+
   return (
     <>
       <div className="w-full bg-[url('/Images/bg-images..webp')] bg-no-repeat bg-cover px-5 md:px-20 py-5 md:py-16 bg-center">
@@ -67,11 +75,16 @@ const Page = () => {
       </div>
 
       <div className="flex flex-col md:flex-row justify-between mt-10 items-center border border-[#1882FF] rounded-[15px] bg-white mx-4 md:mx-28 px-4 md:px-10 pb-5 md:pb-0">
-        <div className="font-bold text-blue-600 text-[70px] md:text-[130px]">16</div>
+        <div className="font-bold text-blue-600 text-[70px] md:text-[130px]">{yearsInBusiness}</div>
         <div className="md:ml-8 text-center md:text-left">
           <h3 className="text-2xl md:text-5xl font-bold">Years of Working</h3>
           <p className="mt-4 text-gray-700">
-          Founded in 2020, Apka Trip has grown to become one of India's top online travel portals. With a strong focus on customer satisfaction and comprehensive travel solutions, we have proudly collaborated with over 70,000 B2B agents and served more than 25 million customers to date.
+          ApkaTrip.com stands as India’s largest and most trusted travel brand with a rich history 
+          dating back to 1999. Our commitment to excellence has made us a leader in the tourism industry, 
+          providing unparalleled services that cater to every traveler's needs. With a vast network of 
+          over 300,000 facilities and a diverse range of offerings including hotels, airlines, buses, 
+          cabs, trains and holidays planners with big corporates, we ensure that your journey is not only memorable but also seamlessly enjoyable. Join the ranks of our over 150,000 happy customers and experience the difference that makes ApkaTrip.com the top choice for travelers across the globe.
+
           </p>
         </div>
       </div>
