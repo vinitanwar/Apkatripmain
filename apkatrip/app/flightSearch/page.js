@@ -350,7 +350,7 @@ console.log( state.data && state.data.Response &&  state.data.Response.Results)
             </div>
           </div>
         </div> */}
-        <div className="hidden md:block  sticky top-0 w-1/4">
+        <div className="hidden md:block  sticky top-6 w-1/4">
           <FlightFliter />
         </div>
 
@@ -442,7 +442,7 @@ console.log( state.data && state.data.Response &&  state.data.Response.Results)
                           {flight.Fare.OfferedFare.toLocaleString("en-US", {style:"currency", currency:flight.Fare.Currency})}
                         </span>
                         <p className="text-sm text-gray-700 font-light leading-tight">
-                          per adult
+                         Total Price
                         </p>
                       </div>
                     </div>
@@ -531,7 +531,7 @@ console.log( state.data && state.data.Response &&  state.data.Response.Results)
                       {activeTab[index] === "1" && (
                         <div className="">
                           <span className="border w-full p-2 text-sm font-bold ">
-                            New Delhi to Bengaluru , 20 Sep
+                         {flight.Segments[0][0].Origin.Airport.CityName}  to {flight.Segments[0][0].Destination.Airport.CityName}  , 20 Sep
                           </span>
                           <div className="">
                             <div className="flex items-center gap-5 my-4">
@@ -541,8 +541,8 @@ console.log( state.data && state.data.Response &&  state.data.Response.Results)
                                 className="w-6 h-6"
                               />
                               <span className="">
-                                <strong>Air India</strong>{" "}
-                                <span className="text-gray-500">AI | 514</span>
+                                <strong>{flight.Segments[0][0].Airline.AirlineName  }</strong>{" "}
+                                <span className="text-gray-500">{flight.Segments[0][0].Airline.FareClass}| {flight.Segments[0][0].Airline.FlightNumber  }</span>
                               </span>
                               <span className="border border-gray-400 text-xs px-2 rounded-full text-gray-400">
                                 Airbus A350
