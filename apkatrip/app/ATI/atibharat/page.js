@@ -12,35 +12,35 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 export default function page() {
   const explore = [
     {
-      exploreImage: "/Images/desert.avif",
+      exploreImage: "/Images/desert.webp",
       placeName: "Royal Rajasthan",
     },
     {
-      exploreImage: "/Images/temple.jpg",
+      exploreImage: "/Images/goldenTemple.webp",
       placeName: "Golden Temple",
     },
     {
-      exploreImage: "/Images/desert.avif",
+      exploreImage: "/Images/desert.webp",
       placeName: "Royal Rajasthan",
     },
     {
-      exploreImage: "/Images/desert.avif",
+      exploreImage: "/Images/desert.webp",
       placeName: "Royal Rajasthan",
     },
     {
-      exploreImage: "/Images/desert.avif",
+      exploreImage: "/Images/desert.webp",
       placeName: "Royal Rajasthan",
     },
     {
-      exploreImage: "/Images/desert.avif",
+      exploreImage: "/Images/desert.webp",
       placeName: "Royal Rajasthan",
     },
     {
-      exploreImage: "/Images/desert.avif",
+      exploreImage: "/Images/desert.webp",
       placeName: "Royal Rajasthan",
     },
     {
-      exploreImage: "/Images/desert.avif",
+      exploreImage: "/Images/desert.webp",
       placeName: "Royal Rajasthan",
     },
   ];

@@ -54,23 +54,23 @@ class ApiService
         return $this->authenticate();
     }
 
-    public function searchFlights($searchPayload)
-    {
-        $token = $this->getToken();
+    // public function searchFlights($searchPayload)
+    // {
+    //     $token = $this->getToken();
 
-        $response = Http::withHeaders([
-            'Authorization' => "Bearer $token"
-        ])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Search', $searchPayload);
+    //     $response = Http::withHeaders([
+    //         'Authorization' => "Bearer $token"
+    //     ])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Search', $searchPayload);
 
-        // If the token is invalid, authenticate again and retry
-        if ($response->json('Response.Error.ErrorCode') === 6) {
-            $token = $this->authenticate();
+    //     // If the token is invalid, authenticate again and retry
+    //     if ($response->json('Response.Error.ErrorCode') === 6) {
+    //         $token = $this->authenticate();
 
-            $response = Http::withHeaders([
-                'Authorization' => "Bearer $token"
-            ])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Search', $searchPayload);
-        }
+    //         $response = Http::withHeaders([
+    //             'Authorization' => "Bearer $token"
+    //         ])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Search', $searchPayload);
+    //     }
 
-        return $response->json();
-    }
+    //     return $response->json();
+    // }
 }
