@@ -258,7 +258,7 @@ console.log(ip)
                       Departure Date
                     </label>
 {!selected && <div className="text-black font-bold">
-Select a Day
+Select a Date
 
 </div> }
                     { selected && <>
