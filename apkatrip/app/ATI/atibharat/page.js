@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -11,43 +12,88 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 
 export default function page() {
   const explore = [
-    {
-      exploreImage: "/Images/desert.webp",
-      placeName: "Royal Rajasthan",
-    },
-    {
-      exploreImage: "/Images/goldenTemple.webp",
-      placeName: "Golden Temple",
-    },
-    {
-      exploreImage: "/Images/desert.webp",
-      placeName: "Royal Rajasthan",
-    },
-    {
-      exploreImage: "/Images/desert.webp",
-      placeName: "Royal Rajasthan",
-    },
-    {
-      exploreImage: "/Images/desert.webp",
-      placeName: "Royal Rajasthan",
-    },
-    {
-      exploreImage: "/Images/desert.webp",
-      placeName: "Royal Rajasthan",
-    },
-    {
-      exploreImage: "/Images/desert.webp",
-      placeName: "Royal Rajasthan",
-    },
-    {
-      exploreImage: "/Images/desert.webp",
-      placeName: "Royal Rajasthan",
-    },
+    
+      {
+        "exploreImage": "/Images/desert.webp",
+        "placeName": "Thar Desert",
+      },
+      {
+        "exploreImage": "/Images/goldenTemple.webp",
+        "placeName": "Golden Temple",
+      },
+      {
+        "exploreImage": "/Images/kerla.avif",
+        "placeName": "Kerala",
+      },
+      {
+        "exploreImage": "/Images/tajMahal.avif",
+        "placeName": "Taj Mahal",
+      },
+      {
+        "exploreImage": "/Images/SwiperBharat1.avif",
+        "placeName": "Jaisalmer Fort",
+      },
+      {
+        "exploreImage": "/Images/lakshadweep.jpg",
+        "placeName": "Lake Pichola",
+      },
+      {
+        "exploreImage": "/Images/Ladkh.avif",
+        "placeName": "Ladakh",
+      },
+      {
+        "exploreImage": "/Images/PushKarLake.avif",
+        "placeName": "Pushkar Lake",
+      }
+   
+    
   ];
 
+  const swiperData = [
+    {
+      heading: "Young & Buzzing",
+      para: "Witness the thrilling vibe of India’s young and buzzing places.",
+      image: "/Images/desert.webp",
+    },
+    {
+      heading: "Cultural Richness",
+      para: "Explore the diverse cultures and traditions that define India.",
+      image: "/Images/tajMahal.avif",
+    },
+    {
+      heading: "Breathtaking Landscapes",
+      para: "Experience the stunning beauty of India’s natural landscapes.",
+      image: "/Images/PushKarLake.avif",
+    },
+    {
+      heading: "Historical Marvels",
+      para: "Discover the ancient monuments that tell stories of India’s past.",
+      image: "/Images/tajMahal.avif",
+    },
+    {
+      heading: "Culinary Delights",
+      para: "Indulge in the rich flavors of Indian cuisine across the regions.",
+      image: "/Images/SwiperBharat1.avif",
+    },
+    {
+      heading: "Adventure Awaits",
+      para: "Join thrilling activities and adventures across India’s landscapes.",
+      image: "/Images/PushKarLake.avif",
+    },
+    {
+      heading: "Spiritual Journeys",
+      para: "Embark on a quest for peace in India’s sacred places.",
+      image: "/Images/SwiperBharat1.avif",
+    },
+    {
+      heading: "Beach Escapes",
+      para: "Relax on the pristine beaches that line India’s coast.",
+      image: "/Images/goldenTemple.webp",
+    },
+  ];
   return (
     <div className="exploreBharat">
-      <div className="Banner-Image px-4 md:px-20 lg:px-40 relative bg-[url('/Images/exploreIndia.jpg')] bg-cover bg-center   min-h-[80vh] md:min-h-[100vh] flex justify-center items-center">
+      <div className="Banner-Image px-4 md:px-20 lg:px-40 relative bg-[url('/Images/exploreBharat.avif')] bg-cover bg-center   min-h-[80vh] md:min-h-[100vh] flex justify-center items-center">
         <div className="content relative z-10 text-center text-white">
           <h3 className="text-3xl md:text-4xl lg:text-5xl tracking-widest font-bold">
             WELCOME TO
@@ -55,7 +101,7 @@ export default function page() {
           <h2 className="text-6xl md:text-7xl xl:text-9xl text-white uppercase font-extrabold">
             Bharat
           </h2>
-          <p className="px-4 md:px-20 xl:px-60 mt-4 text-sm md:text-base lg:text-lg">
+          <p className="px-4 md:px-20 text-white xl:px-60 mt-4 text-sm md:text-base lg:text-lg">
             Bharat, known globally as India, is a land of rich cultural
             heritage, diverse landscapes, and deep-rooted traditions. With a
             history spanning thousands of years, Bharat is home to ancient
@@ -75,17 +121,17 @@ export default function page() {
                 <span className="text-[#C09552]">India</span>
               </h3>
 
-              
+           
               <div className="xl:hidden rounded-3xl  lg:px-10 py-5">
                 <img
-                  src="/Images/indiamap.jpg"
+                  src="/Images/indiamap.avif"
                   alt="Map of India"
                   className="w-full md:w-[40vw] h-auto rounded-3xl"
                 />
               </div>
             </div>
 
-          
+ 
             <div className="bg-[#FFF6E8] shadow-lg text-sm md:text-base lg:text-lg space-y-3 md:space-y-4 font-normal px-4 md:px-5 py-3 rounded-lg">
               <p>
                 India, a land steeped in rich history and vibrant culture,
@@ -106,10 +152,10 @@ export default function page() {
             </div>
           </div>
 
-       
+ 
           <div className="hidden xl:flex justify-center rounded-3xl px-4 lg:px-10 py-5">
             <img
-              src="/Images/indiamap.jpg"
+              src="/Images/indiamap.avif"
               alt="Map of India"
               className="w-[80%] h-auto rounded-full"
             />
@@ -129,9 +175,9 @@ export default function page() {
                 <img
                   src={elm.exploreImage}
                   alt=""
-                  className="h-full w-full lg:w-auto rounded-3xl object-cover"
+                  className="h-full max-w-[90%] w-full  rounded-3xl object-cover"
                 />
-                <div className="absolute bottom-3 w-full right-6">
+                <div className="absolute  bottom-3 max-w-[90%]  w-full ">
                   <h5 className="text-xl  text-center font-bold   text-white w-full">
                     {elm.placeName}{" "}
                   </h5>
@@ -184,34 +230,31 @@ export default function page() {
                 },
               }}
             >
-              {Array(16)
-                .fill(null)
-                .map((_, index) => (
+              {swiperData.map((elm, index) => (
                   <SwiperSlide key={index} className="flex justify-center ">
                     <div className="w-72 transition-transform duration-300 hover:scale-105">
                       <div className="h-80 overflow-hidden rounded-xl shadow-lg bg-white relative group">
                         <img
-                          src="/Images/young.webp"
+                          src={elm.image}
                           alt="Young & Buzzing"
                           className="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-75"
                         />
-
                         <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition duration-500"></div>
                       </div>
 
                       <div className="relative z-40 p-4 bg-white rounded-b-xl shadow-lg">
                         <h5 className="font-bold text-black text-xl mb-2">
-                          Young & Buzzing
+                          {elm.heading}
                         </h5>
                         <p className="text-sm text-gray-600">
-                          Witness the thrilling vibe of India’s young and
-                          buzzing places.
+                          {elm.para}
                         </p>
                       </div>
                     </div>
                   </SwiperSlide>
                 ))}
 
+         
               <div className="swiper-button-prev custom-nav-button hidden lg:flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg  transition duration-300">
                 <FaArrowLeftLong className="text-[#C09552] " />
               </div>
@@ -223,8 +266,8 @@ export default function page() {
         </div>
       </div>
 
-      <div className="Incredible-Bharat  lg:py-10 px-3 ">
-        <div className="w-full min-h-[60vh] bg-[url('/Images/desert.avif')] rounded-3xl px-5 xl:px-40 py-16 bg-no-repeat bg-cover  bg-center">
+      <div className="Incredible-Bharat   lg:py-10 px-3 ">
+        <div className="w-full min-h-[60vh] bg-[url('/Images/exploreBharat.avif')] bg-center rounded-3xl px-5 xl:px-40 py-16 bg-no-repeat bg-cover  ">
           <div className="flex flex-col gap-5 justify-center items-start">
             <h3 className="text-2xl xl:text-5xl font-extrabold font-serif text-white">
               Amazing <br />
@@ -259,7 +302,7 @@ export default function page() {
           <img src="/Images/india.jpg" alt="" className="w-16 rounded-full" />
           <p>
             Introducing Explore Bharat, a pioneering travel initiative by the
-            renowned online platform, Apka Trip. This unique program presents
+            renowned online platform, EaseMyTrip. This unique program presents
             thoughtfully curated tour packages with tailor-made itineraries,
             carefully designed by a team of expert travel planners to offer you
             an exceptional holiday experience.
@@ -294,3 +337,5 @@ export default function page() {
     </div>
   );
 }
+
+
