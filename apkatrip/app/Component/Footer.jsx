@@ -16,7 +16,7 @@ const Footer = () => {
             <div className="space-y-4">
               <img
                 className=" block w-auto h-14 md:h-20"
-                src="/Images/logo.webp"
+                src="/Images/newlogo.png"
                 alt=""
               />
               <p className="text-sm leading-6 text-gray-600">

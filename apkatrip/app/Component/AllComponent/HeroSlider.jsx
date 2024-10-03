@@ -104,7 +104,7 @@ const HeroSlider = () => {
             />
           </div>
           <button
-            className="ml-2 bg-[#EF6614] text-white px-8 py-2 h-14  rounded-full hover:bg-[#ef6414ed]"
+            className="ml-2 primary-col text-white px-8 py-2 h-14  rounded-full hover:bg-[#ef6414ed]"
             type="button"
             // onClick={handleSearch}
           >

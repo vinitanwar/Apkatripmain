@@ -382,7 +382,7 @@ Select a Date
                   </div>
                   <button
                   onClick={handelSearch}
-                    className="text-white flex items-center justify-center text-2xl font-bold p-4 bg-[#ef6614] rounded-br-lg rounded-tr-lg"
+                    className="text-white flex items-center justify-center text-2xl font-bold p-4 primary-col rounded-br-lg rounded-tr-lg"
                   >
                     Search
                   </button>
@@ -513,7 +513,7 @@ Select a Date
                 </div>
                 <Link
                   href=""
-                  className="text-white flex items-center justify-center text-2xl font-bold p-4 bg-[#ef6614]  rounded-br-lg rounded-tr-lg"
+                  className="text-white flex items-center justify-center text-2xl font-bold p-4 primary-col  rounded-br-lg rounded-tr-lg"
                 >
                   Search
                 </Link>
@@ -678,7 +678,7 @@ Select a Date
                 </div>
                 <div className="flex items-center justify-center p-4 bg-white rounded-lg">
                   <div className="flex items-center justify-center  bg-white rounded-lg col-span-4 gap-3">
-                    <button className="bg-[#ef6614] border border-[#ef6614] p-3 rounded-full text-white font-semibold">
+                    <button className="primary-col border border-[#ef6614] p-3 rounded-full text-white font-semibold">
                       Search
                     </button>
                     <button className="bg-white p-3  border rounded-full border-blue-500 text-blue-500 font-semibold">

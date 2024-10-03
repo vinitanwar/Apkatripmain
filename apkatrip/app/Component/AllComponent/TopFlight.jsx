@@ -171,7 +171,7 @@ const TopFlight = () => {
 
       <InfoSection />
 
-      <div className="container mx-auto px-6 md:md:px-10 lg:px-52  pt:0 lg:pt-12 z-[-1]">
+      <div className="w-full mx-auto px-6 md:md:px-10 lg:px-52  pt:0 lg:pt-12 z-[-1]">
         <div className="relative text-lg md:text-xl lg:text:3xl font-bold text-gray-900 flex justify-center items-center gap-2 mb-14">
           Famous Tourist Attraction
         </div>
@@ -210,9 +210,9 @@ const TopFlight = () => {
       </div>
 
       <div className="bg-gray-100 p-5 lg:p-20 mt-12">
-        <div className=" block lg:flex items-center gap-10">
+        <div className=" flex justify-between items-center gap-10">
           <div className="">
-            <div className="ml-0 lg:ml-16">
+            <div className="p-4">
               <h3 className="text-4xl font-normal">
                 What service do you need? <br />
               </h3>
@@ -272,7 +272,7 @@ const TopFlight = () => {
               </ul>
             </div>
           </div>
-          <div className="my-5 lg:my-0">
+          <div className="p-4 my-5 lg:my-0">
             <img
               src="/Images/online-booking.webp"
               alt=""

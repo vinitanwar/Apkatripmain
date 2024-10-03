@@ -142,7 +142,7 @@ const FeaturedProperties = () => {
                 onClick={() => handleTabClick("Dubai")}
                 className={`js-tab-item px-4 py-2 cursor-pointer rounded-sm  ${
                   activeTab === "Dubai"
-                    ? "bg-[#ef6614] text-white"
+                    ? "primary-col text-white"
                     : "bg-white text-black"
                 }`}
               >
@@ -152,7 +152,7 @@ const FeaturedProperties = () => {
                 onClick={() => handleTabClick("Hong Kong")}
                 className={`js-tab-item px-4 py-2 cursor-pointer rounded-sm  ${
                   activeTab === "Hong Kong"
-                    ? "bg-[#ef6614] text-white"
+                    ? "primary-col text-white"
                     : "bg-white text-black"
                 }`}
               >

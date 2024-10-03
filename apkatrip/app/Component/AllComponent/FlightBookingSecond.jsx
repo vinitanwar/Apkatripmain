@@ -123,7 +123,7 @@ const FeaturedTwo = () => {
                 onClick={() => handleTabClick("Bangkok")}
                 className={`js-tab-item px-4 py-2 cursor-pointer rounded-sm  ${
                   activeTab === "Bangkok"
-                    ? "bg-[#ef6614] text-white"
+                    ? "primary-col text-white"
                     : "bg-white text-black"
                 }`}
               >
@@ -133,7 +133,7 @@ const FeaturedTwo = () => {
                 onClick={() => handleTabClick("Manila")}
                 className={`js-tab-item px-4 py-2 cursor-pointer rounded-sm  ${
                   activeTab === "Manila"
-                    ? "bg-[#ef6614] text-white"
+                    ? "primary-col text-white"
                     : "bg-white text-black"
                 }`}
               >
@@ -143,7 +143,7 @@ const FeaturedTwo = () => {
                 onClick={() => handleTabClick("Tokyo")}
                 className={`js-tab-item px-4 py-2 cursor-pointer rounded-sm  ${
                   activeTab === "Tokyo"
-                    ? "bg-[#ef6614] text-white"
+                    ? "primary-col text-white"
                     : "bg-white text-black"
                 }`}
               >
@@ -153,7 +153,7 @@ const FeaturedTwo = () => {
                 onClick={() => handleTabClick("Taipei")}
                 className={`js-tab-item px-4 py-2 cursor-pointer rounded-sm  ${
                   activeTab === "Taipei"
-                    ? "bg-[#ef6614] text-white"
+                    ? "primary-col text-white"
                     : "bg-white text-black"
                 }`}
               >
@@ -163,7 +163,7 @@ const FeaturedTwo = () => {
                 onClick={() => handleTabClick("Seoul")}
                 className={`js-tab-item px-4 py-2 cursor-pointer rounded-sm  ${
                   activeTab === "Seoul"
-                    ? "bg-[#ef6614] text-white"
+                    ? "primary-col text-white"
                     : "bg-white text-black"
                 }`}
               >
@@ -173,7 +173,7 @@ const FeaturedTwo = () => {
                 onClick={() => handleTabClick("Hong Kong")}
                 className={`js-tab-item px-4 py-2 cursor-pointer rounded-sm  ${
                   activeTab === "Hong Kong"
-                    ? "bg-[#ef6614] text-white"
+                    ? "primary-col text-white"
                     : "bg-white text-black"
                 }`}
               >
