@@ -19,25 +19,40 @@ class FlightController extends Controller
     {
         // Get token using ApiService
         $token = $this->apiService->getToken();
+
+        $validatedData = $request->validate([
+            'AdultCount' => 'required|integer',
+            'ChildCount' => 'nullable|integer',
+            'InfantCount' => 'nullable|integer',
+            'DirectFlight' => 'nullable|boolean',
+            'OneStopFlight' => 'nullable|boolean',
+            'JourneyType' => 'required|integer',
+            'PreferredAirlines' => 'nullable|string',
+            'AdultCount' => 'required|integer',
+            'Origin' => 'required|string',
+            'Destination' => 'required|string',
+            'FlightCabinClass' => 'required|string',
+            'PreferredDepartureTime' => 'required|date',
+        ]);
         
      
         $searchPayload = [
             "EndUserIp" => $request->ip(),
             "TokenId" => $token,
-            "AdultCount" => "1",
-            "ChildCount" => "0",
-            "InfantCount" => "0",
-            "DirectFlight" => "false",
-            "OneStopFlight" => "false",
-            "JourneyType" => "1",
-            "PreferredAirlines" => null,
+            "AdultCount" => $validatedData['AdultCount'] ?? "1",
+            "ChildCount" => $validatedData['ChildCount']??"0",
+            "InfantCount" =>$validatedData['InfantCount']?? "0",
+            "DirectFlight" =>$validatedData['DirectFlight']?? "true",
+            "OneStopFlight" =>$validatedData['OneStopFlight']?? "false",
+            "JourneyType" =>$validatedData['JourneyType']?? "1",
+            "PreferredAirlines" =>$validatedData['PreferredAirlines']?? null,
             "Segments" => [
                 [
-                    "Origin" => "DEL",
-                    "Destination" => "BOM",
-                    "FlightCabinClass" => "1",
-                    "PreferredDepartureTime" => "2024-11-06T00: 00: 00",
-                    "PreferredArrivalTime" => "2024-11-06T00: 00: 00"
+                    "Origin" =>$validatedData['Origin']?? "DEL",
+                    "Destination" =>$validatedData['Destination']?? "BOM",
+                    "FlightCabinClass" =>$validatedData['FlightCabinClass']?? "1",
+                    "PreferredDepartureTime" =>$validatedData['PreferredDepartureTime']?? "2024-11-06T00: 00: 00",
+                    "PreferredArrivalTime" =>$validatedData['PreferredDepartureTime']?? "2024-11-06T00: 00: 00"
                 ]
             ],
             "Sources" => null
