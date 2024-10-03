@@ -17,42 +17,42 @@ class FlightController extends Controller
 
     public function searchFlights(Request $request)
     {
-        // Get token using ApiService
+      
         $token = $this->apiService->getToken();
-
         $validatedData = $request->validate([
             'AdultCount' => 'required|integer',
+            'Origin' => 'required|string',
+            'Destination' => 'required|string',
+            'FlightCabinClass' => 'required|string',
+            'PreferredDepartureTime' => 'required',
             'ChildCount' => 'nullable|integer',
             'InfantCount' => 'nullable|integer',
             'DirectFlight' => 'nullable|boolean',
             'OneStopFlight' => 'nullable|boolean',
             'JourneyType' => 'required|integer',
             'PreferredAirlines' => 'nullable|string',
-            'AdultCount' => 'required|integer',
-            'Origin' => 'required|string',
-            'Destination' => 'required|string',
-            'FlightCabinClass' => 'required|string',
-            'PreferredDepartureTime' => 'required|date',
+
         ]);
         
-     
+        // Define the search payload
         $searchPayload = [
-            "EndUserIp" => $request->ip(),
+            "EndUserIp" => $request->ip(), // Dynamic IP from the request
             "TokenId" => $token,
-            "AdultCount" => $validatedData['AdultCount'] ?? "1",
-            "ChildCount" => $validatedData['ChildCount']??"0",
-            "InfantCount" =>$validatedData['InfantCount']?? "0",
-            "DirectFlight" =>$validatedData['DirectFlight']?? "true",
-            "OneStopFlight" =>$validatedData['OneStopFlight']?? "false",
-            "JourneyType" =>$validatedData['JourneyType']?? "1",
-            "PreferredAirlines" =>$validatedData['PreferredAirlines']?? null,
+            "AdultCount" => $validatedData['AdultCount'],
+            "ChildCount" => $validatedData['ChildCount'],
+            "InfantCount" => $validatedData['InfantCount'],
+            "DirectFlight" => $validatedData['DirectFlight'],
+                        "OneStopFlight" => $validatedData['OneStopFlight'],
+                        "JourneyType" => $validatedData['JourneyType'],
+                        "PreferredAirlines" => $validatedData['PreferredAirlines'],
             "Segments" => [
                 [
-                    "Origin" =>$validatedData['Origin']?? "DEL",
-                    "Destination" =>$validatedData['Destination']?? "BOM",
-                    "FlightCabinClass" =>$validatedData['FlightCabinClass']?? "1",
-                    "PreferredDepartureTime" =>$validatedData['PreferredDepartureTime']?? "2024-11-06T00: 00: 00",
-                    "PreferredArrivalTime" =>$validatedData['PreferredDepartureTime']?? "2024-11-06T00: 00: 00"
+                    "Origin" =>$validatedData['Origin'],
+                    "Destination" =>$validatedData['Destination'],
+                    "FlightCabinClass" =>$validatedData['FlightCabinClass'],     
+                    "PreferredDepartureTime" =>$validatedData['PreferredDepartureTime'],        
+                    "PreferredArrivalTime" =>$validatedData['PreferredDepartureTime']                    // "PreferredDepartureTime" =>$validatedData['PreferredDepartureTime'],
+                    // "PreferredArrivalTime" =>$validatedData['PreferredDepartureTime']
                 ]
             ],
             "Sources" => null
