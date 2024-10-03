@@ -21,20 +21,9 @@ export const searchFlightApi = createAsyncThunk(
     const data = await axios.post(`${localurl}/search-flights`,{AdultCount,ChildCount,InfantCount,DirectFlight,OneStopFlight
      ,JourneyType ,PreferredAirlines,Origin,Destination,FlightCabinClass,PreferredDepartureTime,PreferredArrivalTime
     });
-    // console.log( AdultCount,
-    //   ChildCount,
-    //   InfantCount,
-    //   DirectFlight,
-    //   OneStopFlight,
-    //   JourneyType,
-    //   PreferredAirlines,
-    //   Origin,
-    //   Destination,
-    //   FlightCabinClass,
-    //   PreferredDepartureTime,
-    //   PreferredArrivalTime,)
-    
-    return data;
+    console.log('scefgrthehtrju',data.data)
+    return data.data;
+
   }
 );
 
