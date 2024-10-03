@@ -8,11 +8,16 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-
-
+use App\Http\Controllers\FlightController;
 
 
 
 Route::apiResource('v1/airports', AirportController::class);
 
+Route::get('v1/search-flights', [FlightController::class, 'searchFlights']);
 
+
+
+// Route::get('/search-flights-one', (Request $request) {
+//     return "<h1>Hello world</h1>"
+// });
