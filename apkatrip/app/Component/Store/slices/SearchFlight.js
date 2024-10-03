@@ -41,7 +41,7 @@ export const searchFlightApi = createAsyncThunk(
       ],
       Sources: null,
     });
-    console.log(data);
+    
     return data;
   }
 );

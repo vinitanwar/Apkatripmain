@@ -10,10 +10,11 @@ import { toast,Flip } from 'react-toastify';
 
 const AutoSearch = ({ value, onSelect ,Click,fromCity}) => {
   const state=  useSelector(state=>state.Allairport);
+  const state2=useSelector(state=>state.topPortsSlice)
   const dispatch=useDispatch();
   const [allport,setAllport]=useState()
 
-console.log(fromCity)
+
   const handleSelect = (city) => {
     
 
@@ -36,7 +37,7 @@ console.log(fromCity)
    }
 
    Click(false)
-    console.log(false)
+   
   };
   
 
@@ -50,7 +51,7 @@ dispatch(getAllAirports(e.target.value))
 
 
 
-
+console.log( "state2", state2.info.top_airports)
   return (
     <div className="autosearch fromsectr" id="fromautoFill_in">
       <div className="searcityCol flex gap-3 bg-white p-3 items-center">
@@ -100,24 +101,10 @@ dispatch(getAllAirports(e.target.value))
                 </div>
               </div>
             </li>))}
-          {  !allport &&
-          [
-            {
-              code: "DEL",
-              name: "Delhi",
-              airport: "Indira Gandhi International Airport",
-              country: "India",
-            },
-            {
-              code: "BLR",
-              name: "Bangalore",
-              airport: "Bengaluru International Airport",
-              country: "India",
-            },
-            // Add other cities here
-          ].map((city) => (
+          {     !allport.info.data && 
+         state2.info.top_airports.map((city) => (
             <li
-              key={city.code}
+              key={city.iata_code}
               onClick={() => handleSelect(city)}
               className="border-b border-[#ececec] py-3 px-2 hover:bg-[#f7f7f7]"
             >
@@ -129,9 +116,9 @@ dispatch(getAllAirports(e.target.value))
                 />
                 <div>
                   <p>
-                    <span className="font-semibold text-base">{`${city.name}(${city.code})`}</span>
+                    <span className="font-semibold text-base">{`${city.municipality}(${city.iata_code})`}</span>
                   </p>
-                  <p className="text-xs font-medium mt-1 text-[#7E7979]">{city.airport}</p>
+                  <p className="text-xs font-medium mt-1 text-[#7E7979]">{city.name}</p>
                 </div>
                 <div className="flex items-end font-medium text-xs text-[#7E7979] ml-auto">
                   {city.country}
