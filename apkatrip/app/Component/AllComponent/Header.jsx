@@ -22,7 +22,7 @@ const Header = () => {
   const [selectedClass, setSelectedClass] = useState(1);
   const [activeTab, setActiveTab] = useState(1);
       const dispatch=   useDispatch()
-     
+     const state=useSelector(state=>state.searchFlightslice)
 
 
 
@@ -101,7 +101,7 @@ useEffect(()=>{
 
   const getip=async()=>{
     const data= await axios.get("https://api.country.is/")
-       console.log("ip ad",data.data)
+    
     setip(data.data.ip)
     dispatch(getTopAirPorts(data.data.country))
   }
@@ -159,16 +159,16 @@ useEffect(()=>{
     console.log("To clicked");
   };
 const handelSearch=()=>{
-  // dispatch(searchFlightApi({EndUserIp:ip,TokenId:"",AdultCount:adultCount,ChildCount:childCount,InfantCount:infantCount,
-  //   DirectFlight:true,OneStopFlight:false,JourneyType:1,PreferredAirlines:null,Origin:fromCity.iata_code,Destination:toCity.iata_code,
-  //   FlightCabinClass:selectedClass,PreferredDepartureTime:selected,PreferredArrivalTime:selected
-  // }))
+  dispatch(searchFlightApi({AdultCount:adultCount,ChildCount:childCount,InfantCount:infantCount,
+    DirectFlight:true,OneStopFlight:false,JourneyType:1,PreferredAirlines:null,Origin:fromCity.iata_code,Destination:toCity.iata_code,
+    FlightCabinClass:selectedClass,PreferredDepartureTime:selected,PreferredArrivalTime:selected
+  }))
 
  
  
 }
 
-
+console.log(state)
 
   return (
     <>

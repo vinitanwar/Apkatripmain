@@ -51,7 +51,7 @@ dispatch(getAllAirports(e.target.value))
 
 
 
-console.log( "state2", state2.info.top_airports)
+
   return (
     <div className="autosearch fromsectr" id="fromautoFill_in">
       <div className="searcityCol flex gap-3 bg-white p-3 items-center">
