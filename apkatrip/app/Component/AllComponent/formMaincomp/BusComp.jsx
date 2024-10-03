@@ -169,7 +169,7 @@ const BusComp = () => {
                   
                   </div>
                  
-                  <Link href="/busSearch" className="text-white flex items-center justify-center text-2xl font-bold p-4 bg-[#ef6614] rounded-br-lg rounded-tr-lg">
+                  <Link href="/busSearch" className="text-white flex items-center justify-center text-2xl font-bold p-4 primary-col rounded-br-lg rounded-tr-lg">
                     Search
                   </Link>
                 </div>

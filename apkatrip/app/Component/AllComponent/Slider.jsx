@@ -213,7 +213,7 @@ const CustomSlider = ({ isLoading, children }) => {
                       </div>
                       <div className="mt-3">
                         <div
-                          className="bg-[#f78b48] text-white p-2 rounded-xl shadow cursor-pointer"
+                          className="primary-col text-white p-2 rounded-xl shadow cursor-pointer"
                           onClick={(e) => e.stopPropagation()}
                           style={{ border: "1px dashed white" }}
                         >

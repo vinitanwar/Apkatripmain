@@ -18,23 +18,20 @@ const Subscribe = () => {
               />
               <button
                 type="submit"
-                className="bg-[#ef6614] text-white px-10 py-5 rounded-r-md hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-brand"
+                className="primary-col text-white px-10 py-5 rounded-r-md hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-brand"
               >
                 Subscribe
               </button>
             </form>
           </div>
-          <p className=" text-lg w-full lg:w-2/3 text-justify text-white font-semibold">
-            Stay updated with the latest travel tips, destination guides, and
-            special offers by subscribing to our newsletter. Receive regular
-            updates straight to your inbox and never miss out on exciting travel
-            opportunities.
+          <p className=" text-2xl w-full lg:w-2/3 text-justify text-white font-semibold">
+          Subscribe now and get the latest travel  Trip, destination guides, and exclusive offers straight to your inbox. Your next adventure awaits!
             {""}{" "}
-            <span className="text-brand">
+            {/* <span className="text-brand">
               At Apka Trip, we are passionate about sharing our love for travel
               and helping you create unforgettable experiences. Dive into our
               blog and get inspired for your next adventure.
-            </span>
+            </span> */}
           </p>
         </div>
       </section>

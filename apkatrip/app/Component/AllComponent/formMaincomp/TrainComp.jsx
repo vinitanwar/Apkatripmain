@@ -240,7 +240,7 @@ const TrainComp = () => {
 
                   <Link
                     href="/trainSearch"
-                    className="text-white flex items-center justify-center text-2xl font-bold p-4 bg-[#ef6614] rounded-br-lg rounded-tr-lg"
+                    className="text-white flex items-center justify-center text-2xl font-bold p-4 primary-col rounded-br-lg rounded-tr-lg"
                   >
                     Search
                   </Link>

@@ -61,7 +61,7 @@ const Topbar = () => {
             <div className="w-4 h-[2px] bg-gray-800"></div>
           </div>
           <Link href="/">
-            <img src="/Images/logo.webp" alt="" className="h-10 md:h-[60px]" />
+            <img src="/Images/newlogo.png" alt="" className="h-10 md:h-[60px]" />
           </Link>
           <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         </div>
