@@ -210,7 +210,7 @@ const TopFlight = () => {
       </div>
 
       <div className="bg-gray-100 p-5 lg:p-20 mt-12">
-        <div className=" flex justify-between items-center gap-10">
+        <div className=" flex flex-col-reverse lg:flex-row justify-between items-center gap-10">
           <div className="">
             <div className="p-4">
               <h3 className="text-4xl font-normal">
