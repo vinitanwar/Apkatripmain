@@ -22,7 +22,7 @@ class FlightController extends Controller
         
         // Define the search payload
         $searchPayload = [
-            "EndUserIp" => $request->ip(), // Dynamic IP from the request
+            "EndUserIp" => $request->ip(),
             "TokenId" => $token,
             "AdultCount" => "1",
             "ChildCount" => "0",

@@ -1,12 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { searchFlighturl } from "../flightUrls";
+import { localurl } from "../flightUrls";
 
 export const searchFlightApi = createAsyncThunk(
   "/searchFlight",
   async ({
-    EndUserIp,
-    TokenId,
     AdultCount,
     ChildCount,
     InfantCount,
@@ -20,27 +18,21 @@ export const searchFlightApi = createAsyncThunk(
     PreferredDepartureTime,
     PreferredArrivalTime,
   }) => {
-    const data = await axios.post(searchFlighturl, {
-      EndUserIp,
-      TokenId,
-      AdultCount,
-      ChildCount,
-      InfantCount,
-      DirectFlight,
-      OneStopFlight,
-      JourneyType,
-      PreferredAirlines,
-      Segments: [
-        {
-          Origin,
-          Destination,
-          FlightCabinClass,
-          PreferredDepartureTime,
-          PreferredArrivalTime,
-        },
-      ],
-      Sources: null,
+    const data = await axios.post(`${localurl}/search-flights`,{AdultCount,ChildCount,InfantCount,DirectFlight,OneStopFlight
+     ,JourneyType ,PreferredAirlines,Origin,Destination,FlightCabinClass,PreferredDepartureTime,PreferredArrivalTime
     });
+    // console.log( AdultCount,
+    //   ChildCount,
+    //   InfantCount,
+    //   DirectFlight,
+    //   OneStopFlight,
+    //   JourneyType,
+    //   PreferredAirlines,
+    //   Origin,
+    //   Destination,
+    //   FlightCabinClass,
+    //   PreferredDepartureTime,
+    //   PreferredArrivalTime,)
     
     return data;
   }
