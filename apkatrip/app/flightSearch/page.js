@@ -17,9 +17,11 @@ import {
 import FlightFliter from "../Component/Filter/FlightFliter";
 import Header from "../Component/AllComponent/Header";
 import { FaSpoon } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 
 const page = () => {
   const [activePopup, setActivePopup] = useState(null); // store id of active popup
+  const state=useSelector(state=>state.searchFlightslice)
 
   const togglePopup = (id) => {
     if (activePopup === id) {
@@ -128,7 +130,7 @@ const page = () => {
         "Get FLAT Rs. 324 OFF using code  | FLAT 15% OFF on Kotak cards using code ",
     },
   ];
-
+  
   const cardData = [
     {
       price: "₹ 7,954 per adult",
@@ -243,10 +245,13 @@ const page = () => {
     },
     // Add more card data here
   ];
+
+console.log( state.data && state.data.Response &&  state.data.Response.Results)
+
   return (
     <>
       <Header />
-      <div className="block md:flex px-0 lg:px-28 items-start gap-3 my-5">
+      <div className="block md:flex px-0 lg:px-28 items-start gap-3 my-5 ">
         {/* <div className="hidden md:block h-full sticky top-24 bg-white myshadow px-5  py-3 w-1/4">
           <div className="mb-8">
             <p className="font-bold text-[20px] mt-2 mb-5">Popular Filters</p>
@@ -345,7 +350,7 @@ const page = () => {
             </div>
           </div>
         </div> */}
-        <div className="hidden md:block w-1/4">
+        <div className="hidden md:block  sticky top-0 w-1/4">
           <FlightFliter />
         </div>
 
@@ -374,7 +379,9 @@ const page = () => {
           </div>
 
           <div>
-            {flightData.map((flight, index) => (
+            {state.data && state.data.Response && state.data.Response.Results &&  state.data.Response.Results[0].map((flight, index) => (
+
+
               <div key={flight.id} className="my-3 border p-2 md:p-5">
                 <div className="flex items-center justify-between">
                   <div className="flex gap-3">
@@ -384,25 +391,28 @@ const page = () => {
                       alt="airline logo"
                     />
                     <div className="hidden sm:block ">
-                      <p className="font-bold text-black ">{flight.airline}</p>
+                      <p className="font-bold text-black ">{   flight.Segments[0][0].Airline.AirlineName            }</p>
                       <p className="text-black text-xs">
-                        {flight.flightNumber}
+                        {flight.Segments[0][0].Airline.FlightNumber}
                       </p>
                     </div>
                   </div>
 
                   <div className="text-center">
                     <p className="mb-1 text-sm md:text-lg font-semibold">
-                      {flight.departureTime}
+                    {flight.Segments[0][0].Origin.DepTime.toLocaleString()}
+                      
                     </p>
-                    <p className="text-black text-xs">{flight.departureCity}</p>
+                    <p className="text-black text-xs">
+                    {flight.Segments[0][0].Origin.Airport.CityName}
+                      </p>
                   </div>
 
                   <div className="text-center">
                     <p className="text-center text-sm md:text-lg">
-                      {flight.duration.split(" ")[0]}
+                     {flight.Segments[0][0].Duration} Min
                       <font color="#757575"> </font>
-                      {flight.duration.split(" ")[1]}
+                  
                       <font color="#757575"> </font>
                     </p>
                     <div>
@@ -419,16 +429,17 @@ const page = () => {
 
                   <div className="text-center">
                     <p className="mb-1 text-sm md:text-lg font-semibold">
-                      {flight.arrivalTime}
+                    {flight.Segments[0][0].Destination.ArrTime.toLocaleString()}
                     </p>
-                    <p className="text-black text-xs">{flight.arrivalCity}</p>
+                    <p className="text-black text-xs">
+                    {flight.Segments[0][0].Destination.Airport.CityName}                      </p>
                   </div>
 
                   <div className="flex items-center gap-x-3">
                     <div className="text-right flex-1">
                       <div className="text-black text-lg font-bold whitespace-nowrap ">
                         <span className="text-sm md:text-lg font-bold">
-                          {flight.price}
+                          {flight.Fare.OfferedFare.toLocaleString("en-US", {style:"currency", currency:flight.Fare.Currency})}
                         </span>
                         <p className="text-sm text-gray-700 font-light leading-tight">
                           per adult
@@ -592,7 +603,7 @@ const page = () => {
                             </div>
 
                             <div className="flex gap-10 flex-wrap mt-5">
-                              {/* Amenities */}
+                              //Amenities 
                               <div className="flex items-center gap-2 mb-2">
                                 <FaSpoon />
                                 <div className="text-sm">
@@ -770,7 +781,7 @@ const page = () => {
                   </div>
                 )}
               </div>
-            ))}
+            ))} 
           </div>
         </div>
       </div>

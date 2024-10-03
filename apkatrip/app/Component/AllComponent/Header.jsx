@@ -10,6 +10,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { searchFlightApi } from "../Store/slices/SearchFlight";
 import { getTopAirPorts } from "../Store/slices/topPortsSlice";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [selected, setSelected] = useState(new Date(Date.now()));
@@ -22,8 +23,7 @@ const Header = () => {
   const [selectedClass, setSelectedClass] = useState(1);
   const [activeTab, setActiveTab] = useState(1);
       const dispatch=   useDispatch()
-     const state=useSelector(state=>state.searchFlightslice)
-
+  const route=useRouter()
 
 
 
@@ -159,16 +159,29 @@ useEffect(()=>{
     console.log("To clicked");
   };
 const handelSearch=()=>{
-  // dispatch(searchFlightApi({AdultCount:adultCount,ChildCount:childCount,InfantCount:infantCount,
-  //   DirectFlight:true,OneStopFlight:false,JourneyType:1,PreferredAirlines:null,Origin:fromCity.iata_code,Destination:toCity.iata_code,
-  //   FlightCabinClass:selectedClass,PreferredDepartureTime:selected,PreferredArrivalTime:selected
-  // }))
-console.log(selected)
- 
+
+  
+
+
+// Create a Date object
+const date = new Date(selected);
+
+const offset = -5 * 60; // Offset in minutes for GMT-0500
+const localDate = new Date(date.getTime() + offset * 60 * 1000);
+const localFormattedDate = localDate.toISOString().slice(0, 19); // This will give you "2024-10-11T00:00:00"
+
+
+
+  dispatch(searchFlightApi({AdultCount:adultCount,ChildCount:childCount,InfantCount:infantCount,
+    DirectFlight:true,OneStopFlight:false,JourneyType:1,PreferredAirlines:null,Origin:fromCity.iata_code,Destination:toCity.iata_code,
+    FlightCabinClass:selectedClass,PreferredDepartureTime:localFormattedDate,PreferredArrivalTime:localFormattedDate
+  }))
+
+  route.push("/flightSearch")
  
 }
 
-console.log(state)
+
 
   return (
     <>
