@@ -159,11 +159,11 @@ useEffect(()=>{
     console.log("To clicked");
   };
 const handelSearch=()=>{
-  dispatch(searchFlightApi({AdultCount:adultCount,ChildCount:childCount,InfantCount:infantCount,
-    DirectFlight:true,OneStopFlight:false,JourneyType:1,PreferredAirlines:null,Origin:fromCity.iata_code,Destination:toCity.iata_code,
-    FlightCabinClass:selectedClass,PreferredDepartureTime:selected,PreferredArrivalTime:selected
-  }))
-
+  // dispatch(searchFlightApi({AdultCount:adultCount,ChildCount:childCount,InfantCount:infantCount,
+  //   DirectFlight:true,OneStopFlight:false,JourneyType:1,PreferredAirlines:null,Origin:fromCity.iata_code,Destination:toCity.iata_code,
+  //   FlightCabinClass:selectedClass,PreferredDepartureTime:selected,PreferredArrivalTime:selected
+  // }))
+console.log(selected)
  
  
 }

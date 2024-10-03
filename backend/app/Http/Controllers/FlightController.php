@@ -23,7 +23,7 @@ class FlightController extends Controller
             'AdultCount' => 'required|integer',
             'Origin' => 'required|string',
             'Destination' => 'required|string',
-            'FlightCabinClass' => 'required|string',
+            'FlightCabinClass' => 'required|integer',
             'PreferredDepartureTime' => 'required',
             'ChildCount' => 'nullable|integer',
             'InfantCount' => 'nullable|integer',
