@@ -7,6 +7,9 @@ import Link from "next/link";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { searchFlightApi } from "../Store/slices/SearchFlight";
+import { getTopAirPorts } from "../Store/slices/topPortsSlice";
 
 const Header = () => {
   const [selected, setSelected] = useState(new Date(Date.now()));
@@ -18,6 +21,15 @@ const Header = () => {
   const [isGroup, setIsGroup] = useState(false);
   const [selectedClass, setSelectedClass] = useState(1);
   const [activeTab, setActiveTab] = useState(1);
+      const dispatch=   useDispatch()
+     
+
+
+
+
+
+
+
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
@@ -86,31 +98,18 @@ const Header = () => {
 
 useEffect(()=>{
 
-  const getip=async()=>{
-    const data= await axios.get("https://api.ipify.org?format=json")
 
+  const getip=async()=>{
+    const data= await axios.get("https://api.country.is/")
+       console.log("ip ad",data.data)
     setip(data.data.ip)
+    dispatch(getTopAirPorts(data.data.country))
   }
   getip()
 },[])
 
 
-  // const getDateComponents = (date) => {
-  //   return {
-  //     year: date.getFullYear(),
-  //     month: date.getMonth(),
-  //     day: String(date.getDate()).padStart(2, "0"),
-  //     dayOfWeek: daysOfWeek[date.getDay()],
-  //   };
-  // };
 
-  // const currentDate = new Date();
-  // const futureDate = new Date();
-  // futureDate.setDate(currentDate.getDate() + 3);
-
-  // const currentDateComponents = getDateComponents(currentDate);
-  // const futureDateComponents = getDateComponents(futureDate);
-  
   
   
   const [isVisible, setIsVisible] = useState(false);
@@ -160,10 +159,16 @@ useEffect(()=>{
     console.log("To clicked");
   };
 const handelSearch=()=>{
-  console.log("search",selected,selectedReturn,fromCity,toCity,adultCount,childCount,infantCount,selectedClass)
+  // dispatch(searchFlightApi({EndUserIp:ip,TokenId:"",AdultCount:adultCount,ChildCount:childCount,InfantCount:infantCount,
+  //   DirectFlight:true,OneStopFlight:false,JourneyType:1,PreferredAirlines:null,Origin:fromCity.iata_code,Destination:toCity.iata_code,
+  //   FlightCabinClass:selectedClass,PreferredDepartureTime:selected,PreferredArrivalTime:selected
+  // }))
+
+ 
+ 
 }
 
-console.log(ip)
+
 
   return (
     <>
