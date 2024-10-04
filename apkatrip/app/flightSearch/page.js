@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -21,8 +21,27 @@ import { useSelector } from "react-redux";
 
 const page = () => {
   const [activePopup, setActivePopup] = useState(null); // store id of active popup
-  const state=useSelector(state=>state.searchFlightslice)
+  const info=useSelector(state=>state.searchFlightslice)
 
+  const [state,setstate]=useState()
+  const [airlines,setairlines]=useState([ ])
+
+useEffect(()=>{setstate(info)
+
+
+  info && info.data && info.data.Response && info.data.Response.Results &&  info.data.Response.Results[0].forEach((info1)=>{
+    const airlineName = info1.Segments[0][0].Airline.AirlineName;
+    if(   !airlines.includes(airlineName) ){
+
+setairlines(airlines=>[...airlines,airlineName])
+    }
+
+
+
+  })
+
+
+},[info])
   const togglePopup = (id) => {
     if (activePopup === id) {
       setActivePopup(null); // close the popup if it's already open
@@ -246,7 +265,7 @@ const page = () => {
     // Add more card data here
   ];
 
-console.log( state.data && state.data.Response &&  state.data.Response.Results)
+console.log( "asdas",airlines)
 
   return (
     <>
@@ -379,10 +398,10 @@ console.log( state.data && state.data.Response &&  state.data.Response.Results)
           </div>
 
           <div>
-            {state.data && state.data.Response && state.data.Response.Results &&  state.data.Response.Results[0].map((flight, index) => (
+            { state && state.data && state.data.Response && state.data.Response.Results &&  state.data.Response.Results[0].map((flight, index) => (
 
 
-              <div key={flight.id} className="my-3 border p-2 md:p-5">
+              <div key={index} className="my-3 border p-2 md:p-5">
                 <div className="flex items-center justify-between">
                   <div className="flex gap-3">
                     <img

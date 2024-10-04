@@ -37,7 +37,7 @@ const AutoSearch = ({ value, onSelect ,Click,fromCity}) => {
    }
 
    Click(false)
-   
+   console.log(null)
   };
   
 
