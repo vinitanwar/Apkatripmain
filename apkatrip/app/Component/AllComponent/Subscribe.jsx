@@ -24,14 +24,11 @@ const Subscribe = () => {
               </button>
             </form>
           </div>
-          <p className=" text-2xl w-full lg:w-2/3 text-justify text-white font-semibold">
+
+          <p className="mt-auto text-2xl w-full lg:w-2/3 text-justify text-white font-semibold">
           Subscribe now and get the latest travel  Trip, destination guides, and exclusive offers straight to your inbox. Your next adventure awaits!
-            {""}{" "}
-            {/* <span className="text-brand">
-              At Apka Trip, we are passionate about sharing our love for travel
-              and helping you create unforgettable experiences. Dive into our
-              blog and get inspired for your next adventure.
-            </span> */}
+           
+          
           </p>
         </div>
       </section>
