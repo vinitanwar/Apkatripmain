@@ -11,21 +11,17 @@ class AirportController extends Controller
 
     public function index(Request $request)
     {
-        $page = $request->query('page', 20);
-        $query = $request->query('query', ''); 
-    
-     
+        $query = $request->query('query', '');
+
+        // Modify the query to include a condition for popular airports
         if (!empty($query)) {
-            $res = Airport::where('name', 'like', '%' . $query . '%')->paginate($page);
+            $res = Airport::where('name', 'like', '%' . $query . '%')
+                ->get(); // No pagination
         } else {
-            $res = Airport::paginate($page); 
+            $res = Airport::where('popular', 1) 
+                ->get(); // No pagination
         }
-    
-  
-        if ($res->currentPage() > $res->lastPage()) {
-            return redirect()->to('/api/airports?page=' . urlencode($page - 1) . '&query=' . urlencode($query));
-        }
-    
+
         return response()->json($res);
     }
 
