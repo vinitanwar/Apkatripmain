@@ -3,7 +3,7 @@ import React ,{useState} from "react";
 import { FaUsers } from "react-icons/fa";
 
 const AutoSearch = ({ value,setAdultCount,adultCount,childCount,setChildCount,infantCount,setInfantCount,isGroup
- , setIsGroup,selectedClass,setSelectedClass
+ , setIsGroup,selectedClass,setSelectedClass,handleClick
  }) => {
 
 
@@ -181,7 +181,7 @@ const AutoSearch = ({ value,setAdultCount,adultCount,childCount,setChildCount,in
           <button
             id="traveLer"
             className="bg-white border border-[#2196f3] text-[#2196f3] hover:bg-[#2196f3] hover:text-white font-bold py-2 px-4 rounded mt-4"
-            onClick={() => console.log('Done')}
+            onClick={() => handleClick('')}
           >
             Done
           </button>

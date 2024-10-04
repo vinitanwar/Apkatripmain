@@ -11,34 +11,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { searchFlightApi } from "../Store/slices/SearchFlight";
 import { getTopAirPorts } from "../Store/slices/topPortsSlice";
 import { useRouter } from "next/navigation";
+import { Calendar } from "@nextui-org/react";
+import { today, getLocalTimeZone } from "@internationalized/date";
 
 const Header = () => {
-  const [selected, setSelected] = useState(new Date(Date.now()));
-  const [ip,setip]=useState()
-  const [selectedReturn, setSelectedReturn] = useState( );
+  const localTimeZone = getLocalTimeZone();
+  const currentDate = today(localTimeZone);
+
+  const [selected, setSelected] = useState();
+
+  const [selectedReturn, setSelectedReturn] = useState();
   const [adultCount, setAdultCount] = useState(1);
   const [childCount, setChildCount] = useState(0);
   const [infantCount, setInfantCount] = useState(0);
   const [isGroup, setIsGroup] = useState(false);
   const [selectedClass, setSelectedClass] = useState(1);
   const [activeTab, setActiveTab] = useState(1);
-      const dispatch=   useDispatch()
-  const route=useRouter()
-
-
-
-
-
+  const dispatch = useDispatch();
+  const route = useRouter();
 
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
   const handleCheckboxChange = (event) => {};
 
-  const [fromCity, setFromCity] = useState(  {
+  const [fromCity, setFromCity] = useState({
     id: 26555,
-    ident: "VIDP",   
-     type: "large_airport",
+    ident: "VIDP",
+    type: "large_airport",
     name: "Indira Gandhi International Airport",
     latitude_deg: "28.55563",
     longitude_deg: "77.09519",
@@ -52,11 +52,12 @@ const Header = () => {
     iata_code: "DEL",
     local_code: "",
     home_link: "http://www.newdelhiairport.in/",
-    wikipedia_link: "https://en.wikipedia.org/wiki/Indira_Gandhi_International_Airport",
-    keywords: "Palam Air Force Station"
-});
+    wikipedia_link:
+      "https://en.wikipedia.org/wiki/Indira_Gandhi_International_Airport",
+    keywords: "Palam Air Force Station",
+  });
   const [toCity, setToCity] = useState({
-     id: 26434,
+    id: 26434,
     ident: "VABB",
     type: "large_airport",
     name: "Chhatrapati Shivaji International Airport",
@@ -72,9 +73,10 @@ const Header = () => {
     iata_code: "BOM",
     local_code: "",
     home_link: "http://www.csia.in/",
-    wikipedia_link: "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_International_Airport",
-    keywords: "Bombay, Sahar International Airport"
-});
+    wikipedia_link:
+      "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_International_Airport",
+    keywords: "Bombay, Sahar International Airport",
+  });
 
   const handleCitySelect = (city) => {
     if (selectedOption === "from") {
@@ -96,22 +98,14 @@ const Header = () => {
     };
   }, []);
 
-useEffect(()=>{
+  useEffect(() => {
+    const getip = async () => {
+      const data = await axios.get("https://api.country.is/");
+      dispatch(getTopAirPorts(data.data.country));
+    };
+    getip();
+  }, []);
 
-
-  const getip=async()=>{
-    const data= await axios.get("https://api.country.is/")
-    
-    setip(data.data.ip)
-    dispatch(getTopAirPorts(data.data.country))
-  }
-  getip()
-},[])
-
-
-
-  
-  
   const [isVisible, setIsVisible] = useState(false);
 
   const [selectedOption, setSelectedOption] = useState("");
@@ -119,19 +113,19 @@ useEffect(()=>{
     setSelectedOption(option);
     setIsVisible(true);
 
-    switch (option) {
-      case "from":
-        handleFromClick();
-        break;
-      case "to":
-        handleToClick();
-        break;
-      case "traveller":
-        handleToClick(); // Add the appropriate handler for traveller
-        break;
-      default:
-        console.log("Unknown option:", option);
-    }
+    // switch (option) {
+    //   case "from":
+    //     handleFromClick();
+    //     break;
+    //   case "to":
+    //     handleToClick();
+    //     break;
+    //   case "traveller":
+    //     handleToClick(); // Add the appropriate handler for traveller
+    //     break;
+    //   default:
+    //     console.log("Unknown option:", option);
+    // }
   };
 
   const dropdownRef = useRef(null);
@@ -158,34 +152,48 @@ useEffect(()=>{
     // Your logic for 'To' click
     console.log("To clicked");
   };
-const handelSearch=()=>{
+  const handelSearch = () => {
+    // Create a Date object
+    const date = new Date(selected);
 
-  
+    const offset = -5 * 60; // Offset in minutes for GMT-0500
+    const localDate = new Date(date.getTime() + offset * 60 * 1000);
+    const localFormattedDate = localDate.toISOString().slice(0, 19); // This will give you "2024-10-11T00:00:00"
 
+    dispatch(
+      searchFlightApi({
+        AdultCount: adultCount,
+        ChildCount: childCount,
+        InfantCount: infantCount,
+        DirectFlight: true,
+        OneStopFlight: false,
+        JourneyType: 1,
+        PreferredAirlines: null,
+        Origin: fromCity.iata_code,
+        Destination: toCity.iata_code,
+        FlightCabinClass: selectedClass,
+        PreferredDepartureTime: localFormattedDate,
+        PreferredArrivalTime: localFormattedDate,
+      })
+    );
 
-// Create a Date object
-const date = new Date(selected);
+    route.push("/flightSearch");
+  };
 
-const offset = -5 * 60; // Offset in minutes for GMT-0500
-const localDate = new Date(date.getTime() + offset * 60 * 1000);
-const localFormattedDate = localDate.toISOString().slice(0, 19); // This will give you "2024-10-11T00:00:00"
+  const handleRangeChange = (newRange) => {
+    const date = new Date(newRange.year, newRange.month - 1, newRange.day);
 
-
-
-  dispatch(searchFlightApi({AdultCount:adultCount,ChildCount:childCount,InfantCount:infantCount,
-    DirectFlight:true,OneStopFlight:false,JourneyType:1,PreferredAirlines:null,Origin:fromCity.iata_code,Destination:toCity.iata_code,
-    FlightCabinClass:selectedClass,PreferredDepartureTime:localFormattedDate,PreferredArrivalTime:localFormattedDate
-  }))
-
-  route.push("/flightSearch")
- 
-}
-
-
-
+    setSelected(date);
+    handleClick("");
+  };
+  const handelreturn = (newRange) => {
+    const date = new Date(newRange.year, newRange.month - 1, newRange.day);
+    setSelectedReturn(date);
+    handleClick("");
+  };
+  console.log(selected);
   return (
     <>
-  
       <div className="flex flex-col hidden lg:block custom-color text-white md:px-10 lg:px-52  py-10">
         <div>
           <div className="tabs flex gap-2 pb-2">
@@ -218,170 +226,202 @@ const localFormattedDate = localDate.toISOString().slice(0, 19); // This will gi
             {activeTab === 1 && (
               <>
                 <div className="bg-white custom-shadow grid grid-cols-6 gap-0 border-gray-300">
-                  <div
-                    className="flex flex-col bg-white relative px-4 py-2 rounded-tl-lg rounded-bl-lg border-r hover:bg-[#ECF5FE] cursor-pointer"
-                    onClick={() => handleClick("from")}
-                  >
-                    <p className="text-sm text-[#7E7979] font-medium">From</p>
-                    <span className="text-3xl py-1 text-black font-bold">
-                      {fromCity.municipality}
-                    </span>
-                    <p className="text-black text-xs truncate">
-                      [{fromCity.name}] {fromCity.iata_code}
-                    </p>
-
-                    {isVisible && selectedOption === "from" && 
-                      <div ref={dropdownRef}>
+                  <div className="relative">
+                    <div
+                      onClick={() => handleClick("from")}
+                      className="flex flex-col bg-white  h-full px-4 py-2 rounded-tl-lg rounded-bl-lg border-r hover:bg-[#ECF5FE] cursor-pointer"
+                    >
+                      <p className="text-sm text-[#7E7979] font-medium">From</p>
+                      <span className="text-3xl py-1 text-black font-bold">
+                        {fromCity.municipality}
+                      </span>
+                      <p className="text-black text-xs truncate">
+                        [{fromCity.name}] {fromCity.iata_code}
+                      </p>
+                    </div>
+                    {isVisible && selectedOption === "from" && (
+                      <div>
                         <AutoSearch
                           value="From"
-                      Click={setIsVisible}
+                          Click={setIsVisible}
                           handleClosed={handleVisibilityChange}
                           onSelect={handleCitySelect}
                         />
                       </div>
-                    }
+                    )}
                   </div>
 
-                  <div
-                    className="flex flex-col px-4 py-2 relative bg-white border-r hover:bg-[#ECF5FE]"
-                    onClick={() => handleClick("to")}
-                  >
-                    <label className="text-sm text-[#7E7979] font-medium">
-                      To
-                    </label>
-                    <span className="text-3xl py-1 text-black font-bold">
-                      {toCity.municipality}
-                    </span>
-                    <p className="text-black text-xs truncate">
-                      [{toCity.name}] {toCity.iata_code}
-                    </p>
-                    {isVisible && selectedOption === "to" && 
-                      <div ref={dropdownRef}>
+                  <div className="relative">
+                    <div
+                      onClick={() => handleClick("to")}
+                      className="flex flex-col px-4 py-2 h-full  bg-white border-r hover:bg-[#ECF5FE]"
+                    >
+                      <label className="text-sm text-[#7E7979] font-medium">
+                        To
+                      </label>
+                      <span className="text-3xl py-1 text-black font-bold">
+                        {toCity.municipality}
+                      </span>
+                      <p className="text-black text-xs truncate">
+                        [{toCity.name}] {toCity.iata_code}
+                      </p>
+                    </div>
+
+                    {isVisible && selectedOption === "to" && (
+                      <div>
                         <AutoSearch
                           value="To"
                           fromCity={fromCity}
                           Click={setIsVisible}
                           handleClosed={handleVisibilityChange}
                           onSelect={handleCitySelect}
+
+
                         />
                       </div>
-                    }
+                    )}
                   </div>
 
-                  <div
-                    className="flex flex-col relative px-4 py-2 bg-white  border-r hover:bg-[#ECF5FE]"
-                    onClick={() => handleClick("date")}
-                  >
-                    <label className="text-sm text-[#7E7979] font-medium">
-                      Departure Date
-                    </label>
-{!selected && <div className="text-black font-bold">
-Select a Date
-
-</div> }
-                    { selected && <>
-                    <div className="flex  items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
-                        {" "}
-                        {selected.getDate()}
-                      </span>
-                      <span className="text-sm font-semibold">
-                        {selected.toLocaleString('default', { month: 'short' })}'
-                      </span>
-                      <span className="text-sm font-semibold">
-                        {" "}
-                        {selected.getFullYear()}
-                      </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl"  />
+                  <div className="relative">
+                    <div
+                      onClick={() => handleClick("date")}
+                      className="flex h-full flex-col  px-4 py-2 bg-white  border-r hover:bg-[#ECF5FE]"
+                    >
+                      <label className="text-sm text-[#7E7979] font-medium">
+                        Departure Date
+                      </label>
+                      {!selected && (
+                        <div className="text-black font-bold">
+                          Select a Date
+                        </div>
+                      )}
+                      {selected && (
+                        <>
+                          <div className="flex  items-baseline text-black">
+                            <span className="text-3xl py-1 pr-1 text-black font-bold">
+                              {" "}
+                              {selected.getDate()}
+                            </span>
+                            <span className="text-sm font-semibold">
+                              {selected.toLocaleString("default", {
+                                month: "short",
+                              })}
+                              '
+                            </span>
+                            <span className="text-sm font-semibold">
+                              {" "}
+                              {selected.getFullYear()}
+                            </span>
+                            <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                          </div>
+                          <p className="text-black text-xs">
+                            {selected.toLocaleDateString()}
+                          </p>
+                        </>
+                      )}
                     </div>
-                    <p className="text-black text-xs">
-                      {selected.toLocaleDateString()}
-                    </p></>}
-
                     {isVisible && selectedOption === "date" && (
                       <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
-                        <DayPicker
-                          mode="single"
-                          selected={selected}
-                          onSelect={setSelected}
+                        <Calendar
+                          aria-label="Select a date"
+                          value={""}
+                          onChange={handleRangeChange}
+                          minValue={currentDate}
+                          
                         />
                       </div>
                     )}
                   </div>
-                  <div className="flex flex-col relative  px-4 py-2 bg-white  border-r hover:bg-[#ECF5FE]"
-                   onClick={() => handleClick("return")}>
-                    <label className="text-sm text-[#7E7979] font-medium">
-                      Return Date
-                    </label>
-                    {!selectedReturn && <div className="text-black font-bold h-full align-bottom">
-                      Select Return Flight
-                      </div>}
-{ selectedReturn &&   <>
-
-                    <div className="flex items-baseline text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
-                        {" "}
-                        {selectedReturn.getDate()}
-                      </span>
-                      <span className="text-sm font-semibold">
-                        {" "}
-                        {selectedReturn.toLocaleString('default', { month: 'short' })}'
-                      </span>
-                      <span className="text-sm font-semibold">
-                        {selectedReturn.toLocaleDateString()}
-                      </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                  <div className="relative">
+                    <div
+                      className="flex h-full flex-col   px-4 py-2 bg-white  border-r hover:bg-[#ECF5FE]"
+                      onClick={() => handleClick("return")}
+                    >
+                      <label className="text-sm text-[#7E7979] font-medium">
+                        Return Date
+                      </label>
+                      {!selectedReturn && (
+                        <div className="text-black font-bold h-full align-bottom">
+                          Select Return Flight
+                        </div>
+                      )}
+                      {selectedReturn && (
+                        <>
+                          <div className="flex items-baseline text-black">
+                            <span className="text-3xl py-1 pr-1 text-black font-bold">
+                              {" "}
+                              {selectedReturn.getDate()}
+                            </span>
+                            <span className="text-sm font-semibold">
+                              {" "}
+                              {selectedReturn.toLocaleString("default", {
+                                month: "short",
+                              })}
+                              '
+                            </span>
+                            <span className="text-sm font-semibold">
+                              {selectedReturn.toLocaleDateString()}
+                            </span>
+                            <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                          </div>
+                          <p className="text-black text-xs">
+                            {selectedReturn.getFullYear()}
+                          </p>
+                        </>
+                      )}
                     </div>
-                    <p className="text-black text-xs">
-                      {selectedReturn.getFullYear()}
-                    </p></>
-}
                     {isVisible && selectedOption === "return" && (
                       <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
-                        <DayPicker
-                          mode="single"
-                          selected={selectedReturn}
-                          onSelect={setSelectedReturn}
+                        <Calendar
+                          aria-label="Select a date"
+                          value={""}
+                          onChange={handelreturn}
+                          minValue={currentDate}
+                          disabledDatesClassName=" opacity-50"
                         />
                       </div>
                     )}
                   </div>
-                  <div
-                    className="flex flex-col relative  px-4 py-2 bg-white border-r hover:bg-[#ECF5FE]"
-                    onClick={() => handleClick("traveller")}
-                  >
-                    <label className="text-sm text-[#7E7979] font-medium">
-                      Travelers
-                    </label>
-                    <div className="flex items-center text-black">
-                      <span className="text-3xl py-1 pr-1 text-black font-bold">
-                        1
-                      </span>
-                      <span className="text-sm font-semibold flex items-center gap-1">
-                        Traveller(s) <FaChevronDown />
-                      </span>
+                  <div className="relative">
+                    <div
+                      className="flex flex-col   px-4 py-2 bg-white border-r hover:bg-[#ECF5FE]"
+                      onClick={() => handleClick("traveller")}
+                    >
+                      <label className="text-sm text-[#7E7979] font-medium">
+                        Travelers
+                      </label>
+                      <div className="flex items-center text-black">
+                        <span className="text-3xl py-1 pr-1 text-black font-bold">
+                          1
+                        </span>
+                        <span className="text-sm font-semibold flex items-center gap-1">
+                          Traveller(s) <FaChevronDown />
+                        </span>
+                      </div>
+                      <p className="text-black text-xs">Economy</p>
                     </div>
-                    <p className="text-black text-xs">Economy</p>
-
                     {isVisible && selectedOption === "traveller" && (
                       <div ref={dropdownRef}>
                         <TravellerDropdown
-                        setIsGroup={setIsGroup} 
-                        adultCount={adultCount}
-                        setAdultCount={setAdultCount}
-                        childCount={childCount}
-                        setChildCount={setChildCount}
-                        infantCount={infantCount}
-                        setInfantCount={setInfantCount}
-                        isGroup={isGroup}
-                        setSelectedClass={setSelectedClass}
-                        selectedClass={selectedClass}
-                        value="From" />
+                          setIsGroup={setIsGroup}
+                          adultCount={adultCount}
+                          setAdultCount={setAdultCount}
+                          childCount={childCount}
+                          setChildCount={setChildCount}
+                          infantCount={infantCount}
+                          setInfantCount={setInfantCount}
+                          isGroup={isGroup}
+                          setSelectedClass={setSelectedClass}
+                          selectedClass={selectedClass}
+                          handleClick={handleClick}
+                          value="From"
+                        />
                       </div>
                     )}
                   </div>
+
                   <button
-                  onClick={handelSearch}
+                    onClick={handelSearch}
                     className="text-white flex items-center justify-center text-2xl font-bold p-4 primary-col rounded-br-lg rounded-tr-lg"
                   >
                     Search
@@ -408,8 +448,7 @@ Select a Date
                   {isVisible && selectedOption === "from" && (
                     <div ref={dropdownRef}>
                       <AutoSearch
-                    Click={setIsVisible}
-
+                        Click={setIsVisible}
                         value="From"
                         handleClosed={handleVisibilityChange}
                         onSelect={handleCitySelect}
@@ -434,7 +473,7 @@ Select a Date
                   {isVisible && selectedOption === "to" && (
                     <div ref={dropdownRef}>
                       <AutoSearch
-                      Click={setIsVisible}
+                        Click={setIsVisible}
                         value="To"
                         handleClosed={handleVisibilityChange}
                         onSelect={handleCitySelect}
@@ -447,7 +486,7 @@ Select a Date
                   <label className="text-sm text-[#7E7979] font-medium">
                     Departure Date
                   </label>
-                  
+
                   <div className="flex items-baseline text-black">
                     <span className="text-3xl py-1 pr-1 text-black font-bold">
                       {" "}
@@ -538,8 +577,8 @@ Select a Date
                   {isVisible && selectedOption === "from" && (
                     <div ref={dropdownRef}>
                       <AutoSearch
-
-                          Click={setIsVisible}                        value="From"
+                        Click={setIsVisible}
+                        value="From"
                         handleClosed={handleVisibilityChange}
                         onSelect={handleCitySelect}
                       />
@@ -562,7 +601,7 @@ Select a Date
                   {isVisible && selectedOption === "to" && (
                     <div ref={dropdownRef}>
                       <AutoSearch
-                                                Click={setIsVisible}
+                        Click={setIsVisible}
                         value="To"
                         handleClosed={handleVisibilityChange}
                         onSelect={handleCitySelect}
@@ -621,7 +660,7 @@ Select a Date
                   {isVisible && selectedOption === "from" && (
                     <div ref={dropdownRef}>
                       <AutoSearch
-                       Click={setIsVisible}
+                        Click={setIsVisible}
                         value="From"
                         handleClosed={handleVisibilityChange}
                         onSelect={handleCitySelect}
@@ -646,7 +685,7 @@ Select a Date
                   {isVisible && selectedOption === "to" && (
                     <div ref={dropdownRef}>
                       <AutoSearch
-                       Click={setIsVisible}
+                        Click={setIsVisible}
                         value="To"
                         handleClosed={handleVisibilityChange}
                         onSelect={handleCitySelect}

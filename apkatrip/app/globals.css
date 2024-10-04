@@ -12,7 +12,10 @@ input:-webkit-autofill:focus {
     box-shadow: 0 0 0px 1000px white inset !important;
     -webkit-text-fill-color: #000 !important; /* Change text color if needed */
 }
-
+.nextui-calendar .nextui-calendar-day--disabled {
+  color: red !important; /* Change this to your desired color */
+  opacity: 0.5; /* Optional: to give it a faded look */
+}
 p{
   color: #293137;
 }
