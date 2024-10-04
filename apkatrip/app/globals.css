@@ -1106,3 +1106,17 @@ background-color: #d41145;
 .custom-swipe .swiper-slide:hover {
   transform: translateX(-5px);
 }
+
+.loading{
+  animation: load 5s infinite delay iteration-count direction fill-mode;
+}
+@keyframes load {
+
+  to{
+    transform: rotateX(0deg);
+  }
+  from{
+    transform: rotateX(360deg);
+
+  }
+}

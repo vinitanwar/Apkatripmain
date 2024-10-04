@@ -99,12 +99,8 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    const getip = async () => {
-      const data = await axios.get("https://api.country.is/");
-      dispatch(getTopAirPorts(data.data.country));
-    };
-    getip();
-  }, []);
+    dispatch(getTopAirPorts());
+  }, [ ]);
 
   const [isVisible, setIsVisible] = useState(false);
 
