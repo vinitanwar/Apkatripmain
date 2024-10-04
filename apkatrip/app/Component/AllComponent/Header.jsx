@@ -18,7 +18,33 @@ const Header = () => {
   const localTimeZone = getLocalTimeZone();
   const currentDate = today(localTimeZone);
 
-  const [selected, setSelected] = useState(new Date(Date.now()));
+  const [selected, setSelected] = useState(new Date());
+
+  useEffect(() => {
+    // Get the date from localStorage
+    const getedate = localStorage.getItem('defaultflight');
+    
+    if (getedate) {
+      try {
+        // Parse the localStorage data and get the timeDate field
+        const parsedDate = JSON.parse(getedate).timeDate;
+        
+        // Convert the timeDate to a Date object and set it as selected date
+        const storedDate = new Date(parsedDate);
+        
+        // Ensure the storedDate is a valid date before setting it
+        if (!isNaN(storedDate)) {
+          setSelected(storedDate);
+        }
+      } catch (error) {
+        console.error('Error parsing date from localStorage:', error);
+      }
+    }
+  }, []);
+
+// const getedate = localStorage.getItem('defaultflight');
+// console.log('time data localstorage',JSON.parse(getedate).timeDate)
+
 
   const [selectedReturn, setSelectedReturn] = useState();
   const [adultCount, setAdultCount] = useState(1);
@@ -153,12 +179,14 @@ const Header = () => {
     console.log("To clicked");
   };
   const handelSearch = () => {
-    // Create a Date object
+
     localStorage.setItem("defaultflight",JSON.stringify({
       from:fromCity,
       to:toCity,
+      timeDate:selected
      
     }))
+
 
     const date = new Date(selected);
     
