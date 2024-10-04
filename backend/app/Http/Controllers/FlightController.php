@@ -19,6 +19,7 @@ class FlightController extends Controller
     {
       
         $token = $this->apiService->getToken();
+
         $validatedData = $request->validate([
             'AdultCount' => 'required|integer',
             'Origin' => 'required|string',
@@ -34,9 +35,9 @@ class FlightController extends Controller
 
         ]);
         
-        // Define the search payload
+        // Prepare the search payload with the validated data and token
         $searchPayload = [
-            "EndUserIp" => $request->ip(), // Dynamic IP from the request
+            "EndUserIp" => $request->ip(), 
             "TokenId" => $token,
             "AdultCount" => $validatedData['AdultCount'],
             "ChildCount" => $validatedData['ChildCount'],
