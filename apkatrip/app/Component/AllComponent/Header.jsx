@@ -168,8 +168,8 @@ const Header = () => {
         Origin: fromCity.iata_code,
         Destination: toCity.iata_code,
         FlightCabinClass: selectedClass,
-        PreferredDepartureTime: localFormattedDate,
-        PreferredArrivalTime: localFormattedDate,
+        PreferredDepartureTime: selected,
+        PreferredArrivalTime: selected,
       })
     );
 
@@ -180,14 +180,16 @@ const Header = () => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
 
     setSelected(date);
+    console.log('adfewdfew',date);
     handleClick("");
   };
   const handelreturn = (newRange) => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
     setSelectedReturn(date);
+    console.log(date)
     handleClick("");
   };
-  console.log(selected);
+
   return (
     <>
       <div className="flex flex-col hidden lg:block custom-color text-white md:px-10 lg:px-52  py-10">
