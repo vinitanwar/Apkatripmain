@@ -37,7 +37,7 @@ const AutoSearch = ({ value, onSelect ,Click,fromCity}) => {
    }
 
    Click(false)
-   console.log(null)
+   
   };
   
 
@@ -47,10 +47,13 @@ const AutoSearch = ({ value, onSelect ,Click,fromCity}) => {
     e.preventDefault()
 dispatch(getAllAirports(e.target.value))
   }
-  useEffect(()=>{setAllport(state)},[state])
+
+  useEffect(()=>{
+    setAllport(state)
+  },[state])
 
 
-
+console.log("dasdsd",allport)
 
   return (
     <div className="autosearch fromsectr" id="fromautoFill_in">
@@ -76,8 +79,8 @@ dispatch(getAllAirports(e.target.value))
 
         { allport && allport.isLoading &&  <div>loading....</div> }
         { allport &&  !allport.isLoading &&<>
-        {allport && allport.info && allport.info.data && allport.info.data.map((city)=>( <li
-              key={city.id}
+        {allport && allport.info && allport.info.data && allport.info.data.map((city,index)=>( <li
+              key={index}
               
                 onClick={() => handleSelect(city)}
               className="border-b border-[#ececec] py-3 px-2 hover:bg-[#f7f7f7]"
@@ -101,8 +104,13 @@ dispatch(getAllAirports(e.target.value))
                 </div>
               </div>
             </li>))}
-          {     !allport.info.data && 
-         state2.info.top_airports.map((city) => (
+
+
+
+
+
+          {     !allport.info.data &&   state2.info &&
+         state2.info.map((city) => (
             <li
               key={city.iata_code}
               onClick={() => handleSelect(city)}

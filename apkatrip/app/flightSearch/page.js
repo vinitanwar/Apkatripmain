@@ -265,7 +265,7 @@ setairlines(airlines=>[...airlines,airlineName])
     // Add more card data here
   ];
 
-console.log( "asdas",airlines)
+console.log( "asdas",state)
 
   return (
     <>
@@ -372,9 +372,15 @@ console.log( "asdas",airlines)
         <div className="hidden md:block  sticky top-6 w-1/4">
           <FlightFliter />
         </div>
+      
+        <div className={`myshadow w-full md:w-3/4 ${state && state.data && state.data.Response?"bg-white":""}  px-2 md:px-5 py-3 overflow-hidden`}>
+        { state && state.isLoading && <div className="flex justify-center items-center w-full h-full">
 
-        <div className="myshadow w-full md:w-3/4 bg-white px-2 md:px-5 py-3 overflow-hidden">
-          <div className="custom-slider  flex items-center mt-5 ">
+<img  src="/loder.png" className="animate-spin w-1/3 duration-2000   " />
+</div>
+
+}
+          {/* <div className="custom-slider  flex items-center mt-5 ">
             <Slider {...settings} className="slider flex w-full items-center">
               {items.map((item, index) => (
                 <div
@@ -395,7 +401,10 @@ console.log( "asdas",airlines)
                 </div>
               ))}
             </Slider>
-          </div>
+          </div> */}
+
+
+
 
           <div>
             { state && state.data && state.data.Response && state.data.Response.Results &&  state.data.Response.Results[0].map((flight, index) => (
