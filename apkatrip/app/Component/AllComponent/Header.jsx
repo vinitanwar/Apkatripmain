@@ -18,7 +18,7 @@ const Header = () => {
   const localTimeZone = getLocalTimeZone();
   const currentDate = today(localTimeZone);
 
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState(new Date(Date.now()));
 
   const [selectedReturn, setSelectedReturn] = useState();
   const [adultCount, setAdultCount] = useState(1);
@@ -35,7 +35,7 @@ const Header = () => {
   };
   const handleCheckboxChange = (event) => {};
 
-  const [fromCity, setFromCity] = useState({
+  const [fromCity, setFromCity] = useState(JSON.parse( localStorage.getItem("defaultflight"))?JSON.parse( localStorage.getItem("defaultflight")).from:{
     id: 26555,
     ident: "VIDP",
     type: "large_airport",
@@ -56,7 +56,7 @@ const Header = () => {
       "https://en.wikipedia.org/wiki/Indira_Gandhi_International_Airport",
     keywords: "Palam Air Force Station",
   });
-  const [toCity, setToCity] = useState({
+  const [toCity, setToCity] = useState(  JSON.parse( localStorage.getItem("defaultflight"))?JSON.parse( localStorage.getItem("defaultflight")).to:{
     id: 26434,
     ident: "VABB",
     type: "large_airport",
@@ -99,6 +99,9 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
+
+
+
     dispatch(getTopAirPorts());
   }, [ ]);
 
@@ -123,6 +126,7 @@ const Header = () => {
     //     console.log("Unknown option:", option);
     // }
   };
+
 
   const dropdownRef = useRef(null);
 
@@ -150,11 +154,19 @@ const Header = () => {
   };
   const handelSearch = () => {
     // Create a Date object
-    const date = new Date(selected);
+    localStorage.setItem("defaultflight",JSON.stringify({
+      from:fromCity,
+      to:toCity,
+     
+    }))
 
+    const date = new Date(selected);
+    
     const offset = -5 * 60; // Offset in minutes for GMT-0500
     const localDate = new Date(date.getTime() + offset * 60 * 1000);
     const localFormattedDate = localDate.toISOString().slice(0, 19); // This will give you "2024-10-11T00:00:00"
+    
+
 
     dispatch(
       searchFlightApi({
@@ -178,13 +190,13 @@ const Header = () => {
 
   const handleRangeChange = (newRange) => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
-
+  
     setSelected(date);
-    console.log('adfewdfew',date);
     handleClick("");
   };
   const handelreturn = (newRange) => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
+    
     setSelectedReturn(date);
     console.log(date)
     handleClick("");
@@ -318,6 +330,10 @@ const Header = () => {
                         </>
                       )}
                     </div>
+
+
+
+
                     {isVisible && selectedOption === "date" && (
                       <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
                         <Calendar

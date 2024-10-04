@@ -373,13 +373,14 @@ console.log( "asdas",state)
           <FlightFliter />
         </div>
       
-        <div className={`myshadow w-full md:w-3/4 ${state && state.data && state.data.Response?"bg-white":""}  px-2 md:px-5 py-3 overflow-hidden`}>
-        { state && state.isLoading && <div className="flex justify-center items-center w-full h-full">
+        <div className={` w-full md:w-3/4   `}>
+        { state && state.isLoading && <div className="flex justify-center items-center w-full h-full px-2 md:px-5 py-3">
 
 <img  src="/loder.png" className="animate-spin w-1/3 duration-2000   " />
 </div>
 
 }
+    
           {/* <div className="custom-slider  flex items-center mt-5 ">
             <Slider {...settings} className="slider flex w-full items-center">
               {items.map((item, index) => (
@@ -406,8 +407,8 @@ console.log( "asdas",state)
 
 
 
-          <div>
-            { state && state.data && state.data.Response && state.data.Response.Results &&  state.data.Response.Results[0].map((flight, index) => (
+          <div className="myshadow w-full  bg-white  overflow-hidden"  >
+            { state && !state.isLoading && state.data && state.data.Response && state.data.Response.Results &&state.data.Response.Results[0] &&  state.data.Response.Results[0].map((flight, index) => (
 
 
               <div key={index} className="my-3 border p-2 md:p-5">
@@ -438,9 +439,9 @@ console.log( "asdas",state)
 
                   <div className="text-center">
                     <p className="text-center text-sm md:text-lg">
-                     {flight.Segments[0][0].Duration} Min
+                     {Math.floor(flight.Segments[0][0].Duration/60)} h
                       <font color="#757575"> </font>
-                  
+                        {flight.Segments[0][0].Duration%60} Min
                       <font color="#757575"> </font>
                     </p>
                     <div>
