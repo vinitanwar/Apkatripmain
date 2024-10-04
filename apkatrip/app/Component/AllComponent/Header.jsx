@@ -21,23 +21,25 @@ const Header = () => {
   const [selected, setSelected] = useState(new Date());
 
   useEffect(() => {
-    // Get the date from localStorage
-    const getedate = localStorage.getItem('defaultflight');
-    
-    if (getedate) {
-      try {
-        // Parse the localStorage data and get the timeDate field
-        const parsedDate = JSON.parse(getedate).timeDate;
-        
-        // Convert the timeDate to a Date object and set it as selected date
-        const storedDate = new Date(parsedDate);
-        
-        // Ensure the storedDate is a valid date before setting it
-        if (!isNaN(storedDate)) {
-          setSelected(storedDate);
+    if (typeof window !== 'undefined') {
+      // Get the date from localStorage
+      const getedate = localStorage.getItem('defaultflight');
+      
+      if (getedate) {
+        try {
+          // Parse the localStorage data and get the timeDate field
+          const parsedDate = JSON.parse(getedate).timeDate;
+          
+          // Convert the timeDate to a Date object and set it as selected date
+          const storedDate = new Date(parsedDate);
+          
+          // Ensure the storedDate is a valid date before setting it
+          if (!isNaN(storedDate)) {
+            setSelected(storedDate);
+          }
+        } catch (error) {
+          console.error('Error parsing date from localStorage:', error);
         }
-      } catch (error) {
-        console.error('Error parsing date from localStorage:', error);
       }
     }
   }, []);
@@ -61,7 +63,9 @@ const Header = () => {
   };
   const handleCheckboxChange = (event) => {};
 
-  const [fromCity, setFromCity] = useState(JSON.parse( localStorage.getItem("defaultflight"))?JSON.parse( localStorage.getItem("defaultflight")).from:{
+
+
+  const defaultFromCity = {
     id: 26555,
     ident: "VIDP",
     type: "large_airport",
@@ -78,11 +82,11 @@ const Header = () => {
     iata_code: "DEL",
     local_code: "",
     home_link: "http://www.newdelhiairport.in/",
-    wikipedia_link:
-      "https://en.wikipedia.org/wiki/Indira_Gandhi_International_Airport",
+    wikipedia_link: "https://en.wikipedia.org/wiki/Indira_Gandhi_International_Airport",
     keywords: "Palam Air Force Station",
-  });
-  const [toCity, setToCity] = useState(  JSON.parse( localStorage.getItem("defaultflight"))?JSON.parse( localStorage.getItem("defaultflight")).to:{
+  };
+  
+  const defaultToCity = {
     id: 26434,
     ident: "VABB",
     type: "large_airport",
@@ -99,10 +103,79 @@ const Header = () => {
     iata_code: "BOM",
     local_code: "",
     home_link: "http://www.csia.in/",
-    wikipedia_link:
-      "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_International_Airport",
+    wikipedia_link: "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_International_Airport",
     keywords: "Bombay, Sahar International Airport",
-  });
+  };
+
+  
+  const [fromCity, setFromCity] = useState(defaultFromCity);
+  const [toCity, setToCity] = useState(defaultToCity);
+
+  useEffect(() => {
+    // Ensure localStorage is only accessed on the client
+    if (typeof window !== 'undefined') {
+      const storedFlight = localStorage.getItem("defaultflight");
+
+      if (storedFlight) {
+        try {
+          const flightData = JSON.parse(storedFlight);
+
+          if (flightData?.from) {
+            setFromCity(flightData.from);
+          }
+          if (flightData?.to) {
+            setToCity(flightData.to);
+          }
+        } catch (error) {
+          console.error('Error parsing flight data from localStorage:', error);
+        }
+      }
+    }
+  }, []);
+
+
+  // const [fromCity, setFromCity] = useState(JSON.parse( localStorage.getItem("defaultflight"))?JSON.parse( localStorage.getItem("defaultflight")).from:{
+  //   id: 26555,
+  //   ident: "VIDP",
+  //   type: "large_airport",
+  //   name: "Indira Gandhi International Airport",
+  //   latitude_deg: "28.55563",
+  //   longitude_deg: "77.09519",
+  //   elevation_ft: "777",
+  //   continent: "AS",
+  //   iso_country: "IN",
+  //   iso_region: "IN-DL",
+  //   municipality: "New Delhi",
+  //   scheduled_service: "yes",
+  //   gps_code: "VIDP",
+  //   iata_code: "DEL",
+  //   local_code: "",
+  //   home_link: "http://www.newdelhiairport.in/",
+  //   wikipedia_link:
+  //     "https://en.wikipedia.org/wiki/Indira_Gandhi_International_Airport",
+  //   keywords: "Palam Air Force Station",
+  // });
+  // const [toCity, setToCity] = useState(  JSON.parse( localStorage.getItem("defaultflight"))?JSON.parse( localStorage.getItem("defaultflight")).to:{
+  //   id: 26434,
+  //   ident: "VABB",
+  //   type: "large_airport",
+  //   name: "Chhatrapati Shivaji International Airport",
+  //   latitude_deg: "19.0886993408",
+  //   longitude_deg: "72.8678970337",
+  //   elevation_ft: "39",
+  //   continent: "AS",
+  //   iso_country: "IN",
+  //   iso_region: "IN-MM",
+  //   municipality: "Mumbai",
+  //   scheduled_service: "yes",
+  //   gps_code: "VABB",
+  //   iata_code: "BOM",
+  //   local_code: "",
+  //   home_link: "http://www.csia.in/",
+  //   wikipedia_link:
+  //     "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_International_Airport",
+  //   keywords: "Bombay, Sahar International Airport",
+  // });
 
   const handleCitySelect = (city) => {
     if (selectedOption === "from") {
