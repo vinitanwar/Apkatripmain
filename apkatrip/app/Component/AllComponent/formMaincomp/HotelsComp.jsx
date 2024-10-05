@@ -247,17 +247,17 @@ const HotelComp = () => {
           </Link>
         </div>
 
-        <Link
-           href="/listofhotels"
+        <div
+          
           className="flex justify-end "
         >
-          <p
-           
+          <Link
+            href="/listofhotels"
             className=" text-xs mt-4 mr-5 font-bold bg-white text-blue-600 py-1 px-3  rounded-full "
           >
             List of hotels
-          </p>
-        </Link>
+          </Link>
+        </div>
       </div>
     </>
   );

@@ -15,7 +15,7 @@ import Image from "next/image";
 
 
 
-const page = () => {
+const Compo = () => {
 
 
 
@@ -325,4 +325,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Compo;

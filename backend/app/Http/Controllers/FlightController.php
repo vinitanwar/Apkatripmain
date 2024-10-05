@@ -75,7 +75,7 @@ class FlightController extends Controller
             ])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Search', $searchPayload);
         }
     
-        // Return the search response
+        //  Return the search response
         return $response->json();
     }
 }

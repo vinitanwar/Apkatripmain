@@ -44,8 +44,7 @@ const Header = () => {
     }
   }, []);
 
-// const getedate = localStorage.getItem('defaultflight');
-// console.log('time data localstorage',JSON.parse(getedate).timeDate)
+
 
 
   const [selectedReturn, setSelectedReturn] = useState();
@@ -222,7 +221,7 @@ const Header = () => {
     //     handleToClick(); // Add the appropriate handler for traveller
     //     break;
     //   default:
-    //     console.log("Unknown option:", option);
+    //     
     // }
   };
 
@@ -262,9 +261,10 @@ const Header = () => {
 
 
     const date = new Date(selected);
+    // const formattedDate = date.toISOString().slice(0, 10)
+    const offset = 6*60*55*1000; // Offset in minutes for GMT-0500
     
-    const offset = -5 * 60; // Offset in minutes for GMT-0500
-    const localDate = new Date(date.getTime() + offset * 60 * 1000);
+    const localDate = new Date(date.getTime() + offset);
     const localFormattedDate = localDate.toISOString().slice(0, 19); // This will give you "2024-10-11T00:00:00"
     
 
@@ -281,8 +281,8 @@ const Header = () => {
         Origin: fromCity.iata_code,
         Destination: toCity.iata_code,
         FlightCabinClass: selectedClass,
-        PreferredDepartureTime: selected,
-        PreferredArrivalTime: selected,
+        PreferredDepartureTime: localFormattedDate,
+        PreferredArrivalTime: localFormattedDate,
       })
     );
 
@@ -299,7 +299,7 @@ const Header = () => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
     
     setSelectedReturn(date);
-    console.log(date)
+   
     handleClick("");
   };
 

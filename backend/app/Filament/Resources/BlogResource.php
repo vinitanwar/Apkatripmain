@@ -32,11 +32,22 @@ class BlogResource extends Resource
                 //
                 FileUpload::make('blog_image'),
                 TextInput::make('blog_type'),
-                TextInput::make('blog_title'),
+                TextInput::make('blog_title')->required()->live()
+                ->required()->minLength(1)->maxLength(300)
+                ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
+                    if ($operation === 'edit') {
+                        return;
+                    }
+                    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $state)));
+                    $date = now()->format('Y-m-d-H-i-s');
+                    $ndate=  str_replace('-', '', $date);
+                    $set('slug',(''.$slug.'-'.$ndate.''));
+                }),
                 TextInput::make('blog_text'),
                 TextInput::make('quotes'),
                 RichEditor::make('des1'),
-                RichEditor::make('des2')
+                RichEditor::make('des2'),
+                TextInput::make('slug'),
 
 
 

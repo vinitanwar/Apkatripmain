@@ -15,6 +15,7 @@ class blog extends Model
     "blog_text",
 "quotes",
 "des1",
-"des2"
+"des2",
+"slug"
     ];
 }
