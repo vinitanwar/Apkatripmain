@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text("des1");
             $table->text("des2");
             $table->string("quotes");
+            $table->string("slug")->nullable()->change();
             $table->timestamps();
         });
     }

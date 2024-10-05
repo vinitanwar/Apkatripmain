@@ -73,7 +73,7 @@ class FlightController extends Controller
 
         }
     
-        // Return the search response
+        //  Return the search response
         return $response->json();
     }
 }

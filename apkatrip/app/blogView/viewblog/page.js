@@ -1,107 +1,32 @@
-"user client";
-import React from "react";
+"use client";
+import React, { useEffect,useState } from "react";
 import Link from "next/link";
 import { HiOutlineArrowTrendingUp } from "react-icons/hi2";
+import { useDispatch, useSelector } from "react-redux";
+
+import { getBlogs } from "@/app/Component/Store/slices/blogslice";
+import { imgurl, localurl } from "@/app/Component/Store/flightUrls";
+
+
 
 const page = () => {
-  const blogPosts = [
-    {
-      id: 1,
-      image: "/Images/blog-1.webp",
-      category: "Destination",
-      title:
-        "Make Your Next Journey Delhi To Paris in Comfortable And Best Price",
-      description:
-        "Think of a news blog that's filled with content hourly. Besides, random text risks being unintentionally humorous or offensive.",
-      link: "/blogView/aboutblog",
-    },
-    {
-      id: 2,
-      image: "/Images/blog-2.webp",
-      category: "Journey",
-      title:
-        "Make Your Next Journey Delhi To Paris in Comfortable And Best Price",
-      description:
-        "Think of a news blog that's filled with content hourly. Besides, random text risks being unintentionally humorous or offensive.",
-      link: "#",
-    },
-    {
-      id: 3,
-      image: "/Images/blog-3.webp",
-      category: "Business",
-      title:
-        "Make Your Next Journey Delhi To Paris in Comfortable And Best Price",
-      description:
-        "Think of a news blog that's filled with content hourly. Besides, random text risks being unintentionally humorous or offensive.",
-      link: "#",
-    },
-    {
-      id: 4,
-      image: "/Images/blog-1.webp",
-      category: "Destination",
-      title:
-        "Make Your Next Journey Delhi To Paris in Comfortable And Best Price",
-      description:
-        "Think of a news blog that's filled with content hourly. Besides, random text risks being unintentionally humorous or offensive.",
-      link: "#",
-    },
-    {
-      id: 5,
-      image: "/Images/blog-2.webp",
-      category: "Journey",
-      title:
-        "Make Your Next Journey Delhi To Paris in Comfortable And Best Price",
-      description:
-        "Think of a news blog that's filled with content hourly. Besides, random text risks being unintentionally humorous or offensive.",
-      link: "#",
-    },
-    {
-      id: 6,
-      image: "/Images/blog-3.webp",
-      category: "Business",
-      title:
-        "Make Your Next Journey Delhi To Paris in Comfortable And Best Price",
-      description:
-        "Think of a news blog that's filled with content hourly. Besides, random text risks being unintentionally humorous or offensive.",
-      link: "#",
-    },
-    {
-      id: 7,
-      image: "/Images/blog-1.webp",
-      category: "Destination",
-      title:
-        "Make Your Next Journey Delhi To Paris in Comfortable And Best Price",
-      description:
-        "Think of a news blog that's filled with content hourly. Besides, random text risks being unintentionally humorous or offensive.",
-      link: "#",
-    },
-    {
-      id: 8,
-      image: "/Images/blog-2.webp",
-      category: "Journey",
-      title:
-        "Make Your Next Journey Delhi To Paris in Comfortable And Best Price",
-      description:
-        "Think of a news blog that's filled with content hourly. Besides, random text risks being unintentionally humorous or offensive.",
-      link: "#",
-    },
-    {
-      id: 9,
-      image: "/Images/blog-3.webp",
-      category: "Business",
-      title:
-        "Make Your Next Journey Delhi To Paris in Comfortable And Best Price",
-      description:
-        "Think of a news blog that's filled with content hourly. Besides, random text risks being unintentionally humorous or offensive.",
-      link: "#",
-    },
-  ];
+const dispatch= useDispatch()
+const state=useSelector(state=>state.blogslice)
+  const [blogPosts,setblgposts] =useState()
+useEffect(()=>{dispatch(getBlogs())},[])
+useEffect(()=>{
+  setblgposts(state.info)
+},[state])
+
+console.log(state)
+
+
 
   return (
     <>
       <div className="relative pt-6 p lg:pt-0">
         <div className="relative -z-0">
-          <Link href="" className="block relative">
+          <Link href="/" className="block relative">
             <img
               src="/Images/bg-title.webp"
               alt="Kashmir Tour Packages"
@@ -154,15 +79,15 @@ const page = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center p-5 lg:p-20">
-        {blogPosts.map((post) => (
+        { blogPosts && blogPosts.map((post) => (
           <div
             key={post.id}
             className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full"
           >
             <div className="w-full">
-              <Link href={post.link} className="block">
+              <Link href={`/blogView/${post.slug}`} className="block">
                 <img
-                  src={post.image}
+                  src={ `${imgurl}/storage/${post.blog_image}`}
                   alt="Blog image"
                   className="w-full h-60 object-cover rounded"
                 />
@@ -171,19 +96,19 @@ const page = () => {
             <div className="p-4 flex-grow flex flex-col">
               <div className="mb-2">
                 <span className="text-xs font-bold text-green-600 bg-green-100 px-2 py-1 rounded-md">
-                  {post.category}
+                  {post.blog_type}
                 </span>
               </div>
               <h4 className="text-lg font-bold text-gray-800 mb-3">
-                <Link href={post.link} className="hover:text-blue-500">
-                  {post.title}
+                <Link href={`/blogView/${post.slug}`} className="hover:text-blue-500">
+                  {post.blog_title}
                 </Link>
               </h4>
               <p className="text-gray-600 mb-3 flex-grow text-sm  text-justify">
-                {post.description}
+                {post.blog_text }
               </p>
               <Link
-                href={post.link}
+                href={`/blogView/${post.slug}`}
                 className="text-blue-600 text-sm  font-medium flex items-center mt-auto gap-2"
               >
                 Read More
