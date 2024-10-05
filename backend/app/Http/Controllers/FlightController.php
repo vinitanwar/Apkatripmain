@@ -60,16 +60,16 @@ class FlightController extends Controller
         ];
     
      
-        $response = Http::timeout(120)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Search', $searchPayload);
+        $response = Http::timeout(90)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Search', $searchPayload);
 
     
-        // Check for token expiration or invalid token (error code 6)
+
         if ($response->json('Response.Error.ErrorCode') === 6) {
          
             $token = $this->apiService->authenticate();
     
 
-            $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Search', $searchPayload);
+            $response = Http::timeout(90)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/Search', $searchPayload);
 
         }
     
