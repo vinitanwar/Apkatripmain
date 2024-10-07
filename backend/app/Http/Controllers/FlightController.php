@@ -37,7 +37,7 @@ class FlightController extends Controller
         
         // Prepare the search payload with the validated data and token
         $searchPayload = [
-            "EndUserIp" => $request->ip(), 
+            "EndUserIp" => $validatedData['EndUserIp'], 
             "TokenId" => $token,
             "AdultCount" => $validatedData['AdultCount'],
             "ChildCount" => $validatedData['ChildCount'],

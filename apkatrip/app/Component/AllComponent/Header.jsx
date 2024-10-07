@@ -13,6 +13,7 @@ import { getTopAirPorts } from "../Store/slices/topPortsSlice";
 import { useRouter } from "next/navigation";
 import { Calendar } from "@nextui-org/react";
 import { today, getLocalTimeZone } from "@internationalized/date";
+import { getip } from "../Store/slices/ipslice";
 
 const Header = () => {
   const localTimeZone = getLocalTimeZone();
@@ -55,8 +56,9 @@ const Header = () => {
   const [selectedClass, setSelectedClass] = useState(1);
   const [activeTab, setActiveTab] = useState(1);
   const dispatch = useDispatch();
+  const ipstate=useSelector(state=>state.ipslice)
   const route = useRouter();
-
+console.log("frontip",ipstate.info.query)
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
@@ -201,6 +203,7 @@ const Header = () => {
 
 
     dispatch(getTopAirPorts());
+    dispatch(getip());
   }, [ ]);
 
   const [isVisible, setIsVisible] = useState(false);
@@ -271,6 +274,7 @@ const Header = () => {
 
     dispatch(
       searchFlightApi({
+        EndUserIp:ipstate.info.query,
         AdultCount: adultCount,
         ChildCount: childCount,
         InfantCount: infantCount,
@@ -302,7 +306,7 @@ const Header = () => {
    
     handleClick("");
   };
-
+console.log(fromCity)
   return (
     <>
       <div className="flex flex-col hidden lg:block custom-color text-white md:px-10 lg:px-52  py-10">
