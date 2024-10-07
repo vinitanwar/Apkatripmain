@@ -4,9 +4,9 @@ import { FaCalendarWeek, FaChevronDown } from "react-icons/fa";
 import AutoSearch from "./AutoSearch";
 import TravellerDropdown from "./TravellerDropdown";
 import Link from "next/link";
-import { DayPicker } from "react-day-picker";
+
 import "react-day-picker/style.css";
-import axios from "axios";
+
 import { useDispatch, useSelector } from "react-redux";
 import { searchFlightApi } from "../Store/slices/SearchFlight";
 import { getTopAirPorts } from "../Store/slices/topPortsSlice";
@@ -133,7 +133,7 @@ const Header = () => {
       }
     }
   }, []);
-
+  
 
   // const [fromCity, setFromCity] = useState(JSON.parse( localStorage.getItem("defaultflight"))?JSON.parse( localStorage.getItem("defaultflight")).from:{
   //   id: 26555,

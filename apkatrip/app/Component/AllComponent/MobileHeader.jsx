@@ -4,13 +4,113 @@ import Image from "next/image";
 import { FaArrowLeft, FaSearch, FaTimes } from "react-icons/fa";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
+import { useDispatch, useSelector } from "react-redux";
+import { searchFlightApi } from "../Store/slices/SearchFlight";
+import { getTopAirPorts } from "../Store/slices/topPortsSlice";
+import { useRouter } from "next/navigation";
+import { Calendar } from "@nextui-org/react";
+import { today, getLocalTimeZone } from "@internationalized/date";
+import { getip } from "../Store/slices/ipslice";
+import { getAllAirports } from "../Store/slices/Allairportslice";
+   
+
+
+
 
 const MobileHeader = () => {
+  const defaultFromCity = {
+    id: 26555,
+    ident: "VIDP",
+    type: "large_airport",
+    name: "Indira Gandhi International Airport",
+    latitude_deg: "28.55563",
+    longitude_deg: "77.09519",
+    elevation_ft: "777",
+    continent: "AS",
+    iso_country: "IN",
+    iso_region: "IN-DL",
+    municipality: "New Delhi",
+    scheduled_service: "yes",
+    gps_code: "VIDP",
+    iata_code: "DEL",
+    local_code: "",
+    home_link: "http://www.newdelhiairport.in/",
+    wikipedia_link: "https://en.wikipedia.org/wiki/Indira_Gandhi_International_Airport",
+    keywords: "Palam Air Force Station",
+  };
+  
+  const defaultToCity = {
+    id: 26434,
+    ident: "VABB",
+    type: "large_airport",
+    name: "Chhatrapati Shivaji International Airport",
+    latitude_deg: "19.0886993408",
+    longitude_deg: "72.8678970337",
+    elevation_ft: "39",
+    continent: "AS",
+    iso_country: "IN",
+    iso_region: "IN-MM",
+    municipality: "Mumbai",
+    scheduled_service: "yes",
+    gps_code: "VABB",
+    iata_code: "BOM",
+    local_code: "",
+    home_link: "http://www.csia.in/",
+    wikipedia_link: "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_International_Airport",
+    keywords: "Bombay, Sahar International Airport",
+  };
   const [selectedTab, setSelectedTab] = useState("oneWay");
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState(new Date());
   const [isPopupOpen, setIsPopupOpen] = useState(null);
   const [rooms, setRooms] = useState(1);
   const [nights, setNights] = useState(1);
+ 
+  const [adultCount, setAdultCount] = useState(1);
+  const [childCount, setChildCount] = useState(0);
+  const [infantCount, setInfantCount] = useState(0);
+
+  const [selectedClass, setSelectedClass] = useState(1);
+  const dispatch = useDispatch();
+  const ipstate=useSelector(state=>state.ipslice)
+  const route = useRouter();
+  const state=  useSelector(state=>state.Allairport);
+  const state2=useSelector(state=>state.topPortsSlice)
+console.log(state)
+  const [allport,setAllport]=useState()
+  const [inputValue, setInputValue] = useState('');
+
+  const [debouncedValue, setDebouncedValue] = useState(inputValue)
+ 
+
+  
+  const [fromCity, setFromCity] = useState(defaultFromCity);
+  const [toCity, setToCity] = useState(defaultToCity);
+
+  const handleSelected = (city) => {
+    
+
+
+
+    if(fromCity && fromCity.id==city.id){
+     toast.info('You choese same airport', {
+       position: "top-right",
+       autoClose: 2000,
+       hideProgressBar: false,
+       closeOnClick: false,
+       pauseOnHover: true,
+       draggable: true,
+       progress: undefined,
+       theme: "light",
+       transition: Flip,
+       });
+    }
+    else{   onSelect(city); 
+    }
+ 
+    Click(false)
+    
+   };
+
 
   const handleRoomsChange = (amount) => {
     setRooms((prev) => Math.max(prev + amount, 1));
@@ -25,7 +125,7 @@ const MobileHeader = () => {
   const closePopup = () => {
     setIsPopupOpen(false);
   };
-  const [selectedClass, setSelectedClass] = useState("Economy");
+ 
 
   const handleSelection = (e) => {
     setSelectedClass(e.target.value);
@@ -34,9 +134,7 @@ const MobileHeader = () => {
   const handleDone = () => {
     document.getElementById("popup").style.display = "none";
   };
-  const [adultCount, setAdultCount] = useState(1);
-  const [childCount, setChildCount] = useState(0);
-  const [infantCount, setInfantCount] = useState(0);
+ 
 
   const handleSelect = (type, value) => {
     if (type === "adult") {
@@ -47,20 +145,31 @@ const MobileHeader = () => {
       setInfantCount(value);
     }
   };
-  const airports = [
-    {
-      city: "New Delhi",
-      country: "India",
-      name: "Indira Gandhi International Airport",
-      code: "DEL",
-    },
-    {
-      city: "Bangalore",
-      country: "India",
-      name: "Kempegowda International Airport",
-      code: "BLR",
-    },
-  ];
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(inputValue);
+    }, 300); // Adjust the delay as needed
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [inputValue]);
+ 
+  useEffect(() => {
+    if (debouncedValue) {
+      dispatch(getAllAirports(debouncedValue));
+    }
+  }, [debouncedValue, dispatch]);
+
+  const handleChangePort = (e) => {
+    e.preventDefault();
+    setInputValue(e.target.value);
+  };
+  useEffect(()=>{
+    setAllport(state)
+  },[state])
+
   const [isHovered, setIsHovered] = useState(false);
   return (
     <>
@@ -105,9 +214,9 @@ const MobileHeader = () => {
                 onClick={() => openPopup("from")}
               >
                 <div className="text-sm font-light">From</div>
-                <span className="text-xl py-1 text-black font-bold">Delhi</span>
+                <span className="text-xl py-1 text-black font-bold">{fromCity.municipality}</span>
                 <p id="fromCity" className="text-sm">
-                  [DEL] Indira Gandhi International Airport
+                  {fromCity.name}
                 </p>
               </div>
 
@@ -131,31 +240,58 @@ const MobileHeader = () => {
                           type="text"
                           className=" h-10 mt-3 pl-8 rounded w-full"
                           placeholder="Search your city"
+                          value={inputValue}
+          onChange={handleChangePort}
                         />
                         <FaSearch className="absolute top-6 left-2  text-gray-400" />
                       </div>
                     </div>
 
-                    <ul className="h-[85vh] overflow-hidden overflow-y-auto">
+                    <ul className="h-[85vh] overflow-hidden overflow-y-auto pb-10">
+                    { allport && allport.isLoading &&  <div>loading....</div> }
+
                       <li className="bg-[#ecf5fe] py-2 px-5 text-gray-600 text-sm uppercase">
                         Popular Cities
                       </li>
-                      {airports.map((airport, index) => (
+                      {state &&!allport.isLoading &&  state.info &&!allport.info.data && state.info.map((airport, index) => (
                         <li
                           key={index}
-                          className="flex justify-between items-center py-2 px-5"
-                        >
+                          className="flex justify-between items-center py-2 px-5 "
+                           onClick={()=>{   setFromCity(airport),openPopup("")}}
+                          
+                          >
                           <div>
                             <span className="font-bold">
-                              {airport.city}, {airport.country}
+                              {airport.municipality}, {airport.country}
                             </span>
                             <p className="text-sm">{airport.name}</p>
                           </div>
                           <span className="bg-[#737579] py-1 text-white font-bold rounded w-16 text-center px-3 uppercase">
-                            {airport.code}
+                            {airport.ident}
                           </span>
                         </li>
                       ))}
+                      {allport && allport.info && allport.info.data && allport.info.data.map((airport, index) => (
+                        <li
+                          key={index}
+                          className="flex justify-between items-center py-2 px-5 "
+                           onClick={()=>{   setFromCity(airport),openPopup("")}}
+                          
+                          >
+                          <div>
+                            <span className="font-bold">
+                              {airport.municipality}, {airport.country}
+                            </span>
+                            <p className="text-sm">{airport.name}</p>
+                          </div>
+                          <span className="bg-[#737579] py-1 text-white font-bold rounded w-16 text-center px-3 uppercase">
+                            {airport.ident}
+                          </span>
+                        </li>
+                      ))}
+
+
+
                     </ul>
                   </div>
                 </div>
@@ -176,9 +312,9 @@ const MobileHeader = () => {
                 onClick={() => openPopup("to")}
               >
                 <div className="text-sm font-light">To</div>
-                <span className="text-xl py-1 text-black font-bold">Delhi</span>
+                <span className="text-xl py-1 text-black font-bold">{toCity.municipality}</span>
                 <p id="toCity" className="text-sm">
-                  [BOM] Chhatrapati Shivaji International Airport
+                 {toCity.name}
                 </p>
               </div>
 
@@ -202,31 +338,56 @@ const MobileHeader = () => {
                           type="text"
                           className=" h-10 mt-3 pl-8 rounded w-full"
                           placeholder="Search your city"
+                          value={inputValue}
+          onChange={handleChangePort}
                         />
                         <FaSearch className="absolute top-6 left-2  text-gray-400" />
                       </div>
                     </div>
 
                     <ul className="h-[85vh] overflow-hidden overflow-y-auto">
-                      <li className="bg-[#ecf5fe] py-2 px-5 text-gray-600 text-sm uppercase">
-                        Popular Cities
-                      </li>
-                      {airports.map((airport, index) => (
-                        <li
-                          key={index}
-                          className="flex justify-between items-center py-2 px-5"
-                        >
-                          <div>
-                            <span className="font-bold">
-                              {airport.city}, {airport.country}
-                            </span>
-                            <p className="text-sm">{airport.name}</p>
-                          </div>
-                          <span className="bg-[#737579] py-1 text-white font-bold rounded w-16 text-center px-3 uppercase">
-                            {airport.code}
-                          </span>
-                        </li>
-                      ))}
+                      
+                      { allport && allport.isLoading &&  <div>loading....</div> }
+
+<li className="bg-[#ecf5fe] py-2 px-5 text-gray-600 text-sm uppercase">
+  Popular Cities
+</li>
+{state &&!allport.isLoading &&  state.info &&!allport.info.data && state.info.map((airport, index) => (
+  <li
+    key={index}
+    className="flex justify-between items-center py-2 px-5 "
+     onClick={()=>{   setToCity(airport),openPopup("")}}
+    
+    >
+    <div>
+      <span className="font-bold">
+        {airport.municipality}, {airport.country}
+      </span>
+      <p className="text-sm">{airport.name}</p>
+    </div>
+    <span className="bg-[#737579] py-1 text-white font-bold rounded w-16 text-center px-3 uppercase">
+      {airport.ident}
+    </span>
+  </li>
+))}
+{allport && allport.info && allport.info.data && allport.info.data.map((airport, index) => (
+  <li
+    key={index}
+    className="flex justify-between items-center py-2 px-5 "
+     onClick={()=>{   setToCity(airport),openPopup("")}}
+    
+    >
+    <div>
+      <span className="font-bold">
+        {airport.municipality}, {airport.country}
+      </span>
+      <p className="text-sm">{airport.name}</p>
+    </div>
+    <span className="bg-[#737579] py-1 text-white font-bold rounded w-16 text-center px-3 uppercase">
+      {airport.ident}
+    </span>
+  </li>
+))}
                     </ul>
                   </div>
                 </div>
