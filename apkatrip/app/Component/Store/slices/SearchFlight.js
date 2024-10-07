@@ -19,7 +19,7 @@ export const searchFlightApi = createAsyncThunk(
     PreferredDepartureTime,
     PreferredArrivalTime,
   }) => {
-    console.log('frwfrf',PreferredDepartureTime)
+  
     const data = await axios.post(`${localurl}/search-flights`,{EndUserIp,AdultCount,ChildCount,InfantCount,DirectFlight,OneStopFlight
      ,JourneyType ,PreferredAirlines,Origin,Destination,FlightCabinClass,PreferredDepartureTime,PreferredArrivalTime
     });

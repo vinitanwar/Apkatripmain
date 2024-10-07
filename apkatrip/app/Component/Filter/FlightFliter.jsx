@@ -1,6 +1,7 @@
 import React from "react";
 
-const FlightFliter = () => {
+const FlightFliter = ({airlines,handelFilter}) => {
+ 
   return (
     <>
       <div className="h-full sticky top-24 bg-white myshadow px-5  py-3 w-full ">
@@ -58,47 +59,25 @@ const FlightFliter = () => {
         <div className="mb-8">
           <p className="font-bold text-[16px] mb-4">Airlines</p>
           <div data-testid="" className="flex justify-between w-full mb-4">
-            <span className="checkmarkOuter">
-              <input type="checkbox" className="mr-2" />
-              <label>Air India</label>
-            </span>
-            <p className="text-[12px] text-gray-500">₹ 9,676</p>
-          </div>
-          <div data-testid="" className="flex justify-between w-full mb-4">
-            <span className="checkmarkOuter">
-              <input type="checkbox" className="mr-2" />
-              <label>Air India Express</label>
-            </span>
-            <p className="text-[12px] text-gray-500">₹ 9,676</p>
-          </div>
-          <div data-testid="" className="flex justify-between w-full mb-4">
-            <span className="checkmarkOuter">
-              <input type="checkbox" className="mr-2" />
-              <label>Akasa Air</label>
-            </span>
-            <p className="text-[12px] text-gray-500">₹ 9,676</p>
-          </div>
-          <div data-testid="" className="flex justify-between w-full mb-4">
-            <span className="checkmarkOuter">
-              <input type="checkbox" className="mr-2" />
-              <label>IndiGo</label>
-            </span>
-            <p className="text-[12px] text-gray-500">₹ 9,676</p>
-          </div>
-          <div data-testid="" className="flex justify-between w-full mb-4">
-            <span className="checkmarkOuter">
-              <input type="checkbox" className="mr-2" />
-              <label>SpiceJet</label>
-            </span>
-            <p className="text-[12px] text-gray-500">₹ 9,676</p>
-          </div>
-          <div data-testid="" className="flex justify-between w-full mb-4">
-            <span className="checkmarkOuter">
-              <input type="checkbox" className="mr-2" />
-              <label>Star Air</label>
-            </span>
-            <p className="text-[12px] text-gray-500">₹ 9,676</p>
-          </div>
+              <span className="checkmarkOuter">
+                <input type="radio"  name="airlines" className="mr-2" id="All" value="All"  onClick={(e)=>handelFilter(e.target.value,e.target.checked)} />
+                <label htmlFor="All" >All</label>
+              </span>
+              <p className="text-[12px] text-gray-500"></p>
+            </div>
+          {!airlines.length ? "": airlines.map((info)=>{
+            return(
+              <div data-testid="" className="flex justify-between w-full mb-4">
+              <span className="checkmarkOuter">
+                <input type="radio" className="mr-2" id={info} name="airlines"  value={info}  onClick={(e)=>handelFilter(e.target.value)} />
+                <label htmlFor={info} >{info}</label>
+              </span>
+              <p className="text-[12px] text-gray-500"></p>
+            </div>
+            )
+          })}
+         
+        
         </div>
       </div>
     </>

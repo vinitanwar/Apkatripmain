@@ -26,22 +26,51 @@ const page = () => {
   const info = useSelector((state) => state.searchFlightslice);
 
   const [state, setstate] = useState();
+  const [state2, setstate2] = useState();
+
   const [airlines, setairlines] = useState([]);
 
   useEffect(() => {
     setstate(info);
 
-    info &&
+
+
+
+const getports=()=>{
+let uniqueport=[]
+
+
+
+  info &&
       info.data &&
       info.data.Response &&
       info.data.Response.Results &&
       info.data.Response.Results[0].forEach((info1) => {
         const airlineName = info1.Segments[0][0].Airline.AirlineName;
-        if (!airlines.includes(airlineName)) {
-          setairlines((airlines) => [...airlines, airlineName]);
+        if (!uniqueport.includes(airlineName)) {
+          uniqueport.push(airlineName)
         }
       });
+
+
+      setairlines(uniqueport)
+}
+
+    getports()
   }, [info]);
+
+
+
+useEffect(()=>{
+  setstate2(state &&
+  !state.isLoading &&
+  state.data &&
+  state.data.Response &&
+  state.data.Response.Results &&
+  state.data.Response.Results[0] &&
+  state.data.Response.Results[0])},[state])
+
+
   const togglePopup = (id) => {
     if (activePopup === id) {
       setActivePopup(null); // close the popup if it's already open
@@ -66,20 +95,7 @@ const page = () => {
     ],
   };
   const [activeIndex, setActiveIndex] = useState(null);
-  const items = [
-    { time: "Nov 06", distance: "₹ 5195" },
-    { time: "Nov 06", distance: "₹ 5195" },
-    { time: "Nov 06", distance: "₹ 5195" },
-    { time: "Nov 06", distance: "₹ 5195" },
-    { time: "Nov 06", distance: "₹ 5195" },
-    { time: "Nov 06", distance: "₹ 5195" },
-    { time: "Nov 06", distance: "₹ 5195" },
-    { time: "Nov 06", distance: "₹ 5195" },
-    { time: "Nov 06", distance: "₹ 5195" },
-    { time: "Nov 06", distance: "₹ 5195" },
-    { time: "Nov 06", distance: "₹ 5195" },
-    { time: "Nov 06", distance: "₹ 5195" },
-  ];
+
 
   const [showDetailsIndex, setShowDetailsIndex] = useState(null); // State to manage which flight's details to show
   const [activeTab, setActiveTab] = useState("1");
@@ -88,67 +104,7 @@ const page = () => {
     setShowDetailsIndex(showDetailsIndex === index ? null : index);
   };
 
-  const flightData = [
-    {
-      id: 1,
-      airline: "Air India Express",
-      flightNumber: "I5 1569",
-      departureTime: "19:15",
-      departureCity: "New Delhi",
-      duration: "04h 15m",
-      stop: "1 stop via Surat",
-      arrivalTime: "23:30",
-      arrivalCity: "Bengaluru",
-      price: "₹ 6,051",
-      offer:
-        "Get FLAT Rs. 324 OFF using code  | FLAT 15% OFF on Kotak cards using code ",
-    },
-
-    {
-      id: 2,
-      airline: "Air India Express",
-      flightNumber: "I5 1569",
-      departureTime: "19:15",
-      departureCity: "New Delhi",
-      duration: "04h 15m",
-      stop: "1 stop via Surat",
-      arrivalTime: "23:30",
-      arrivalCity: "Bengaluru",
-      price: "₹ 6,051",
-      offer:
-        "Get FLAT Rs. 324 OFF using code  | FLAT 15% OFF on Kotak cards using code ",
-    },
-
-    {
-      id: 3,
-      airline: "Air India Express",
-      flightNumber: "I5 1569",
-      departureTime: "19:15",
-      departureCity: "New Delhi",
-      duration: "04h 15m",
-      stop: "1 stop via Surat",
-      arrivalTime: "23:30",
-      arrivalCity: "Bengaluru",
-      price: "₹ 6,051",
-      offer:
-        "Get FLAT Rs. 324 OFF using code  | FLAT 15% OFF on Kotak cards using code ",
-    },
-
-    {
-      id: 4,
-      airline: "Air India Express",
-      flightNumber: "I5 1569",
-      departureTime: "19:15",
-      departureCity: "New Delhi",
-      duration: "04h 15m",
-      stop: "1 stop via Surat",
-      arrivalTime: "23:30",
-      arrivalCity: "Bengaluru",
-      price: "₹ 6,051",
-      offer:
-        "Get FLAT Rs. 324 OFF using code  | FLAT 15% OFF on Kotak cards using code ",
-    },
-  ];
+  
 
   const cardData = [
     {
@@ -265,6 +221,33 @@ const page = () => {
     // Add more card data here
   ];
 
+  let tempval=[]
+  const  handelFilter=(value)=>{
+    
+
+  if(value=="All"){
+    setstate2(state &&
+      
+      state.data &&
+      state.data.Response &&
+      state.data.Response.Results &&
+      state.data.Response.Results[0] &&
+      state.data.Response.Results[0])
+  }
+else{
+  let filterdata= state &&
+ 
+  state.data &&
+  state.data.Response &&
+  state.data.Response.Results &&
+  state.data.Response.Results[0] &&
+  state.data.Response.Results[0].filter((info)=> info.Segments[0][0].Airline.AirlineName ==value)
+setstate2(filterdata)
+}
+  
+
+
+  }
 
 
   return (
@@ -370,7 +353,7 @@ const page = () => {
           </div>
         </div> */}
         <div className="hidden md:block  sticky top-6 w-1/4">
-          <FlightFliter />
+          <FlightFliter airlines={airlines} handelFilter={handelFilter}/>
         </div>
 
         <div className={` w-full md:w-3/4 my-auto   `}>
@@ -409,7 +392,10 @@ const page = () => {
 
 {info &&
   info.data &&
+ 
   info.data.Response &&
+  state &&
+  !state.isLoading &&
   info.data.Response&&info.data.Response.ResponseStatus==2 &&
    <div class="text-center">
     <h1 class="mb-4 text-6xl font-semibold text-red-500">Oops!</h1>
@@ -427,13 +413,7 @@ const page = () => {
 
 
 
-            {state &&
-              !state.isLoading &&
-              state.data &&
-              state.data.Response &&
-              state.data.Response.Results &&
-              state.data.Response.Results[0] &&
-              state.data.Response.Results[0].map((flight, index) => (
+            {state2 && state2.map((flight, index) => (
                 <div key={index} className="my-3 border p-2 md:p-5">
                   <div className="flex items-center justify-between">
                     <div className="flex gap-3">
