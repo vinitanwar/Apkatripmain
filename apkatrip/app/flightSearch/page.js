@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 import Image from "next/image";
 import {
   FaArrowRight,
@@ -18,6 +19,7 @@ import FlightFliter from "../Component/Filter/FlightFliter";
 import Header from "../Component/AllComponent/Header";
 import { FaSpoon } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 
 const page = () => {
   const [activePopup, setActivePopup] = useState(null); // store id of active popup
@@ -263,12 +265,12 @@ const page = () => {
     // Add more card data here
   ];
 
-  console.log("asdas", state);
+
 
   return (
     <>
       <Header />
-      <div className="block md:flex px-0 lg:px-28 items-start gap-3 my-5 ">
+      <div className="block md:flex px-0 lg:px-28 items-start gap-3 my-5  ">
         {/* <div className="hidden md:block h-full sticky top-24 bg-white myshadow px-5  py-3 w-1/4">
           <div className="mb-8">
             <p className="font-bold text-[20px] mt-2 mb-5">Popular Filters</p>
@@ -404,7 +406,27 @@ const page = () => {
             </Slider>
           </div> */}
 
+
+{info &&
+  info.data &&
+  info.data.Response &&
+  info.data.Response&&info.data.Response.ResponseStatus==2 &&
+   <div class="text-center">
+    <h1 class="mb-4 text-6xl font-semibold text-red-500">Oops!</h1>
+    <p class="mb-4 text-lg text-gray-600"> Flight not found.</p>
+    <div class="animate-bounce">
+      <svg class="mx-auto h-16 w-16 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+      </svg>
+    </div>
+    <p class="mt-4 text-gray-600">Let's get you back <Link href="/" class="text-blue-500">home</Link>.</p></div>
+}
           <div className="myshadow w-full  bg-white  overflow-hidden">
+
+
+
+
+
             {state &&
               !state.isLoading &&
               state.data &&

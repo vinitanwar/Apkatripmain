@@ -74,7 +74,7 @@ const AutoSearch = ({ value, onSelect ,Click,fromCity}) => {
   },[state])
 
 
-console.log("dasdsd",allport)
+
 
   return (
     <div className="autosearch fromsectr" id="fromautoFill_in">

@@ -306,7 +306,7 @@ const Header = () => {
    
     handleClick("");
   };
-console.log(fromCity)
+
   return (
     <>
       <div className="flex flex-col hidden lg:block custom-color text-white md:px-10 lg:px-52  py-10">
