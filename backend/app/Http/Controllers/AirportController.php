@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\airport;
+use Illuminate\Support\Facades\Http; 
 
 use Illuminate\Http\Request;
 
@@ -18,8 +19,10 @@ class AirportController extends Controller
             $res = Airport::where('name', 'like', '%' . $query . '%')
                 ->get(); // No pagination
         } else {
+
+
             $res = Airport::where('popular', 1) 
-                ->get(); // No pagination
+                ->get(); 
         }
 
         return response()->json($res);
