@@ -30,7 +30,7 @@ class ApiService
         if ($response->successful()) {
             $data = $response->json();
             $token = $data['TokenId'];
-            $expiresAt = now()->addHours(24);
+            $expiresAt = now()->addHours(14);
 
             ApiToken::updateOrCreate(
                 ['id' => 1],
