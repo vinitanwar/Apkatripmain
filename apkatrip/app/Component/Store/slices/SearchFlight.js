@@ -5,6 +5,7 @@ import { localurl } from "../flightUrls";
 export const searchFlightApi = createAsyncThunk(
   "/searchFlight",
   async ({
+    EndUserIp,
     AdultCount,
     ChildCount,
     InfantCount,
@@ -19,10 +20,10 @@ export const searchFlightApi = createAsyncThunk(
     PreferredArrivalTime,
   }) => {
     console.log('frwfrf',PreferredDepartureTime)
-    const data = await axios.post(`${localurl}/search-flights`,{AdultCount,ChildCount,InfantCount,DirectFlight,OneStopFlight
+    const data = await axios.post(`${localurl}/search-flights`,{EndUserIp,AdultCount,ChildCount,InfantCount,DirectFlight,OneStopFlight
      ,JourneyType ,PreferredAirlines,Origin,Destination,FlightCabinClass,PreferredDepartureTime,PreferredArrivalTime
     });
-    console.log('mansjhiuefewfrwfrwfrwfrw',PreferredDepartureTime)
+
     return data.data;
 
   }

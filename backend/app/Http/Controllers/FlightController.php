@@ -21,6 +21,7 @@ class FlightController extends Controller
         $token = $this->apiService->getToken();
 
         $validatedData = $request->validate([
+            "EndUserIp"=>'required',
             'AdultCount' => 'required|integer',
             'Origin' => 'required|string',
             'Destination' => 'required|string',

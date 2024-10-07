@@ -58,7 +58,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const ipstate=useSelector(state=>state.ipslice)
   const route = useRouter();
-console.log("frontip",ipstate.info.query)
+
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
   };
@@ -292,7 +292,7 @@ console.log("frontip",ipstate.info.query)
 
     route.push("/flightSearch");
   };
-
+  console.log("sdfsdf",ipstate.info.query)
   const handleRangeChange = (newRange) => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
   
