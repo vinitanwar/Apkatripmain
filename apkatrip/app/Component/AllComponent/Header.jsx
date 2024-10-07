@@ -292,7 +292,7 @@ const Header = () => {
 
     route.push("/flightSearch");
   };
-  console.log("sdfsdf",ipstate.info.query)
+ 
   const handleRangeChange = (newRange) => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
   

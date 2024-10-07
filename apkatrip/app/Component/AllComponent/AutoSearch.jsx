@@ -13,7 +13,9 @@ const AutoSearch = ({ value, onSelect ,Click,fromCity}) => {
   const state2=useSelector(state=>state.topPortsSlice)
   const dispatch=useDispatch();
   const [allport,setAllport]=useState()
+  const [inputValue, setInputValue] = useState('');
 
+  const [debouncedValue, setDebouncedValue] = useState(inputValue);
 
   const handleSelect = (city) => {
     
@@ -42,11 +44,30 @@ const AutoSearch = ({ value, onSelect ,Click,fromCity}) => {
   
 
 
-  
-  const handelChangeport=(e)=>{
-    e.preventDefault()
-dispatch(getAllAirports(e.target.value))
-  }
+ 
+
+  // Debounce function
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(inputValue);
+    }, 300); // Adjust the delay as needed
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [inputValue]);
+
+  // Effect to dispatch action when debounced value changes
+  useEffect(() => {
+    if (debouncedValue) {
+      dispatch(getAllAirports(debouncedValue));
+    }
+  }, [debouncedValue, dispatch]);
+
+  const handleChangePort = (e) => {
+    e.preventDefault();
+    setInputValue(e.target.value);
+  };
 
   useEffect(()=>{
     setAllport(state)
@@ -66,8 +87,8 @@ console.log("dasdsd",allport)
           className="srctinput autoFlll w-full text-black text-sm"
           placeholder={value}
           autoComplete="off"
-        
-          onChange={(e)=>handelChangeport(e)}
+          value={inputValue}
+          onChange={handleChangePort}
         />
       </div>
  

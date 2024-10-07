@@ -12,16 +12,15 @@ class AirportController extends Controller
 
     public function index(Request $request)
     {
-        $query = $request->query('query', '');
-
+        $query = $request->query("query");
         // Modify the query to include a condition for popular airports
         if (!empty($query)) {
-            $res = Airport::where('name', 'like', '%' . $query . '%')
-                ->get(); // No pagination
+            $res = Airport::where('name', 'like', '%' . $query . '%')->orWhere('municipality', 'like', '%' . $query . '%')->paginate(8);
+
         } else {
 
 
-            $res = Airport::where('popular', 1) 
+            $res = Airport::where('popular', 1)->orWhere('name', 'jonty')
                 ->get(); 
         }
 
