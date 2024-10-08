@@ -244,15 +244,9 @@ const Header = () => {
     };
   }, []);
 
-  const handleFromClick = () => {
-    // Your logic for 'From' click
-    console.log("From clicked");
-  };
 
-  const handleToClick = () => {
-    // Your logic for 'To' click
-    console.log("To clicked");
-  };
+
+
   const handelSearch = () => {
 
     localStorage.setItem("defaultflight",JSON.stringify({

@@ -59,6 +59,8 @@ const MobileHeader = () => {
     wikipedia_link: "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_International_Airport",
     keywords: "Bombay, Sahar International Airport",
   };
+  const localTimeZone = getLocalTimeZone();
+  const currentDate = today(localTimeZone);
   const [selectedTab, setSelectedTab] = useState("oneWay");
   const [selected, setSelected] = useState(new Date());
   const [isPopupOpen, setIsPopupOpen] = useState(null);
@@ -75,7 +77,7 @@ const MobileHeader = () => {
   const route = useRouter();
   const state=  useSelector(state=>state.Allairport);
   const state2=useSelector(state=>state.topPortsSlice)
-console.log(state)
+   const seatclass=["All","Economy","Premium Economy","Business","PremiumBusiness","First Class"]
   const [allport,setAllport]=useState()
   const [inputValue, setInputValue] = useState('');
 
@@ -128,7 +130,7 @@ console.log(state)
  
 
   const handleSelection = (e) => {
-    setSelectedClass(e.target.value);
+    (e.target.value);
   };
 
   const handleDone = () => {
@@ -169,6 +171,54 @@ console.log(state)
   useEffect(()=>{
     setAllport(state)
   },[state])
+  const handleRangeChange = (newRange) => {
+    const date = new Date(newRange.year, newRange.month - 1, newRange.day);
+  
+    setSelected(date);
+    setIsHovered(false)
+  };
+
+
+  const handelSearch = () => {
+
+    localStorage.setItem("defaultflight",JSON.stringify({
+      from:fromCity,
+      to:toCity,
+      timeDate:selected
+     
+    }))
+
+
+    const date = new Date(selected);
+    // const formattedDate = date.toISOString().slice(0, 10)
+    const offset = 6*60*55*1000; // Offset in minutes for GMT-0500
+    
+    const localDate = new Date(date.getTime() + offset);
+    const localFormattedDate = localDate.toISOString().slice(0, 19); // This will give you "2024-10-11T00:00:00"
+    
+
+
+    dispatch(
+      searchFlightApi({
+        EndUserIp:ipstate.info.query,
+        AdultCount: adultCount,
+        ChildCount: childCount,
+        InfantCount: infantCount,
+        DirectFlight: true,
+        OneStopFlight: false,
+        JourneyType: 1,
+        PreferredAirlines: null,
+        Origin: fromCity.iata_code,
+        Destination: toCity.iata_code,
+        FlightCabinClass: selectedClass,
+        PreferredDepartureTime: localFormattedDate,
+        PreferredArrivalTime: localFormattedDate,
+      })
+    );
+
+    route.push("/flightSearch");
+  };
+
 
   const [isHovered, setIsHovered] = useState(false);
   return (
@@ -396,7 +446,7 @@ console.log(state)
 
             <div className="flex gap-2 my-3 ">
               <div
-                className="relative flex items-center bg-[#ecf5fe] rounded-lg border border-[#2196f3] p-2 w-1/2"
+                className="relative flex items-center bg-[#ecf5fe] rounded-lg border border-[#2196f3] p-2 w-full"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
               >
@@ -417,103 +467,18 @@ console.log(state)
 
                 {isHovered && (
                   <div className="bg-white p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
-                    <DayPicker
-                      mode="single"
-                      selected={selected}
-                      onSelect={setSelected}
-                    />
+                   <Calendar
+                          aria-label="Select a date"
+                          value={""}
+                          onChange={handleRangeChange}
+                          minValue={currentDate}
+                          
+                        />
                   </div>
                 )}
               </div>
 
-              <div className="flex  items-center bg-[#ecf5fe]  rounded-lg border border-[#2196f3] p-2 w-1/2">
-                <div className="mr-3">
-                  <Image
-                    src="/Images/evening.svg"
-                    width={24}
-                    height={24}
-                    alt=""
-                  />
-                </div>
-                <div onClick={() => openPopup("room")}>
-                  <div className="text-sm font-light">Room & Night</div>
-                  <span className="text-sm py-1 text-black font-bold">
-                    1 Room, 1 Night(s)
-                  </span>
-                </div>
-                {isPopupOpen === "room" && (
-                  <div className="fixed inset-0 bg-[#0009] bottom-0   z-[9999]">
-                    <div className=" w-full  absolute bottom-0 ">
-                      <div className=" bg-white p-4">
-                        <div className="flex justify-between items-center ">
-                          <h2 className="text-xl  leading-none font-bold">
-                            Select Nights
-                          </h2>
-                          <button
-                            className=" text-2xl  rounded"
-                            onClick={closePopup}
-                          >
-                            <FaTimes />
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="bg-white p-4">
-                        <div className="flex flex-col space-y-4">
-                          <div className="flex items-center justify-between">
-                            <p className="text-lg font-semibold">No of Rooms</p>
-                            <div className="flex items-center">
-                              <button
-                                type="button"
-                                onClick={() => handleRoomsChange(-1)}
-                                className="text-gray-600 px-2 border border-r-0 py-1 rounded-tl rounded-bl"
-                              >
-                                -
-                              </button>
-
-                              <span className="px-3 py-1 text-center border text-black bg-[#fffbf3] border-[fffbf3] ">
-                                {rooms}
-                              </span>
-                              <button
-                                type="button"
-                                onClick={() => handleRoomsChange(1)}
-                                className=" text-gray-600 border border-l-0 px-2 py-1  rounded-tr rounded-br"
-                              >
-                                +
-                              </button>
-                            </div>
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <p className="text-lg font-semibold">
-                              No of Nights
-                            </p>
-                            <div className="flex items-center">
-                              <button
-                                type="button"
-                                onClick={() => handleNightsChange(-1)}
-                                className="text-gray-600 px-2 border border-r-0 py-1 rounded-tl rounded-bl"
-                              >
-                                -
-                              </button>
-
-                              <span className="px-3 py-1 text-center border text-black bg-[#fffbf3] border-[fffbf3] ">
-                                {nights}
-                              </span>
-                              <button
-                                type="button"
-                                onClick={() => handleNightsChange(1)}
-                                className=" text-gray-600 border border-l-0 px-2 py-1  rounded-tr rounded-br"
-                              >
-                                +
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
+             
             </div>
 
             <div className="flex gap-2 my-3 ">
@@ -638,7 +603,7 @@ console.log(state)
                 </div>
                 <div>
                   <div className="text-sm font-light">Seat Class</div>
-                  <div className="font-semibold">Economy</div>
+                  <div className="font-semibold">{seatclass.filter((info,index)=>selectedClass === index+1)}</div>
                 </div>
               </div>
 
@@ -660,52 +625,25 @@ console.log(state)
                     </div>
 
                     <div className="bg-white p-4">
-                      <label className="flex items-center mb-2">
+
+
+                      {seatclass.map((info,index)=>(
+                        <label className="flex items-center mb-2" onChange={()=>setSelectedClass(index+1)}>
                         <input
                           type="radio"
                           name="class"
                           value="Economy"
-                          checked={selectedClass === "Economy"}
-                          onChange={handleSelection}
+                          checked={selectedClass === index+1}
+                          
                           className="mr-2"
                         />
-                        <span className="text-gray-700">Economy</span>
+                        <span className="text-gray-700">{info}</span>
                       </label>
-                      <label className="flex items-center mb-2">
-                        <input
-                          type="radio"
-                          name="class"
-                          value="Premium Economy"
-                          checked={selectedClass === "Premium Economy"}
-                          onChange={handleSelection}
-                          className="mr-2"
-                        />
-                        <span className="text-gray-700">Premium Economy</span>
-                      </label>
-                      <label className="flex items-center mb-2">
-                        <input
-                          type="radio"
-                          name="class"
-                          value="Business"
-                          checked={selectedClass === "Business"}
-                          onChange={handleSelection}
-                          className="mr-2"
-                        />
-                        <span className="text-gray-700">Business</span>
-                      </label>
-                      <label className="flex items-center mb-4">
-                        <input
-                          type="radio"
-                          name="class"
-                          value="First Class"
-                          checked={selectedClass === "First Class"}
-                          onChange={handleSelection}
-                          className="mr-2"
-                        />
-                        <span className="text-gray-700">First Class</span>
-                      </label>
+                      ))}
+                      
+                      
                       <button
-                        onClick={handleDone}
+                      onClick={() => openPopup("")}
                         className="bg-blue-500 text-white w-full py-2 px-4 rounded hover:bg-blue-600"
                       >
                         Done
@@ -717,11 +655,10 @@ console.log(state)
             </div>
 
             <div className="mt-4">
-              <input
-                type="submit"
-                value="Search"
+              <button
+              onClick={handelSearch}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer w-full"
-              />
+              >Search</button>
             </div>
           </div>
         )}
