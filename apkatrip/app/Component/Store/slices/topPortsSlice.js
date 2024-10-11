@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { localurl } from "../flightUrls";
+import { apilink } from "../../common";
 
 export const getTopAirPorts=createAsyncThunk("/airports",async()=>{
-const res=await axios.get(`${localurl}/airports`)
+const res=await axios.get(`${apilink}/airports`)
 
 return res.data;
 })

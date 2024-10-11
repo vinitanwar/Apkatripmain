@@ -33,49 +33,43 @@ const page = () => {
   useEffect(() => {
     setstate(info);
 
+    const getports = () => {
+      let uniqueport = [];
 
+      info &&
+        info.data &&
+        info.data.Response &&
+        info.data.Response.Results &&
+        info.data.Response.Results[0].forEach((info1) => {
+          const airlineName = info1.Segments[0][0].Airline.AirlineName;
+          if (!uniqueport.includes(airlineName)) {
+            uniqueport.push(airlineName);
+          }
+        });
 
+      setairlines(uniqueport);
+    };
 
-const getports=()=>{
-let uniqueport=[]
-
-
-
-  info &&
-      info.data &&
-      info.data.Response &&
-      info.data.Response.Results &&
-      info.data.Response.Results[0].forEach((info1) => {
-        const airlineName = info1.Segments[0][0].Airline.AirlineName;
-        if (!uniqueport.includes(airlineName)) {
-          uniqueport.push(airlineName)
-        }
-      });
-
-
-      setairlines(uniqueport)
-}
-
-    getports()
+    getports();
   }, [info]);
 
-
-
-useEffect(()=>{
-  setstate2(state &&
-  !state.isLoading &&
-  state.data &&
-  state.data.Response &&
-  state.data.Response.Results &&
-  state.data.Response.Results[0] &&
-  state.data.Response.Results[0])},[state])
-
+  useEffect(() => {
+    setstate2(
+      state &&
+        !state.isLoading &&
+        state.data &&
+        state.data.Response &&
+        state.data.Response.Results &&
+        state.data.Response.Results[0] &&
+        state.data.Response.Results[0]
+    );
+  }, [state]);
 
   const togglePopup = (id) => {
     if (activePopup === id) {
-      setActivePopup(null); // close the popup if it's already open
+      setActivePopup(null); 
     } else {
-      setActivePopup(id); // open the popup with the clicked id
+      setActivePopup(id); 
     }
   };
 
@@ -96,15 +90,12 @@ useEffect(()=>{
   };
   const [activeIndex, setActiveIndex] = useState(null);
 
-
   const [showDetailsIndex, setShowDetailsIndex] = useState(null); // State to manage which flight's details to show
   const [activeTab, setActiveTab] = useState("1");
   // Function to toggle the flight details visibility
   const toggle = (index) => {
     setShowDetailsIndex(showDetailsIndex === index ? null : index);
   };
-
-  
 
   const cardData = [
     {
@@ -221,34 +212,35 @@ useEffect(()=>{
     // Add more card data here
   ];
 
-  let tempval=[]
-  const  handelFilter=(value)=>{
-    
+  let tempval = [];
+  const handelFilter = (value) => {
+    if (value == "All") {
+      setstate2(
+        state &&
+          state.data &&
+          state.data.Response &&
+          state.data.Response.Results &&
+          state.data.Response.Results[0] &&
+          state.data.Response.Results[0]
+      );
+    } else {
+      let filterdata =
+        state &&
+        state.data &&
+        state.data.Response &&
+        state.data.Response.Results &&
+        state.data.Response.Results[0] &&
+        state.data.Response.Results[0].filter(
+          (info) => info.Segments[0][0].Airline.AirlineName == value
+        );
 
-  if(value=="All"){
-    setstate2(state &&
-      
-      state.data &&
-      state.data.Response &&
-      state.data.Response.Results &&
-      state.data.Response.Results[0] &&
-      state.data.Response.Results[0])
-  }
-else{
-  let filterdata= state &&
- 
-  state.data &&
-  state.data.Response &&
-  state.data.Response.Results &&
-  state.data.Response.Results[0] &&
-  state.data.Response.Results[0].filter((info)=> info.Segments[0][0].Airline.AirlineName ==value)
-setstate2(filterdata)
-}
-  
+      setstate2("rfr3fr3f3rf3f33", filterdata);
 
+      console.log(filterdata);
+    }
+  };
 
-  }
-
+  console.log(state2);
 
   return (
     <>
@@ -353,7 +345,7 @@ setstate2(filterdata)
           </div>
         </div> */}
         <div className="hidden md:block  sticky top-6 w-1/4">
-          <FlightFliter airlines={airlines} handelFilter={handelFilter}/>
+          <FlightFliter airlines={airlines} handelFilter={handelFilter} />
         </div>
 
         <div className={` w-full md:w-3/4 my-auto   `}>
@@ -366,54 +358,45 @@ setstate2(filterdata)
             </div>
           )}
 
-          {/* <div className="custom-slider  flex items-center mt-5 ">
-            <Slider {...settings} className="slider flex w-full items-center">
-              {items.map((item, index) => (
-                <div
-                  key={index}
-                  onClick={() => setActiveIndex(index)}
-                  className={`flex items-center px-5 py-2 border justify-center ${
-                    activeIndex === index ? "text-blue-600 border-blue-600" : ""
-                  }`}
-                >
-                  <div>
-                    <div className="flex text-sm md:text-lg items-center justify-center">
-                      {item.time}
-                    </div>
-                    <div className="font-black text-sm md:text-lg flex items-center justify-center">
-                      {item.distance}
-                    </div>
-                  </div>
+        
+
+          {info &&
+            info.data &&
+            info.data.Response &&
+            state &&
+            !state.isLoading &&
+            info.data.Response &&
+            info.data.Response.ResponseStatus == 2 && (
+              <div class="text-center">
+                <h1 class="mb-4 text-6xl font-semibold text-red-500">Oops!</h1>
+                <p class="mb-4 text-lg text-gray-600"> Flight not found.</p>
+                <div class="animate-bounce">
+                  <svg
+                    class="mx-auto h-16 w-16 text-red-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                    ></path>
+                  </svg>
                 </div>
-              ))}
-            </Slider>
-          </div> */}
-
-
-{info &&
-  info.data &&
- 
-  info.data.Response &&
-  state &&
-  !state.isLoading &&
-  info.data.Response&&info.data.Response.ResponseStatus==2 &&
-   <div class="text-center">
-    <h1 class="mb-4 text-6xl font-semibold text-red-500">Oops!</h1>
-    <p class="mb-4 text-lg text-gray-600"> Flight not found.</p>
-    <div class="animate-bounce">
-      <svg class="mx-auto h-16 w-16 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-      </svg>
-    </div>
-    <p class="mt-4 text-gray-600">Let's get you back <Link href="/" class="text-blue-500">home</Link>.</p></div>
-}
+                <p class="mt-4 text-gray-600">
+                  Let's get you back{" "}
+                  <Link href="/" class="text-blue-500">
+                    home
+                  </Link>
+                  .
+                </p>
+              </div>
+            )}
           <div className="myshadow w-full  bg-white  overflow-hidden">
-
-
-
-
-
-            {state2 && state2.map((flight, index) => (
+            {state2 &&
+              state2.map((flight, index) => (
                 <div key={index} className="my-3 border p-2 md:p-5">
                   <div className="flex items-center justify-between">
                     <div className="flex gap-3">
@@ -450,7 +433,8 @@ setstate2(filterdata)
                     <div className="text-center">
                       <p className="text-center text-sm md:text-lg">
                         {Math.floor(flight.Segments[0][0].Duration / 60)} h
-                        <font color="#757575"> </font>
+                        <font color="#757575">
+                           </font>
                         {flight.Segments[0][0].Duration % 60} Min
                         <font color="#757575"> </font>
                       </p>

@@ -13,28 +13,28 @@ const FlightFliter = ({airlines,handelFilter}) => {
               <input type="checkbox" className="mr-2" />
               <label>Non Stop</label>
             </span>
-            <p className="text-[12px] text-gray-500">₹ 6,706</p>
+            {/* <p className="text-[12px] text-gray-500">₹ 6,706</p> */}
           </div>
           <div data-testid="" className="flex justify-between w-full mb-4">
             <span className="checkmarkOuter">
               <input type="checkbox" className="mr-2" />
               <label>Refundable Fares</label>
             </span>
-            <p className="text-[12px] text-gray-500">₹ 6,051</p>
+            {/* <p className="text-[12px] text-gray-500">₹ 6,051</p> */}
           </div>
           <div data-testid="" className="flex justify-between w-full mb-4">
             <span className="checkmarkOuter">
               <input type="checkbox" className="mr-2" />
               <label>IndiGo</label>
             </span>
-            <p className="text-[12px] text-gray-500">₹ 6,664</p>
+            {/* <p className="text-[12px] text-gray-500">₹ 6,664</p> */}
           </div>
           <div data-testid="" className="flex justify-between w-full mb-4">
             <span className="checkmarkOuter">
               <input type="checkbox" className="mr-2" />
               <label>Morning Departures</label>
             </span>
-            <p className="text-[12px] text-gray-500">₹ 6,051</p>
+            {/* <p className="text-[12px] text-gray-500">₹ 6,051</p> */}
           </div>
         </div>
 
@@ -45,14 +45,14 @@ const FlightFliter = ({airlines,handelFilter}) => {
               <input type="checkbox" className="mr-2" />
               <label>Non Stop</label>
             </span>
-            <p className="text-[12px] text-gray-500">₹ 6,706</p>
+            {/* <p className="text-[12px] text-gray-500">₹ 6,706</p> */}
           </div>
           <div data-testid="" className="flex justify-between w-full mb-4">
             <span className="checkmarkOuter">
               <input type="checkbox" className="mr-2" />
               <label>1 Stop</label>
             </span>
-            <p className="text-[12px] text-gray-500">₹ 6,706</p>
+            {/* <p className="text-[12px] text-gray-500">₹ 6,706</p> */}
           </div>
         </div>
 

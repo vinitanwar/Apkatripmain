@@ -23,18 +23,18 @@ const Header = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // Get the date from localStorage
+
       const getedate = localStorage.getItem('defaultflight');
       
       if (getedate) {
         try {
-          // Parse the localStorage data and get the timeDate field
+      
           const parsedDate = JSON.parse(getedate).timeDate;
           
-          // Convert the timeDate to a Date object and set it as selected date
+       
           const storedDate = new Date(parsedDate);
           
-          // Ensure the storedDate is a valid date before setting it
+         
           if (!isNaN(storedDate)) {
             setSelected(storedDate);
           }
@@ -80,7 +80,7 @@ const Header = () => {
     municipality: "New Delhi",
     scheduled_service: "yes",
     gps_code: "VIDP",
-    iata_code: "DEL",
+    iata: "DEL",
     local_code: "",
     home_link: "http://www.newdelhiairport.in/",
     wikipedia_link: "https://en.wikipedia.org/wiki/Indira_Gandhi_International_Airport",
@@ -101,7 +101,7 @@ const Header = () => {
     municipality: "Mumbai",
     scheduled_service: "yes",
     gps_code: "VABB",
-    iata_code: "BOM",
+    iata: "BOM",
     local_code: "",
     home_link: "http://www.csia.in/",
     wikipedia_link: "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_International_Airport",
@@ -132,6 +132,7 @@ const Header = () => {
         }
       }
     }
+    console.log('fewfwerfewferwfcrewfrewferfger',toCity)
   }, []);
   
 
@@ -149,7 +150,7 @@ const Header = () => {
   //   municipality: "New Delhi",
   //   scheduled_service: "yes",
   //   gps_code: "VIDP",
-  //   iata_code: "DEL",
+  //   iata: "DEL",
   //   local_code: "",
   //   home_link: "http://www.newdelhiairport.in/",
   //   wikipedia_link:
@@ -170,7 +171,7 @@ const Header = () => {
   //   municipality: "Mumbai",
   //   scheduled_service: "yes",
   //   gps_code: "VABB",
-  //   iata_code: "BOM",
+  //   iata: "BOM",
   //   local_code: "",
   //   home_link: "http://www.csia.in/",
   //   wikipedia_link:
@@ -179,10 +180,14 @@ const Header = () => {
   // });
 
   const handleCitySelect = (city) => {
+
+    console.log('selected city',city)
+
+
     if (selectedOption === "from") {
-      setFromCity(city);
+      setFromCity(city.properties);
     } else if (selectedOption === "to") {
-      setToCity(city);
+      setToCity(city.properties);
     }
     setIsVisible(false);
   };
@@ -258,33 +263,19 @@ const Header = () => {
 
 
     const date = new Date(selected);
-    // const formattedDate = date.toISOString().slice(0, 10)
-    const offset = 6*60*55*1000; // Offset in minutes for GMT-0500
+   
+    const offset = 6*60*55*1000;
     
     const localDate = new Date(date.getTime() + offset);
-    const localFormattedDate = localDate.toISOString().slice(0, 19); // This will give you "2024-10-11T00:00:00"
+    const localFormattedDate = localDate.toISOString().slice(0, 19); 
     
+     console.log('frwfreferfgregregvetgte',toCity)
+     console.log('frwfreferfgregregvetgte',fromCity)
+
+    const searchUrl = `/flightto=${fromCity.iata}&from=${toCity.iata}&date=${localFormattedDate}&prfdate=${localFormattedDate}`;
 
 
-    dispatch(
-      searchFlightApi({
-        EndUserIp:ipstate.info.query,
-        AdultCount: adultCount,
-        ChildCount: childCount,
-        InfantCount: infantCount,
-        DirectFlight: true,
-        OneStopFlight: false,
-        JourneyType: 1,
-        PreferredAirlines: null,
-        Origin: fromCity.iata_code,
-        Destination: toCity.iata_code,
-        FlightCabinClass: selectedClass,
-        PreferredDepartureTime: localFormattedDate,
-        PreferredArrivalTime: localFormattedDate,
-      })
-    );
-
-    route.push("/flightSearch");
+    route.push(searchUrl);
   };
  
   const handleRangeChange = (newRange) => {
@@ -332,6 +323,7 @@ const Header = () => {
             </button>
           </div>
           <div className="tab-content">
+            {console.log(fromCity.municipality)}
             {activeTab === 1 && (
               <>
                 <div className="bg-white custom-shadow grid grid-cols-6 gap-0 border-gray-300">
@@ -345,7 +337,7 @@ const Header = () => {
                         {fromCity.municipality}
                       </span>
                       <p className="text-black text-xs truncate">
-                        [{fromCity.name}] {fromCity.iata_code}
+                        [{fromCity.name}] {fromCity.iata}
                       </p>
                     </div>
                     {isVisible && selectedOption === "from" && (
@@ -372,7 +364,7 @@ const Header = () => {
                         {toCity.municipality}
                       </span>
                       <p className="text-black text-xs truncate">
-                        [{toCity.name}] {toCity.iata_code}
+                        [{toCity.name}] {toCity.iata}
                       </p>
                     </div>
 

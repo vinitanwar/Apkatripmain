@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manshu</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: red;
+        }
+
+        h2 {
+            color: blue;
+        }
+        .red{
+            display: none;
+            width: 400px;
+            height: 400px;
+            background-color: red;
+            transition: all .5s linear;
+
+        }
+        .red:hover{
+            width: 200px;
+            height: 200px;
+            background-color: rgb(165, 87, 87);
+        }
+        body{
+            background-color: aqua !important;
+        }
+    </style>
+
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <nav>
+        <span onmouseover="openMe()">imanavbar</span> 
+    </nav>
+
+
+    <p>I will display  € </p>
+
+    <h1>Hello World</h1>
+
+     <h2>
+        Herllo 
+     </h2 >
+
+     <div id="reddiv" class="red">
+
+     </div>
+
+
+
+<script>
+
+    const redv = document.getElementById("reddiv")
+    const manshu = document.querySelector('body')
+
+
+   manshu.style.backgroundColor = 'red';
+
+    function openMe() {
+        redv.style.display = "block";
+       
+    //    alert("Hello World!");
+    }
+
+</script>
+
+   
+</body>
+</html>

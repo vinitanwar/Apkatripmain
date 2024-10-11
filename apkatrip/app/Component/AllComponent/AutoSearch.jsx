@@ -1,85 +1,169 @@
 // import Link from 'next/link';
-"use client"
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllAirports } from '../Store/slices/Allairportslice';
-import { toast,Flip } from 'react-toastify';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import debounce from "../AllComponent/Debounce";
+import { getAllAirports } from "../Store/slices/Allairportslice";
 
+import axios from "axios";
+import { toast, Flip } from "react-toastify";
 
-const AutoSearch = ({ value, onSelect ,Click,fromCity}) => {
-  const state=  useSelector(state=>state.Allairport);
-  const state2=useSelector(state=>state.topPortsSlice)
-  const dispatch=useDispatch();
-  const [allport,setAllport]=useState()
-  const [inputValue, setInputValue] = useState('');
+const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
+  const state = useSelector((state) => state.Allairport);
+  const state2 = useSelector((state) => state.topPortsSlice);
 
-  const [debouncedValue, setDebouncedValue] = useState(inputValue);
+  const defaultAirports = [
+    {
+      properties: {
+        iata: "DEL",
+        municipality: "New Delhi",
+        name: "Indira Gandhi International Airport",
+        country: { name: "India" },
+      },
+    },
+    {
+      properties: {
+        iata: "BLR",
+        municipality: "Bangalore",
+        name: "Kempegowda International Airport",
+        country: { name: "India" },
+      },
+    },
+    {
+      properties: {
+        iata: "BKK",
+        municipality: "Bangkok",
+        name: "Suvarnabhumi Airport",
+        country: { name: "Thailand" },
+      },
+    },
+    {
+      properties: {
+        iata: "SIN",
+        municipality: "Singapore",
+        name: "Changi Airport",
+        country: { name: "Singapore" },
+      },
+    },
+    {
+      properties: {
+        iata: "DXB",
+        municipality: "Dubai",
+        name: "Dubai International Airport",
+        country: { name: "UAE" },
+      },
+    },
+  ];
+
+  const dispatch = useDispatch();
+  const [allport, setAllport] = useState();
+  const [inputValue, setInputValue] = useState("");
+
+  const [debouncedValue, setDebouncedValue] = useState("");
+  const [airports, setAirports] = useState(defaultAirports);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleSelect = (city) => {
-    
+    console.log("wrfrf3443from", fromCity);
+    console.log("rwfrwfwefto", city);
 
-
-
-   if(fromCity && fromCity.id==city.id){
-    toast.info('You choese same airport', {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      transition: Flip,
+    if (fromCity && fromCity == city) {
+      toast.info("You choese same airport", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Flip,
       });
-   }
-   else{   onSelect(city); 
-   }
+    } else {
+      onSelect(city);
+    }
 
-   Click(false)
-   
+    Click(false);
   };
-  
 
-
- 
-
-  // Debounce function
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedValue(inputValue);
-    }, 300); // Adjust the delay as needed
+    }, 500);
 
     return () => {
       clearTimeout(handler);
     };
   }, [inputValue]);
 
-  // Effect to dispatch action when debounced value changes
   useEffect(() => {
-    if (debouncedValue) {
-      dispatch(getAllAirports(debouncedValue));
-    }
-  }, [debouncedValue, dispatch]);
+    const fetchAirports = async () => {
+      if (debouncedValue.length >= 2) {
+        setIsLoading(true);
+        setIsError(false);
+        try {
+          const res = await axios.get(
+            `https://port-api.com/airport/search/${debouncedValue}`
+          );
+          setAirports(res.data.features); // Assuming API returns "features" array
+        } catch (error) {
+          console.error("Error fetching airports:", error);
+          setIsError(true);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        // Show default airports if search string is less than 3 chars
+        setAirports(defaultAirports);
+      }
+    };
+
+    fetchAirports();
+  }, [debouncedValue]);
+
+  // Debounce function
+  // useEffect(() => {
+  //   const handler = setTimeout(() => {
+  //     setDebouncedValue(inputValue);
+  //   }, 300); // Adjust the delay as needed
+
+  //   return () => {
+  //     clearTimeout(handler);
+  //   };
+  // }, [inputValue]);
+
+  // // Effect to dispatch action when debounced value changes
+  // useEffect(() => {
+  //   if (debouncedValue) {
+  //     dispatch(getAllAirports(debouncedValue));
+  //   }
+  // }, [debouncedValue, dispatch]);
 
   const handleChangePort = (e) => {
     e.preventDefault();
     setInputValue(e.target.value);
   };
 
-  useEffect(()=>{
-    setAllport(state)
-  },[state])
+  // Debounced dispatch
+  const debouncedDispatch = debounce((value) => {
+    if (value.length >= 2) {
+      dispatch(getAllAirports(value));
+    }
+  }, 500);
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
 
-
-
+  useEffect(() => {
+    setAllport(state);
+  }, [state]);
 
   return (
     <div className="autosearch fromsectr" id="fromautoFill_in">
       <div className="searcityCol flex gap-3 bg-white p-3 items-center">
-        
         <img src="/Images/icon-search.svg" alt="Search" />
         <input
           id="a_FromSector_show"
@@ -88,76 +172,68 @@ const AutoSearch = ({ value, onSelect ,Click,fromCity}) => {
           placeholder={value}
           autoComplete="off"
           value={inputValue}
-          onChange={handleChangePort}
+          onChange={handleInputChange}
         />
       </div>
- 
-      
-      <div id="fromautoFill" className="text-black overflow-hidden h-72 overflow-y-auto">
+
+      <div
+        id="fromautoFill"
+        className="text-black overflow-hidden h-72 overflow-y-auto"
+      >
         <div className="clr"></div>
-        <div className="bg-[#ECF5FE] py-1 px-2 border-t border-[#ECECEC] text-sm font-semibold">Top Cities</div>
-        <ul className="ausuggest">
+        <div className="bg-[#ECF5FE] py-1 px-2 border-t border-[#ECECEC] text-sm font-semibold">
+          Top Cities
+        </div>
 
-        { allport && allport.isLoading &&  <div>loading....</div> }
-        { allport &&  !allport.isLoading &&<>
-        {allport && allport.info && allport.info.data && allport.info.data.map((city,index)=>( <li
-              key={index}
-              
-                onClick={() => handleSelect(city)}
-              className="border-b border-[#ececec] py-3 px-2 hover:bg-[#f7f7f7]"
-              
-            >
+        <ul>
+          {isLoading && <p>Loading...</p>}
+          {isError && <p>Error fetching data.</p>}
 
-              <div className="flex px-2">
-                <img
-                  src="/Images/planeicon.svg"
-                  alt="Flight"
-                  className="mr-2"
-                />
-                <div>
-                  <p>
-                    <span className="font-semibold text-base">{`${city.municipality}(${city.iata_code})`}</span>
-                  </p>
-                  <p className="text-xs font-medium mt-1 text-[#7E7979]">{city.name}</p>
-                </div>
-                <div className="flex items-end font-medium text-xs text-[#7E7979] ml-auto">
-                  {city.iso_country}
-                </div>
-              </div>
-            </li>))}
-
-
-
-
-
-          {     !allport.info.data &&   state2.info &&
-         state2.info.map((city) => (
-            <li
-              key={city.iata_code}
-              onClick={() => handleSelect(city)}
-              className="border-b border-[#ececec] py-3 px-2 hover:bg-[#f7f7f7]"
-            >
-              <div className="flex px-2">
-                <img
-                  src="/Images/planeicon.svg"
-                  alt="Flight"
-                  className="mr-2"
-                />
-                <div>
-                  <p>
-                    <span className="font-semibold text-base">{`${city.municipality}(${city.iata_code})`}</span>
-                  </p>
-                  <p className="text-xs font-medium mt-1 text-[#7E7979]">{city.name}</p>
-                </div>
-                <div className="flex items-end font-medium text-xs text-[#7E7979] ml-auto">
-                  {city.country}
-                </div>
-              </div>
-            </li>
-          ))}
-       </> }
+          {!isLoading && !isError && (
+            <>
+              {airports.length > 0 ? (
+                <ul>
+                  {airports.map((airport) => {
+                    if (!airport?.properties?.iata) {
+                      return null;
+                    }
+                    return (
+                      <li
+                        key={airport.properties.iata} // Using airport.properties.iata
+                        onClick={() => handleSelect(airport)}
+                        className="border-b border-gray-200 py-3 px-2 hover:bg-gray-100"
+                      >
+                        <div className="flex px-2">
+                          <img
+                            src="/Images/planeicon.svg"
+                            alt="Flight"
+                            className="mr-2"
+                          />
+                          <div>
+                            <p>
+                              <span className="font-semibold text-base">
+                                {`${airport.properties.municipality} (${airport.properties.iata})`}{" "}
+                              </span>
+                            </p>
+                            <p className="text-xs font-medium mt-1 text-gray-600">
+                              {airport.properties.name}
+                            </p>
+                          </div>
+                          <div className="flex items-end font-medium text-xs text-gray-600 ml-auto">
+                            {airport.properties.country.name}
+                          </div>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                debouncedValue.length >= 3 && <p>No results found.</p>
+              )}
+            </>
+          )}
         </ul>
-      </div> 
+      </div>
     </div>
   );
 };

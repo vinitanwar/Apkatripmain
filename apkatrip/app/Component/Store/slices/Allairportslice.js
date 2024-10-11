@@ -1,33 +1,53 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { localurl } from "../flightUrls";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-export const getAllAirports=createAsyncThunk("/airports",async(info)=>{
-const res=await axios.get(`${localurl}/airports?query=${info}`)
+const apilink = 'https://port-api.com/airport/search';
 
-return res.data;
-})
+// Async thunk for fetching airport data
+export const getAllAirports = createAsyncThunk(
+  'airports/fetchAirports',
+  async (info, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(`${apilink}/${info}`);
+      console.log(res.data)
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
-
- 
-
+// Slice to handle the airport state
 const Allairportslice = createSlice({
-    name: "airports",
-    initialState: { info: [], isLoading: false, isError: false },
-    extraReducers: (builder) => {
-      builder.addCase(getAllAirports.pending, (state) => {
+  name: 'airports',
+  initialState: {
+    info: [], 
+    isLoading: false, 
+    isError: false,
+    errorMessage: ''
+  },
+  reducers: {
+    clearAirports: (state) => {
+      state.info = [];
+    }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getAllAirports.pending, (state) => {
         state.isLoading = true;
-      });
-      builder.addCase(getAllAirports.fulfilled, (state, action) => {
+        state.isError = false;
+      })
+      .addCase(getAllAirports.fulfilled, (state, action) => {
         state.info = action.payload;
         state.isLoading = false;
-      });
-      builder.addCase(getAllAirports.rejected, (state) => {
+      })
+      .addCase(getAllAirports.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
+        state.errorMessage = action.payload || 'Error fetching airports';
       });
-    },
-  });
-  
-  export default Allairportslice.reducer;
-  
+  }
+});
+
+export const { clearAirports } = Allairportslice.actions;
+export default Allairportslice.reducer;
