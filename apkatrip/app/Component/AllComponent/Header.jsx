@@ -17,9 +17,39 @@ import { getip } from "../Store/slices/ipslice";
 
 const Header = () => {
   const localTimeZone = getLocalTimeZone();
+  const [currentDateComponents, setCurrentDateComponents] = useState({});
   const currentDate = today(localTimeZone);
+  const [futureDateComponents, setFutureDateComponents] = useState({});
 
   const [selected, setSelected] = useState(new Date());
+
+
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  useEffect(() => {
+    const futureDate = new Date(); 
+    futureDate.setDate(futureDate.getDate() + 30); // Add 30 days (example)
+
+    setFutureDateComponents({
+      day: futureDate.getDate(),
+      month: futureDate.getMonth(), // Month is 0-indexed (0 = January)
+      year: futureDate.getFullYear(),
+    });
+  }, []);
+
+  useEffect(() => {
+    const today = new Date();
+    setCurrentDateComponents({
+      day: today.getDate(),
+      month: today.toLocaleString("default", { month: "long" }),
+      year: today.getFullYear(),
+    });
+  }, []);
+
+
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -722,6 +752,7 @@ const Header = () => {
                     <span className="text-3xl py-1 pr-1 text-black font-bold">
                       {" "}
                       {currentDateComponents.day}
+                      {console.log('rfvrewfrewferfercurrrrdatfefrwf',currentDateComponents)}
                     </span>
                     <span className="text-sm font-semibold">
                       {months[currentDateComponents.month]}'
