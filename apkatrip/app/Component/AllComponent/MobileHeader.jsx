@@ -204,7 +204,7 @@ const MobileHeader = () => {
         AdultCount: adultCount,
         ChildCount: childCount,
         InfantCount: infantCount,
-        DirectFlight: true,
+        DirectFlight: false,
         OneStopFlight: false,
         JourneyType: 1,
         PreferredAirlines: null,
