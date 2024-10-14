@@ -199,8 +199,9 @@ const comp = ({ slug }) => {
   };
 
 
-
-
+ const anotherFilter = ()=>{
+  
+ }
 
   const handelFilter = (value) => {
     if (value === "All") {
@@ -215,7 +216,10 @@ const comp = ({ slug }) => {
       console.log(filterdata);
     }
   };
-  console.log("babayshark", ipstate.info.query);
+
+
+
+
 
   const handelSearch = () => {
     localStorage.setItem(

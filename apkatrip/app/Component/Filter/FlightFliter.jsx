@@ -1,7 +1,27 @@
-import React from "react";
+import React,{useState} from "react";
 
-const FlightFliter = ({airlines,handelFilter}) => {
+const FlightFliter = ({airlines,handelFilter,anotherFilter}) => {
  
+  const [filters, setFilters] = useState({
+    nonStop: false,
+    refundableFares: false,
+    indiGo: false,
+    morningDepartures: false,
+  });
+
+
+  const handleFilterChange = (event) => {
+    const { name, checked } = event.target;
+  
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: checked,
+    }));
+
+
+  };
+
+
   return (
     <>
       <div className="h-full sticky top-24 bg-white myshadow px-5  py-3 w-full ">
@@ -10,8 +30,13 @@ const FlightFliter = ({airlines,handelFilter}) => {
           <p className="font-bold text-[16px] mb-4"></p>
           <div data-testid="" className="flex justify-between w-full mb-4">
             <span className="checkmarkOuter">
-              <input type="checkbox" className="mr-2" />
-              <label>Non Stop</label>
+              <input  className="mr-2" 
+               type="checkbox"
+               name="nonStop"
+       
+               checked={filters.nonStop}
+               onChange={handleFilterChange} />
+              <label >Non Stop</label>
             </span>
             {/* <p className="text-[12px] text-gray-500">₹ 6,706</p> */}
           </div>
