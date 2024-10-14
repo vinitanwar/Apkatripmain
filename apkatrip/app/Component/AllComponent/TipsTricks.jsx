@@ -31,7 +31,7 @@ const BlogSection = () => {
                 <h2>
                   Receive valuable advice and tips from seasoned travel experts.{" "}
                 </h2>
-                <Link href="/blogView/aboutblog">   <span>Expert Insights</span> </Link>
+                <Link href="/blogView">   <span>Expert Insights</span> </Link>
               </div>
             </div>
             <div className="event-box">
@@ -58,7 +58,7 @@ const BlogSection = () => {
           </div>
           <div className="text-center mt-8">
             <Link
-              href="/blogView/viewblog"
+              href="/blogView"
               rel="noopener noreferrer"
               className="bg-blue-500 text-white py-2 px-4 rounded"
             >

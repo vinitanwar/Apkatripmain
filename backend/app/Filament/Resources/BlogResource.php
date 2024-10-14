@@ -17,7 +17,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
-
+use Filament\Forms\Components\Select;
 
 class BlogResource extends Resource
 {
@@ -31,7 +31,13 @@ class BlogResource extends Resource
             ->schema([
                 //
                 FileUpload::make('blog_image'),
-                TextInput::make('blog_type'),
+                Select::make('blog_type')
+                ->options([
+                    "travel"=>"travel",
+                    "business"=>"business",
+                    "economics"=>"economics",
+                    "vacation"=>"vacation"
+                ]),
                 TextInput::make('blog_title')->required()->live()
                 ->required()->minLength(1)->maxLength(300)
                 ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
@@ -39,9 +45,9 @@ class BlogResource extends Resource
                         return;
                     }
                     $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $state)));
-                    $date = now()->format('Y-m-d-H-i-s');
-                    $ndate=  str_replace('-', '', $date);
-                    $set('slug',(''.$slug.'-'.$ndate.''));
+                  
+                   
+                    $set('slug',(''.$slug.''));
                 }),
                 TextInput::make('blog_text'),
                 TextInput::make('quotes'),

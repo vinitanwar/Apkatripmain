@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { localurl } from "../flightUrls";
+
 import { apilink } from "../../common";
 
 export const getBlogs=createAsyncThunk("/blogs",async()=>{
