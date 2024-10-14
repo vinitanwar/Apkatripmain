@@ -33,7 +33,7 @@ import { useParams } from "next/navigation";
 import axios from "axios";
 
 const comp = ({ slug }) => {
-
+  console.log(slug);
 
   const [faredata, setfareData] = useState([]);
   const dispatch = useDispatch();
@@ -76,14 +76,13 @@ const comp = ({ slug }) => {
         const ip = res.data.ip;
         setmineIp(ip);
       } catch (err) {
-       
+        console.error("Failed to fetch IP", err);
       }
     };
     getIp();
   }, []);
 
   useEffect(() => {
- 
     if (newtIp && fromCityCode && toCityCode) {
       dispatch(
         searchFlightApi({
@@ -102,7 +101,7 @@ const comp = ({ slug }) => {
           PreferredArrivalTime: prfdate || localFormattedDate,
         })
       );
-    
+      console.log("Request made with dep time", selectedMinDate);
     }
   }, [
     dispatch,
@@ -122,7 +121,7 @@ const comp = ({ slug }) => {
   const [state2, setstate2] = useState();
 
   const [airlines, setairlines] = useState([]);
-  const [mineprice,setPrice] = useState();
+  const [mineprice, setPrice] = useState();
 
   useEffect(() => {
     setstate(info);
@@ -158,13 +157,15 @@ const comp = ({ slug }) => {
         state.data.Response.Results[0]
     );
 
+    console.log(state2);
   }, [state]);
 
-  const togglePopup = (id, data,ofprice) => {
- 
+  const togglePopup = (id, data, ofprice) => {
+    console.log("Toggled", data);
+
     setfareData([data]);
-    setPrice(ofprice)
-   
+    setPrice(ofprice);
+    console.log(faredata);
     if (activePopup === id) {
       setActivePopup(null);
     } else {
@@ -211,9 +212,10 @@ const comp = ({ slug }) => {
         ) || [];
 
       setstate2(filterdata);
+      console.log(filterdata);
     }
   };
-
+  console.log("babayshark", ipstate.info.query);
 
   const handelSearch = () => {
     localStorage.setItem(
@@ -231,7 +233,7 @@ const comp = ({ slug }) => {
 
     const localDate = new Date(date.getTime() + offset);
     const localFormattedDate = localDate.toISOString().slice(0, 19);
- 
+    console.log("--------------------------------", toCity.iata);
     dispatch(
       searchFlightApi({
         EndUserIp: ipstate.info.query,
@@ -867,6 +869,7 @@ const comp = ({ slug }) => {
  <div key={index} className="my-3 border p-2 md:p-5">
            
                   <div className="flex items-center justify-between">
+                    {/* Airline Information */}
                     <div className="flex gap-3">
                       <img
                         src={
@@ -879,7 +882,7 @@ const comp = ({ slug }) => {
                         } Logo`}
                       />
                       <div className="hidden sm:block ">
-                        <p className="font-bold text-black ">
+                        <p className="font-bold text-black">
                           {flight.Segments[0][0].Airline.AirlineName}
                         </p>
                         <p className="text-black text-xs">
@@ -888,6 +891,7 @@ const comp = ({ slug }) => {
                       </div>
                     </div>
 
+                    {/* Departure Time and City */}
                     <div className="text-center">
                       <p className="mb-1 text-sm md:text-lg font-semibold">
                         {new Date(
@@ -903,25 +907,21 @@ const comp = ({ slug }) => {
                       </p>
                     </div>
 
+                    {/* Flight Duration */}
                     <div className="text-center">
                       <p className="text-center text-sm md:text-lg">
-                        {Math.floor(flight.Segments[0][0].Duration / 60)} h
-                        <font color="#757575"></font>
+                        {Math.floor(flight.Segments[0][0].Duration / 60)} h{" "}
                         {flight.Segments[0][0].Duration % 60} Min
-                        <font color="#757575"> </font>
                       </p>
-                      <div>
-                        <div className="relative">
-                          <p
-                            style={{
-                              borderTop: "3px solid rgb(245, 166, 34)",
-                            }}
-                          ></p>
-                        </div>
-                        <p className="text-black text-xs mt-1">{flight.stop}</p>
+                      <div className="relative">
+                        <p
+                          style={{ borderTop: "3px solid rgb(245, 166, 34)" }}
+                        ></p>
                       </div>
+                      <p className="text-black text-xs mt-1">{flight.stop}</p>
                     </div>
 
+                    {/* Arrival Time and City */}
                     <div className="text-center">
                       <p className="mb-1 text-sm md:text-lg font-semibold">
                         {new Date(
@@ -938,9 +938,10 @@ const comp = ({ slug }) => {
                       </p>
                     </div>
 
+                    {/* Fare and View Price */}
                     <div className="flex items-center gap-x-3">
                       <div className="text-right flex-1">
-                        <div className="text-black text-lg font-bold whitespace-nowrap ">
+                        <div className="text-black text-lg font-bold whitespace-nowrap">
                           <span className="text-sm md:text-lg font-bold">
                             {flight.Fare.OfferedFare.toLocaleString("en-US", {
                               style: "currency",
@@ -954,7 +955,11 @@ const comp = ({ slug }) => {
                       </div>
                       <button
                         onClick={() =>
-                          togglePopup("view-price", flight.Segments[0][0],flight.Fare.OfferedFare)
+                          togglePopup(
+                            "view-price",
+                            flight.Segments[0][0],
+                            flight.Fare.OfferedFare
+                          )
                         }
                         className="hidden sm:hidden md:block text-sm font-semibold h-8 text-blue-600 rounded-full px-4 bg-blue-200 border border-blue-600"
                       >
@@ -963,12 +968,14 @@ const comp = ({ slug }) => {
                     </div>
                   </div>
 
+                  {/* Flight Offer */}
                   <p className="my-4 p-1 text-center bg-yellow-100">
-                    <span className="text-[9px] md:text-xs text-center ">
+                    <span className="text-[9px] md:text-xs text-center">
                       {flight.offer}
                     </span>
                   </p>
 
+                  {/* Flight Details, Fare Summary, Cancellation, Date Change Tabs */}
                   <div
                     className="hidden md:flex justify-between items-center text-sm card-footer-v2"
                     onClick={() => toggle(index)}
@@ -980,15 +987,15 @@ const comp = ({ slug }) => {
 
                   {showDetailsIndex === index && (
                     <div className="">
+                      {/* Navigation Tabs */}
                       <nav className="my-4 flex justify-between m-0 p-0 bg-[#f6f4f4] w-full float-left rounded-[20px]">
                         <button
                           onClick={() =>
                             setActiveTab({ ...activeTab, [index]: "1" })
                           }
-                          aria-selected={activeTab[index] === "1"}
-                          className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${
+                          className={`cursor-pointer float-left p-2 list-none text-black text-sm w-[23%] text-center font-medium ${
                             activeTab[index] === "1"
-                              ? " text-white rounded-full bg-[#2196f3]"
+                              ? "text-white rounded-full bg-[#2196f3]"
                               : ""
                           }`}
                         >
@@ -998,10 +1005,9 @@ const comp = ({ slug }) => {
                           onClick={() =>
                             setActiveTab({ ...activeTab, [index]: "2" })
                           }
-                          aria-selected={activeTab[index] === "2"}
-                          className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${
+                          className={`cursor-pointer float-left p-2 list-none text-black text-sm w-[23%] text-center font-medium ${
                             activeTab[index] === "2"
-                              ? " text-white rounded-full bg-[#2196f3]"
+                              ? "text-white rounded-full bg-[#2196f3]"
                               : ""
                           }`}
                         >
@@ -1011,10 +1017,9 @@ const comp = ({ slug }) => {
                           onClick={() =>
                             setActiveTab({ ...activeTab, [index]: "3" })
                           }
-                          aria-selected={activeTab[index] === "3"}
-                          className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${
+                          className={`cursor-pointer float-left p-2 list-none text-black text-sm w-[23%] text-center font-medium ${
                             activeTab[index] === "3"
-                              ? " text-white rounded-full bg-[#2196f3]"
+                              ? "text-white rounded-full bg-[#2196f3]"
                               : ""
                           }`}
                         >
@@ -1024,10 +1029,9 @@ const comp = ({ slug }) => {
                           onClick={() =>
                             setActiveTab({ ...activeTab, [index]: "4" })
                           }
-                          aria-selected={activeTab[index] === "4"}
-                          className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${
+                          className={`cursor-pointer float-left p-2 list-none text-black text-sm w-[23%] text-center font-medium ${
                             activeTab[index] === "4"
-                              ? " text-white rounded-full bg-[#2196f3]"
+                              ? "text-white rounded-full bg-[#2196f3]"
                               : ""
                           }`}
                         >
@@ -1035,10 +1039,12 @@ const comp = ({ slug }) => {
                         </button>
                       </nav>
 
-                      <div className="">
-                        {activeTab[index] === "1" && (
-                          <div className="">
-                            <span className="border w-full p-2 text-sm font-bold ">
+                      {/* Tab Content */}
+                      {activeTab[index] === "1" && (
+                        <div className="">
+                          {/* Flight Details Content */}
+                          <div>
+                            <span className="border w-full p-2 text-sm font-bold">
                               {flight.Segments[0][0].Origin.Airport.CityName} to{" "}
                               {
                                 flight.Segments[0][0].Destination.Airport
@@ -1186,49 +1192,17 @@ const comp = ({ slug }) => {
                           </div>
                         )}
 
-                        {activeTab[index] === "2" && (
-                          <div id="Tab-1-tabpane-2" className="fade tab-pane">
-                            <div className="">
-                              <span className="border w-full p-2 text-sm font-bold ">
-                                Fare breakup
-                              </span>
-
-                              <div className="mt-4">
-                                <table className="min-w-full table-auto border-collapse border border-gray-300">
-                                  <thead>
-                                    <tr className="">
-                                      <th className="border border-gray-300 px-4 py-2 text-sm text-left">
-                                        TOTAL
-                                      </th>
-                                      <th className="border border-gray-300 px-4 text-sm py-2 text-left">
-                                      ₹ {flight.Fare.PublishedFare}
-                                      </th>
-                                    </tr>
-                                  </thead>
-                                 
-                                  <tbody>
-                                    <tr>
-                                      <td className="border border-gray-300 px-4 py-2 text-sm ">
-                                        Base Fare
-                                      </td>
-                                      <td className="border border-gray-300 px-4 py-2 text-sm ">
-                                      ₹ {flight.Fare.BaseFare}
-                                      </td>
-                                    </tr>
-                                    <tr className="">
-                                      <td className="border border-gray-300 px-4 py-2 text-sm ">
-                                      Tax
-                                      </td>
-                                      <td className="border border-gray-300 px-4 py-2 text-sm ">
-                                        ₹ {flight.Fare.Tax}
-                                      </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
+                      {activeTab[index] === "2" && (
+                        <div>
+                          {/* Fare Summary Content */}
+                          <div>
+                            <span className="border w-full p-2 text-sm font-bold">
+                              Fare breakup
+                            </span>
+                            {/* Additional fare summary here */}
                           </div>
-                        )}
+                        </div>
+                      )}
 
                         {activeTab[index] === "3" && (
                           <div id="Tab-1-tabpane-3" className="fade tab-pane">
@@ -1378,7 +1352,6 @@ const comp = ({ slug }) => {
             <div className="flex items-center justify-between p-4">
               <p className="text-xl text-gray-900 flex items-center">
                 <strong className="text-teal-600 mr-2">FARE OPTIONS </strong>
-       
               </p>
               <FaTimes
                 className="text-white p-1 text-xl bg-gray-300 rounded-full"
@@ -1395,9 +1368,11 @@ const comp = ({ slug }) => {
                     <div className="flex flex-col">
                       <div className="text-lg font-bold text-black mb-1">
                         {/* {data.Fare.OfferedFare} */}
-                        {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'INR' }).format(mineprice)}
-                                Per Adult
-
+                        {new Intl.NumberFormat("en-US", {
+                          style: "currency",
+                          currency: "INR",
+                        }).format(mineprice)}
+                        Per Adult
                       </div>
                       {/* <div className="text-sm text-gray-600">{data.type}</div> */}
                     </div>
@@ -1419,15 +1394,15 @@ const comp = ({ slug }) => {
                           </li>
                         ))} */}
                         <li className="flex items-center mb-1">
-                        <span className="text-sm text-gray-700">
-                              {data.CabinBaggage} Cabin Baggage
-                            </span>
+                          <span className="text-sm text-gray-700">
+                            {data.CabinBaggage} Cabin Baggage
+                          </span>
                         </li>
 
                         <li className="flex items-center mb-1">
-                        <span className="text-sm text-gray-700">
-                              {data.Baggage} Check-in Baggage
-                            </span>
+                          <span className="text-sm text-gray-700">
+                            {data.Baggage} Check-in Baggage
+                          </span>
                         </li>
                       </ul>
                     </div>
