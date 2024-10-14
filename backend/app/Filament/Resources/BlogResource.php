@@ -18,7 +18,8 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\Select;
-
+use Filament\Forms\Components\Hidden;
+use Illuminate\Support\Str;
 class BlogResource extends Resource
 {
     protected static ?string $model = Blog::class;
@@ -29,7 +30,10 @@ class BlogResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Section::make('Add Courses')
+                ->description('Add Content')
+                ->collapsible()
+                ->schema([
                 FileUpload::make('blog_image'),
                 Select::make('blog_type')
                 ->options([
@@ -38,27 +42,26 @@ class BlogResource extends Resource
                     "economics"=>"economics",
                     "vacation"=>"vacation"
                 ]),
-                TextInput::make('blog_title')->required()->live()
-                ->required()->minLength(1)->maxLength(300)
+                TextInput::make('blog_title')->required()
                 ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
                     if ($operation === 'edit') {
                         return;
                     }
-                    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $state)));
-                  
-                   
-                    $set('slug',(''.$slug.''));
+                    $set('slug', Str::slug($state)); 
                 }),
+                Hidden::make('slug')
+                ->required()
+                ->unique(ignoreRecord: true),
                 TextInput::make('blog_text'),
                 TextInput::make('quotes'),
                 RichEditor::make('des1'),
                 RichEditor::make('des2'),
-                TextInput::make('slug'),
 
 
 
 
-
+            
+            ])
 
             ]);
     }
@@ -87,6 +90,7 @@ class BlogResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            
             ]);
     }
 
