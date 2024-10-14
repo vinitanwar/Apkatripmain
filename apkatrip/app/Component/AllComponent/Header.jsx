@@ -299,8 +299,7 @@ const Header = () => {
     const localDate = new Date(date.getTime() + offset);
     const localFormattedDate = localDate.toISOString().slice(0, 19); 
     
-     console.log('frwfreferfgregregvetgte',toCity)
-     console.log('frwfreferfgregregvetgte',fromCity)
+   
 
     const searchUrl = `/flightto=${fromCity.iata}&from=${toCity.iata}&date=${localFormattedDate}&prfdate=${localFormattedDate}`;
 
