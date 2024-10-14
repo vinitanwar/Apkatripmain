@@ -987,7 +987,7 @@ const comp = ({ slug }) => {
 
                   {showDetailsIndex === index && (
                     <div className="">
-                      {/* Navigation Tabs */}
+                     
                       <nav className="my-4 flex justify-between m-0 p-0 bg-[#f6f4f4] w-full float-left rounded-[20px]">
                         <button
                           onClick={() =>
@@ -1039,10 +1039,10 @@ const comp = ({ slug }) => {
                         </button>
                       </nav>
 
-                      {/* Tab Content */}
+                    
                       {activeTab[index] === "1" && (
                         <div className="">
-                          {/* Flight Details Content */}
+                       
                           <div>
                             <span className="border w-full p-2 text-sm font-bold">
                               {flight.Segments[0][0].Origin.Airport.CityName} to{" "}
@@ -1190,6 +1190,7 @@ const comp = ({ slug }) => {
                               </div>
                             </div>
                           </div>
+                          </div>
                         )}
 
                       {activeTab[index] === "2" && (
@@ -1308,8 +1309,9 @@ const comp = ({ slug }) => {
                           </div>
                         )}
                       </div>
-                    </div>
-                  )}
+                    
+                    
+                    )}
                 </div>
               }
 
