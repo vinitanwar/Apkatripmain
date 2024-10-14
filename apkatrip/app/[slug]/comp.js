@@ -33,7 +33,7 @@ import { useParams } from "next/navigation";
 import axios from "axios";
 
 const comp = ({ slug }) => {
-  console.log(slug);
+
 
   const [faredata, setfareData] = useState([]);
   const dispatch = useDispatch();
