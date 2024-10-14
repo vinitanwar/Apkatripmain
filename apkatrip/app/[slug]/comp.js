@@ -55,8 +55,13 @@ const comp = ({ slug }) => {
   const toCityCode = params.get("flightto");
   const selectedMinDate = params.get("date");
   const prfdate = params.get("prfdate");
-
+  const JourneyType = params.get("JourneyType");
+  const adultCount = params.get("adultcount");
+  const childCount = params.get("childCount");
+  const infantCount = params.get("infantCount");
+  const selectedClass = params.get("selectedClass");
   const date = new Date(selectedMinDate);
+
 
   
   const offset = 6 * 60 * 55 * 1000;
@@ -83,16 +88,16 @@ const comp = ({ slug }) => {
       dispatch(
         searchFlightApi({
           EndUserIp: newtIp,
-          AdultCount: 1,
-          ChildCount: 1,
+          AdultCount: adultCount,
+          ChildCount: childCount,
           InfantCount: 0,
           DirectFlight: false,
           OneStopFlight: false,
-          JourneyType: 1,
+          JourneyType: JourneyType,
           PreferredAirlines: null,
           Origin: fromCityCode,
           Destination: toCityCode,
-          FlightCabinClass: "1",
+          FlightCabinClass: selectedClass,
           PreferredDepartureTime: selectedMinDate,
           PreferredArrivalTime: prfdate || localFormattedDate,
         })
@@ -192,122 +197,9 @@ const comp = ({ slug }) => {
     setShowDetailsIndex(showDetailsIndex === index ? null : index);
   };
 
-  const cardData = [
-    {
-      price: "₹ 7,954 per adult",
-      type: "Xpress Value",
-      baggage: [
-        {
-          icon: <FaCheckCircle />,
-          text: "7 Kgs Cabin Baggage",
-        },
-        {
-          icon: <FaCheckCircle />,
-          text: "15 Kgs Check-in Baggage",
-        },
-      ],
-      flexibility: [
-        {
-          icon: <FaMinusCircle />,
-          text: "Cancellation fee starts at ₹ 4,000 ",
-        },
-        {
-          icon: <FaMinusCircle />,
-          text: "Date Change fee starts at ₹ 3,000 ",
-        },
-      ],
-      seatsMeals: [
-        {
-          icon: <FaMinusCircle />,
-          text: "Chargeable Seats",
-        },
-        {
-          icon: <FaMinusCircle />,
-          text: "Chargeable Meals",
-        },
-      ],
-      benefits:
-        "Use code APKATRIP01 and get flat 22% instant discount on this flight",
-      offerCode: null,
-    },
-    {
-      price: "₹ 7,954 per adult",
-      type: "Xpress Value",
-      baggage: [
-        {
-          icon: <FaCheckCircle />,
-          text: "7 Kgs Cabin Baggage",
-        },
-        {
-          icon: <FaCheckCircle />,
-          text: "15 Kgs Check-in Baggage",
-        },
-      ],
-      flexibility: [
-        {
-          icon: <FaMinusCircle />,
-          text: "Cancellation fee starts at ₹ 4,000 ",
-        },
-        {
-          icon: <FaMinusCircle />,
-          text: "Date Change fee starts at ₹ 3,000 ",
-        },
-      ],
-      seatsMeals: [
-        {
-          icon: <FaMinusCircle />,
-          text: "Chargeable Seats",
-        },
-        {
-          icon: <FaMinusCircle />,
-          text: "Chargeable Meals",
-        },
-      ],
-      benefits:
-        "Use code APKATRIP02 and get flat 10% instant discount on this flight",
-      offerCode: null,
-    },
-    {
-      price: "₹ 7,954 per adult",
-      type: "Xpress Value",
-      baggage: [
-        {
-          icon: <FaCheckCircle />,
-          text: "7 Kgs Cabin Baggage",
-        },
-        {
-          icon: <FaCheckCircle />,
-          text: "15 Kgs Check-in Baggage",
-        },
-      ],
-      flexibility: [
-        {
-          icon: <FaMinusCircle />,
-          text: "Cancellation fee starts at ₹ 4,000 ",
-        },
-        {
-          icon: <FaMinusCircle />,
-          text: "Date Change fee starts at ₹ 3,000 ",
-        },
-      ],
-      seatsMeals: [
-        {
-          icon: <FaMinusCircle />,
-          text: "Chargeable Seats",
-        },
-        {
-          icon: <FaMinusCircle />,
-          text: "Chargeable Meals",
-        },
-      ],
-      benefits:
-        "Use code APKATRIP03 and get flat 20% instant discount on this flight",
-      offerCode: null,
-    },
-    // Add more card data here
-  ];
 
-  let tempval = [];
+
+
 
   const handelFilter = (value) => {
     if (value === "All") {
@@ -348,7 +240,7 @@ const comp = ({ slug }) => {
         InfantCount: infantCount,
         DirectFlight: false,
         OneStopFlight: false,
-        JourneyType: 1,
+        JourneyType: JourneyType,
         PreferredAirlines: null,
         Origin: fromCity.iata,
         Destination: toCity.iata,
@@ -375,108 +267,13 @@ const comp = ({ slug }) => {
     handleClick("");
   };
 
+ 
+
   return (
     <>
       <Header />
       <div className="block md:flex px-0 lg:px-28 items-start gap-3 my-5  ">
-        {/* <div className="hidden md:block h-full sticky top-24 bg-white myshadow px-5  py-3 w-1/4">
-          <div className="mb-8">
-            <p className="font-bold text-[20px] mt-2 mb-5">Popular Filters</p>
-            <p className="font-bold text-[16px] mb-4"></p>
-            <div data-testid="" className="flex justify-between w-full mb-4">
-              <span className="checkmarkOuter">
-                <input type="checkbox" className="mr-2" />
-                <label>Non Stop</label>
-              </span>
-              <p className="text-[12px] text-gray-500">₹ 6,706</p>
-            </div>
-            <div data-testid="" className="flex justify-between w-full mb-4">
-              <span className="checkmarkOuter">
-                <input type="checkbox" className="mr-2" />
-                <label>Refundable Fares</label>
-              </span>
-              <p className="text-[12px] text-gray-500">₹ 6,051</p>
-            </div>
-            <div data-testid="" className="flex justify-between w-full mb-4">
-              <span className="checkmarkOuter">
-                <input type="checkbox" className="mr-2" />
-                <label>IndiGo</label>
-              </span>
-              <p className="text-[12px] text-gray-500">₹ 6,664</p>
-            </div>
-            <div data-testid="" className="flex justify-between w-full mb-4">
-              <span className="checkmarkOuter">
-                <input type="checkbox" className="mr-2" />
-                <label>Morning Departures</label>
-              </span>
-              <p className="text-[12px] text-gray-500">₹ 6,051</p>
-            </div>
-          </div>
-
-          <div className="mb-8">
-            <p className="font-bold text-[16px] mb-4">Stops From New Delhi</p>
-            <div data-testid="" className="flex justify-between w-full mb-4">
-              <span className="checkmarkOuter">
-                <input type="checkbox" className="mr-2" />
-                <label>Non Stop</label>
-              </span>
-              <p className="text-[12px] text-gray-500">₹ 6,706</p>
-            </div>
-            <div data-testid="" className="flex justify-between w-full mb-4">
-              <span className="checkmarkOuter">
-                <input type="checkbox" className="mr-2" />
-                <label>1 Stop</label>
-              </span>
-              <p className="text-[12px] text-gray-500">₹ 6,706</p>
-            </div>
-          </div>
-
-          <div className="mb-8">
-            <p className="font-bold text-[16px] mb-4">Airlines</p>
-            <div data-testid="" className="flex justify-between w-full mb-4">
-              <span className="checkmarkOuter">
-                <input type="checkbox" className="mr-2" />
-                <label>Air India</label>
-              </span>
-              <p className="text-[12px] text-gray-500">₹ 9,676</p>
-            </div>
-            <div data-testid="" className="flex justify-between w-full mb-4">
-              <span className="checkmarkOuter">
-                <input type="checkbox" className="mr-2" />
-                <label>Air India Express</label>
-              </span>
-              <p className="text-[12px] text-gray-500">₹ 9,676</p>
-            </div>
-            <div data-testid="" className="flex justify-between w-full mb-4">
-              <span className="checkmarkOuter">
-                <input type="checkbox" className="mr-2" />
-                <label>Akasa Air</label>
-              </span>
-              <p className="text-[12px] text-gray-500">₹ 9,676</p>
-            </div>
-            <div data-testid="" className="flex justify-between w-full mb-4">
-              <span className="checkmarkOuter">
-                <input type="checkbox" className="mr-2" />
-                <label>IndiGo</label>
-              </span>
-              <p className="text-[12px] text-gray-500">₹ 9,676</p>
-            </div>
-            <div data-testid="" className="flex justify-between w-full mb-4">
-              <span className="checkmarkOuter">
-                <input type="checkbox" className="mr-2" />
-                <label>SpiceJet</label>
-              </span>
-              <p className="text-[12px] text-gray-500">₹ 9,676</p>
-            </div>
-            <div data-testid="" className="flex justify-between w-full mb-4">
-              <span className="checkmarkOuter">
-                <input type="checkbox" className="mr-2" />
-                <label>Star Air</label>
-              </span>
-              <p className="text-[12px] text-gray-500">₹ 9,676</p>
-            </div>
-          </div>
-        </div> */}
+      
         <div className="hidden md:block  sticky top-6 w-1/4">
           <FlightFliter airlines={airlines} handelFilter={handelFilter} />
         </div>
@@ -490,7 +287,40 @@ const comp = ({ slug }) => {
               />
             </div>
           )}
-
+{
+  info &&
+  info.data &&
+  info.data.Response &&
+  state &&
+  !state.isLoading &&
+  info.data.Response &&
+  info.data.Response.ResponseStatus == 3 &&  <div class="text-center">
+  <h1 class="mb-4 text-6xl font-semibold text-red-500">Oops!</h1>
+  <p class="mb-4 text-lg text-gray-600"> Flight not found.</p>
+  <div class="animate-bounce">
+    <svg
+      class="mx-auto h-16 w-16 text-red-500"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        strokeWidth="2"
+        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+      ></path>
+    </svg>
+  </div>
+  <p class="mt-4 text-gray-600">
+    Let's get you back{" "}
+    <Link href="/" class="text-blue-500">
+      home
+    </Link>
+    
+  </p>
+</div>
+}
           {info &&
             info.data &&
             info.data.Response &&
@@ -526,9 +356,515 @@ const comp = ({ slug }) => {
               </div>
             )}
           <div className="myshadow w-full  bg-white  overflow-hidden">
+            
+           
             {state2 &&
               state2.map((flight, index) => (
-                <div key={index} className="my-3 border p-2 md:p-5">
+              <>
+              { flight.Segments[0].length > 1 ? 
+              <div key={index} className="my-3 border p-2 md:p-5">
+           <div className="flex flex-col-reverse">
+         {  flight.Segments[0].map((info,index2)=>(
+            <div className="flex items-center justify-between my-5">
+             <div className="flex gap-3">
+               <img
+                 src={
+                   info.Airline.AirlineName
+                     ? `/Images/${info.Airline.AirlineCode}.png`
+                     : "/Images/logo-flight.webp"
+                 }
+                 alt={`${
+                   info.Airline.AirlineName || "Default"
+                 } Logo`}
+               />
+               <div className="hidden sm:block ">
+                 <p className="font-bold text-black ">
+                   {info.Airline.AirlineName}
+                 </p>
+                 <p className="text-black text-xs">
+                   {info.Airline.FlightNumber}
+                 </p>
+               </div>
+             </div>
+
+             <div className="text-center">
+               <p className="mb-1 text-sm md:text-lg font-semibold">
+                 {new Date(
+                   info.Origin.DepTime
+                 ).toLocaleTimeString([], {
+                   hour: "2-digit",
+                   minute: "2-digit",
+                   hour12: true,
+                 })}
+               </p>
+               <p className="text-black text-xs">
+                 {info.Destination.Airport.CityName }
+               
+               </p>
+             </div>
+
+             <div className="text-center">
+               <p className="text-center text-sm md:text-lg">
+                 {Math.floor(info.Duration / 60)} h
+                 <font color="#757575"></font>
+                 {info.Duration % 60} Min
+                 <font color="#757575"> </font>
+               </p>
+               <div>
+                 <div className="relative">
+                   <p
+                     style={{
+                       borderTop: "3px solid rgb(245, 166, 34)",
+                     }}
+                   ></p>
+                 </div>
+                 <p className="text-black text-xs mt-1">{flight.stop}</p>
+               </div>
+             </div>
+
+             <div className="text-center">
+               <p className="mb-1 text-sm md:text-lg font-semibold">
+                 {new Date(
+                   info.Destination.ArrTime
+                 ).toLocaleTimeString([], {
+                   hour: "2-digit",
+                   minute: "2-digit",
+                   hour12: true,
+                 })}
+               </p>
+               <p className="text-black text-xs">
+                 {info.Origin.Airport.CityName}{" "}
+               </p>
+             </div>
+
+            { index2==0 ? <div className="flex items-center gap-x-3">
+               <div className="text-right flex-1">
+                 <div className="text-black text-lg font-bold whitespace-nowrap ">
+                   <span className="text-sm md:text-lg font-bold">
+                     {flight.Fare.OfferedFare.toLocaleString("en-US", {
+                       style: "currency",
+                       currency: flight.Fare.Currency,
+                     })}
+                   </span>
+                   <p className="text-sm text-gray-700 font-light leading-tight">
+                     Total Price
+                   </p>
+                 </div>
+               </div>
+               <button
+                 onClick={() =>
+                   togglePopup("view-price", info,flight.Fare.OfferedFare)
+                 }
+                 className="hidden sm:hidden md:block text-sm font-semibold h-8 text-blue-600 rounded-full px-4 bg-blue-200 border border-blue-600"
+               >
+                 VIEW PRICES
+               </button>
+             </div>:<div className="flex items-center gap-x-3 opacity-0">
+               <div className="text-right flex-1">
+                 <div className="text-black text-lg font-bold whitespace-nowrap ">
+                   <span className="text-sm md:text-lg font-bold">
+                     {flight.Fare.OfferedFare.toLocaleString("en-US", {
+                       style: "currency",
+                       currency: flight.Fare.Currency,
+                     })}
+                   </span>
+                   <p className="text-sm text-gray-700 font-light leading-tight">
+                     Total Price
+                   </p>
+                 </div>
+               </div>
+               <button
+                
+                 className="hidden sm:hidden md:block text-sm font-semibold h-8 text-blue-600 rounded-full px-4 bg-blue-200 border border-blue-600"
+               >
+                 VIEW PRICES
+               </button>
+             </div>}
+           </div>
+           ))
+}
+</div>
+
+
+           <p className="my-4 p-1 text-center bg-yellow-100">
+             <span className="text-[9px] md:text-xs text-center ">
+               {flight.offer}
+             </span>
+           </p>
+
+           <div
+             className="hidden md:flex justify-between items-center text-sm card-footer-v2"
+             onClick={() => toggle(index)}
+           >
+             <span className="text-blue-600 flex items-center gap-2">
+               View Flight Details <FaArrowRight />
+             </span>
+           </div>
+
+           {showDetailsIndex === index && (
+             <div className="">
+               <nav className="my-4 flex justify-between m-0 p-0 bg-[#f6f4f4] w-full float-left rounded-[20px]">
+                 <button
+                   onClick={() =>
+                     setActiveTab({ ...activeTab, [index]: "1" })
+                   }
+                   aria-selected={activeTab[index] === "1"}
+                   className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${
+                     activeTab[index] === "1"
+                       ? " text-white rounded-full bg-[#2196f3]"
+                       : ""
+                   }`}
+                 >
+                   FLIGHT DETAILS
+                 </button>
+                 <button
+                   onClick={() =>
+                     setActiveTab({ ...activeTab, [index]: "2" })
+                   }
+                   aria-selected={activeTab[index] === "2"}
+                   className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${
+                     activeTab[index] === "2"
+                       ? " text-white rounded-full bg-[#2196f3]"
+                       : ""
+                   }`}
+                 >
+                   FARE SUMMARY
+                 </button>
+                 <button
+                   onClick={() =>
+                     setActiveTab({ ...activeTab, [index]: "3" })
+                   }
+                   aria-selected={activeTab[index] === "3"}
+                   className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${
+                     activeTab[index] === "3"
+                       ? " text-white rounded-full bg-[#2196f3]"
+                       : ""
+                   }`}
+                 >
+                   CANCELLATION
+                 </button>
+                 <button
+                   onClick={() =>
+                     setActiveTab({ ...activeTab, [index]: "4" })
+                   }
+                   aria-selected={activeTab[index] === "4"}
+                   className={`cursor-pointer float-left p-2 list-none text-black text-sm  w-[23%] text-center font-medium${
+                     activeTab[index] === "4"
+                       ? " text-white rounded-full bg-[#2196f3]"
+                       : ""
+                   }`}
+                 >
+                   DATE CHANGE
+                 </button>
+               </nav>
+
+               <div className="">
+                 {activeTab[index] === "1" && (
+                   <div className="">
+                     <span className="border w-full p-2 text-sm font-bold ">
+                       {flight.Segments[0][0].Origin.Airport.CityName} to{" "}
+                       {
+                         flight.Segments[0][0].Destination.Airport
+                           .CityName
+                       }{" "}
+                       , 20 Sep
+                     </span>
+                     <div className="">
+                       <div className="flex items-center gap-5 my-4">
+                         <img
+                          src={
+                           flight.Segments[0][0].Airline.AirlineName
+                             ? `/Images/${flight.Segments[0][0].Airline.AirlineCode}.png`
+                             : "/Images/logo-flight.webp"
+                         }
+                           alt=" "
+                           className="w-6 h-6"
+                         />
+                         <span className="">
+                           <strong>
+                             {flight.Segments[0][0].Airline.AirlineName}
+                           </strong>{" "}
+                           <span className="text-gray-500">
+                             {flight.Segments[0][0].Airline.FareClass}|{" "}
+                             {flight.Segments[0][0].Airline.FlightNumber}
+                           </span>
+                         </span>
+                         <span className="border border-gray-400 text-xs px-2 rounded-full text-gray-400">
+                           Airbus A350
+                         </span>
+                       </div>
+
+                       <div className="flex gap-10">
+                         <div className="flex items-center justify-between w-[50%]">
+                           <div className="">
+                             <p className="text-lg font-bold"> {new Date(
+                   flight.Segments[0][0].Origin.DepTime
+                 ).toLocaleTimeString([], {
+                   hour: "2-digit",
+                   minute: "2-digit",
+                   hour12: true,
+                 })}</p>
+                             <p className="text-sm font-bold mb-2">
+                             {new Date(
+                   flight.Segments[0][0].Origin.DepTime ).toLocaleTimeString([], {
+                   year: 'numeric',
+                   month: 'long',
+                   day: 'numeric',
+                 })}
+                             </p>
+                             <p className="text-gray-600">Terminal T3</p>
+                             <p className="text-sm">New Delhi, India</p>
+                           </div>
+                           <div
+                             className=" text-sm flex items-center"
+                             style={{
+                               borderBottom:
+                                 "3px solid rgb(245, 166, 34)",
+                             }}
+                           >
+                                <p className="text-center text-sm md:text-lg">
+                 {Math.floor(flight.Segments[0][0].Duration / 60)}.<font color="#757575"></font>
+                 {flight.Segments[0][0].Duration % 60} h
+                 <font color="#757575"> </font>
+               </p>
+                           </div>
+
+                          
+                           <div className="">
+                             <p className="text-lg font-bold">{new Date(
+                   flight.Segments[0][0].Destination.ArrTime
+                 ).toLocaleTimeString([], {
+                   hour: "2-digit",
+                   minute: "2-digit",
+                   hour12: true,
+                 })}</p>
+                             <p className="text-sm font-bold mb-2">
+                             {new Date(
+                   flight.Segments[0][0].Destination.ArrTime
+                 ).toLocaleTimeString([], {
+                   year: 'numeric',
+                   month: 'long',
+                   day: 'numeric',
+                 })}
+                             </p>
+                             <p className="text-gray-600">Terminal T2</p>
+                             <p className="text-sm">Bengaluru, India</p>
+                           </div>
+                         </div>
+
+                         <div className="flex gap-10  w-[45%]">
+                           <p>
+                             <span className="font-bold text-sm">
+                               BAGGAGE:
+                             </span>{" "}
+                             <br />
+                             <span className="text-gray-700">ADULT</span>
+                           </p>
+                           <p>
+                             <span className="font-bold text-sm">
+                               CHECK IN
+                             </span>{""}
+                             <br />
+                             <span className="text-gray-700">
+                              {flight.Segments[0][0].Baggage?flight.Segments[0][0].Baggage:"Not Allowed"}
+                            
+                             </span>
+                           </p>
+                           <p>
+                             <span className="font-bold text-sm">
+                               CABIN
+                             </span>{" "}
+                             <br />
+                             <span className="text-gray-700"> {flight.Segments[0][0].CabinBaggage}</span>
+                           </p>
+                         </div>
+                       </div>
+
+                       <div className="flex gap-10 flex-wrap mt-5">
+                         //Amenities
+                         <div className="flex items-center gap-2 mb-2">
+                           <FaSpoon />
+                           <div className="text-sm">
+                             Complimentary Meals
+                           </div>
+                         </div>
+                         <div className="flex items-center gap-2 mb-2">
+                           <FaPlane />
+                           <div className="text-sm">3-3-3 Layout</div>
+                         </div>
+                         <div className="flex items-center gap-2 mb-2">
+                           <FaWheelchair />
+                           <div className="text-sm">
+                             Standard Recliner (31'' Legroom)
+                           </div>
+                         </div>
+                         <div className="flex items-center gap-2 mb-2">
+                           <FaUsb />
+                           <div className="text-sm">
+                             Power and USB Available
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 )}
+
+                 {activeTab[index] === "2" && (
+                   <div id="Tab-1-tabpane-2" className="fade tab-pane">
+                     <div className="">
+                       <span className="border w-full p-2 text-sm font-bold ">
+                         Fare breakup
+                       </span>
+
+                       <div className="mt-4">
+                         <table className="min-w-full table-auto border-collapse border border-gray-300">
+                           <thead>
+                             <tr className="">
+                               <th className="border border-gray-300 px-4 py-2 text-sm text-left">
+                                 TOTAL
+                               </th>
+                               <th className="border border-gray-300 px-4 text-sm py-2 text-left">
+                               ₹ {flight.Fare.PublishedFare}
+                               </th>
+                             </tr>
+                           </thead>
+                          
+                           <tbody>
+                             <tr>
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 Base Fare
+                               </td>
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                               ₹ {flight.Fare.BaseFare}
+                               </td>
+                             </tr>
+                             <tr className="">
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                               Tax
+                               </td>
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 ₹ {flight.Fare.Tax}
+                               </td>
+                             </tr>
+                           </tbody>
+                         </table>
+                       </div>
+                     </div>
+                   </div>
+                 )}
+
+                 {activeTab[index] === "3" && (
+                   <div id="Tab-1-tabpane-3" className="fade tab-pane">
+                     <div className="">
+                       <span className="border w-full p-2 text-sm font-bold ">
+                         Cancellation Policy
+                       </span>
+                       <div className="mt-4">
+                         <table className="min-w-full table-auto border-collapse border border-gray-300">
+                           <thead>
+                             <tr className="">
+                               <th className="border border-gray-300 px-4 py-2 text-sm text-left">
+                                 Time Frame
+                               </th>
+                               <th className="border border-gray-300 px-4 text-sm py-2 text-left">
+                                 Airline Fee + Apka Trip Fee (Per
+                                 Passenger)
+                               </th>
+                             </tr>
+                           </thead>
+                           <tbody>
+                             <tr>
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 0 hours to 4 hours*
+                               </td>
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 Non Refundable
+                               </td>
+                             </tr>
+                             <tr className="">
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 4 hours to 4 days*
+                               </td>
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 ₹ 3,999 + ₹ 300
+                               </td>
+                             </tr>
+                             <tr>
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 4 days to 365 days*
+                               </td>
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 ₹ 2,999 + ₹ 300
+                               </td>
+                             </tr>
+                           </tbody>
+                         </table>
+                       </div>
+                     </div>
+                   </div>
+                 )}
+
+                 {activeTab[index] === "4" && (
+                   <div id="Tab-1-tabpane-4" className="fade tab-pane">
+                     <div className="">
+                       <span className="border w-full p-2 text-sm font-bold ">
+                         Date Change Policy
+                       </span>
+                       <div className="overflow-x-auto mt-4">
+                         <table className="min-w-full table-auto border-collapse border border-gray-300">
+                           <thead>
+                             <tr className="">
+                               <th className="border border-gray-300 px-4 py-2 text-sm text-left">
+                                 Time Frame
+                               </th>
+                               <th className="border border-gray-300 px-4 py-2 text-sm text-left">
+                                 Airline Fee + Apka Trip Fee (Per
+                                 Passenger)
+                               </th>
+                             </tr>
+                           </thead>
+                           <tbody>
+                             <tr>
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 0 hours to 4 hours*
+                               </td>
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 ADULT : <b>Non Changeable </b>
+                               </td>
+                             </tr>
+                             <tr className="">
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 4 hours to 4 days*
+                               </td>
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 ADULT :{" "}
+                                 <b>₹ 2,999 + ₹ 300 + Fare difference</b>
+                               </td>
+                             </tr>
+                             <tr>
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 4 days to 365 days*
+                               </td>
+                               <td className="border border-gray-300 px-4 py-2 text-sm ">
+                                 ADULT :{" "}
+                                 <b>₹ 2,250 + ₹ 300 + Fare difference</b>
+                               </td>
+                             </tr>
+                           </tbody>
+                         </table>
+                       </div>
+                     </div>
+                   </div>
+                 )}
+               </div>
+             </div>
+           )}
+
+         </div>
+
+        
+         :
+ <div key={index} className="my-3 border p-2 md:p-5">
            
                   <div className="flex items-center justify-between">
                     <div className="flex gap-3">
@@ -563,7 +899,7 @@ const comp = ({ slug }) => {
                         })}
                       </p>
                       <p className="text-black text-xs">
-                        {flight.Segments[0][0].Origin.Airport.CityName}
+                        {flight.Segments[0][0].Destination.Airport.CityName}
                       </p>
                     </div>
 
@@ -596,8 +932,9 @@ const comp = ({ slug }) => {
                           hour12: true,
                         })}
                       </p>
+                      
                       <p className="text-black text-xs">
-                        {flight.Segments[0][0].Destination.Airport.CityName}{" "}
+                        {flight.Segments[0][0].Origin.Airport.CityName}{" "}
                       </p>
                     </div>
 
@@ -769,7 +1106,7 @@ const comp = ({ slug }) => {
                       </p>
                                   </div>
 
-                                  {console.log("dfdfefokkkkkkkkk", flight)}
+                                 
                                   <div className="">
                                     <p className="text-lg font-bold">{new Date(
                           flight.Segments[0][0].Destination.ArrTime
@@ -1000,6 +1337,12 @@ const comp = ({ slug }) => {
                     </div>
                   )}
                 </div>
+              }
+
+                </>
+
+
+
               ))}
           </div>
         </div>

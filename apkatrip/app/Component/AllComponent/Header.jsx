@@ -69,7 +69,7 @@ const Header = () => {
             setSelected(storedDate);
           }
         } catch (error) {
-          console.error('Error parsing date from localStorage:', error);
+         
         }
       }
     }
@@ -90,7 +90,7 @@ const Header = () => {
   const route = useRouter();
 
   const handleTabClick = (tabIndex) => {
-    setActiveTab(tabIndex);
+    setjurnytype(tabIndex);
   };
   const handleCheckboxChange = (event) => {};
 
@@ -141,7 +141,7 @@ const Header = () => {
   
   const [fromCity, setFromCity] = useState(defaultFromCity);
   const [toCity, setToCity] = useState(defaultToCity);
-
+const [JourneyType,setjurnytype]=useState(1)
   useEffect(() => {
     // Ensure localStorage is only accessed on the client
     if (typeof window !== 'undefined') {
@@ -158,11 +158,11 @@ const Header = () => {
             setToCity(flightData.to);
           }
         } catch (error) {
-          console.error('Error parsing flight data from localStorage:', error);
+          
         }
       }
     }
-    console.log('fewfwerfewferwfcrewfrewferfger',toCity)
+ 
   }, []);
   
 
@@ -211,7 +211,7 @@ const Header = () => {
 
   const handleCitySelect = (city) => {
 
-    console.log('selected city',city)
+    
 
 
     if (selectedOption === "from") {
@@ -299,10 +299,9 @@ const Header = () => {
     const localDate = new Date(date.getTime() + offset);
     const localFormattedDate = localDate.toISOString().slice(0, 19); 
     
-     console.log('frwfreferfgregregvetgte',toCity)
-     console.log('frwfreferfgregregvetgte',fromCity)
+ 
 
-    const searchUrl = `/flightto=${fromCity.iata}&from=${toCity.iata}&date=${localFormattedDate}&prfdate=${localFormattedDate}`;
+    const searchUrl = `/flightto=${fromCity.iata}&from=${toCity.iata}&date=${localFormattedDate}&prfdate=${localFormattedDate}&JourneyType=${JourneyType}&adultcount=${adultCount}&childCount=${childCount}&infantCount=${infantCount}&selectedClass=${selectedClass}`;
 
 
     route.push(searchUrl);
@@ -329,7 +328,7 @@ const Header = () => {
           <div className="tabs flex gap-2 pb-2">
             <button
               className={`px-4 py-1 text-xs font-bold rounded-3xl ${
-                activeTab === 1 ? "bg-white text-[#1853a2]" : ""
+                JourneyType === 1 ? "bg-white text-[#1853a2]" : ""
               } transition-colors duration-300 ease-in-out`}
               onClick={() => handleTabClick(1)}
             >
@@ -337,7 +336,7 @@ const Header = () => {
             </button>
             <button
               className={`px-4 py-1 text-xs font-bold rounded-3xl ${
-                activeTab === 2 ? "bg-white text-[#1853a2]" : ""
+                JourneyType === 2 ? "bg-white text-[#1853a2]" : ""
               } transition-colors duration-300 ease-in-out`}
               onClick={() => handleTabClick(2)}
             >
@@ -345,7 +344,7 @@ const Header = () => {
             </button>
             <button
               className={`px-4 py-1 text-xs font-bold rounded-3xl ${
-                activeTab === 3 ? "bg-white text-[#1853a2]" : ""
+                JourneyType === 3 ? "bg-white text-[#1853a2]" : ""
               } transition-colors duration-300 ease-in-out`}
               onClick={() => handleTabClick(3)}
             >
@@ -353,7 +352,7 @@ const Header = () => {
             </button>
           </div>
           <div className="tab-content">
-            {console.log(fromCity.municipality)}
+            
             {activeTab === 1 && (
               <>
                 <div className="bg-white custom-shadow grid grid-cols-6 gap-0 border-gray-300">
@@ -752,7 +751,7 @@ const Header = () => {
                     <span className="text-3xl py-1 pr-1 text-black font-bold">
                       {" "}
                       {currentDateComponents.day}
-                      {console.log('rfvrewfrewferfercurrrrdatfefrwf',currentDateComponents)}
+                      
                     </span>
                     <span className="text-sm font-semibold">
                       {months[currentDateComponents.month]}'
