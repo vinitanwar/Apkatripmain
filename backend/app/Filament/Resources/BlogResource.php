@@ -20,6 +20,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Hidden;
 use Illuminate\Support\Str;
+use App\Models\Blogcategory;
 class BlogResource extends Resource
 {
     protected static ?string $model = Blog::class;
@@ -35,13 +36,19 @@ class BlogResource extends Resource
                 ->collapsible()
                 ->schema([
                 FileUpload::make('blog_image'),
-                Select::make('blog_type')
-                ->options([
-                    "travel"=>"travel",
-                    "business"=>"business",
-                    "economics"=>"economics",
-                    "vacation"=>"vacation"
-                ]),
+                // Select::make('blog_type')
+                // ->options([
+                //     "travel"=>"travel",
+                //     "business"=>"business",
+                //     "economics"=>"economics",
+                //     "vacation"=>"vacation"
+                // ]),
+                Select::make('blog_category_id')
+                ->label('Blog Category')
+                ->options(Blogcategory::all()->pluck('name', 'id')) 
+                ->required() 
+                ->searchable(), 
+                
                 TextInput::make('blog_title')->required()
                 ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
                     if ($operation === 'edit') {

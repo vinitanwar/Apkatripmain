@@ -11,4 +11,8 @@ class Blogcategory extends Model
     protected $fillable = [
         'name', 'slug', 'status',
     ];
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class, 'blog_category_id'); // Define the inverse relationship
+    }
 }

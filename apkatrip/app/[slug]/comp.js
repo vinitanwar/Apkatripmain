@@ -1164,7 +1164,7 @@ const comp = ({ slug }) => {
                               </div>
 
                               <div className="flex gap-10 flex-wrap mt-5">
-                                //Amenities
+                                
                                 <div className="flex items-center gap-2 mb-2">
                                   <FaSpoon />
                                   <div className="text-sm">
