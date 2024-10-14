@@ -58,9 +58,7 @@ const comp = ({ slug }) => {
 
   const date = new Date(selectedMinDate);
 
-  console.log("datasss", fromCityCode);
-  console.log("datasss", toCityCode);
-  console.log(ipstate.info.query);
+  
   const offset = 6 * 60 * 55 * 1000;
 
   const localDate = new Date(date.getTime() + offset);
@@ -73,14 +71,14 @@ const comp = ({ slug }) => {
         const ip = res.data.ip;
         setmineIp(ip);
       } catch (err) {
-        console.error("Failed to fetch IP", err);
+       
       }
     };
     getIp();
   }, []);
 
   useEffect(() => {
-    console.log("Running rffrewfref4rw4 f rwf r", fromCityCode);
+ 
     if (newtIp && fromCityCode && toCityCode) {
       dispatch(
         searchFlightApi({
@@ -99,7 +97,7 @@ const comp = ({ slug }) => {
           PreferredArrivalTime: prfdate || localFormattedDate,
         })
       );
-      console.log("Request made with dep time", selectedMinDate);
+    
     }
   }, [
     dispatch,
@@ -155,15 +153,13 @@ const comp = ({ slug }) => {
         state.data.Response.Results[0]
     );
 
-    console.log(state2);
   }, [state]);
 
   const togglePopup = (id, data,ofprice) => {
-    console.log("Toggled", data);
-
+ 
     setfareData([data]);
     setPrice(ofprice)
-    console.log(faredata);
+   
     if (activePopup === id) {
       setActivePopup(null);
     } else {
@@ -323,10 +319,9 @@ const comp = ({ slug }) => {
         ) || [];
 
       setstate2(filterdata);
-      console.log(filterdata);
     }
   };
-  console.log("babayshark", ipstate.info.query);
+
 
   const handelSearch = () => {
     localStorage.setItem(
@@ -344,7 +339,7 @@ const comp = ({ slug }) => {
 
     const localDate = new Date(date.getTime() + offset);
     const localFormattedDate = localDate.toISOString().slice(0, 19);
-    console.log("--------------------------------", toCity.iata);
+ 
     dispatch(
       searchFlightApi({
         EndUserIp: ipstate.info.query,
@@ -534,7 +529,7 @@ const comp = ({ slug }) => {
             {state2 &&
               state2.map((flight, index) => (
                 <div key={index} className="my-3 border p-2 md:p-5">
-                  {console.log(flight)}
+           
                   <div className="flex items-center justify-between">
                     <div className="flex gap-3">
                       <img
@@ -717,7 +712,11 @@ const comp = ({ slug }) => {
                             <div className="">
                               <div className="flex items-center gap-5 my-4">
                                 <img
-                                  src="/Images/logo-flight.webp"
+                                 src={
+                                  flight.Segments[0][0].Airline.AirlineName
+                                    ? `/Images/${flight.Segments[0][0].Airline.AirlineCode}.png`
+                                    : "/Images/logo-flight.webp"
+                                }
                                   alt=" "
                                   className="w-6 h-6"
                                 />
@@ -738,9 +737,20 @@ const comp = ({ slug }) => {
                               <div className="flex gap-10">
                                 <div className="flex items-center justify-between w-[50%]">
                                   <div className="">
-                                    <p className="text-lg font-bold">03:35</p>
+                                    <p className="text-lg font-bold"> {new Date(
+                          flight.Segments[0][0].Origin.DepTime
+                        ).toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: true,
+                        })}</p>
                                     <p className="text-sm font-bold mb-2">
-                                      Fri, 20 Sep 24
+                                    {new Date(
+                          flight.Segments[0][0].Origin.DepTime ).toLocaleTimeString([], {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
                                     </p>
                                     <p className="text-gray-600">Terminal T3</p>
                                     <p className="text-sm">New Delhi, India</p>
@@ -752,12 +762,30 @@ const comp = ({ slug }) => {
                                         "3px solid rgb(245, 166, 34)",
                                     }}
                                   >
-                                    02h 50m
+                                       <p className="text-center text-sm md:text-lg">
+                        {Math.floor(flight.Segments[0][0].Duration / 60)}.<font color="#757575"></font>
+                        {flight.Segments[0][0].Duration % 60} h
+                        <font color="#757575"> </font>
+                      </p>
                                   </div>
+
+                                  {console.log("dfdfefokkkkkkkkk", flight)}
                                   <div className="">
-                                    <p className="text-lg font-bold">06:25</p>
+                                    <p className="text-lg font-bold">{new Date(
+                          flight.Segments[0][0].Destination.ArrTime
+                        ).toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: true,
+                        })}</p>
                                     <p className="text-sm font-bold mb-2">
-                                      Fri, 20 Sep 24
+                                    {new Date(
+                          flight.Segments[0][0].Destination.ArrTime
+                        ).toLocaleTimeString([], {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
                                     </p>
                                     <p className="text-gray-600">Terminal T2</p>
                                     <p className="text-sm">Bengaluru, India</p>
@@ -775,10 +803,11 @@ const comp = ({ slug }) => {
                                   <p>
                                     <span className="font-bold text-sm">
                                       CHECK IN
-                                    </span>{" "}
+                                    </span>{""}
                                     <br />
                                     <span className="text-gray-700">
-                                      15 Kgs
+                                     {flight.Segments[0][0].Baggage?flight.Segments[0][0].Baggage:"Not Allowed"}
+                                   
                                     </span>
                                   </p>
                                   <p>
@@ -786,7 +815,7 @@ const comp = ({ slug }) => {
                                       CABIN
                                     </span>{" "}
                                     <br />
-                                    <span className="text-gray-700">7 Kgs</span>
+                                    <span className="text-gray-700"> {flight.Segments[0][0].CabinBaggage}</span>
                                   </p>
                                 </div>
                               </div>
@@ -835,25 +864,26 @@ const comp = ({ slug }) => {
                                         TOTAL
                                       </th>
                                       <th className="border border-gray-300 px-4 text-sm py-2 text-left">
-                                        ₹ 5,232
+                                      ₹ {flight.Fare.PublishedFare}
                                       </th>
                                     </tr>
                                   </thead>
+                                 
                                   <tbody>
                                     <tr>
                                       <td className="border border-gray-300 px-4 py-2 text-sm ">
                                         Base Fare
                                       </td>
                                       <td className="border border-gray-300 px-4 py-2 text-sm ">
-                                        ₹ 4,442
+                                      ₹ {flight.Fare.BaseFare}
                                       </td>
                                     </tr>
                                     <tr className="">
                                       <td className="border border-gray-300 px-4 py-2 text-sm ">
-                                        Surcharges
+                                      Tax
                                       </td>
                                       <td className="border border-gray-300 px-4 py-2 text-sm ">
-                                        ₹ 790
+                                        ₹ {flight.Fare.Tax}
                                       </td>
                                     </tr>
                                   </tbody>
