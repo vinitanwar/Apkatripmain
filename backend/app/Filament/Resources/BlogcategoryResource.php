@@ -12,7 +12,17 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Toggle;
 
+use Filament\Forms\Components\Select;
+use Illuminate\Support\Str;
 class BlogcategoryResource extends Resource
 {
     protected static ?string $model = Blogcategory::class;
@@ -26,7 +36,7 @@ class BlogcategoryResource extends Resource
             Forms\Components\Section::make('Category Details')
                 ->description('Fill out the details for this blog category')
                 ->schema([
-                    TextInput::make('category_name')
+                    TextInput::make('name')
                         ->label('Category Name')
                         ->required()
                         ->placeholder('Enter the category name')
@@ -46,10 +56,7 @@ class BlogcategoryResource extends Resource
                         ->placeholder('Provide a short description of the category')
                         ->rows(3),
 
-                    Toggle::make('is_active')
-                        ->label('Active')
-                        ->default(true)
-                        ->helperText('Toggle whether this category is active'),
+                
                 ])
                 ->columns(2), // Organize into two columns for better layout
         ]);
