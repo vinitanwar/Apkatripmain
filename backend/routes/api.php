@@ -18,6 +18,9 @@ Route::apiResource('v1/airports', AirportController::class);
 Route::apiResource('v1/topairports', TopPorts::class);
 
 Route::post('v1/search-flights', [FlightController::class, 'searchFlights']);
+Route::post('v1/search-return-flights', [FlightController::class, 'searchreturnflight']);
+Route::post('v1/advance-search-flights', [FlightController::class, 'advance_search']);
+
 Route::apiResource('v1/blog', BlogController::class);
 
 

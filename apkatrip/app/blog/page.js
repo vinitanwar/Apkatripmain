@@ -16,7 +16,7 @@ useEffect(()=>{
   setblgposts(state.info)
 },[state])
 
-console.log(blogPosts)
+console.log(state)
   return (
     <>
 

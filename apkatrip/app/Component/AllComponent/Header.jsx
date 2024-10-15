@@ -4,16 +4,15 @@ import { FaCalendarWeek, FaChevronDown } from "react-icons/fa";
 import AutoSearch from "./AutoSearch";
 import TravellerDropdown from "./TravellerDropdown";
 import Link from "next/link";
-
 import "react-day-picker/style.css";
-
 import { useDispatch, useSelector } from "react-redux";
-import { searchFlightApi } from "../Store/slices/SearchFlight";
 import { getTopAirPorts } from "../Store/slices/topPortsSlice";
 import { useRouter } from "next/navigation";
 import { Calendar } from "@nextui-org/react";
 import { today, getLocalTimeZone } from "@internationalized/date";
 import { getip } from "../Store/slices/ipslice";
+import { toast,Bounce } from "react-toastify";
+
 
 const Header = () => {
   const localTimeZone = getLocalTimeZone();
@@ -29,51 +28,7 @@ const Header = () => {
     "July", "August", "September", "October", "November", "December"
   ];
 
-  useEffect(() => {
-    const futureDate = new Date(); 
-    futureDate.setDate(futureDate.getDate() + 30); // Add 30 days (example)
 
-    setFutureDateComponents({
-      day: futureDate.getDate(),
-      month: futureDate.getMonth(), // Month is 0-indexed (0 = January)
-      year: futureDate.getFullYear(),
-    });
-  }, []);
-
-  useEffect(() => {
-    const today = new Date();
-    setCurrentDateComponents({
-      day: today.getDate(),
-      month: today.toLocaleString("default", { month: "long" }),
-      year: today.getFullYear(),
-    });
-  }, []);
-
-
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-
-      const getedate = localStorage.getItem('defaultflight');
-      
-      if (getedate) {
-        try {
-      
-          const parsedDate = JSON.parse(getedate).timeDate;
-          
-       
-          const storedDate = new Date(parsedDate);
-          
-         
-          if (!isNaN(storedDate)) {
-            setSelected(storedDate);
-          }
-        } catch (error) {
-         
-        }
-      }
-    }
-  }, []);
 
 
 
@@ -88,15 +43,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const ipstate=useSelector(state=>state.ipslice)
   const route = useRouter();
-
-  const handleTabClick = (tabIndex) => {
-    setjurnytype(tabIndex);
-  };
-  const handleCheckboxChange = (event) => {};
-
-
-
-  const defaultFromCity = {
+const defaultFromCity = {
     id: 26555,
     ident: "VIDP",
     type: "large_airport",
@@ -137,13 +84,72 @@ const Header = () => {
     wikipedia_link: "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_International_Airport",
     keywords: "Bombay, Sahar International Airport",
   };
-
-  
-  const [fromCity, setFromCity] = useState(defaultFromCity);
+ const [fromCity, setFromCity] = useState(defaultFromCity);
   const [toCity, setToCity] = useState(defaultToCity);
 const [JourneyType,setjurnytype]=useState(1)
-  useEffect(() => {
-    // Ensure localStorage is only accessed on the client
+const [isVisible, setIsVisible] = useState(false);
+
+const [selectedOption, setSelectedOption] = useState("");
+
+
+
+
+const handleTabClick = (tabIndex) => {
+  setjurnytype(tabIndex);
+};
+const handleCheckboxChange = (event) => {};
+useEffect(() => {
+  const futureDate = new Date(); 
+  futureDate.setDate(futureDate.getDate() + 30); // Add 30 days (example)
+
+  setFutureDateComponents({
+    day: futureDate.getDate(),
+    month: futureDate.getMonth(), // Month is 0-indexed (0 = January)
+    year: futureDate.getFullYear(),
+  });
+}, []);
+
+useEffect(() => {
+  const today = new Date();
+  setCurrentDateComponents({
+    day: today.getDate(),
+    month: today.toLocaleString("default", { month: "long" }),
+    year: today.getFullYear(),
+  });
+}, []);
+
+
+
+useEffect(() => {
+  if (typeof window !== 'undefined') {
+
+    const getedate = localStorage.getItem('defaultflight');
+    
+    if (getedate) {
+      try {
+    
+        const parsedDate = JSON.parse(getedate).timeDate;
+        const parsedDate2 = JSON.parse(getedate).retuntime;
+
+     
+        const storedDate = new Date(parsedDate);
+        const storedDate2 = new Date(parsedDate2);
+
+       
+        if (!isNaN(storedDate) ) {
+          setSelected(storedDate);
+          if(!isNaN(storedDate2)){setSelectedReturn(storedDate2)}
+
+        }
+
+      } catch (error) {
+       
+      }
+    }
+  }
+}, []);
+useEffect(() => {
+    
     if (typeof window !== 'undefined') {
       const storedFlight = localStorage.getItem("defaultflight");
 
@@ -157,6 +163,11 @@ const [JourneyType,setjurnytype]=useState(1)
           if (flightData?.to) {
             setToCity(flightData.to);
           }
+      
+
+          if(flightData?.journytype){
+            setjurnytype(flightData.journytype)
+          }
         } catch (error) {
           
         }
@@ -166,48 +177,7 @@ const [JourneyType,setjurnytype]=useState(1)
   }, []);
   
 
-  // const [fromCity, setFromCity] = useState(JSON.parse( localStorage.getItem("defaultflight"))?JSON.parse( localStorage.getItem("defaultflight")).from:{
-  //   id: 26555,
-  //   ident: "VIDP",
-  //   type: "large_airport",
-  //   name: "Indira Gandhi International Airport",
-  //   latitude_deg: "28.55563",
-  //   longitude_deg: "77.09519",
-  //   elevation_ft: "777",
-  //   continent: "AS",
-  //   iso_country: "IN",
-  //   iso_region: "IN-DL",
-  //   municipality: "New Delhi",
-  //   scheduled_service: "yes",
-  //   gps_code: "VIDP",
-  //   iata: "DEL",
-  //   local_code: "",
-  //   home_link: "http://www.newdelhiairport.in/",
-  //   wikipedia_link:
-  //     "https://en.wikipedia.org/wiki/Indira_Gandhi_International_Airport",
-  //   keywords: "Palam Air Force Station",
-  // });
-  // const [toCity, setToCity] = useState(  JSON.parse( localStorage.getItem("defaultflight"))?JSON.parse( localStorage.getItem("defaultflight")).to:{
-  //   id: 26434,
-  //   ident: "VABB",
-  //   type: "large_airport",
-  //   name: "Chhatrapati Shivaji International Airport",
-  //   latitude_deg: "19.0886993408",
-  //   longitude_deg: "72.8678970337",
-  //   elevation_ft: "39",
-  //   continent: "AS",
-  //   iso_country: "IN",
-  //   iso_region: "IN-MM",
-  //   municipality: "Mumbai",
-  //   scheduled_service: "yes",
-  //   gps_code: "VABB",
-  //   iata: "BOM",
-  //   local_code: "",
-  //   home_link: "http://www.csia.in/",
-  //   wikipedia_link:
-  //     "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_International_Airport",
-  //   keywords: "Bombay, Sahar International Airport",
-  // });
+ 
 
   const handleCitySelect = (city) => {
 
@@ -241,9 +211,8 @@ const [JourneyType,setjurnytype]=useState(1)
     dispatch(getip());
   }, [ ]);
 
-  const [isVisible, setIsVisible] = useState(false);
 
-  const [selectedOption, setSelectedOption] = useState("");
+
   const handleClick = (option) => {
     setSelectedOption(option);
     setIsVisible(true);
@@ -287,8 +256,9 @@ const [JourneyType,setjurnytype]=useState(1)
     localStorage.setItem("defaultflight",JSON.stringify({
       from:fromCity,
       to:toCity,
-      timeDate:selected
-     
+      timeDate:selected,
+        retuntime:selectedReturn,
+        journytype:JourneyType
     }))
 
 
@@ -298,10 +268,32 @@ const [JourneyType,setjurnytype]=useState(1)
     
     const localDate = new Date(date.getTime() + offset);
     const localFormattedDate = localDate.toISOString().slice(0, 19); 
+    let searchUrl;
+    if(JourneyType==1){    searchUrl = `/flightto=${fromCity.iata}&from=${toCity.iata}&date=${localFormattedDate}&prfdate=${localFormattedDate}&JourneyType=${JourneyType}&adultcount=${adultCount}&childCount=${childCount}&infantCount=${infantCount}&selectedClass=${selectedClass}`;
+  }
+  else if(JourneyType==2){
+    if(!selectedReturn){
+      toast.warn("Select Return Date", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
+    }
+    else{
+    const retundate= new Date(selectedReturn);
+   
     
- 
+    const r_localDate = new Date(retundate.getTime() + offset);
+    const r_localFormattedDate = r_localDate.toISOString().slice(0, 19); 
+    searchUrl = `/flightto=${fromCity.iata}&from=${toCity.iata}&date=${localFormattedDate}&prfdate=${localFormattedDate}&JourneyType=${JourneyType}&adultcount=${adultCount}&childCount=${childCount}&infantCount=${infantCount}&selectedClass=${selectedClass}&returndate=${r_localFormattedDate}`
+    }}
 
-    const searchUrl = `/flightto=${fromCity.iata}&from=${toCity.iata}&date=${localFormattedDate}&prfdate=${localFormattedDate}&JourneyType=${JourneyType}&adultcount=${adultCount}&childCount=${childCount}&infantCount=${infantCount}&selectedClass=${selectedClass}`;
 
 
     route.push(searchUrl);
@@ -313,6 +305,8 @@ const [JourneyType,setjurnytype]=useState(1)
     setSelected(date);
     handleClick("");
   };
+
+
   const handelreturn = (newRange) => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
     
@@ -320,6 +314,7 @@ const [JourneyType,setjurnytype]=useState(1)
    
     handleClick("");
   };
+
 
   return (
     <>
