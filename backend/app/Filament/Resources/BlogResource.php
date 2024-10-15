@@ -61,8 +61,8 @@ class BlogResource extends Resource
                 ->unique(ignoreRecord: true),
                 TextInput::make('blog_text'),
                 TextInput::make('quotes'),
-                RichEditor::make('des1'),
-                RichEditor::make('des2'),
+                RichEditor::make('des1')->label('Description 1'),
+                RichEditor::make('des2')->label('Description 2'),
 
 
 
@@ -79,12 +79,16 @@ class BlogResource extends Resource
             ->columns([
                 //
                 ImageColumn::make('blog_image'),
-                TextColumn::make('blog_type'),
+               
                 TextColumn::make('blog_title'),
                 TextColumn::make('blog_text'),
                 TextColumn::make('quotes'),
-                TextColumn::make('des1'),
+                TextColumn::make('des1')
+                ->limit(20) // Adjust this number based on average word length
+                ->label('Description 1'), // Optional: set a custom label
                 TextColumn::make('des2')
+                ->limit(20) // Adjust this number based on average word length
+                ->label('Description 1'), // Optional: set a custom label
 
             ])
             ->filters([
