@@ -356,7 +356,7 @@ a.text-sm {
   position: absolute;
   left: 18px;
   top: 37px;
-  z-index: 99;
+  z-index: 90;
   background: #fff;
   width: 360px;
   border: 1px solid #d4d4d4;
