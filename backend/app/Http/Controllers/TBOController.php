@@ -18,12 +18,13 @@ class TBOController extends Controller
     // Method to fetch cities
     public function fetchCities(Request $request)
     {
-        // Validate request
         $request->validate([
-            'CountryCode' => 'required|string|max:2', // Assuming country code is a 2-letter country code
+            'CountryCode' => 'required|string|max:2',
+            'search' => 'nullable|string',
         ]);
     
         try {
+            // API Request
             $response = Http::withHeaders([
                 'Authorization' => 'Basic ' . base64_encode("{$this->username}:{$this->password}"),
                 'Content-Type' => 'application/json',
@@ -31,20 +32,50 @@ class TBOController extends Controller
                 'CountryCode' => $request->CountryCode,
             ]);
     
-            // Check if the response is successful
+            // Check if the API request was successful
             if ($response->successful()) {
-                return response()->json($response->json(), $response->status());
+                $cities = $response->json()['CityList'] ?? null;
+    
+                // Check if 'CityList' is available in the response
+                if (is_null($cities) || !is_array($cities)) {
+                    return response()->json([
+                        'error' => 'Invalid response from the API',
+                        'message' => 'CityList not found in the API response',
+                    ], 500); // Internal Server Error
+                }
+    
+                // Retrieve the 'search' parameter from the URL query string
+                $search = $request->query('search');
+    
+                // If search parameter is provided, filter the city list
+                if ($search) {
+                    $search = strtolower($search);
+                    $filteredCities = array_filter($cities, function ($city) use ($search) {
+                        return strpos(strtolower($city['Name']), $search) !== false;
+                    });
+                    return response()->json(array_values($filteredCities), 200);
+                }
+    
+                // If no search query is provided, return the first 20 cities
+                $defaultCities = array_slice($cities, 0, 20);
+                return response()->json($defaultCities, 200);
             } else {
                 // Handle unsuccessful responses
                 return response()->json([
                     'error' => 'Failed to fetch cities',
-                    'message' => $response->json(),
+                    'message' => $response->json() ?? 'No response body found',
                 ], $response->status());
             }
-        } catch (\Exception $e) {
-            // Catch any exceptions that occur during the API request
+        } catch (\Illuminate\Http\Client\RequestException $e) {
+            // Catch request-related exceptions (e.g., connection issues, timeouts)
             return response()->json([
-                'error' => 'An error occurred while fetching cities',
+                'error' => 'Network or request error',
+                'message' => $e->getMessage(),
+            ], 502); // Bad Gateway
+        } catch (\Exception $e) {
+            // General exception catch block
+            return response()->json([
+                'error' => 'An unexpected error occurred',
                 'message' => $e->getMessage(),
             ], 500); // Internal Server Error
         }
