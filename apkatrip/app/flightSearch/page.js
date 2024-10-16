@@ -236,11 +236,11 @@ const page = () => {
 
       setstate2("rfr3fr3f3rf3f33", filterdata);
 
-      console.log(filterdata);
+     
     }
   };
 
-  console.log(state2);
+
 
   return (
     <>

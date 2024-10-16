@@ -19,7 +19,7 @@ import { imgurl } from "@/app/Component/common";
 const page = ({data}) => {
 
 
-console.log(data,"blog data")
+
   const [selected, setSelected] = useState('');
 
   const handleClick = (option) => {

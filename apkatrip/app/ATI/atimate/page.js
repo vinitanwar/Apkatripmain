@@ -47,7 +47,7 @@ const Page = () => {
   const startYear = 2019; // The year you started the business
   const yearsInBusiness = getTodayYear - startYear;
   
-  console.log(`I have been in business for ${yearsInBusiness} years.`);
+  
 
   return (
     <>

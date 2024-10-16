@@ -43,7 +43,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const ipstate=useSelector(state=>state.ipslice)
   const route = useRouter();
-const defaultFromCity = {
+  const defaultFromCity = {
     id: 26555,
     ident: "VIDP",
     type: "large_airport",
@@ -84,9 +84,9 @@ const defaultFromCity = {
     wikipedia_link: "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_International_Airport",
     keywords: "Bombay, Sahar International Airport",
   };
- const [fromCity, setFromCity] = useState(defaultFromCity);
+  const [fromCity, setFromCity] = useState(defaultFromCity);
   const [toCity, setToCity] = useState(defaultToCity);
-const [JourneyType,setjurnytype]=useState(1)
+  const [JourneyType,setjurnytype]=useState(1)
 const [isVisible, setIsVisible] = useState(false);
 
 const [selectedOption, setSelectedOption] = useState("");

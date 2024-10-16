@@ -101,7 +101,7 @@ const returnstate = useSelector((state) => state.searchreturn);
           PreferredArrivalTime: prfdate || localFormattedDate,
         })
       );
-      console.log("Request made with dep time", selectedMinDate);
+     
     }
     else if(newtIp && fromCityCode && toCityCode && JourneyType==2) {
       dispatch(

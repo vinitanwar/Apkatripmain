@@ -24,7 +24,7 @@ const FamousPlacesFilter = ({ selectedRange = [0, 300000], onApply }) => {
   
 
     const [moreFilter, setMoreFilter] = useState(false);
-    console.log(moreFilter);
+   
   
 
   return (

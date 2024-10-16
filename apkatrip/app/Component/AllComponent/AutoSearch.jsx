@@ -67,8 +67,8 @@ const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
   const [isError, setIsError] = useState(false);
 
   const handleSelect = (city) => {
-    console.log("wrfrf3443from", fromCity);
-    console.log("rwfrwfwefto", city);
+  
+
 
     if (fromCity && fromCity == city) {
       toast.info("You choese same airport", {

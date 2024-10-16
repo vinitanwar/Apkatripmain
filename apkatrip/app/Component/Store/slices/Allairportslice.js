@@ -9,7 +9,7 @@ export const getAllAirports = createAsyncThunk(
   async (info, { rejectWithValue }) => {
     try {
       const res = await axios.get(`${apilink}/${info}`);
-      console.log(res.data)
+     
       return res.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

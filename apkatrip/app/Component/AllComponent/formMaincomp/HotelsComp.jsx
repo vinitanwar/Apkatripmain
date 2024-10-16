@@ -4,8 +4,10 @@ import { FaCalendarWeek, FaChevronDown } from "react-icons/fa";
 import AutoSearch from "../AutoSearch";
 import TravellerDropdown from "../TravellerDropdown";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const HotelComp = () => {
+  const route=useRouter()
   const [activeTab, setActiveTab] = useState(1);
   const handleTabClick = (tabIndex) => {
     setActiveTab(tabIndex);
@@ -133,6 +135,12 @@ const HotelComp = () => {
     console.log("To clicked");
   };
 
+  const handelhotelSearch=()=>{
+
+route.push(`/hotels/`)
+  }
+
+
   return (
     <>
       <div className="flex flex-col hidden lg:block justify-end custom-color text-white md:px-10 lg:px-52  py-10">
@@ -239,12 +247,12 @@ const HotelComp = () => {
               </div>
             )}
           </div>
-          <Link
-            href="/hotelSearch"
+          <button
+        onClick={()=>handelhotelSearch()}
             className="text-white flex items-center justify-center text-2xl font-bold px-10 py-4 primary-col rounded-br-lg rounded-tr-lg"
           >
             Search
-          </Link>
+          </button>
         </div>
 
         <div
