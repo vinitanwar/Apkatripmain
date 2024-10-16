@@ -7,6 +7,8 @@ import blogslice from "./slices/blogslice";
 import ipslice from "./slices/ipslice";
 import searchreturn from "./slices/searchreturnFlight"
 import advanceSearchFlight from "./slices/advance_search_slice"
+import citysearch from "./slices/citysearchSlice"
+import hotelsSlice from "./slices/hotelsSlices"
 export const store = configureStore({
-  reducer: { searchFlightslice, Allairport, topPortsSlice, blogslice, ipslice, searchreturn,advanceSearchFlight},
+  reducer: { searchFlightslice, Allairport, topPortsSlice, blogslice, ipslice, searchreturn,advanceSearchFlight,citysearch,hotelsSlice},
 });

@@ -9,10 +9,14 @@ import { getAllAirports } from "../Store/slices/Allairportslice";
 
 import axios from "axios";
 import { toast, Flip } from "react-toastify";
+import { getAllcityes } from "../Store/slices/citysearchSlice";
+import { usePathname } from "next/navigation";
 
 const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
   const state = useSelector((state) => state.Allairport);
   const state2 = useSelector((state) => state.topPortsSlice);
+  const allcityes=useSelector((state)=>state.citysearch)
+  const pathname=usePathname()
 
   const defaultAirports = [
     {
@@ -63,6 +67,8 @@ const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
 
   const [debouncedValue, setDebouncedValue] = useState("");
   const [airports, setAirports] = useState(defaultAirports);
+
+
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -104,6 +110,7 @@ const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
       if (debouncedValue.length >= 2) {
         setIsLoading(true);
         setIsError(false);
+        if(pathname.includes())
         try {
           const res = await axios.get(
             `https://port-api.com/airport/search/${debouncedValue}`
@@ -124,43 +131,19 @@ const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
     fetchAirports();
   }, [debouncedValue]);
 
-  // Debounce function
-  // useEffect(() => {
-  //   const handler = setTimeout(() => {
-  //     setDebouncedValue(inputValue);
-  //   }, 300); // Adjust the delay as needed
+ 
 
-  //   return () => {
-  //     clearTimeout(handler);
-  //   };
-  // }, [inputValue]);
 
-  // // Effect to dispatch action when debounced value changes
-  // useEffect(() => {
-  //   if (debouncedValue) {
-  //     dispatch(getAllAirports(debouncedValue));
-  //   }
-  // }, [debouncedValue, dispatch]);
-
-  const handleChangePort = (e) => {
-    e.preventDefault();
-    setInputValue(e.target.value);
-  };
-
-  // Debounced dispatch
-  const debouncedDispatch = debounce((value) => {
-    if (value.length >= 2) {
-      dispatch(getAllAirports(value));
-    }
-  }, 500);
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
 
   useEffect(() => {
     setAllport(state);
-  }, [state]);
 
+
+  }, [state]);
+console.log(pathname)
   return (
     <div className="autosearch fromsectr" id="fromautoFill_in">
       <div className="searcityCol flex gap-3 bg-white p-3 items-center">
@@ -172,6 +155,7 @@ const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
           placeholder={value}
           autoComplete="off"
           value={inputValue}
+          autoFocus
           onChange={handleInputChange}
         />
       </div>

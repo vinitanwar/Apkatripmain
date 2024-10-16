@@ -1,34 +1,34 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+
 import { apilink } from "../../common";
 
-export const getAllcityes=createAsyncThunk("/getcity",async(city)=>{
-const res=await axios.get(`${apilink}/cities?CountryCode=IN&search=${city}`)
+export const getAllhotelsapi=createAsyncThunk("/hotels",async(CityCode)=>{
+const res=await axios.post(`${apilink}/hotels`,({CityCode}))
 
 return res.data;
 })
 
 
+ 
 
-
-
-const citysearchSlice = createSlice({
-    name: "getcity",
+const hotelsSlice = createSlice({
+    name: "hotels",
     initialState: { info: [], isLoading: false, isError: false },
     extraReducers: (builder) => {
-      builder.addCase(getAllcityes.pending, (state) => {
+      builder.addCase(getAllhotelsapi.pending, (state) => {
         state.isLoading = true;
       });
-      builder.addCase(getAllcityes.fulfilled, (state, action) => {
+      builder.addCase(getAllhotelsapi.fulfilled, (state, action) => {
         state.info = action.payload;
         state.isLoading = false;
       });
-      builder.addCase(getAllcityes.rejected, (state) => {
+      builder.addCase(getAllhotelsapi.rejected, (state) => {
         state.isError = true;
         state.isLoading = false;
       });
     },
   });
   
-  export default citysearchSlice.reducer;
+  export default hotelsSlice.reducer;
   
