@@ -188,7 +188,7 @@ console.log(pathname)
                         className="border-b border-gray-200 py-3 px-2 hover:bg-gray-100"
                       >
                         <div className="flex px-2">
-                          <img
+                        <img
                             src="/Images/planeicon.svg"
                             alt="Flight"
                             className="mr-2"
