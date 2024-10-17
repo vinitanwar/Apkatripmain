@@ -14,7 +14,7 @@ class TBOController extends Controller
     // Base URLs for the TBO APIs
     private $cityApiUrl = "http://api.tbotechnology.in/TBOHolidays_HotelAPI/CityList";
     private $hotelApiUrl = "http://api.tbotechnology.in/TBOHolidays_HotelAPI/TBOHotelCodeList";
-
+private $hoteldetalapi="https://affiliate.tektravels.com/HotelAPI/Search";
     // Method to fetch cities
     public function fetchCities(Request $request)
     {
@@ -98,6 +98,8 @@ class TBOController extends Controller
             'IsDetailedResponse' => true,
         ]);
 
-        return response()->json($response->json(), $response->status());
+        
+
+   return response()->json($response->json(), $response->status());
     }
 }

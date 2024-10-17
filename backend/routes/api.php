@@ -26,9 +26,7 @@ Route::post('v1/advance-search-flights', [FlightController::class, 'advance_sear
 Route::apiResource('v1/blog', BlogController::class);
 
 
-Route::post('v1/cities', [TBOController::class, 'fetchCities']);
-
-
+Route::get('v1/cities', [TBOController::class, 'fetchCities']);
 Route::post('v1/hotels', [TBOController::class, 'fetchHotels']);
 
 

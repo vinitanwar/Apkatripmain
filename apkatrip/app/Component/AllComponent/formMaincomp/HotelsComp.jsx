@@ -1,143 +1,87 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCalendarWeek, FaChevronDown } from "react-icons/fa";
-import AutoSearch from "../AutoSearch";
-import TravellerDropdown from "../TravellerDropdown";
+
+import TravellerDropDownhotels from "../TravellerDropDownhotels"
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import AutoSearchcity from "../AutoSearchcity"
+import { Calendar } from "@nextui-org/react";
+import { today, getLocalTimeZone } from "@internationalized/date";
+
+
+
+
 
 const HotelComp = () => {
   const route=useRouter()
-  const [activeTab, setActiveTab] = useState(1);
-  const handleTabClick = (tabIndex) => {
-    setActiveTab(tabIndex);
-  };
+  const localTimeZone = getLocalTimeZone();
+  const [isVisible, setIsVisible] = useState("");
+  const [city,setcity]=useState({Name:"delhi",Code:"130443"})
+  const currentDate = today(localTimeZone);
+const [arivitime,setarivetime]=useState(new Date(Date.now()))
+const [checkOut,setcheckOut]=useState(arivitime)
+const [adultcount,setadultcount]=useState(1)
+const [childcount,setchildcount]=useState(0)
+const [numberOfRoom,setNumberOfRoom]=useState(1)
 
-  const handleCheckboxChange = (event) => {
-    // Your logic here for handling checkbox change
-  };
-
-  const [fromCity, setFromCity] = useState({
-    code: "DEL",
-    name: "Delhi",
-    airport: "Indira Gandhi International Airport",
-  });
-  const [toCity, setToCity] = useState({
-    code: "MUM",
-    name: "Mumbai",
-    airport: "Chhatrapati Shivaji Maharaj International Airport",
-  });
 
   const handleCitySelect = (city) => {
-    if (selectedOption === "from") {
-      setFromCity(city);
-    } else if (selectedOption === "to") {
-      setToCity(city);
-    }
-    setIsVisible(false); // Hide the dropdown after selection
+     setcity(city)
+     console.log(city)
+     setIsVisible(""); 
   };
+
+
+
 
   const handleVisibilityChange = (value) => {
     setIsVisible(value);
+   
   };
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
 
-  // Array of day names
-  const daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  const getDateComponents = (date) => {
-    return {
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-      day: String(date.getDate()).padStart(2, "0"),
-      dayOfWeek: daysOfWeek[date.getDay()],
-    };
-  };
-
-  const currentDate = new Date();
-  const futureDate = new Date();
-  futureDate.setDate(currentDate.getDate() + 3);
-
-  const currentDateComponents = getDateComponents(currentDate);
-  const futureDateComponents = getDateComponents(futureDate);
-  const [isVisible, setIsVisible] = useState(false);
-
-  const [selectedOption, setSelectedOption] = useState("");
   const handleClick = (option) => {
-    setSelectedOption(option);
-    setIsVisible(true);
+    
+    setIsVisible(option);
 
-    switch (option) {
-      case "from":
-        handleFromClick();
-        break;
-      case "to":
-        handleToClick();
-        break;
-      case "traveller":
-        handleToClick(); // Add the appropriate handler for traveller
-        break;
-      default:
-        console.log("Unknown option:", option);
-    }
+  
   };
 
-  const dropdownRef = useRef(null);
 
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsVisible(false);
-    }
-  };
+const handelreturn=(newRange)=>{
+  const date = new Date(newRange.year, newRange.month - 1, newRange.day);
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+   setarivetime(date);
+  setIsVisible("")
+}
+const handelreturn2=(newRange)=>{
+  const date = new Date(newRange.year, newRange.month - 1, newRange.day);
 
-  const handleFromClick = () => {
-    // Your logic for 'From' click
-    console.log("From clicked");
-  };
+   setcheckOut(date);
+  setIsVisible("")
+}
 
-  const handleToClick = () => {
-    // Your logic for 'To' click
-    console.log("To clicked");
-  };
+
+  
+
+ 
 
   const handelhotelSearch=()=>{
+    const offset = 6*60*55*1000;
+    const check= new Date(arivitime);
+   
+    
+    const r_localDate = new Date(check.getTime() + offset);
+    const checkindate = r_localDate.toISOString().slice(0, 19); 
 
-route.push(`/hotels/`)
+
+    const checko= new Date(checkOut);
+   
+    
+    const r_localDateo = new Date(checko.getTime() + offset);
+    const checkoutdate = r_localDateo.toISOString().slice(0, 19);
+route.push(`/hotels/cityName=${city.Name}&citycode=${city.Code}&checkin=${checkindate}&checkout=${checkoutdate}&adult=${adultcount}&child=${childcount}&roomes=${numberOfRoom}`)
   }
 
 
@@ -152,21 +96,27 @@ route.push(`/hotels/`)
 
         <div className=" flex justify-center gap-0">
           <div
-            className="flex flex-col bg-white relative px-4 py-3 rounded-tl-lg rounded-bl-lg border-r hover:bg-[#ECF5FE] cursor-pointer"
-            onClick={() => handleClick("from")}
+            className="  relative "
+           
           >
+            <div
+            className="flex flex-col bg-white h-full  px-4 py-3 rounded-tl-lg rounded-bl-lg border-r hover:bg-[#ECF5FE] cursor-pointer"
+            onClick={() => handleClick("city")} >
             <p className="text-sm text-[#7E7979] font-medium">
               Enter City Name or Specific hotel
             </p>
             <span className="text-3xl py-1 text-black font-bold">
-              {fromCity.name}
+               { city.Name}
             </span>
             <p className="text-black text-xs truncate">
-              [{fromCity.code}] {fromCity.airport}
+             
             </p>
-            {isVisible && selectedOption === "from" && (
-              <div ref={dropdownRef}>
-                <AutoSearch
+            </div>
+
+            {isVisible=="city"  && (
+              <div>
+                <AutoSearchcity
+
                   value="From"
                   handleClosed={handleVisibilityChange}
                   onSelect={handleCitySelect}
@@ -175,76 +125,114 @@ route.push(`/hotels/`)
             )}
           </div>
 
-          <div className="flex flex-col  px-8 py-3 bg-white  border-r hover:bg-[#ECF5FE]">
+          <div  className="relative">
+          <div className="flex flex-col w-full h-full  px-8 py-3 bg-white  border-r hover:bg-[#ECF5FE] cursor-pointer"  onClick={() => handleClick("date")}>
             <label className="text-sm text-[#7E7979] font-medium">
               Check-In
             </label>
             <div className="flex items-baseline text-black">
               <span className="text-3xl py-1 pr-1 text-black font-bold">
                 {" "}
-                {currentDateComponents.day}
+                {arivitime.getDate()}
               </span>
               <span className="text-sm font-semibold">
-                {months[currentDateComponents.month]}'
+                {arivitime.toLocaleString("default", {
+                                month: "short",
+                              })}'
               </span>
               <span className="text-sm font-semibold">
                 {" "}
-                {currentDateComponents.year}
+                {arivitime.getFullYear()}
               </span>
               <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
             </div>
-            <p className="text-black text-xs">
-              {currentDateComponents.dayOfWeek}
-            </p>
+            </div>
+          {isVisible=="date"  &&  <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
+                        <Calendar
+                          aria-label="Select a date"
+                          value={""}
+                          onChange={handelreturn}
+                          minValue={currentDate}
+                          disabledDatesClassName=" opacity-50"
+                        />
+                      </div>}
           </div>
-          <div className="flex flex-col  px-8 py-3 bg-white  border-r hover:bg-[#ECF5FE]">
+
+
+
+
+
+
+
+          <div className="relative">
+          <div className="flex flex-col w-full h-full  px-8 py-3 bg-white  border-r hover:bg-[#ECF5FE] cursor-pointer"  onClick={() => handleClick("checkout")}>
             <label className="text-sm text-[#7E7979] font-medium">
               Check-Out
             </label>
             <div className="flex items-baseline text-black">
               <span className="text-3xl py-1 pr-1 text-black font-bold">
                 {" "}
-                {futureDateComponents.day}
+                {checkOut ? checkOut.getDate():currentDate.day}
               </span>
               <span className="text-sm font-semibold">
                 {" "}
-                {months[futureDateComponents.month]}'
+                {checkOut ? checkOut.toLocaleString("default", {
+                                month: "short",
+                              }):currentDate.month}'
               </span>
               <span className="text-sm font-semibold">
-                {futureDateComponents.year}
+              {checkOut ? checkOut.getFullYear():currentDate.year}
               </span>
               <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
             </div>
-            <p className="text-black text-xs">
-              {futureDateComponents.dayOfWeek}
-            </p>
+            
           </div>
+          {isVisible=="checkout"  &&  <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
+                        <Calendar
+                          aria-label="Select a date"
+                          value={""}
+                          onChange={handelreturn2}
+                          minValue={currentDate}
+                          disabledDatesClassName=" opacity-50"
+                        />
+                      </div>}
+
+          
+          </div>
+
+
+
+
+
+
           <div
-            className="flex flex-col relative  px-8 py-3 bg-white border-r hover:bg-[#ECF5FE]"
-            onClick={() => handleClick("traveller")}
+           className="relative"
           >
+            <div className="flex flex-col   px-8 py-3 bg-white border-r hover:bg-[#ECF5FE]"
+           onClick={() => handleClick("other")}>
             <label className="text-sm text-[#7E7979] font-medium">
               Rooms & Guests
             </label>
             <div className="flex items-baseline text-black">
               <span className="text-3xl py-1 pr-1 text-black font-semibold">
-                1
+                {numberOfRoom}
               </span>
               <span className="text-sm font-semibold flex items-center gap-1">
                 Room
               </span>
               <span className="ml-2 text-3xl py-1 pr-1 text-black font-semibold">
-                2
+                {adultcount}
               </span>
               <span className="text-sm font-semibold flex items-center gap-1">
                 Guests <FaChevronDown />
               </span>
             </div>
-
-            {isVisible && selectedOption === "traveller" && (
-              <div ref={dropdownRef}>
-                <TravellerDropdown value="From" />
-              </div>
+            </div>
+            {isVisible=="other" && (
+             
+                <TravellerDropDownhotels adultCount={adultcount} setAdultCount={setadultcount}  childCount={childcount} setchildcount={setchildcount}
+                 numberOfRoom={numberOfRoom} setNumberOfRoom={setNumberOfRoom} setIsVisible={setIsVisible} />
+             
             )}
           </div>
           <button
