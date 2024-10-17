@@ -27,6 +27,8 @@ Route::apiResource('v1/blog', BlogController::class);
 
 
 Route::post('v1/cities', [TBOController::class, 'fetchCities']);
+
+
 Route::post('v1/hotels', [TBOController::class, 'fetchHotels']);
 
 
