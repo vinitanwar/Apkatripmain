@@ -98,12 +98,8 @@ private $hoteldetalapi="https://affiliate.tektravels.com/HotelAPI/Search";
             'IsDetailedResponse' => true,
         ]);
 
-
-
-
-
         
 
-        return response()->json($response->json(), $response->status());
+   return response()->json($response->json(), $response->status());
     }
 }
