@@ -1,8 +1,34 @@
 "user client";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllcityes } from "../Store/slices/citysearchSlice";
 
 const ActivitiesSlider = () => {
+const [cityval,setcityval]=useState()
+const debounceTimeoutRef = useRef(null);
+const allcityes=useSelector((state)=>state.citysearch)
+const [cities,setcities]=useState()
+  const dispatch = useDispatch();
+  const handleInputChange=(e)=>{
+    
+    setcityval(e)
+
+
+    if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
+      }
+  
+      // Set a new timeout
+      debounceTimeoutRef.current = setTimeout(() => {
+        dispatch(getAllcityes(e));
+      }, 400); 
+}
+useEffect(()=>{
+  setcities(allcityes)
+},[allcityes])
+
+console.log(cities,"sada")
   return (
     <div className="relative pt-6 lg:pt-0">
       <div className="relative">
@@ -36,7 +62,18 @@ const ActivitiesSlider = () => {
               id="txtDesCity"
               className="ml-2 flex-grow border-none p-2 w-full rounded-lg placeholder-gray-500 focus:outline-none"
               placeholder="Enter Your Dream Destination!"
+value={cityval}
+onChange={(e)=>handleInputChange(e.target.value)}
+
             />
+           {cityval && <div className="bg-white absolute w-full h-36 overflow-y-auto top-full">
+  {cities && cities.isLoading && <div>Loading...</div> }
+  {cities && !cities.isLoading && cities.info.map((item)=>{
+    return(
+      <div>{item.Name}</div>
+    )
+  }) }
+            </div>}
           </div>
           <button
             className="ml-2 primary-col text-white px-8 py-2 h-14  rounded-full hover:bg-[#ef6414ed]"
