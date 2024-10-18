@@ -6,6 +6,7 @@ import { getAllcityes } from "../Store/slices/citysearchSlice";
 
 const ActivitiesSlider = () => {
 const [cityval,setcityval]=useState()
+const [allsearchdata,setAllsearchdata]=useState()
 const debounceTimeoutRef = useRef(null);
 const allcityes=useSelector((state)=>state.citysearch)
 const [cities,setcities]=useState()
@@ -27,8 +28,12 @@ const [cities,setcities]=useState()
 useEffect(()=>{
   setcities(allcityes)
 },[allcityes])
-
-console.log(cities,"sada")
+ 
+const handelsearch=(value)=>{
+  setcityval(value.Name)
+  setAllsearchdata(value)
+}
+console.log(cities)
   return (
     <div className="relative pt-6 lg:pt-0">
       <div className="relative">
@@ -66,11 +71,11 @@ value={cityval}
 onChange={(e)=>handleInputChange(e.target.value)}
 
             />
-           {cityval && <div className="bg-white absolute w-full h-36 overflow-y-auto top-full">
+           {cityval && !allsearchdata  && <div className="bg-white absolute w-full  h-36 overflow-y-auto top-full">
   {cities && cities.isLoading && <div>Loading...</div> }
   {cities && !cities.isLoading && cities.info.map((item)=>{
     return(
-      <div>{item.Name}</div>
+      <div className=" text-start m-4 cursor-pointer border-b-2 pb-1" onClick={()=>handelsearch(item)}>{item.Name}</div>
     )
   }) }
             </div>}

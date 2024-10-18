@@ -170,7 +170,7 @@ const page = () => {
   };
 
   const handleFlightSearch = (deal) => {
-    console.log("Searching for flight:", deal);
+    // console.log("Searching for flight:", deal);
   };
   return (
     <>
