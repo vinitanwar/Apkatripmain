@@ -12,6 +12,7 @@ import { Calendar } from "@nextui-org/react";
 import { today, getLocalTimeZone } from "@internationalized/date";
 import { getip } from "../Store/slices/ipslice";
 import { getAllAirports } from "../Store/slices/Allairportslice";
+import debounce from "./Debounce";
    
 
 
@@ -88,30 +89,6 @@ const MobileHeader = () => {
   const [fromCity, setFromCity] = useState(defaultFromCity);
   const [toCity, setToCity] = useState(defaultToCity);
 
-  const handleSelected = (city) => {
-    
-
-
-
-    if(fromCity && fromCity.id==city.id){
-     toast.info('You choese same airport', {
-       position: "top-right",
-       autoClose: 2000,
-       hideProgressBar: false,
-       closeOnClick: false,
-       pauseOnHover: true,
-       draggable: true,
-       progress: undefined,
-       theme: "light",
-       transition: Flip,
-       });
-    }
-    else{   onSelect(city); 
-    }
- 
-    Click(false)
-    
-   };
 
 
   const handleRoomsChange = (amount) => {
@@ -153,6 +130,8 @@ const MobileHeader = () => {
       setDebouncedValue(inputValue);
     }, 300); // Adjust the delay as needed
 
+
+
     return () => {
       clearTimeout(handler);
     };
@@ -168,6 +147,9 @@ const MobileHeader = () => {
     e.preventDefault();
     setInputValue(e.target.value);
   };
+
+
+
   useEffect(()=>{
     setAllport(state)
   },[state])
@@ -218,6 +200,42 @@ const MobileHeader = () => {
 
     route.push("/flightSearch");
   };
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(inputValue);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [inputValue]);
+
+  useEffect(() => {
+    const fetchAirports = async () => {
+      if (debouncedValue.length >= 2) {
+        setIsLoading(true);
+        setIsError(false);
+        if(pathname.includes())
+        try {
+          const res = await axios.get(
+            `https://port-api.com/airport/search/${debouncedValue}`
+          );
+          setFromCity(res.data.features); // Assuming API returns "features" array
+        } catch (error) {
+          console.error("Error fetching airports:", error);
+          setIsError(true);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        // Show default airports if search string is less than 3 chars
+        setFromCity(defaultFromCity);
+      }
+    };
+
+    fetchAirports();
+  }, [debouncedValue]);
 
 
   const [isHovered, setIsHovered] = useState(false);
@@ -303,7 +321,7 @@ const MobileHeader = () => {
                       <li className="bg-[#ecf5fe] py-2 px-5 text-gray-600 text-sm uppercase">
                         Popular Cities
                       </li>
-                      {state &&!allport.isLoading &&  state.info &&!allport.info.data && state.info.map((airport, index) => (
+                      {state &&!state.isLoading &&  state.info && state.info.features &&   state.info.features.map((airport, index) => (
                         <li
                           key={index}
                           className="flex justify-between items-center py-2 px-5 "
@@ -312,12 +330,12 @@ const MobileHeader = () => {
                           >
                           <div>
                             <span className="font-bold">
-                              {airport.municipality}, {airport.country}
+                              {airport.properties.municipality}, {airport.properties.country.name}
                             </span>
-                            <p className="text-sm">{airport.name}</p>
+                            <p className="text-sm">{airport.properties.name}</p>
                           </div>
                           <span className="bg-[#737579] py-1 text-white font-bold rounded w-16 text-center px-3 uppercase">
-                            {airport.ident}
+                            {airport.properties.local_code}
                           </span>
                         </li>
                       ))}
@@ -713,7 +731,7 @@ const MobileHeader = () => {
                       <li className="bg-[#ecf5fe] py-2 px-5 text-gray-600 text-sm uppercase">
                         Popular Cities
                       </li>
-                      {airports.map((airport, index) => (
+                      {/* {airports.map((airport, index) => (
                         <li
                           key={index}
                           className="flex justify-between items-center py-2 px-5"
@@ -728,7 +746,7 @@ const MobileHeader = () => {
                             {airport.code}
                           </span>
                         </li>
-                      ))}
+                      ))} */}
                     </ul>
                   </div>
                 </div>

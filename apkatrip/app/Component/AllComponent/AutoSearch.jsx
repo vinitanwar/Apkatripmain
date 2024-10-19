@@ -143,7 +143,7 @@ const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
 
 
   }, [state]);
-console.log(pathname)
+
   return (
     <div className="autosearch fromsectr" id="fromautoFill_in">
       <div className="searcityCol flex gap-3 bg-white p-3 items-center">
