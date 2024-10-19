@@ -76,5 +76,51 @@ class SightseeingController extends Controller
             return response()->json(['error' => 'An unexpected error occurred', 'message' => $e->getMessage()], 500);
         }
     }
-    
+
+    function getSightseeing (Request $request){
+        // try {
+        $request->validate([
+            'ResultIndex' => 'required',
+            'EndUserIp' => 'required',
+            'TraceId' => 'required',
+        ]);
+
+        $data = $request->all();
+        $token = $this->apiService->getToken();
+        $data['TokenId'] = $token;
+       
+        
+     $response = Http::timeout(90)->post('http://api.tektravels.com/BookingEngineService_SightSeeing/SightseeingService.svc/rest/GetAvailability', $data);
+
+     return response()->json($response, 200);
+
+
+
+                //  if ($response->successful()) { return response()->json($response->json(), 200); }
+        
+                
+        //         if ($response->json('Response.Error.ErrorCode') === 6) { $token = $this->apiService->authenticate();
+        //             $data['TokenId'] = $token; 
+        //             $response = Http::timeout(90)->post('http://api.tektravels.com/BookingEngineService_SightSeeing/SightseeingService.svc/rest/GetAvailability', $data);
+        //    if ($response->successful()) {return response()->json($response->json(), 200);
+        //             }
+        //         }
+
+
+                // return response()->json(['error' => 'Failed to retrieve data', 'details' => $response->json()], $response->status());
+        
+            // } catch (\Illuminate\Http\Client\RequestException $e) {
+            //     return response()->json(['error' => 'Request failed', 'message' => $e->getMessage()], 500);
+        
+            // } catch (\Exception $e) {
+            //     return response()->json(['error' => 'An unexpected error occurred', 'message' => $e->getMessage()], 500);
+            // }
+   
+   
+
+   
+
+
+        }
 }
+
