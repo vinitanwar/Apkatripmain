@@ -33,9 +33,9 @@ Route::post('v1/hotels', [TBOController::class, 'fetchHotels']);
 
 
 
-Route::get('v1/hotelslist', [HotelController::class, 'getHotelDetails']);
+Route::post('v1/hotelslist', [HotelController::class, 'getHotelDetails']);
 Route::post('v1/sightseeing/search', [SightseeingController::class, 'search']);
-
+Route::post('v1/sightseeing', [SightseeingController::class, 'meRandomdata']);
 // Route::get('/search-flights-one', (Request $request) {
 //     return "<h1>Hello world</h1>"
 // });
