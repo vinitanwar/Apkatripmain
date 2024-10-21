@@ -31,6 +31,8 @@ const sightseeingGetslice = createSlice({
       });
     },
   });
+
+  
   
   export default sightseeingGetslice.reducer;
   

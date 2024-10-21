@@ -7,12 +7,14 @@ import {
  
 } from "react-icons/fa";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { getBuscityapi } from "../../Store/slices/busSearchSlice";
 
 const BusComp = () => {
   
   const [fromCity, setFromCity] = useState({
     code: "DEL",
-    name: "Delhi",
+    CityName: "Delhi",
     airport: "Indira Gandhi International Airport",
   });
   const [toCity, setToCity] = useState({
@@ -73,6 +75,10 @@ const BusComp = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const [selectedOption, setSelectedOption] = useState("");
+  const dispatch=useDispatch();
+ const state=useSelector(state=>state.busCityslice)
+
+
   const handleClick = (option) => {
     setSelectedOption(option);
     setIsVisible(true);
@@ -116,6 +122,12 @@ const BusComp = () => {
     // Your logic for 'To' click
     console.log("To clicked");
   };
+const [searchparam,setsearchparam]=useState("")
+ const handelBusSearch=(e)=>{
+  dispatch(getBuscityapi(e.target.value))
+  setsearchparam(e.target.value)
+ }
+console.log(state)
 
   return (
     <>
@@ -124,17 +136,30 @@ const BusComp = () => {
               <span className=" text-lg mb-2 mr-2 font-bold  rounded-full ">Online Bus Tickets</span>
         
                 <div className="bg-white custom-shadow grid grid-cols-4 gap-0 border-gray-300">
+                
+                <div className="relative">
                   <div
                     className="flex flex-col bg-white relative px-4 py-3 rounded-tl-lg rounded-bl-lg border-r hover:bg-[#ECF5FE] cursor-pointer"
                     onClick={() => handleClick("from")}
                   >
                     <p className="text-sm text-[#7E7979] font-medium">From</p>
                     <span className="text-3xl py-1 text-black font-bold">
-                      {fromCity.name}
+                      {fromCity.CityName}
                     </span>
                   
                   </div>
 
+     <div className="absolute top-full bg-white w-full z-30">
+<input type="text" value={searchparam} className="w-full text-black" placeholder="Search city..." onChange={(e)=>handelBusSearch(e)}  />
+<div className="h-32 overflow-hidden overflow-y-scroll">
+{state && !state.isLoading && state.info && state.info.BusCities &&state.info.BusCities.map((item)=>{
+  return(
+    <p className=" border-b-2 p-1 cursor-pointer">{item.CityName}</p>
+  )
+})}</div>
+     </div>
+
+                  </div>
                   <div
                     className="flex flex-col px-4 py-3 relative bg-white border-r hover:bg-[#ECF5FE]"
                     onClick={() => handleClick("to")}

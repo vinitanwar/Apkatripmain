@@ -16,7 +16,8 @@ use App\Http\Controllers\FlightController;
 
 use App\Http\Controllers\SightseeingController;
 use App\Http\Controllers\HotelController;
-
+use App\Http\Controllers\BusController;
+use App\Http\Controllers\BusControllerSearch;
 
 Route::apiResource('v1/airports', AirportController::class);
 Route::apiResource('v1/topairports', TopPorts::class);
@@ -32,10 +33,22 @@ Route::get('v1/cities', [TBOController::class, 'fetchCities']);
 Route::post('v1/hotels', [TBOController::class, 'fetchHotels']);
 
 
+// routes/api.php
 
-Route::get('v1/hotelslist', [HotelController::class, 'getHotelDetails']);
+
+
+
+
+
+Route::post('v1/hotelslist', [HotelController::class, 'getHotelDetails']);
 Route::post('v1/sightseeing/search', [SightseeingController::class, 'search']);
-Route::post('v1/sightseeing/get', [SightseeingController::class, 'getSightseeing']);
+Route::post('v1/sightseeing', [SightseeingController::class, 'meRandomdata']);
+
+
+
+Route::get('/v1/bus/cities', [BusController::class, 'searchBusCityList']);
+Route::post('/v1/bus/search', [BusControllerSearch::class, 'searchBuses']);
+
 
 // Route::get('/search-flights-one', (Request $request) {
 //     return "<h1>Hello world</h1>"
