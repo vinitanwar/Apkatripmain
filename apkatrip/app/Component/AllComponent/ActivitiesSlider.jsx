@@ -3,6 +3,9 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllcityes } from "../Store/slices/citysearchSlice";
+import { getSightSeeingapi } from "../Store/slices/sightseeingSlice";
+import { Calendar } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 const ActivitiesSlider = () => {
 const [cityval,setcityval]=useState()
@@ -11,6 +14,12 @@ const debounceTimeoutRef = useRef(null);
 const allcityes=useSelector((state)=>state.citysearch)
 const [cities,setcities]=useState()
   const dispatch = useDispatch();
+const [toDate,settoDate]=useState(new Date(Date.now()))
+const [fromDate,setformDate]=useState(new Date(Date.now()))
+const [show,setShow]=useState("")
+const route=useRouter()
+
+
   const handleInputChange=(e)=>{
     
     setcityval(e)
@@ -33,7 +42,39 @@ const handelsearch=(value)=>{
   setcityval(value.Name)
   setAllsearchdata(value)
 }
-console.log(cities)
+
+const handleSearch=()=>{
+  const date = new Date(toDate);
+   const date2=new Date(fromDate);
+  const offset = 6*10*10*1000;
+  
+  const localDate = new Date(date.getTime() + offset);
+  const localDate2 = new Date(date2.getTime() + offset);
+  const localFormattedDate = localDate.toISOString().slice(0, 19);
+  const localFormattedDate2 = localDate2.toISOString().slice(0, 19);
+
+  
+  // 
+  route.push(`/activities/CityId=${allsearchdata.Code}&FromDate=${localFormattedDate}&ToDate=${localFormattedDate2}`)
+
+
+}
+const handeltoDate=(newRange)=>{
+  const date = new Date(newRange.year, newRange.month - 1, newRange.day);
+  
+    // setSelected(date);
+    // handleClick("");
+    settoDate(date)
+    setShow("from")
+
+}
+const handelformDate=(newRange)=>{
+  const date = new Date(newRange.year, newRange.month - 1, newRange.day);
+setformDate(date)
+setShow("")
+
+}
+
   return (
     <div className="relative pt-6 lg:pt-0">
       <div className="relative">
@@ -80,10 +121,48 @@ onChange={(e)=>handleInputChange(e.target.value)}
   }) }
             </div>}
           </div>
+
+<div className="relative">
+<div className="shadow-md cursor-pointer px-2 mx-1" onClick={()=>setShow("To")}>
+  <p className="text-nowrap">To Date</p>
+ <span> {toDate.toLocaleDateString('en-US', {month: 'short',})}-{toDate.getDate()}</span>
+ <p>{toDate.getFullYear()}</p>
+</div>
+{ show == "To" &&
+<div className="absolute top-full bg-white z-20">
+<Calendar
+                          aria-label="Select a date"
+                          value={""}
+                          onChange={handeltoDate}
+                          // minValue={toDate}
+                          
+                        />
+                        </div>}
+</div>
+
+
+<div className="relative">
+<div className="shadow-md cursor-pointer px-2 mx-1" onClick={()=>setShow("from")} >
+  <p className="text-nowrap">From Date</p>
+ <span> {fromDate.toLocaleDateString('en-US', {month: 'short',})}-{fromDate.getDate()}</span>
+ <p>{fromDate.getFullYear()}</p>
+</div>
+{ show == "from" &&
+<div className="absolute top-full bg-white z-20">
+<Calendar
+                          aria-label="Select a date"
+                          value={""}
+                          onChange={handelformDate}
+                          // minValue={toDate}
+                          
+                        />
+                        </div>}
+                        </div>
+
           <button
             className="ml-2 primary-col text-white px-8 py-2 h-14  rounded-full hover:bg-[#ef6414ed]"
             type="button"
-            // onClick={handleSearch}
+            onClick={handleSearch}
           >
             Search
           </button>
