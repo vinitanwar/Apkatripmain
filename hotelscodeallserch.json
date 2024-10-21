@@ -1,0 +1,278 @@
+{
+    "hotelDetails": {
+        "Status": {
+            "Code": 200,
+            "Description": "Successful"
+        },
+        "HotelDetails": [
+            {
+                "HotelCode": "1011651",
+                "HotelName": "Kohinoor Elite",
+                "Description": "<p>HeadLine : In Mumbai (Kurla)</p><p>Location : With a stay at Hotel Kohinoor Elite near BKC in Mumbai (Kurla), you ll be within a 5-minute drive of U.S. Consulate General and Phoenix Market City Mall.  This hotel is 5.6 mi (8.9 km) from Juhu Beach and 13.4 mi (21.6 km) from Gateway of India.</p><p>Rooms : Make yourself at home in one of the 100 air-conditioned rooms featuring minibars and LCD televisions. Complimentary wireless Internet access keeps you connected, and cable programming is available for your entertainment. Bathrooms have complimentary toiletries and hair dryers. Conveniences include phones, as well as safes and complimentary newspapers.</p><p>Dining : Enjoy a meal at the restaurant, or stay in and take advantage of the hotel s room service.</p><p>CheckIn Instructions : <ul>  <li>Extra-person charges may apply and vary depending on property policy</li><li>Government-issued photo identification and a credit card, debit card, or cash deposit may be required at check-in for incidental charges</li><li>Special requests are subject to availability upon check-in and may incur additional charges; special requests cannot be guaranteed</li><li>This property accepts credit cards; cash is not accepted</li><li>Please note that cultural norms and guest policies may differ by country and by property; the policies listed are provided by the property</li>  </ul> <ul>  <li>Guests must contact this hotel in advance to reserve extra mattresses.</li>  </ul></p><p>Special Instructions : This property doesn t offer after-hours check-in. Front desk staff will greet guests on arrival. For more details, please contact the property using the information on the booking confirmation.  To register at this property, guests who are Indian citizens must provide a valid photo identity card issued by the Government of India; travelers who are not citizens of India must present a valid passport and visa.</p>&nbsp;<br/><b>Disclaimer notification: Amenities are subject to availability and may be chargeable as per the hotel policy.</b>",
+                "HotelFacilities": [
+                    "Dry cleaning/laundry service",
+                    "Luggage storage",
+                    "Meeting rooms",
+                    "24-hour front desk",
+                    "Swimming pool",
+                    "Free WiFi",
+                    "Smoke-free property",
+                    "In-room accessibility (in select rooms)",
+                    "Internet access in public areas - high speed",
+                    "Laundry facilities",
+                    "Free newspapers in lobby",
+                    "elevator",
+                    "Free valet parking",
+                    "Access to nearby indoor pool"
+                ],
+                "Attractions": {
+                    "1) ": "Distances are displayed to the nearest 0.1 mile and kilometer. <br /> <p>Phoenix Market City Mall - 0.7 km / 0.4 mi <br /> U.S. Consulate General - 2.9 km / 1.8 mi <br /> Bharat Diamond Bourse - 3.4 km / 2.1 mi <br /> Jio World Convention Centre - 3.4 km / 2.1 mi <br /> University of Mumbai - 3.7 km / 2.3 mi <br /> JioGarden - 4.2 km / 2.6 mi <br /> MMRDA Grounds - 4.4 km / 2.8 mi <br /> KidZania Mumbai - 4.5 km / 2.8 mi <br /> R City Mall - 4.6 km / 2.8 mi <br /> Bandra Family Court - 5.6 km / 3.5 mi <br /> MIDC Industrial Estate - 6 km / 3.7 mi <br /> Powai Lake - 6.7 km / 4.2 mi <br /> Indian Institute of Technology Bombay - 7.1 km / 4.4 mi <br /> Hiranandani Business Park - Powai - 7.6 km / 4.7 mi <br /> Sanjay Gandhi National Park - 7.8 km / 4.9 mi <br /> </p><p>The preferred airport for Hotel Kohinoor Elite near BKC is Chhatrapati Shivaji International Airport (BOM) - 5.8 km / 3.6 mi </p>"
+                },
+                "Images": [
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoYQouVaJeTZoQSYpKcJSwC0=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoYb7+/aX9qcVhBX6+aUO8ea3WOJE69Q0rDAqQ4vqKiZ3",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCocWI0WI4id3dXe84TxwvJtk=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoQeMAPIYak32/MI7qSgBMCU=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCod94ks9Q1iKlFE7/IGMBpVU=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoYQouVaJeTZoQSYpKcJSwC0=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoc4kwOBjJu05DV5GMr19m9w=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoTbrlcXNuJHlHJmctpz8V8U=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoYrC1sZQn0SYKhKCqWfqOFo=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoYfww4G0EG2l8tiy98KAd1o=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoXRxYNRqivDkoTdEP1JprnM=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCob23C5rlMBRXYmT9fwYp8aA=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoZppqw59knlmfNbtMgbqBhDYd/82j+LF56BUeAi8nveu",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoczrkv1roFNt7wAQ9FQEkI0=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoZhVdnwaVRefVIgFSKTIm+s=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoX+knYSKzTY4YaOeoTr9Gmg=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoSIMhCIvRSi2TabZuye5WrI=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCobsWkGaUzOdCAxtPfUQYl4M=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoeUrh+7xbyxQdDzEls+dXBE=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoQ25TRJQ9W+EGVQsbLDpl/w=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCofnw/2823+K11C2xe2iRXgE=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoeTBAanzAYZ6Nqkf/HVeCxw=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoWJzm9NbnEQLk2yhSgGozq1Ol5zsogxj7VQniKr+xLXz",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoTEIIFti6kNYuBAYa57fHnE=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoWlk+sZGvcmoBCTiLyr5i4U=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoZ80PAM4G9wnXVW51Rut6/Y=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCodw3Mpgc2G5hpzOqnui/m6w=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCofRuWcOcxRRWzrO8z5JYrMU=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCofX2hxQf4PfrRTRERMbI1Ro=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoWmp+WQxuEjfAeWGKmiZqXs=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoY0TZCRFYQUXjaSAJtl2S6g=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5e5v0qrAGTD8pPBsj8/wYA5F3wAmN3NGLUVo1KUDtCRnwJXLuqxXEfHtt2HRQE6pLIr8mUrH4GCoRJfWU3mkaJoJ34n/HatvQs="
+                ],
+                "Address": "Kohinoor City Kirol Road Off Lbs Road Kurla W Andheri Intl Airport Kurla(W),Andheri / Int'l. Airport, Kirol Road Off. LBS RoadKurla (W)Mumbai, Mumbai, 400070, India",
+                "PinCode": "400070",
+                "CityId": "144306",
+                "CountryName": "India",
+                "PhoneNumber": "91-22-61526152",
+                "FaxNumber": "91-226-1526153",
+                "Map": "19.080537|72.885301",
+                "HotelRating": 3,
+                "CityName": "Mumbai",
+                "CountryCode": "IN",
+                "CheckInTime": "2:00 PM",
+                "CheckOutTime": "12:00 PM"
+            },
+            {
+                "HotelCode": "1016348",
+                "HotelName": "Hotel Marine Plaza",
+                "Description": "<p>HeadLine : In Mumbai (Marine Drive)</p><p>Location : With a stay at Hotel Marine Plaza Mumbai, you ll be centrally located in Mumbai, within a 5-minute drive of Gateway of India and Air India Building.  This 4.5-star hotel is 12.3 mi (19.8 km) from U.S. Consulate General and 12.8 mi (20.5 km) from Juhu Beach.</p><p>Rooms : Make yourself at home in one of the 68 guestrooms featuring minibars and flat-screen televisions. Satellite programming provides entertainment, and wired and wireless Internet access is available for a surcharge. Private bathrooms with shower/tub combinations feature complimentary toiletries and hair dryers. Conveniences include phones, as well as safes and desks.</p><p>Dining : Grab a bite to eat at the The Bayview, a restaurant where you can take in the ocean view, or stay in and take advantage of 24-hour room service. Relax with your favorite drink at the bar/lounge or the poolside bar. Continental breakfasts are available daily from 7:00 AM to 10:30 AM for a fee.</p><p>CheckIn Instructions : <ul>  <li>Extra-person charges may apply and vary depending on property policy</li><li>Government-issued photo identification and a credit card, debit card, or cash deposit may be required at check-in for incidental charges</li><li>Special requests are subject to availability upon check-in and may incur additional charges; special requests cannot be guaranteed</li><li>The name on the credit card used at check-in to pay for incidentals must be the primary name on the guestroom reservation</li><li>This property accepts credit cards and debit cards; cash is not accepted</li><li>Please note that cultural norms and guest policies may differ by country and by property; the policies listed are provided by the property</li>  </ul></p><p>Special Instructions : This property offers transfers from the airport (surcharges may apply). Guests must contact the property with arrival details before travel, using the contact information on the booking confirmation. To make arrangements for check-in please contact the property at least 24 hours before arrival using the information on the booking confirmation. Guests must contact the property in advance for check-in instructions. Front desk staff will greet guests on arrival.  To register at this property, guests must provide photo identification with proof of address. Indian citizens must provide a valid photo identity card issued by the Government of India such as a driver s license, passport, voter ID card, or Aadhar card (PAN card not accepted); guests who are not citizens of India must present a valid passport and visa.</p>&nbsp;<br/><b>Disclaimer notification: Amenities are subject to availability and may be chargeable as per the hotel policy.</b>",
+                "HotelFacilities": [
+                    "24-hour front desk",
+                    "Safe-deposit box at front desk",
+                    "Smoke-free property",
+                    "Free self parking",
+                    "Conference space",
+                    "Free valet parking",
+                    "Hair salon",
+                    "Computer station",
+                    "Terrace",
+                    "Wheelchair accessible path of travel",
+                    "Conference space size (feet) - 6426",
+                    "Concierge services",
+                    "Wheelchair-accessible concierge desk",
+                    "Wheelchair-accessible path to elevator",
+                    "Wheelchair-accessible registration desk",
+                    "Wheelchair-accessible fitness center",
+                    "Wheelchair-accessible public washroom",
+                    "Well-lit path to entrance",
+                    "Stair-free path to entrance",
+                    "Free newspapers in lobby",
+                    "Wedding services",
+                    "24-hour fitness facilities",
+                    "Couples/private dining",
+                    "Luggage storage",
+                    "Express check-out",
+                    "Porter/bellhop",
+                    "Business center",
+                    "Dry cleaning/laundry service",
+                    "Proposal/romance packages available",
+                    "Pool umbrellas",
+                    "Number of meeting rooms - 1",
+                    "Conference space size (meters) - 597",
+                    "Wired Internet access - surcharge",
+                    "Limo or Town Car service available",
+                    "WiFi (surcharge)",
+                    "Number of bars/lounges - 1",
+                    "Number of spa tubs - 1",
+                    "Number of poolside bars - 1",
+                    "Number of outdoor pools - 1",
+                    "In-room accessibility (in select rooms)",
+                    "Wheelchair accessible parking",
+                    "Tours/ticket assistance",
+                    "Accessible bathroom (in select rooms)",
+                    "Rooftop terrace",
+                    "Airport transportation (surcharge)",
+                    "Wheelchair-accessible on-site restaurant",
+                    "Multilingual staff",
+                    "Breakfast available (surcharge)",
+                    "Wheelchair-accessible meeting spaces/business center",
+                    "Number of coffee shops/cafes - 1",
+                    "Laundry facilities",
+                    "elevator",
+                    "Fitness facilities",
+                    "Banquet hall",
+                    "Wheelchair accessible (may have limitations)"
+                ],
+                "Attractions": {
+                    "1) ": "Distances are displayed to the nearest 0.1 mile and kilometer. <br /> <p>Air India Building - 0.3 km / 0.2 mi <br /> Eros Theater - 0.7 km / 0.4 mi <br /> Mantralaya - 0.8 km / 0.5 mi <br /> Maharashtra State Assembly - 0.9 km / 0.6 mi <br /> MCGM Garden Oshiwara - 0.9 km / 0.6 mi <br /> Bombay High Court - 0.9 km / 0.6 mi <br /> Wankhede Stadium - 0.9 km / 0.6 mi <br /> Fashion Street Market - 1 km / 0.6 mi <br /> Flora Fountain - 1.1 km / 0.7 mi <br /> Jehangir Art Gallery - 1.2 km / 0.7 mi <br /> Chhatrapati Shivaji Maharaj Museum - 1.3 km / 0.8 mi <br /> Bombay Stock Exchange - 1.3 km / 0.8 mi <br /> Colaba Causeway - 1.3 km / 0.8 mi <br /> Maharashtra State Lawn Tennis Association - 1.4 km / 0.8 mi <br /> Horniman Circle Gardens - 1.5 km / 0.9 mi <br /> </p><p>The preferred airport for Hotel Marine Plaza Mumbai is Chhatrapati Shivaji International Airport (BOM) - 26.6 km / 16.5 mi </p>"
+                },
+                "Images": [
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5cnXBPA5qtgzmEk81OdW4gOACJSM44eMnSkPolkbCGAuYXSAtV2OK7KlaOwfI2631QF1VaVyrs+VdQmetE6LWYb2p0IU8z81Tk=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5cnXBPA5qtgzmEk81OdW4gOACJSM44eMnSkPolkbCGAuYXSAtV2OK7KlaOwfI2631QF1VaVyrs+VdQmetE6LWYb2p0IU8z81Tk=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5cnXBPA5qtgzmEk81OdW4gOACJSM44eMnSkPolkbCGAuYXSAtV2OK7KlaOwfI2631SAKfRlzZEzhX+UNPY0Nng0IxJ9iwJ4PzQ=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5cnXBPA5qtgzmEk81OdW4gOACJSM44eMnSkPolkbCGAuYXSAtV2OK7KlaOwfI2631RU1vgMy9U1O3ZQcqnMPqdrq1ZIKQlPM8ZfJH228zaBcg==",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5cnXBPA5qtgzmEk81OdW4gOACJSM44eMnSkPolkbCGAuYXSAtV2OK7KlaOwfI2631QlM77lCG6SK0mIanEqVBm2oYdu7vgFA2Y=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5cnXBPA5qtgzmEk81OdW4gOACJSM44eMnSkPolkbCGAuYXSAtV2OK7KpSqEMDg2h48+lQdpHOiZZcjM/5xmd+Z3LR577HnitkQQG5OY0NjLmQ==",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5cnXBPA5qtgzmEk81OdW4gOACJSM44eMnSkPolkbCGAuYXSAtV2OK7KpSqEMDg2h49beN0jd8u6yIEY4pMDIqYTyOQrS59YeqY=",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5cnXBPA5qtgzmEk81OdW4gOACJSM44eMnSkPolkbCGAuYXSAtV2OK7KpSqEMDg2h4/x09fiXn6BItC55HuIreJt",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5cnXBPA5qtgzmEk81OdW4gOACJSM44eMnSkPolkbCGAuYXSAtV2OK7KpSqEMDg2h49bvRfiHJypFlotnm2bkZfA7X32itRS9u0TQCk5EP3KbA==",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5cnXBPA5qtgzmEk81OdW4gOACJSM44eMnSkPolkbCGAuYXSAtV2OK7KpSqEMDg2h48R0aWuGgHOHZ0U3b8CZ6j1Af/YTBCQbdJV4Idw/FMIUw==",
+                    "https://api.tbotechnology.in/imageresource.aspx?img=FbrGPTrju5cnXBPA5qtgzmEk81OdW4gOACJSM44eMnSkPolkbCGAuYXSAtV2OK7KpSqEMDg2h48hy7CroInM+HACf4NMnGcwmOjn65kD2iEupfiui4K77w=="
+                ],
+                "Address": "29 Marine Drive, Mumbai 400020, Mumbai, 400 020, India",
+                "PinCode": "400 020",
+                "CityId": "144306",
+                "CountryName": "India",
+                "PhoneNumber": "91-22-22851212",
+                "FaxNumber": "91-22-2828585",
+                "Map": "18.931448|72.82293",
+                "HotelRating": 4,
+                "CityName": "Mumbai",
+                "CountryCode": "IN",
+                "CheckInTime": "2:00 PM",
+                "CheckOutTime": "12:00 PM"
+            }
+        ]
+    },
+    "searchResults": {
+        "Status": {
+            "Code": 200,
+            "Description": "Successful"
+        },
+        "HotelResult": [
+            {
+                "HotelCode": "1011651",
+                "Currency": "INR",
+                "Rooms": [
+                    {
+                        "Name": [
+                            "Elite Room,1 Double Bed,NonSmoking"
+                        ],
+                        "BookingCode": "1011651!TB!1!TB!9ad31627-8f68-11ef-bd52-fa10024cd9fd!TB!AFF!",
+                        "Inclusion": "Free valet parking,All meals",
+                        "DayRates": [
+                            [
+                                {
+                                    "BasePrice": 5632.95
+                                },
+                                {
+                                    "BasePrice": 5632.95
+                                },
+                                {
+                                    "BasePrice": 5632.95
+                                },
+                                {
+                                    "BasePrice": 5632.95
+                                },
+                                {
+                                    "BasePrice": 5632.16
+                                }
+                            ]
+                        ],
+                        "TotalFare": 31928.13,
+                        "TotalTax": 3764.18,
+                        "RoomPromotion": [
+                            "Member’s exclusive price"
+                        ],
+                        "CancelPolicies": [
+                            {
+                                "FromDate": "20-10-2024 00:00:00",
+                                "ChargeType": "Percentage",
+                                "CancellationCharge": 100
+                            }
+                        ],
+                        "MealType": "Full_Board",
+                        "IsRefundable": false,
+                        "WithTransfers": false,
+                        "BeddingGroup": "Bedding type is not guaranteed and it will be allocated by hotel based on availability"
+                    }
+                ]
+            },
+            {
+                "HotelCode": "1016348",
+                "Currency": "INR",
+                "Rooms": [
+                    {
+                        "Name": [
+                            "Executive Suite, 2 Twin Beds,NonSmoking"
+                        ],
+                        "BookingCode": "1016348!TB!1!TB!9ad31627-8f68-11ef-bd52-fa10024cd9fd!TB!AFF!",
+                        "Inclusion": "Free valet parking,Free self parking",
+                        "DayRates": [
+                            [
+                                {
+                                    "BasePrice": 13642.02
+                                },
+                                {
+                                    "BasePrice": 13642.02
+                                },
+                                {
+                                    "BasePrice": 13642.02
+                                },
+                                {
+                                    "BasePrice": 13642.02
+                                },
+                                {
+                                    "BasePrice": 13641.23
+                                }
+                            ]
+                        ],
+                        "TotalFare": 80871.96,
+                        "TotalTax": 12662.68,
+                        "RoomPromotion": [
+                            "Member’s exclusive price"
+                        ],
+                        "CancelPolicies": [
+                            {
+                                "FromDate": "20-10-2024 00:00:00",
+                                "ChargeType": "Fixed",
+                                "CancellationCharge": 0
+                            },
+                            {
+                                "FromDate": "21-11-2024 00:00:00",
+                                "ChargeType": "Percentage",
+                                "CancellationCharge": 100
+                            }
+                        ],
+                        "MealType": "Room_Only",
+                        "IsRefundable": true,
+                        "WithTransfers": false
+                    }
+                ]
+            }
+        ]
+    }
+}

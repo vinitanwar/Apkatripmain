@@ -18,6 +18,7 @@ use App\Http\Controllers\SightseeingController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\BusControllerSearch;
+use App\Http\Controllers\HotelControllerSearchRes;
 
 Route::apiResource('v1/airports', AirportController::class);
 Route::apiResource('v1/topairports', TopPorts::class);
@@ -32,7 +33,7 @@ Route::apiResource('v1/blog', BlogController::class);
 Route::get('v1/cities', [TBOController::class, 'fetchCities']);
 Route::post('v1/hotels', [TBOController::class, 'fetchHotels']);
 
-
+Route::post('v1/hotels/search', [HotelControllerSearchRes::class, 'searchHotels']);
 // routes/api.php
 
 
