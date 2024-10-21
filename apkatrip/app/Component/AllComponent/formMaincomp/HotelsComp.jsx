@@ -28,7 +28,7 @@ const [numberOfRoom,setNumberOfRoom]=useState(1)
 
   const handleCitySelect = (city) => {
      setcity(city)
-     console.log(city)
+    
      setIsVisible(""); 
   };
 

@@ -24,7 +24,7 @@ const state=useSelector(state=>state.sightseeingslice)
 dispatch(getSightSeeingapi({CityId,CountryCode:"IN",TravelStartDate:FromDate,FromDate,ToDate,AdultCount:1,ChildCount:0,ChildAge:null,
   PreferredLanguage:0,PreferredCurrency:"INR",IsBaseCurrencyRequired:false,EndUserIp:"223.178.208.152",BookingMode:5}))
     },[])
-console.log(state)
+
 const handelsith=(info)=>{
 
 dispatch(getseeingApi({EndUserIp:"223.178.208.152",ResultIndex:info.ResultIndex,TraceId:state.info.Response.TraceId}))

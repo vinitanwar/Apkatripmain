@@ -41,10 +41,9 @@ console.log(allhotel && !allhotel.isLoading && allhotel.info && allhotel.info.Ho
 {allhotel && !allhotel.isLoading && allhotel.info && allhotel.info.Hotels && allhotel.info.Hotels.map((info)=>{
   
   return(<div className='bg-gray-200 p-2 px-5 rounded-lg shadow-md '>
+    
      <h3 className='text-center p-2 text-2xl font-bold '>{info.HotelName}</h3>
      <div>
-
-
      </div>
   <p className='text-end'> Address:<span className='text-green-500'>{info.Address}</span></p>
 
