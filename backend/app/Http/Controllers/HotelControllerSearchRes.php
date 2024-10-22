@@ -37,9 +37,9 @@ class HotelControllerSearchRes extends Controller
             
             // Extract only HotelCodes from the response
             $hotelCodes = array_column($hotelData['Hotels'], 'HotelCode');
-    
+
             // Convert array to a comma-separated string
-            $limitedHotelCodes = array_slice($hotelCodes, 0, 5);
+            $limitedHotelCodes = array_slice($hotelCodes, 0, 18);
     
             $hotelCodesString = implode(',', $limitedHotelCodes);
     
@@ -83,12 +83,31 @@ class HotelControllerSearchRes extends Controller
             ]);
     
             $hotelSearchResults = json_decode($response3->getBody()->getContents(), true);
-    
+
+            $filteredResults = array_filter($hotelSearchResults['HotelResult'], function ($hotelResult) use ($hotelDetails) {
+                // Extract hotel codes from the hotel details
+                $hotelDetailCodes = array_column($hotelDetails['HotelDetails'], 'HotelCode');
+            
+                // Check if the hotel result's code matches any from the hotel details
+                return in_array($hotelResult['HotelCode'], $hotelDetailCodes);
+            });
+            
+            // Map the filtered results to include additional hotel details
+            $enrichedResults = array_map(function ($hotelResult) use ($hotelDetails) {
+                // Find the matching hotel details based on HotelCode
+                $hotelDetail = current(array_filter($hotelDetails['HotelDetails'], function ($detail) use ($hotelResult) {
+                    return $detail['HotelCode'] === $hotelResult['HotelCode'];
+                }));
+            
+                // Merge hotel details into the hotel result
+                return array_merge($hotelResult, ['HotelDetails' => $hotelDetail]);
+            }, $filteredResults);
+            
+            // Return the enriched results with both search and detail information
             return response()->json([
-                'hotelDetails' => $hotelDetails,
-                'searchResults' => $hotelSearchResults
+                'filteredResults' => $enrichedResults
             ]);
-    
+            
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
