@@ -19,6 +19,8 @@ class HotelControllerSearchRes extends Controller
             'adults' => 'required|integer|min:1',
             'children' => 'required|integer|min:0',
             'guestNationality' => 'required|string',
+            "page"=>'required|integer',
+           
         ]);
     
         try {

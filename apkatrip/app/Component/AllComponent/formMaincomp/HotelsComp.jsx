@@ -81,7 +81,7 @@ const handelreturn2=(newRange)=>{
     
     const r_localDateo = new Date(checko.getTime() + offset);
     const checkoutdate = r_localDateo.toISOString().slice(0, 19);
-route.push(`/hotels/cityName=${city.Name}&citycode=${city.Code}&checkin=${checkindate}&checkout=${checkoutdate}&adult=${adultcount}&child=${childcount}&roomes=${numberOfRoom}`)
+route.push(`/hotels/cityName=${city.Name}&citycode=${city.Code}&checkin=${checkindate}&checkout=${checkoutdate}&adult=${adultcount}&child=${childcount}&roomes=${numberOfRoom}&page=0&star=0`)
   }
 
 
