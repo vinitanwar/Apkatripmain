@@ -39,7 +39,7 @@ class HotelControllerSearchRes extends Controller
             $hotelCodes = array_column($hotelData['Hotels'], 'HotelCode');
 
             // Convert array to a comma-separated string
-            $limitedHotelCodes = array_slice($hotelCodes, 0, 18);
+            $limitedHotelCodes = array_slice($hotelCodes, 0, 20);
     
             $hotelCodesString = implode(',', $limitedHotelCodes);
     
