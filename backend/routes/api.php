@@ -38,7 +38,7 @@ Route::post('v1/hotels/search', [HotelControllerSearchRes::class, 'searchHotels'
 
 
 
-
+ 
 
 
 Route::post('v1/hotelslist', [HotelController::class, 'getHotelDetails']);

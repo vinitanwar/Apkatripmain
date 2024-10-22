@@ -19,6 +19,8 @@ class HotelControllerSearchRes extends Controller
             'adults' => 'required|integer|min:1',
             'children' => 'required|integer|min:0',
             'guestNationality' => 'required|string',
+            "page"=>'required|integer',
+           
         ]);
     
         try {
@@ -39,7 +41,8 @@ class HotelControllerSearchRes extends Controller
             $hotelCodes = array_column($hotelData['Hotels'], 'HotelCode');
     
             // Convert array to a comma-separated string
-            $limitedHotelCodes = array_slice($hotelCodes, 0, 5);
+            $num=25*(int)$validated["page"];
+            $limitedHotelCodes = array_slice($hotelCodes, $num, 25);
     
             $hotelCodesString = implode(',', $limitedHotelCodes);
     
@@ -83,10 +86,11 @@ class HotelControllerSearchRes extends Controller
             ]);
     
             $hotelSearchResults = json_decode($response3->getBody()->getContents(), true);
-    
+    $len= floor(count($hotelCodes)/25);
             return response()->json([
                 'hotelDetails' => $hotelDetails,
-                'searchResults' => $hotelSearchResults
+                'searchResults' => $hotelSearchResults,
+                'len'=>$len
             ]);
     
         } catch (\Exception $e) {
