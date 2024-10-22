@@ -72,15 +72,15 @@ const handelreturn2=(newRange)=>{
     const check= new Date(arivitime);
    
     
-    const r_localDate = new Date(check.getTime() + offset);
-    const checkindate = r_localDate.toISOString().slice(0, 19); 
+    const r_localDate = new Date(check.getTime() );
+    const checkindate = r_localDate.toISOString().slice(0, 10); 
 
 
     const checko= new Date(checkOut);
    
     
-    const r_localDateo = new Date(checko.getTime() + offset);
-    const checkoutdate = r_localDateo.toISOString().slice(0, 19);
+    const r_localDateo = new Date(checko.getTime());
+    const checkoutdate = r_localDateo.toISOString().slice(0, 10);
 route.push(`/hotels/cityName=${city.Name}&citycode=${city.Code}&checkin=${checkindate}&checkout=${checkoutdate}&adult=${adultcount}&child=${childcount}&roomes=${numberOfRoom}&page=0&star=0`)
   }
 

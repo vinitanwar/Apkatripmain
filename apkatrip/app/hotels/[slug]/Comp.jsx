@@ -23,8 +23,8 @@ const cityName=params.get("cityName")
 
 const checkIn=params.get("checkin")
 const checkOut=params.get("checkout")
-const adults=params.get("adult")
-const children=params.get("child")
+const adults=Number(params.get("adult"))
+const children=Number(params.get("child"))
 const roomes=params.get("roomes")
 const page=params.get("page")
 
@@ -50,13 +50,14 @@ useEffect(()=>{
 dispatch(getAllhotelsapi({cityCode,checkIn,checkOut,adults,children,page}))
 },[])
 useEffect(()=>{
-setallhotels(allhoteldata && !allhoteldata.isLoading && allhoteldata.info && allhoteldata.info.hotelDetails && allhoteldata.info.hotelDetails.HotelDetails)
+setallhotels(allhoteldata && !allhoteldata.isLoading && allhoteldata.info && allhoteldata.info.filteredResults
+  && allhoteldata.info.filteredResults)
 sethotalbackup(allhoteldata)
 },[allhoteldata])
 
 const handelRatingFilter=(e)=>{
   // const newdata= hotalbackup.info.hotelDetails.HotelDetails ||     e.target.value;
-const newdata=hotalbackup.info.hotelDetails.HotelDetails.filter((data)=>data.HotelRating==e.target.value)
+const newdata=hotalbackup.info.filteredResults.filter((data)=>data.HotelDetails.HotelRating==e.target.value)
 setallhotels(newdata)
   setpagination(false)
 }
@@ -84,6 +85,10 @@ const resetfilter=()=>{
  setpagination(true)
 
 }
+
+console.log(allhoteldata)
+
+
   return (
    <>
    <HotelComp />
@@ -118,13 +123,15 @@ const resetfilter=()=>{
     </div>}
 {allhotel && !allhoteldata.isLoading && allhotel.map((hotel,index_num)=>{
   
-  return(<div
+  return(
+  <div
     key={hotel.id}
     className="myshadow bg-white border hover:border-blue-600  mb-5"
   >
-    {showimg==index_num &&  <div className='fixed top-16  left-0 z-40 w-full  h-[90vh] border-8 border-white bg-white overflow-scroll grid grid-cols-3 gap-2'>
+    {showimg==index_num &&
+      <div className='fixed top-16  left-0 z-40 w-full  h-[90vh] border-8 border-white bg-white overflow-scroll grid grid-cols-3 gap-2'>
 <MdOutlineCancel onClick={()=>setshowImg(null)} className='fixed top-24 cursor-pointer right-10 text-orange-500 text-5xl' />
-{hotel.Images.map((imgs)=>{
+{hotel.HotelDetails.Images.map((imgs)=>{
   return(
 <img src={imgs}  className='h-[25rem] w-full'/>
   )
@@ -135,7 +142,7 @@ const resetfilter=()=>{
         <div className="relative">
           <div className="relative">
             <img
-              src={hotel.Images ?(hotel.Images[0] || "/Images/not_found_img.png"):"/Images/not_found_img.png"}
+              src={hotel.HotelDetails.Images ?(hotel.HotelDetails.Images[0] || "/Images/not_found_img.png"):"/Images/not_found_img.png"}
               alt="hotelImg"
              
               className="object-cover w-[35rem] h-[15rem] rounded-md"
@@ -150,7 +157,7 @@ const resetfilter=()=>{
           </div>
 
           <div className="flex justify-center md:justify-start mt-2 space-x-2">
-            {hotel.Images && hotel.Images.slice(1, 5).map((image, index) => (
+            {hotel.HotelDetails.Images && hotel.HotelDetails.Images.slice(1, 5).map((image, index) => (
               <div key={index} className="relative rounded-sm">
                 <img
                   src={image}
@@ -170,25 +177,25 @@ const resetfilter=()=>{
 
       <div className="flex-1 pl-0 md:pl-5">
         <div className=" my-5 md:my-0 flex justify-between items-center">
-          <p className="text-base md:text-2xl font-black">{hotel.HotelName}</p>
+          <p className="text-base md:text-2xl font-black">{hotel.HotelDetails.HotelName}</p>
           <div>
             <div className="flex items-center">
               <span className="bg-blue-500 text-white px-2 text-sm rounded-full">
-                {hotel.HotelRating} 
+                {hotel.HotelDetails.HotelRating} 
               </span>
               <span className=" ml-2 text-blue-600">
-                {hotel.HotelRating}
+                {hotel.HotelDetails.HotelRating}
               </span>
             </div>
             <div className="hidden md:flex items-center justify-center mt-2">
-              {renderStars(hotel.HotelRating)}
+              {renderStars(hotel.HotelDetails.HotelRating)}
             </div>
           </div>
         </div>
 
         <div className="text-gray-500">
-          <span className="text-blue-600">{hotel.Address}</span> |{" "}
-          {hotel.distance}
+          <span className="text-blue-600">{hotel.HotelDetails.Address}</span> |{" "}
+          {hotel.HotelDetails.distance}
         </div>
 
         <div className="mt-2 hidden md:flex space-x-4 text-gray-500">
@@ -201,29 +208,46 @@ const resetfilter=()=>{
             </span>
           ))} */}
         </div>
-
-         <div className="flex items-end justify-between">
+       
+        {hotel.Rooms.map((items_price)=>{
+  return(
+    <>
+     <div className="flex items-end justify-between">
         <div className="mt-4 ">
-          <p className="text-xl font-black">{hotel.price}</p>
+          <p className="text-xl font-black">{Math.floor(items_price.TotalFare-items_price.TotalTax)}</p>
           <p className="text-gray-500">
-            + {hotel.taxes} taxes & fees
+            + {items_price.TotalTax} taxes & fees
           </p>
           <p className="text-sm text-gray-500 mt-2">Per Night</p>
         </div>
-        <Link href="/hotelSearchCheckin" className="bg-orange-600 text-white rounded-full w-28 h-8 flex items-center justify-center">
+        <Link href={`/hotelSearchCheckin/cityName=${cityName}&checkin=${checkIn}&checkout=${checkOut}&adult=${adults}&child=${children}&roomes=${roomes}&hotelcode=${hotel.HotelCode}`} className="bg-orange-600 text-white rounded-full w-28 h-8 flex items-center justify-center">
                 <span className="text-xs flex items-center gap-2">
                   View Room
                 </span>
               </Link>
         </div>
-      </div>
-    </div>
-    <div className="hidden md:block  bg-[#ECF5FE] px-5 py-2 text-sm shadow-lg">
+        <div className="hidden md:block  bg-[#ECF5FE] px-5 py-2 text-sm shadow-lg">
       <span className="text-gray-700">
         Exclusive offer on Canara Bank Credit Cards. Get INR 241 off
       </span>
     </div>
-  </div>)
+    </>
+  )
+}) }
+       
+       
+        </div>
+
+        </div>
+
+      
+    
+   
+   
+  
+    
+    
+</div>)
 })
 }
 {  hotalbackup && hotalbackup.info&& seepagination && hotalbackup.info.len &&

@@ -34,6 +34,8 @@ Route::get('v1/cities', [TBOController::class, 'fetchCities']);
 Route::post('v1/hotels', [TBOController::class, 'fetchHotels']);
 
 Route::post('v1/hotels/search', [HotelControllerSearchRes::class, 'searchHotels']);
+Route::post('v1/hotels/hotel_single', [HotelControllerSearchRes::class, 'singleHotelget']);
+
 // routes/api.php
 
 
