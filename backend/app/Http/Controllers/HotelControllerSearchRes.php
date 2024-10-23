@@ -41,7 +41,9 @@ class HotelControllerSearchRes extends Controller
             $hotelCodes = array_column($hotelData['Hotels'], 'HotelCode');
 
             // Convert array to a comma-separated string
-            $limitedHotelCodes = array_slice($hotelCodes, 0, 20);
+            $lant=count($hotelCodes)/50;
+            $pages=$validated["page"] *50;
+            $limitedHotelCodes = array_slice($hotelCodes, $pages, 50);
     
             $hotelCodesString = implode(',', $limitedHotelCodes);
     
@@ -107,7 +109,7 @@ class HotelControllerSearchRes extends Controller
             
             // Return the enriched results with both search and detail information
             return response()->json([
-                'filteredResults' => $enrichedResults
+                'filteredResults' => $enrichedResults,"len"=>$lant
             ]);
             
         } catch (\Exception $e) {

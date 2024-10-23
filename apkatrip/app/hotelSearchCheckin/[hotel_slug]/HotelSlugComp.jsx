@@ -7,7 +7,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 
-import { MdDinnerDining, MdRoomService,MdOutlineBreakfastDining,MdOutlineLocalLaundryService  ,MdPool ,MdFitnessCenter  } from "react-icons/md";
+import { MdDinnerDining, MdRoomService,MdOutlineBreakfastDining,MdOutlineLocalLaundryService  ,MdPool ,MdFitnessCenter 
+  ,MdOutlineHealthAndSafety
+ } from "react-icons/md";
 import { TbAirConditioning } from "react-icons/tb";
 import { GiElevator,GiCoffeeCup  } from "react-icons/gi";
 
@@ -236,8 +238,9 @@ console.log(hotelinfo && hotelinfo.info && hotelinfo.info && hotelinfo.info)
             service_items.toLowerCase().includes("pools")?<MdPool      className='text-xl' />: 
             service_items.toLowerCase().includes("fitness")?<MdFitnessCenter      className='text-xl' />: 
             service_items.toLowerCase().includes("coffee")?<GiCoffeeCup       className='text-xl' />: 
+            service_items.toLowerCase().includes("health")?<MdOutlineHealthAndSafety       className='text-xl' />: 
 
-         
+            
      <MdRoomService />} {service_items}</p>
 
   ))}

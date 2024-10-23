@@ -4,7 +4,7 @@ import { getAllhotelsapi } from '@/app/Component/Store/slices/hotelsSlices';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { FaShareAlt, FaStar, FaFilter, FaTimes } from "react-icons/fa";
-import { MdOutlineCancel } from "react-icons/md";
+import { MdOutlineCancel,MdFilterList  } from "react-icons/md";
 import { FiRefreshCcw } from "react-icons/fi";
 
 
@@ -62,12 +62,9 @@ setallhotels(newdata)
   setpagination(false)
 }
 
-const handelNextPrev=(item)=>{
-  if(page==item){}
-  else{routes.push(`/hotels/cityName=${cityName}&citycode=${cityCode}&checkin=${checkIn}&checkout=${checkOut}&adult=${adults}&child=${children}&roomes=${roomes}&page=${item}`)
-}
 
-}
+
+
 const handelNextpage=()=>{
   if(page>=hotalbackup.info.len-1){}
   else{  routes.push(`/hotels/cityName=${cityName}&citycode=${cityCode}&checkin=${checkIn}&checkout=${checkOut}&adult=${adults}&child=${children}&roomes=${roomes}&page=${Number(page)+1}`)
@@ -86,32 +83,25 @@ const resetfilter=()=>{
 
 }
 
-console.log(allhoteldata)
+console.log(hotalbackup,"sdfsdfd",seepagination)
 
 
   return (
    <>
    <HotelComp />
-   <div className='p-2 flex gap-2 relative '>
-    <div className='w-1/5 sticky top-28 left-2 h-[60vh] bg-red-300'>
- <div>
-  <p className='font-bold'>By Rating.</p>
-  <div className='flex flex-col gap-1 px-5 py-2'>
-    <div className='flex items-center gap-1' ><input type="radio" name="rating" id="rating1" value="1"   onChange={(e)=>handelRatingFilter(e)} /> <label htmlFor="rating1" className='flex items-center gap-1'><FaStar className='text-orange-500' /> 1 Star </label></div>
-    <div className='flex items-center gap-1'><input type="radio" name="rating" id="rating2" value="2" onChange={(e)=>handelRatingFilter(e)}/> <label htmlFor="rating2" className='flex items-center gap-1'><FaStar className='text-orange-500' /> 2 Star </label></div>
-    <div className='flex items-center gap-1'><input type="radio" name="rating" id="rating3" value="3" onChange={(e)=>handelRatingFilter(e)}/> <label htmlFor="rating3" className='flex items-center gap-1'><FaStar className='text-orange-500' /> 3 Star </label></div>
-    <div className='flex items-center gap-1'><input type="radio" name="rating" id="rating4" value="4" onChange={(e)=>handelRatingFilter(e)}/> <label htmlFor="rating4" className='flex items-center gap-1'><FaStar className='text-orange-500' /> 4 Star </label></div>
-    <div className='flex items-center gap-1'><input type="radio" name="rating" id="rating5" value="5" onChange={(e)=>handelRatingFilter(e)}/> <label htmlFor="rating5" className='flex items-center gap-1'><FaStar className='text-orange-500' /> 5 Star </label></div>
-
-  </div>
-<div className='flex justify-end '>
-<button onClick={resetfilter} className='flex gap-2 px-4 py-2 text-white bg-[#42A6EF] items-center rounded-md'>Refresh <FiRefreshCcw /></button>
-
+   <div className='shad p-1 mx-5 mt-4 myshadow bg-white border hover:border-blue-600  flex items-center'>
+<MdFilterList  className='text-gray-600 text-2xl ' />
+<div className='text-orange-400'>
+  Star All
 </div>
 
- </div>
-    </div>
-   <div className='w-4/5'>
+</div>
+   <div className='p-2 flex gap-2 relative '>
+      
+
+
+
+   <div className='w-full'>
 {allhoteldata && allhoteldata.isLoading && <div className='h-[70vh] flex justify-center items-center'>
   
   <h4>Loading... </h4>
@@ -250,19 +240,15 @@ console.log(allhoteldata)
 </div>)
 })
 }
-{  hotalbackup && hotalbackup.info&& seepagination && hotalbackup.info.len &&
-<div className='flex  gap-2 overflow-x-auto'>
-  <div className={` text-white p-1 px-2 rounded-lg  ${page==0?"bg-gray-600":"bg-black cursor-pointer"}`} onClick={handelPrevpage}>Prev</div>
-{Array.from({ length: hotalbackup.info.len }, (_, index) =>{
-  return(
-    <div className={` text-white p-1 px-3 rounded-lg cursor-pointer ${page==index?"bg-green-700":"bg-black cursor-pointer"}`} onClick={()=>handelNextPrev(index)}>
-      {index+1}
-    </div>
-  )
-} )   }
-  <div className={` text-white p-1 px-2 rounded-lg  ${page==hotalbackup.info.len-1?"bg-gray-600":"bg-black cursor-pointer"}`} onClick={handelNextpage} >Next</div>
 
-</div>} 
+{  hotalbackup && hotalbackup.info && seepagination &&
+
+<div className='flex justify-between p-2 px-5'>
+  <button className={`${page==0?"bg-gray-700 cursor-not-allowed":"bg-black" } text-white font-semibold p-2 px-3 rounded-md `} onClick={handelPrevpage}> Prev</button>
+  <button className={`${page>=hotalbackup.info.len-1?"bg-gray-700":"bg-black" } text-white font-semibold p-2 px-3 rounded-md `} onClick={handelNextpage}> Next</button>
+
+</div>
+} 
 </div> 
 
 
@@ -274,5 +260,6 @@ console.log(allhoteldata)
    </>
   )
 }
+
 
 export default Comp
