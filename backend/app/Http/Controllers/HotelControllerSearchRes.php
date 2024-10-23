@@ -243,4 +243,22 @@ class HotelControllerSearchRes extends Controller
      }
     
 
+function preBooking(Request $request){
+    $validated = $request->validate([
+        'BookingCode'=>'required',
+       
+          
+         
+      ]);
+
+     
+      $response1 = Http::withBasicAuth('Apkatrip', 'Apkatrip@1234')->post('https://affiliate.tektravels.com/HotelAPI/PreBook', [
+        "BookingCode" => $validated['BookingCode']
+
+    ]);
+    $response1= json_decode($response1->getBody()->getContents(), true);
+
+return $response1;
+}
+
 }

@@ -5,8 +5,12 @@ import { getSingleHotel } from '@/app/Component/Store/slices/getHotelSlice';
 import { useDispatch, useSelector } from 'react-redux'
 import Image from "next/image";
 import Link from "next/link";
-import { MdDinnerDining, MdRoomService } from "react-icons/md";
+
+
+import { MdDinnerDining, MdRoomService,MdOutlineBreakfastDining,MdOutlineLocalLaundryService  ,MdPool ,MdFitnessCenter  } from "react-icons/md";
 import { TbAirConditioning } from "react-icons/tb";
+import { GiElevator,GiCoffeeCup  } from "react-icons/gi";
+
 import {
     FaCheck,
     FaChevronCircleRight,
@@ -16,10 +20,18 @@ import {
     FaShareAlt,
     FaStar,
     FaTimes,
+    FaWifi 
   } from "react-icons/fa";
+  import { FaBath ,FaCarSide } from "react-icons/fa6";
+
+  import { IoWifiOutline } from "react-icons/io5";
+  import { RiWheelchairFill } from "react-icons/ri";
+  import { PiBowlSteamDuotone } from "react-icons/pi";
+
 
 
   import { ImCancelCircle } from "react-icons/im";
+import { gethotelPreBookingApi } from '@/app/Component/Store/slices/hotelpreBookslice';
 
 
 const HotelSlugComp = ({slugs}) => {
@@ -38,7 +50,9 @@ const state=useSelector(state=>state.gethotelslice)
 const [hotelinfo,sethotelinfo]=useState()
 const [isOpenSecond,setisopen]=useState(false)
 const [handelpricesection,sethandelpriceSection]=useState(false)
-const [description,setDescription]=useState(false)
+const [description,setDescription]=useState(false);
+const [showingsection,setShowingsection]=useState("")
+
 
 useEffect(()=>{
   dispatch(getSingleHotel({HotelCode,checkIn,checkOut,adults,children,roomes}))
@@ -48,6 +62,11 @@ useEffect(()=>{
    
     sethotelinfo(state)
 },[state])
+const handelprebooking=(BookingCode)=>{
+dispatch(gethotelPreBookingApi({BookingCode}))
+}
+
+
 console.log(hotelinfo && hotelinfo.info && hotelinfo.info && hotelinfo.info)
   return (
 <>
@@ -79,7 +98,7 @@ console.log(hotelinfo && hotelinfo.info && hotelinfo.info && hotelinfo.info)
         { hotelinfo && !hotelinfo.isLoading &&  hotelinfo.info && hotelinfo.info.hoteldetail1 &&
          <>
        <div className="p-6 bg-white rounded-3xl flex  myshadow">
-          <div className="w-2/3">
+          <div className="w-2/3 relative">
             <div className="flex items-center justify-between mb-5" id="WBTH">
               <h1 className="text-2xl font-bold flex items-center gap-4">
               {hotelinfo.info.hoteldetail1[0].HotelName}
@@ -198,6 +217,33 @@ console.log(hotelinfo && hotelinfo.info && hotelinfo.info && hotelinfo.info)
                 </li>
               </ul>
             </div>
+ {handelpricesection=="services"&&
+ <div className='absolute top-0 left-0 h-full w-full bg-white '>
+ 
+    <ImCancelCircle className='absolute top-0 right-10 text-3xl ' onClick={()=>sethandelpriceSection("")}/>
+  
+  <div className='grid grid-cols-3  p-4 overflow-y-auto h-full w-full'>
+  {hotelinfo.info.hoteldetail1[0].HotelFacilities.map((service_items)=>(
+
+     <p className='flex gap-2 my-2 items-center'> {service_items.toLowerCase().includes("wifi")?<FaWifi  /> :
+     
+     service_items.toLowerCase().includes("wheelchair")?<RiWheelchairFill className='text-xl' />: 
+     service_items.toLowerCase().includes("breakfast")?<MdOutlineBreakfastDining  className='text-xl' />: 
+      service_items.toLowerCase().includes("bathroom")?<FaBath   className='text-xl' />: 
+            service_items.toLowerCase().includes("parking")?<FaCarSide    className='text-xl' />: 
+            service_items.toLowerCase().includes("elevator")?<GiElevator    className='text-xl' />: 
+            service_items.toLowerCase().includes("laundry")?<MdOutlineLocalLaundryService     className='text-xl' />: 
+            service_items.toLowerCase().includes("pools")?<MdPool      className='text-xl' />: 
+            service_items.toLowerCase().includes("fitness")?<MdFitnessCenter      className='text-xl' />: 
+            service_items.toLowerCase().includes("coffee")?<GiCoffeeCup       className='text-xl' />: 
+
+         
+     <MdRoomService />} {service_items}</p>
+
+  ))}
+  </div>
+  </div>}
+
           </div>
           <div className="w-1/3  sticky top-24  h-full  ">
             <div className="mb-5 border-2 rounded-2xl p-3">
@@ -226,12 +272,13 @@ Rooms[0].TotalTax)}</p>
 Rooms[0].TotalTax} taxes & fees</p>
               </div>
               <div className="mt-5 flex items-center">
-                <Link
-                  href="/hotelbooking"
+                <button
+                onClick={()=>handelprebooking(hotelinfo.info.hoteldetail2[0].
+                  Rooms[0].BookingCode)}
                   className="px-5 py-2 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700"
                 >
                   BOOK THIS NOW
-                </Link>
+                </button>
                 <button className="ml-8 text-blue-600" onClick={()=>sethandelpriceSection("price")}>Price List</button>
               </div>
             </div>
@@ -300,22 +347,6 @@ Rooms[0].TotalFare}</p>
 }
 
 
-{handelpricesection=="services" &&
-            <div className='absolute top-0 h-full overflow-y-scroll w-full bg-white p-4'>
-             <p className='text-center my-2 text-2xl'>Services List </p>
-            <ImCancelCircle className='absolute top-0 right-0 text-3xl ' onClick={()=>sethandelpriceSection("")}/>
-            <div className='grid grid-cols-3   gap-4 '>
-            {hotelinfo.info.hoteldetail1[0].HotelFacilities.map((info_p,indp)=>(
-                <div className='  my-4'>
-                  <FaCheck className='h-8 w-8 inline' /> {info_p}
-                </div>
-                ))}
-                 
-               
-                </div>
-
-          </div>
-}
           </div>
 
          
@@ -347,7 +378,7 @@ Rooms[0].TotalFare}</p>
          
         </div>
 
-      {/*   <div className="p-6 bg-white rounded-lg my-5 myshadow">
+     {/*    <div className="p-6 bg-white rounded-lg my-5 myshadow">
           <div className="">
             <div>
               <div className="flex justify-between items-center">
@@ -695,25 +726,25 @@ Rooms[0].TotalFare}</p>
           <div className="flex gap-10 mt-5">
             {" "}
             <div className="flex justify-center items-center w-4/6">
-             
+             <pre></pre>
               <iframe 
-  width="600" 
+              width="600" 
   height="450" 
   allowFullScreen=""
    loading="lazy"
  referrerPolicy="no-referrer-when-downgrade"
    className="w-full h-96 md:w-3/4 md:h-[475px] lg:w-full"
-  src={`https://maps.google.com/maps?q='${hotelinfo.info.hoteldetail1[0].Map.split("|")[0]}','${hotelinfo.info.hoteldetail1[0].Map.split("|")[1]}'&hl=es&z=14&amp;output=embed`}
+  
+  src={`http://maps.google.com/maps?q=${hotelinfo.info.hoteldetail1[0].Map.split("|")[0]},${hotelinfo.info.hoteldetail1[0].Map.split("|")[1]}&z=15&output=embed`}
  >
  </iframe>
- {console.log(`https://maps.google.com/maps?q='${hotelinfo.info.hoteldetail1[0].Map.split("|")[0]}','${hotelinfo.info.hoteldetail1[0].Map.split("|")[1]}'&hl=es&z=14&amp;output=embed`)}
             </div>
             <div className="w-2/6">
               <div>
                 <div className="">
                   <div
                     className="selected flex items-center gap-4 cursor-pointer py-5 border-b"
-                    onClick={() => toggleSection("landmarks")}
+                    onClick={() => setShowingsection("contact")}
                   >
                     <Image
                       src="/Images/location2.webp"
@@ -722,73 +753,56 @@ Rooms[0].TotalFare}</p>
                       height={32}
                     />
                     <p className="ml-2 flex w-full justify-between items-center">
-                      <span>Key Landmarks</span>
-                      {/* {openSections.landmarks ? (
+                      <span>Contacts</span>
+                      {showingsection=="contact"  ? (
                         <FaChevronDown />
                       ) : (
                         <FaChevronRight />
-                      )} */}
+                      )}
                     </p>
                   </div>
-                  {/* {openSections.landmarks && (
+                  {showingsection=="contact" && (
                     <ul className="space-y-4 w-full overflow-hidden h-[200px] custom-scrollbar overflow-y-auto p-3">
-                      {locations.map((location) => (
+                     
                         <li key={location.id}>
                           <span className="flex items-center gap-4">
-                            <input
-                              type="checkbox"
-                              id={location.id}
-                              className=""
-                            />
-                            <label
-                              htmlFor={location.id}
-                              className="flex w-full items-center cursor-pointer"
-                            >
-                              <Image
-                                src={location.imageSrc}
-                                alt="image"
-                                width={50}
-                                height={50}
-                                className="w-12 h-12 object-cover rounded"
-                              />
-                              <div className="ml-4 w-full ">
-                                {location.tag && (
-                                  <div className="bg-blue-500 w-max text-white text-[8px] font-semibold  p-1 rounded mb-1">
-                                    {location.tag}
-                                  </div>
-                                )}
-                                <div className="flex w-full justify-between items-center">
+                           
+                      
+                            
+                              <div className="ml-4 w-full flex flex-col  gap-2 ">
+                           
+                                <div className=' flex items-center gap-2 '>
                                   <div>
-                                    <p className="font-semibold text-sm text-gray-900">
-                                      {location.title}
-                                    </p>
-                                    <p className="text-sm text-gray-600">
-                                      {location.subtitle}
-                                    </p>
-                                  </div>
-                                  <div className="ml-4 text-right">
-                                    <span className="inline-block bg-gray-200 p-2 rounded-full">
-                                      <FaLocationArrow className="text-blue-300" />
-                                    </span>
-                                    <p className="text-xs text-gray-600">
-                                      {location.distance}
-                                    </p>
-                                  </div>
+                               Number :  
+                             </div>
+                                  <a  href={`tel:${hotelinfo.info.hoteldetail1[0].PhoneNumber}`} className="bg-blue-500 w-max px-3 text-white text-nowrap font-semibold  p-1 rounded mb-1">
+                          + {hotelinfo.info.hoteldetail1[0].PhoneNumber}
+                                  </a>
                                 </div>
+
+                                <div className=' flex items-center gap-2 '>
+                                  <div>
+                               Fax-number :  
+                             </div>
+                                  <a  href={`tel:${hotelinfo.info.hoteldetail1[0].FaxNumber}`} className="bg-blue-500 w-max px-3 text-white text-nowrap font-semibold  p-1 rounded mb-1">
+                          + {hotelinfo.info.hoteldetail1[0].FaxNumber}
+                                  </a></div>
                               </div>
-                            </label>
+                       
+
+                       
                           </span>
                         </li>
-                      ))}
+                      
                     </ul>
-                  )} */}
+                  )}
                 </div>
 
                
                 <div className="">
                   <div
                     className="selected flex items-center gap-4 cursor-pointer py-5 border-b"
-                    onClick={() => toggleSection("attractions")}
+                    onClick={() => setShowingsection("attractions")}
                   >
                     <Image
                       src="/Images/cameraonr.webp"
@@ -798,65 +812,31 @@ Rooms[0].TotalFare}</p>
                     />
                     <p className="ml-2 flex w-full justify-between items-center">
                       <span>Attractions</span>
-                      {/* {openSections.attractions ? (
+                      {showingsection=="attractions"  ? (
                         <FaChevronDown />
                       ) : (
                         <FaChevronRight />
-                      )} */}
+                      )}
                     </p>
                   </div>
-                  {/* {openSections.attractions && (
-                    <ul className="space-y-4 overflow-hidden h-[200px] custom-scrollbar overflow-y-auto p-3">
-                      {locations.map((location) => (
+                  {showingsection=="attractions"  && (
+                    <ul className="space-y-4 w-full overflow-hidden h-[200px] custom-scrollbar overflow-y-auto p-3">
+                     
                         <li key={location.id}>
                           <span className="flex items-center gap-4">
-                            <input
-                              type="checkbox"
-                              id={location.id}
-                              className=""
-                            />
-                            <label
-                              htmlFor={location.id}
-                              className="flex w-full items-center cursor-pointer"
-                            >
-                              <Image
-                                src={location.imageSrc}
-                                alt="image"
-                                width={50}
-                                height={50}
-                                className="w-12 h-12 object-cover rounded"
-                              />
-                              <div className="ml-4  w-full">
-                                {location.tag && (
-                                  <div className="bg-blue-500 w-max text-white text-[8px] font-semibold  p-1 rounded mb-1">
-                                    {location.tag}
-                                  </div>
-                                )}
-                                <div className="flex w-full justify-between items-center">
-                                  <div>
-                                    <p className="font-semibold text-sm text-gray-900">
-                                      {location.title}
-                                    </p>
-                                    <p className="text-sm text-gray-600">
-                                      {location.subtitle}
-                                    </p>
-                                  </div>
-                                  <div className="ml-4 text-right">
-                                    <span className="inline-block bg-gray-200 p-2 rounded-full">
-                                      <FaLocationArrow className="text-blue-300" />
-                                    </span>
-                                    <p className="text-xs text-gray-600">
-                                      {location.distance}
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </label>
+                        
+<div dangerouslySetInnerHTML={{__html:hotelinfo.info.hoteldetail1[0].Attractions["1) "]} }>
+</div>
+
+                               
+                            
+
+                       
                           </span>
                         </li>
-                      ))}
+                      
                     </ul>
-                  )} */}
+                  )} 
                 </div>
 
             
