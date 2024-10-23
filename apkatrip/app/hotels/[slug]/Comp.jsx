@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FaShareAlt, FaStar, FaFilter, FaTimes } from "react-icons/fa";
 import { MdOutlineCancel,MdFilterList  } from "react-icons/md";
 import { FiRefreshCcw } from "react-icons/fi";
+import { BiRefresh } from "react-icons/bi";
 
 
 import Link from 'next/link';
@@ -35,6 +36,7 @@ const [allhotel,setallhotels]=useState()
 const [hotalbackup,sethotalbackup]=useState()
 const [showimg,setshowImg]=useState()
 const [seepagination,setpagination]=useState(true)
+
 const renderStars = (rating) => {
   const starCount = Math.round(Number(rating));
   return (
@@ -89,19 +91,121 @@ console.log(hotalbackup,"sdfsdfd",seepagination)
   return (
    <>
    <HotelComp />
-   <div className='shad p-1 mx-5 mt-4 myshadow bg-white border hover:border-blue-600  flex items-center'>
-<MdFilterList  className='text-gray-600 text-2xl ' />
-<div className='text-orange-400'>
-  Star All
-</div>
-
-</div>
+   
    <div className='p-2 flex gap-2 relative '>
       
+   <div className=' w-1/6 ps-2 sticky top-24 h-[85vh] p-1 mx-5 mt-4 myshadow bg-white border hover:border-blue-600  flex flex-col'>
+ <p className='flex items-center gap-3'> <MdFilterList  className='text-gray-600 text-2xl ' /> Filter</p> 
+<div className='mt-4 p-2'>
+<p className='font-semibold'>By Stars</p>
+<div className='flex flex-col gap-1 ps-4'>
+<div className='flex items-center gap-1'>
+  <input type="radio" id="star1" name="star" value="star1" />
+  <label htmlFor="star1" className='flex items-center gap-1'>
+ <FaStar className='mb-[1px] text-orange-600' /> 1 Star
+
+  </label>
+</div>
+<div className='flex items-center gap-1'>
+  <input type="radio" id="star2" name="star" value="star2" />
+  <label htmlFor="star2" className='flex items-center gap-1'>
+ <FaStar className='mb-[1px] text-orange-600' /> 2 Star
+
+  </label>
+</div>
+<div className='flex items-center gap-1'>
+  <input type="radio" id="star3" name="star" value="star3" />
+  <label htmlFor="star3" className='flex items-center gap-1'>
+ <FaStar className='mb-[1px] text-orange-600' /> 3 Star
+
+  </label>
+</div>
+<div className='flex items-center gap-1'>
+  <input type="radio" id="star4" name="star" value="star4" />
+  <label htmlFor="star4" className='flex items-center gap-1'>
+ <FaStar className='mb-[1px] text-orange-600' /> 4 Star
+
+  </label>
+</div>
+<div className='flex items-center gap-1'>
+  <input type="radio" id="star5" name="star" value="star5" />
+  <label htmlFor="star5" className='flex items-center gap-1'>
+ <FaStar className='mb-[1px] text-orange-600' /> 5 Star
+
+  </label>
+</div>
+</div>
+
+</div>
+
+<div className='mt-4 p-2'>
+<p className='font-semibold'>Price per night</p>
+<div className='flex flex-col gap-1 ps-4'>
+<div className='flex items-center gap-1'>
+  <input type="radio" id="price1" name="price" value="price1" />
+  <label htmlFor="price1" className='flex items-center gap-1'>  ₹ 0 - ₹ 1500</label>
+</div>
+
+<div className='flex items-center gap-1'>
+  <input type="radio" id="price2" name="price" value="price2" />
+  <label htmlFor="price2" className='flex items-center gap-1'>  ₹ 1500 - ₹ 3500</label>
+</div>
+<div className='flex items-center gap-1'>
+  <input type="radio" id="price3" name="price" value="price3" />
+  <label htmlFor="price3" className='flex items-center gap-1'> ₹ 3500 - ₹ 7500</label>
+</div>
+<div className='flex items-center gap-1'>
+  <input type="radio" id="price4" name="price" value="price4" />
+  <label htmlFor="price4" className='flex items-center gap-1'>  ₹ 7500 - ₹ 11500</label>
+</div>
+<div className='flex items-center gap-1'>
+  <input type="radio" id="price5" name="price" value="price5" />
+  <label htmlFor="price5" className='flex items-center gap-1'>  ₹ 11500 - ₹ 15000</label>
+</div>
+<div className='flex items-center gap-1'>
+  <input type="radio" id="price6" name="price" value="price6" />
+  <label htmlFor="price6" className='flex items-center gap-1'> ₹ 15000+</label>
+</div>
+</div>
+
+</div>
+<div className='mt-4 p-2'>
+<p className='font-semibold'>Other :</p>
+<div className='grid grid-cols-2 gap-1 ps-4'>
+<div className='flex items-center gap-1'>
+  <input type="radio" id="L-H" name="price" value="L-H" />
+  <label htmlFor="L-H" className='flex items-center gap-1'>  Low-High</label>
+</div>
+
+<div className='flex items-center gap-1'>
+  <input type="radio" id="H-L" name="price" value="H-L" />
+  <label htmlFor="H-L" className='flex items-center gap-1'>  High-Low</label>
+</div>
+<div className='flex items-center gap-1'>
+  <input type="radio" id="bestRating" name="price" value="bestRating" />
+  <label htmlFor="bestRating" className='flex items-center gap-1'>  Best Rating</label>
+</div>
+<div className='flex items-center gap-1'>
+  <input type="radio" id="newest" name="price" value="newest" />
+  <label htmlFor="newest" className='flex items-center gap-1'> Newest </label>
+</div>
 
 
 
-   <div className='w-full'>
+
+
+</div>
+
+</div>
+<div className='mt-4 p-2 flex justify-center w-full '>
+<button className='flex items-center p-2 px-3 bg-black text-white font-bold rounded-md gap-2'>Reset <BiRefresh /> </button>
+</div>
+
+
+</div>
+
+
+   <div className='w-5/6'>
 {allhoteldata && allhoteldata.isLoading && <div className='h-[70vh] flex justify-center items-center'>
   
   <h4>Loading... </h4>
@@ -152,7 +256,7 @@ console.log(hotalbackup,"sdfsdfd",seepagination)
                 <img
                   src={image}
                   alt={`hotel_image_${index + 1}`}
-                
+                  //  onMouseEnter={()=>hotel.HotelDetails.Images[0]=image}
                   className="object-cover rounded-sm h-[3rem] w-[5rem]"
                 />
                 {index === 3 && (
@@ -204,9 +308,9 @@ console.log(hotalbackup,"sdfsdfd",seepagination)
     <>
      <div className="flex items-end justify-between">
         <div className="mt-4 ">
-          <p className="text-xl font-black">{Math.floor(items_price.TotalFare-items_price.TotalTax)}</p>
+          <p className="text-xl font-black">₹{Math.floor(items_price.TotalFare-items_price.TotalTax)}</p>
           <p className="text-gray-500">
-            + {items_price.TotalTax} taxes & fees
+            + ₹{items_price.TotalTax} taxes & fees
           </p>
           <p className="text-sm text-gray-500 mt-2">Per Night</p>
         </div>

@@ -226,7 +226,7 @@ const Footer = () => {
                         href="/ATI/atimate"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        Apka Trip Mate
+                        Business Associate
                       </Link>
                     </li>
                     <li>
@@ -234,7 +234,7 @@ const Footer = () => {
                         href="/ATI/atidesk"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        Apka Trip Desk
+                       Corporate Travel Desk
                       </Link>
                     </li>
                     <li>
@@ -242,7 +242,7 @@ const Footer = () => {
                         href="/ATI/atipro"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        Apka Trip Pro
+                        Elite Luxury
                       </Link>
                     </li>
                     <li>
@@ -250,7 +250,7 @@ const Footer = () => {
                         href="/ATI/atibharat"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        Apka Trip Bharat
+                        Explain World Loyalty Program Membership Club
                       </Link>
                     </li>
                   </ul>
