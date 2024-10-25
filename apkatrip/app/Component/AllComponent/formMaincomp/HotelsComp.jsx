@@ -17,10 +17,12 @@ const HotelComp = () => {
   const route=useRouter()
   const localTimeZone = getLocalTimeZone();
   const [isVisible, setIsVisible] = useState("");
-  const [city,setcity]=useState({Name:"delhi",Code:"130443"})
+  const defalinfo=  JSON.parse(localStorage.getItem("hotelItems"));
+
+  const [city,setcity]=useState((defalinfo && defalinfo.place) || {Name:"delhi",Code:"130443"})
   const currentDate = today(localTimeZone);
-const [arivitime,setarivetime]=useState(new Date(Date.now()))
-const [checkOut,setcheckOut]=useState(arivitime)
+const [arivitime,setarivetime]=useState(  new Date( (defalinfo && defalinfo.checkIntime) || Date.now()))
+const [checkOut,setcheckOut]=useState(  new Date( (defalinfo && defalinfo.checkouttime) ||arivitime))
 const [adultcount,setadultcount]=useState(1)
 const [childcount,setchildcount]=useState(0)
 const [numberOfRoom,setNumberOfRoom]=useState(1)
@@ -68,6 +70,7 @@ const handelreturn2=(newRange)=>{
  
 
   const handelhotelSearch=()=>{
+    localStorage.setItem("hotelItems",JSON.stringify({place:{Name:city.Name,Code:city.Code},checkIntime:arivitime,checkouttime:checkOut}))
     const offset = 6*60*55*1000;
     const check= new Date(arivitime);
    
