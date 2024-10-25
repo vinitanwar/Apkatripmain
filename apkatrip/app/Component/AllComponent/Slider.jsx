@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { Autoplay} from 'swiper/modules';
 
 const allData = [
   {
@@ -117,6 +118,7 @@ const CustomSlider = ({ isLoading, children }) => {
     activeTab === "TopOffer"
       ? allData
       : allData.filter((item) => item.category === activeTab);
+const filteredData2=["/Images/flight-slide2.png","/Images/flight-slide1.png","/Images/flight-slide3.png"]
 
   const handleClick = (id) => {
     setActiveTab(id);
@@ -132,147 +134,46 @@ const CustomSlider = ({ isLoading, children }) => {
 
   return (
     <>
-      <div>
+      <div className="my-6">
         {/* Tabs Section */}
-        <div className="relative pt-0 lg:pt-10 text-lg md:text-xl lg:text-3xl font-bold text-gray-900 flex justify-center items-center gap-2 my-5">
+        <div className="relative  pt-0 lg:pt-10 text-lg md:text-xl lg:text-3xl font-bold text-gray-900 flex justify-center items-center gap-2 my-5">
           Why book with us?
         </div>
-        <div className="flex overflow-hidden mx-2 lg:mx-0 overflow-x-auto text-lg md:text-sm font-bold justify-start lg:justify-center scrollbar-hidden">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => handleClick(tab.id)}
-              className={`py-2 text-sm text-nowrap px-4 text-center cursor-pointer ${
-                activeTab === tab.id
-                  ? "text-blue-500 border-b-2 border-blue-500"
-                  : "text-gray-600"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        
 
         {/* Swiper Component */}
-        <div className="overflow-hidden md:mx-auto slider-main m-2 lg:m-5">
-          {loading ? (
-            <div className="flex flex-wrap justify-center gap-4">
-              {Array.from({ length: 4 }).map((_, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col w-[300px] p-3 rounded-xl border border-gray-200 bg-white-900"
-                >
-                  <div className="flex items-center justify-around rounded-md bg-gray-200">
-                    <div className="flex flex-col justify-center pl-5">
-                      <Skeleton height={25} width={200} />
-
-                      <div className="mt-3">
-                        <Skeleton height={40} width={200} />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-2">
-                    <Skeleton height={20} width={150} />
-                  </div>
-                  <Skeleton height={50} width={250} />
-                </div>
-              ))}
-            </div>
-          ) : (
-            <Swiper
-              spaceBetween={10}
-              breakpoints={{
-                1280: {
-                  slidesPerView: 4,
-                },
-                1024: {
-                  slidesPerView: 3,
-                },
-                768: {
-                  slidesPerView: 2,
-                },
-                480: {
-                  slidesPerView: 1,
-                },
+        <div className=" flex  flex-col lg:flex-row px-4 lg:px-36 justify-end gap-4 w-full ">
+        <Swiper
+            className=" w-full  lg:w-3/6 h-[200px] lg:h-[300px] "
+      
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: false,
               }}
+           
+            
+              modules={[Autoplay]}
+
             >
-              {filteredData.map((item, index) => (
+              {filteredData2.map((item, index) => (
                 <SwiperSlide
                   key={index}
-                  className="flex flex-col w-[300px] p-3 rounded-xl border border-gray-200 bg-white-900"
+                  className="flex flex-col   rounded-2xl overflow-hidden  bg-white-900"
                 >
-                  <div
-                    className={`flex items-center justify-between rounded-md bg-[${item.bg}]`}
-                  >
-                    <div className="flex flex-col justify-center pl-5">
-                      <div className="text-xs text-black-700 font-semibold">
-                        {item.subtitle}
-                      </div>
-                      <div className="text-sm text-black-700 font-semibold">
-                        {item.title}
-                      </div>
-                      <div className="text-xl font-bold text-black-800 mt-1">
-                        {item.offer}
-                      </div>
-                      <div className="mt-3">
-                        <div
-                          className="primary-col text-white p-2 rounded-xl shadow cursor-pointer"
-                          onClick={(e) => e.stopPropagation()}
-                          style={{ border: "1px dashed white" }}
-                        >
-                          <div className="text-xs">Use Code:</div>
-                          <div className="flex items-center">
-                            <span className="font-bold" id={`code-${index}`}>
-                              {item.code}
-                            </span>
-                            <button
-                              className="ml-2 p-1 border rounded text-gray-500 hover:text-gray-700 transition duration-300"
-                              onClick={() => copyToClipboard(item.code)}
-                            >
-                              <img
-                                src="/Images/copy-icon.svg"
-                                width="12"
-                                alt=""
-                                style={{ filter: "brightness(0) invert(1)" }}
-                              />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <Link href={item.link}>
-                      <div className="ml-6">
-                        <img
-                          src={item.imageUrl}
-                          alt=""
-                          className="w-40 h-auto rounded-lg shadow-md"
-                        />
-                      </div>
-                    </Link>
-                  </div>
-                  <Link href={item.link}>
-                    {" "}
-                    <h2 className="text-md font-bold text-black mb-0.1 mt-2">
-                      Special Offer
-                    </h2>{" "}
-                  </Link>
-                  <p className="text-sm text-gray-700 m-0">
-                    {item.description}
-                  </p>
+                  <img src={item} alt=""  className="w-full  h-full"/>
+                 
                 </SwiperSlide>
               ))}
             </Swiper>
-          )}
+            <div className="flex  lg:gap-4  lg:w-3/6 justify-around">
+            {filteredData.slice(0,3).map((item)=>(
+              <div className="rounded-2xl overflow-hidden   h-[150px] md:h-[250px]  lg:h-full">
+                <img src={item.imageUrl} alt="" className="h-full w-full" />
+              </div>
+            ))}
+            </div>
         </div>
 
-        <div className="view_btn my-10 flex justify-center">
-          <Link
-            href="/viewOffers"
-            className="bg-[#2196F3] text-white py-2 px-4 rounded-full"
-          >
-            View Offers
-          </Link>
-        </div>
       </div>
     </>
   );

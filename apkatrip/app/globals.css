@@ -1,9 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-body {
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');body {
   overflow-x: hidden;
+}
+.gfont1{
+  font-family: "Bebas Neue", sans-serif;
+
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
