@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import InfoSection from "./InfoSection";
 import Link from "next/link";
+import Image from "next/image";
 
 const TopFlight = () => {
+  const [viewAll,setviewAll]=useState(true)
   const cityData = [
     {
       head: "Top Flight Routes",
@@ -113,7 +115,9 @@ const TopFlight = () => {
     { name: "Kashmir", icon: "🏔️", link: "/FamousPlaces/Bengaluru" },
     { name: "Singapore", icon: "🛳️", link: "/FamousPlaces/Singapore" },
     { name: "Leh", icon: "🏯", link: "/FamousPlaces/Leh" },
-    
+    { name: "Singapore", icon: "🦁", link: "/FamousPlaces/Leh" },
+    { name: "France", icon: "🌉", link: "/FamousPlaces/Leh" },
+
  
     { name: "Thar", icon: "🏜️", link: "/FamousPlaces/Kerala" },
   ];
@@ -175,40 +179,82 @@ const TopFlight = () => {
       <InfoSection />
 
       <div className="w-full mx-auto px-6 md:md:px-10 lg:px-52  pt:0 lg:pt-12 z-[-1]">
-        <div className="relative text-lg md:text-xl lg:text:3xl font-bold text-gray-900 flex justify-center items-center gap-2 mb-14">
-         Tourist ❤  Love
+        <div className="relative text-lg md:text-xl lg:text-4xl tracking-tighter	 gfont1  font-bold text-gray-900 flex justify-center items-center gap-2 mb-14">
+         Tourist 💕<span className="text-[#521010]"> Love</span> 
         </div>
-        <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-16">
-          {attractions.map((attraction, index) => (
-            <Link
-              href={attraction.link}
-              key={index}
-              className="text-center rounded-lg"
-            >
-              <div className="relative inline-block">
-                <span className="text-3xl md:text-5xl lg:text-6xl rounded-full bg-[#ECF5FE] py-[18px] px-[14px]">
-                  {attraction.icon}
-                </span>
-                {attraction.isNew && (
-                  <span className="absolute top-0 right-4 transform translate-x-1/2 -translate-y-1/2 bg-[#2196F3] text-white text-xs px-2 py-1 rounded-full">
-                    NEW
-                  </span>
-                )}
-              </div>
-              <h2 className="text-xs md:text-sm lg:text-lg font-semibold text-gray-700 mt-10 hover:text-[#2196F3]">
-                {attraction.name}
-              </h2>
-            </Link>
+       
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 gap-5 md:gap-y-8 ">
+          {viewAll && attractions.slice(0,7).map((attraction, index) => (
+       
+       <div className="col-span-1 border-b-4 border-b-[#009dff] duration-200 text-xl shadow-md">
+         <Link href={attraction.link} >
+           <div className="bg-white shadow-md rounded-lg p-4">
+             <div className="flex items-center">
+               <div className="icon-box">
+                <p className="text-3xl ">{attraction.icon}</p>
+               </div>
+               <div className="ml-4">
+                 <h5 className="font-semibold text-lg">{attraction.name}</h5>
+                 <span className="text-gray-500 text-[1rem]">View All Pakage</span>
+               </div>
+             </div>
+           </div>
+         </Link>
+       </div>
+      
+    
+     
           ))}
-        </div>
+           {!viewAll && attractions.map((attraction, index) => (
+       
+       <div className="col-span-1 border-b-4 border-b-[#009dff] duration-200 text-xl shadow-md">
+         <Link href={attraction.link} >
+           <div className="bg-white shadow-md rounded-lg p-4">
+             <div className="flex items-center">
+               <div className="icon-box">
+                <p className="text-3xl ">{attraction.icon}</p>
+               </div>
+               <div className="ml-4">
+                 <h5 className="font-semibold text-lg">{attraction.name}</h5>
+                 <span className="text-gray-500 text-[1rem]" >View All Pakage</span>
+               </div>
+             </div>
+           </div>
+         </Link>
+       </div>
+      
+    
+     
+          ))}
+           {viewAll && <div onClick={()=>setviewAll(false)} className="col-span-1 border-b-4 hover:border-b-[#009dff] duration-200 text-xl shadow-md cursor-pointer">
+         <span >
+           <div className="bg-white shadow-md rounded-lg p-4">
+             <div className="flex items-center">
+               <div className="icon-box">
+                <p className="text-2xl ">🧾</p>
+               </div>
+               <div className="ml-4">
+                 <h5 className="font-semibold text-lg">View All</h5>
+                 <span className="text-gray-500 text-[1rem]">Destination Pakage</span>
+               </div>
+             </div>
+           </div>
+         </span>
+       </div>}
+
+
+
+
+           </div>
+      
 
         <div className="view_btn my-10 flex justify-center">
-          <Link
+          {/* <Link
             href="/FamousPlaces/Cities"
             className="bg-[#2196F3] text-white py-2 px-4 rounded-full"
           >
             View All
-          </Link>
+          </Link> */}
         </div>
       </div>
 
