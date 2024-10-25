@@ -418,6 +418,7 @@ setstate2([filterdata])
      <div className="flex items-center justify-between my-5">
       <div className="flex gap-3">
         <img
+         className="w-[50px]"
           src={
             info.Airline.AirlineName
               ? `/Images/${info.Airline.AirlineCode}.png`
@@ -921,6 +922,7 @@ setstate2([filterdata])
              {/* Airline Information */}
              <div className="flex gap-3">
                <img
+               className="w-[50px]"
                  src={
                    flight.Segments[0][0].Airline.AirlineName
                      ? `/Images/${flight.Segments[0][0].Airline.AirlineCode}.png`
