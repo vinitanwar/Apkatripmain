@@ -41,7 +41,7 @@ const Book = () => {
           Why book with us?
            
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-8">
             {features.map((feature) => (
               <div
                 key={feature.title}

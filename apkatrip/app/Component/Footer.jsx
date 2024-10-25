@@ -248,9 +248,17 @@ const Footer = () => {
                     <li>
                       <Link
                         href="/ATI/atibharat"
+                        className="text-sm leading-6 text-gray-600 hover:text-gray-900 text-nowrap"
+                      >
+                        Explain World Loyalty Program 
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/ATI/atibharat"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        Explain World Loyalty Program Membership Club
+                     Membership Club
                       </Link>
                     </li>
                   </ul>

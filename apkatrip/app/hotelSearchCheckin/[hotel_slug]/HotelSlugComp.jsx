@@ -318,9 +318,9 @@ Rooms[0].TotalTax} taxes & fees</p>
                     5 minutes walk to Candolim Beach
                   </p>
                 </div>
-                <button className="ml-5 text-blue-600 text-sm">
+                <a target='_blank'  href={`http://maps.google.com/maps?q=${hotelinfo.info.hoteldetail1[0].Map.split("|")[0]},${hotelinfo.info.hoteldetail1[0].Map.split("|")[1]}&z=15&output=embed`} className="ml-5 text-blue-600 text-sm">
                   See on Map
-                </button>
+                </a>
               </div>
             </div>
             {handelpricesection=="price" &&

@@ -11,7 +11,7 @@ const BlogSection = () => {
               Enjoy Fresh Travel Blogs
             </h2>
           </div>
-          <div className="event-box-main flex flex-wrap md:flex-nowrap  items-center justify-center gap-3">
+          <div className="event-box-main flex flex-wrap   items-center justify-center gap-3">
             <div className="event-box">
               <img src="/Images/Routes/new1.webp" />
               <div>

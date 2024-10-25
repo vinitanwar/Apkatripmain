@@ -182,11 +182,14 @@ const CustomSlider = ({ isLoading, children }) => {
             <Swiper
               spaceBetween={10}
               breakpoints={{
-                1024: {
+                1280: {
                   slidesPerView: 4,
                 },
+                1024: {
+                  slidesPerView: 3,
+                },
                 768: {
-                  slidesPerView: 1,
+                  slidesPerView: 2,
                 },
                 480: {
                   slidesPerView: 1,
