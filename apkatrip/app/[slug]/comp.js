@@ -507,7 +507,7 @@ setstate2([filterdata])
             togglePopup("view-price", info,flight.Fare.OfferedFare)
             // handelPrice(flight)
           }
-          className="hidden sm:hidden md:block text-sm font-semibold h-8 text-blue-600 rounded-full px-4 bg-blue-200 border border-blue-600"
+          className="hidden sm:hidden  md:block text-sm font-semibold lg:h-8 text-blue-600 rounded-full px-4 bg-blue-200 border border-blue-600"
         >
           VIEW PRICES
         </button>

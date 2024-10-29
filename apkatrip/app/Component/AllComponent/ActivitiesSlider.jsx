@@ -122,8 +122,8 @@ onChange={(e)=>handleInputChange(e.target.value)}
             </div>}
           </div>
 
-<div className="relative">
-<div className="shadow-md cursor-pointer px-2 mx-1" onClick={()=>setShow("To")}>
+<div className="relative text-[10px]">
+<div className=" cursor-pointer px-2 mx-1 h-full" onClick={()=>setShow("To")}>
   <p className="text-nowrap">To Date</p>
  <span> {toDate.toLocaleDateString('en-US', {month: 'short',})}-{toDate.getDate()}</span>
  <p>{toDate.getFullYear()}</p>
@@ -141,8 +141,8 @@ onChange={(e)=>handleInputChange(e.target.value)}
 </div>
 
 
-<div className="relative">
-<div className="shadow-md cursor-pointer px-2 mx-1" onClick={()=>setShow("from")} >
+<div className="relative text-[10px]">
+<div className=" cursor-pointer px-2 mx-1" onClick={()=>setShow("from")} >
   <p className="text-nowrap">From Date</p>
  <span> {fromDate.toLocaleDateString('en-US', {month: 'short',})}-{fromDate.getDate()}</span>
  <p>{fromDate.getFullYear()}</p>

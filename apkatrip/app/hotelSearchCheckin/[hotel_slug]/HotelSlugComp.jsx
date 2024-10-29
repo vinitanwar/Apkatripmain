@@ -72,7 +72,7 @@ dispatch(gethotelPreBookingApi({BookingCode}))
 console.log(hotelinfo && hotelinfo.info && hotelinfo.info && hotelinfo.info)
   return (
 <>
-<div className="px-20 py-5">
+<div className="lg:px-20 py-5">
         <ul
           className="flex space-x-2 text-sm text-gray-600 mt-5 mb-5"
           id="detpg_bread_crumbs"
@@ -100,7 +100,7 @@ console.log(hotelinfo && hotelinfo.info && hotelinfo.info && hotelinfo.info)
         { hotelinfo && !hotelinfo.isLoading &&  hotelinfo.info && hotelinfo.info.hoteldetail1 &&
          <>
        <div className="p-6 bg-white rounded-3xl flex  myshadow">
-          <div className="w-2/3 relative">
+          <div className="lg:w-2/3 relative">
             <div className="flex items-center justify-between mb-5" id="WBTH">
               <h1 className="text-2xl font-bold flex items-center gap-4">
               {hotelinfo.info.hoteldetail1[0].HotelName}
@@ -113,11 +113,11 @@ console.log(hotelinfo && hotelinfo.info && hotelinfo.info && hotelinfo.info)
                 </span>
               </h1>
             </div>
-            <div className="flex gap-5 mb-5">
-              <div>
+            <div className="lg:flex gap-5 mb-5">
+              <div >
             
                 <div
-                  className="relative w-[520px] h-[340px] mb-4"
+                  className="relative w-full lg:w-[520px] h-[200px] lg:h-[340px] mb-4"
                   onClick={() => openPopup(0)}
                 >
                   <Image
@@ -125,7 +125,8 @@ console.log(hotelinfo && hotelinfo.info && hotelinfo.info && hotelinfo.info)
                     alt="hotel image"
                     layout="fill"
                     objectFit="cover"
-                    className="rounded-lg"
+                    className="rounded-lg  "
+                
                   />
                   <div className="absolute bottom-0 left-0 w-full p-2 rounded-b-lg bg-opacity-75 bg-gray-800 text-white text-center">
                     +{hotelinfo.info.hoteldetail1[0].Images.length} property photos
@@ -159,7 +160,7 @@ console.log(hotelinfo && hotelinfo.info && hotelinfo.info && hotelinfo.info)
               </div>
 
               <div className="">
-                <div className="relative w-[280px] h-40 mb-4 rounded-2xl">
+                <div className="relative w-full lg:w-[280px] h-40 mb-4 rounded-2xl">
                   <Image
                     src={hotelinfo.info.hoteldetail1[0].Images[1]}
                     alt="hotel image"
@@ -171,7 +172,7 @@ console.log(hotelinfo && hotelinfo.info && hotelinfo.info && hotelinfo.info)
                     Room photos
                   </div>
                 </div>
-                <div className="relative w-[280px] h-40 ">
+                <div className="relative  w-full lg:w-[280px] h-40 ">
                   <Image
                     src={hotelinfo.info.hoteldetail1[0].Images[2]}
                     alt="hotel image"
@@ -248,7 +249,7 @@ console.log(hotelinfo && hotelinfo.info && hotelinfo.info && hotelinfo.info)
   </div>}
 
           </div>
-          <div className="w-1/3  sticky top-24  h-full  ">
+          <div className="lg:w-1/3 hidden lg:block  lg:sticky lg:top-24  h-full  ">
             <div className="mb-5 border-2 rounded-2xl p-3">
               <h3 className="text-lg font-bold">Classic</h3>
               <p className="mt-2 text-gray-700">Fits 2 Adults</p>
@@ -305,12 +306,11 @@ Rooms[0].TotalTax} taxes & fees</p>
               </div>
               <hr className="my-5 border-gray-300" />
               <div className="flex gap-3 items-center">
-                <Image
+                <img
                   src="/Images/google-maps.webp"
                   alt="Candolim"
-                  width={24}
-                  height={24}
-                  className="mr-2 w-10 h-full"
+                  
+                  className="mr-2 lg:w-10 h-full"
                 />
                 <div>
                   <p className="font-bold">Candolim</p>
@@ -378,7 +378,103 @@ Rooms[0].TotalFare}</p>
               </div>
               </div>
             
-         
+              <div className="  xl:w-1/3 flex lg:hidden flex-col md:flex-row md:justify-around   h-full  ">
+            <div className="mb-5 border-2 rounded-2xl p-3">
+              <h3 className="text-lg font-bold">Classic</h3>
+              <p className="mt-2 text-gray-700">Fits 2 Adults</p>
+              <ul className="mt-4 space-y-2">
+                <li className="flex gap-3 items-center">
+                  <MdDinnerDining />
+                  Complimentary Breakfast
+                </li>
+                <li className="flex gap-3 items-center">
+                  <FaCheck className="text-green-600" />
+                  Free Cancellation till check-in
+                </li>
+              </ul>
+              <div className="mt-5">
+                <p className="text-lg line-through text-gray-500">
+                    {hotelinfo.info.hoteldetail2[0].
+Rooms[0].TotalFare}
+                    </p>
+                <p className="text-2xl font-bold text-black">₹  {Math.floor(hotelinfo.info.hoteldetail2[0].
+Rooms[0].TotalFare-hotelinfo.info.hoteldetail2[0].
+Rooms[0].TotalTax)}</p>
+
+                <p className="text-sm text-gray-700">+ ₹ {hotelinfo.info.hoteldetail2[0].
+Rooms[0].TotalTax} taxes & fees</p>
+              </div>
+              <div className="mt-5 flex items-center">
+                <button
+                onClick={()=>handelprebooking(hotelinfo.info.hoteldetail2[0].
+                  Rooms[0].BookingCode)}
+                  className="px-5 py-2 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700"
+                >
+                  BOOK THIS NOW
+                </button>
+                <button className="ml-8 text-blue-600" onClick={()=>sethandelpriceSection("price")}>Price List</button>
+              </div>
+            </div>
+            <div className="mt-5 border-2 rounded-2xl p-3">
+              <div className="flex items-center gap-3">
+                <div className="bg-blue-600 text-white text-lg font-bold p-2 rounded-full">
+                  4.8
+                </div>
+                <div>
+                  <span className="font-bold">Excellent</span>
+                  <span className="ml-2 text-gray-600 text-sm">
+                    (16 RATINGS)
+                  </span>
+                  <p className="text-gray-600 text-sm">
+                    94% guests rated this property 4
+                  </p>
+                </div>
+                <button className="ml-5 text-blue-600 text-sm">
+                  All Reviews
+                </button>
+              </div>
+              <hr className="my-5 border-gray-300" />
+              <div className="flex gap-3 items-center">
+                
+                <div>
+                  <p className="font-bold">Candolim</p>
+                  <p className="text-gray-600 text-sm">
+                    5 minutes walk to Candolim Beach
+                  </p>
+                </div>
+                <a target='_blank'  href={`http://maps.google.com/maps?q=${hotelinfo.info.hoteldetail1[0].Map.split("|")[0]},${hotelinfo.info.hoteldetail1[0].Map.split("|")[1]}&z=15&output=embed`} className="ml-5 text-blue-600 text-sm">
+                  See on Map
+                </a>
+              </div>
+            </div>
+            {handelpricesection=="price" &&
+            <div className='absolute top-0 h-full overflow-y-scroll w-full bg-white p-4'>
+             <p className='text-center my-2 text-2xl'>Price List </p>
+            <ImCancelCircle className='absolute top-0 right-0 text-3xl ' onClick={()=>sethandelpriceSection("")}/>
+            <div className='flex flex-col gap-4'>
+            {hotelinfo.info.hoteldetail2[0].
+Rooms[0].DayRates[0].map((info_p,indp)=>(
+                <div className='flex gap-3 '>
+                    <p>Day {indp+1}</p> : <p> ₹ {info_p.BasePrice}</p>
+                </div>
+                ))}
+                 <div className='flex gap-3 '>
+                    <p className='font-semibold'>Taxs</p> : <p>₹ {hotelinfo.info.hoteldetail2[0].
+Rooms[0].TotalTax}</p>
+                </div>
+               
+                </div>
+
+                <div className='flex gap-3 my-9 font-bold text-2xl '>
+                    <p className=''>Total</p> : <p> ₹{hotelinfo.info.hoteldetail2[0].
+Rooms[0].TotalFare}</p>
+                </div>
+
+          </div>
+}
+
+
+          </div>
         </div>
 
      {/*    <div className="p-6 bg-white rounded-lg my-5 myshadow">
@@ -726,23 +822,22 @@ Rooms[0].TotalFare}</p>
             guests
           </span>
 
-          <div className="flex gap-10 mt-5">
+          <div className="flex flex-col lg:flex-row gap-10 mt-5">
             {" "}
-            <div className="flex justify-center items-center w-4/6">
+            <div className="flex justify-center items-center lg:w-4/6">
              <pre></pre>
               <iframe 
-              width="600" 
-  height="450" 
+            
   allowFullScreen=""
    loading="lazy"
  referrerPolicy="no-referrer-when-downgrade"
-   className="w-full h-96 md:w-3/4 md:h-[475px] lg:w-full"
+   className="w-full h-96 lg:w-3/4 md:h-[475px]"
   
   src={`http://maps.google.com/maps?q=${hotelinfo.info.hoteldetail1[0].Map.split("|")[0]},${hotelinfo.info.hoteldetail1[0].Map.split("|")[1]}&z=15&output=embed`}
  >
  </iframe>
             </div>
-            <div className="w-2/6">
+            <div className="lg:w-2/6">
               <div>
                 <div className="">
                   <div

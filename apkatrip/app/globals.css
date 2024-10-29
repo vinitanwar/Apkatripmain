@@ -1123,3 +1123,11 @@ background-color: #d41145;
 
   }
 }
+
+.textoverflowcss{
+  white-space: nowrap; 
+  width: 300px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+
+}

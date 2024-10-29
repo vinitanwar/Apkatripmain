@@ -5,14 +5,12 @@ import { FaArrowLeft, FaSearch, FaTimes } from "react-icons/fa";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import { useDispatch, useSelector } from "react-redux";
-import { searchFlightApi } from "../Store/slices/SearchFlight";
-import { getTopAirPorts } from "../Store/slices/topPortsSlice";
+
 import { useRouter } from "next/navigation";
 import { Calendar } from "@nextui-org/react";
 import { today, getLocalTimeZone } from "@internationalized/date";
-import { getip } from "../Store/slices/ipslice";
-import { getAllAirports } from "../Store/slices/Allairportslice";
-import debounce from "./Debounce";
+
+import axios from "axios";
    
 
 
@@ -81,14 +79,11 @@ const MobileHeader = () => {
    const seatclass=["All","Economy","Premium Economy","Business","PremiumBusiness","First Class"]
   const [allport,setAllport]=useState()
   const [inputValue, setInputValue] = useState('');
+const [JourneyType,setjurnytype]=useState(0)
 
-  const [debouncedValue, setDebouncedValue] = useState(inputValue)
- 
-
-  
-  const [fromCity, setFromCity] = useState(defaultFromCity);
-  const [toCity, setToCity] = useState(defaultToCity);
-
+   const [fromCity, setFromCity] = useState({municipality:"New Delhi",name:"Indira Gandhi International Airport",iata:"DEL"});
+  const [toCity, setToCity] = useState({municipality:"Mumbai",name:"Chhatrapati Shivaji International Airport",iata:"BOM"});
+const [searchport,setsearchport]=useState( {info:[],isLoading:false})
 
 
   const handleRoomsChange = (amount) => {
@@ -98,9 +93,11 @@ const MobileHeader = () => {
   const handleNightsChange = (amount) => {
     setNights((prev) => Math.max(prev + amount, 1));
   };
+
   const openPopup = (type) => {
     setIsPopupOpen(type);
   };
+
   const closePopup = () => {
     setIsPopupOpen(false);
   };
@@ -125,23 +122,7 @@ const MobileHeader = () => {
     }
   };
 
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(inputValue);
-    }, 300); // Adjust the delay as needed
-
-
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [inputValue]);
  
-  useEffect(() => {
-    if (debouncedValue) {
-      dispatch(getAllAirports(debouncedValue));
-    }
-  }, [debouncedValue, dispatch]);
 
   const handleChangePort = (e) => {
     e.preventDefault();
@@ -149,10 +130,9 @@ const MobileHeader = () => {
   };
 
 
-
   useEffect(()=>{
     setAllport(state)
-  },[state])
+  },[state]) 
   const handleRangeChange = (newRange) => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
   
@@ -161,84 +141,47 @@ const MobileHeader = () => {
   };
 
 
-  const handelSearch = () => {
-
-    localStorage.setItem("defaultflight",JSON.stringify({
-      from:fromCity,
-      to:toCity,
-      timeDate:selected
-     
-    }))
-
+   const handelSearch=()=>{
 
     const date = new Date(selected);
-    // const formattedDate = date.toISOString().slice(0, 10)
-    const offset = 6*60*55*1000; // Offset in minutes for GMT-0500
+   
+    const offset = 6*60*55*1000;
     
     const localDate = new Date(date.getTime() + offset);
-    const localFormattedDate = localDate.toISOString().slice(0, 19); // This will give you "2024-10-11T00:00:00"
-    
+    const localFormattedDate = localDate.toISOString().slice(0, 19); 
+
+    let searchUrl = `/flightto=${fromCity.iata}&from=${toCity.iata}&date=${localFormattedDate}&prfdate=${localFormattedDate}&JourneyType=${JourneyType}&adultcount=${adultCount}&childCount=${childCount}&infantCount=${infantCount}&selectedClass=${selectedClass}`;  
 
 
-    dispatch(
-      searchFlightApi({
-        EndUserIp:ipstate.info.query,
-        AdultCount: adultCount,
-        ChildCount: childCount,
-        InfantCount: infantCount,
-        DirectFlight: false,
-        OneStopFlight: false,
-        JourneyType: 1,
-        PreferredAirlines: null,
-        Origin: fromCity.iata_code,
-        Destination: toCity.iata_code,
-        FlightCabinClass: selectedClass,
-        PreferredDepartureTime: localFormattedDate,
-        PreferredArrivalTime: localFormattedDate,
-      })
-    );
 
-    route.push("/flightSearch");
-  };
+  route.push(searchUrl);
+   }
 
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(inputValue);
-    }, 500);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [inputValue]);
-
-  useEffect(() => {
-    const fetchAirports = async () => {
-      if (debouncedValue.length >= 2) {
-        setIsLoading(true);
-        setIsError(false);
-        if(pathname.includes())
-        try {
-          const res = await axios.get(
-            `https://port-api.com/airport/search/${debouncedValue}`
-          );
-          setFromCity(res.data.features); // Assuming API returns "features" array
-        } catch (error) {
-          console.error("Error fetching airports:", error);
-          setIsError(true);
-        } finally {
-          setIsLoading(false);
-        }
-      } else {
-        // Show default airports if search string is less than 3 chars
-        setFromCity(defaultFromCity);
-      }
-    };
-
-    fetchAirports();
-  }, [debouncedValue]);
 
 
   const [isHovered, setIsHovered] = useState(false);
+  useEffect(()=>{
+    const apifun=async()=>{
+      if(inputValue){
+        setsearchport({...searchport,isLoading:true})
+      const res = await axios.get(`https://port-api.com/airport/search/${inputValue}`);
+    
+      setsearchport({info:res.data.features,isLoading:false})
+
+
+      }
+    
+    
+    }
+    
+    let inter=setTimeout(() => {
+
+    apifun()
+    }, 1000);
+    return ()=>clearTimeout(inter)
+  },[inputValue])
+
+
   return (
     <>
       <div className="block md:hidden p-3 ">
@@ -285,7 +228,7 @@ const MobileHeader = () => {
                 <span className="text-xl py-1 text-black font-bold">{fromCity.municipality}</span>
                 <p id="fromCity" className="text-sm">
                   {fromCity.name}
-                </p>
+                </p> 
               </div>
 
               {isPopupOpen === "from" && (
@@ -321,42 +264,26 @@ const MobileHeader = () => {
                       <li className="bg-[#ecf5fe] py-2 px-5 text-gray-600 text-sm uppercase">
                         Popular Cities
                       </li>
-                      {state &&!state.isLoading &&  state.info && state.info.features &&   state.info.features.map((airport, index) => (
-                        <li
-                          key={index}
-                          className="flex justify-between items-center py-2 px-5 "
-                           onClick={()=>{   setFromCity(airport),openPopup("")}}
-                          
-                          >
-                          <div>
-                            <span className="font-bold">
-                              {airport.properties.municipality}, {airport.properties.country.name}
-                            </span>
-                            <p className="text-sm">{airport.properties.name}</p>
-                          </div>
-                          <span className="bg-[#737579] py-1 text-white font-bold rounded w-16 text-center px-3 uppercase">
-                            {airport.properties.local_code}
-                          </span>
-                        </li>
-                      ))}
-                      {allport && allport.info && allport.info.data && allport.info.data.map((airport, index) => (
-                        <li
-                          key={index}
-                          className="flex justify-between items-center py-2 px-5 "
-                           onClick={()=>{   setFromCity(airport),openPopup("")}}
-                          
-                          >
-                          <div>
-                            <span className="font-bold">
-                              {airport.municipality}, {airport.country}
-                            </span>
-                            <p className="text-sm">{airport.name}</p>
-                          </div>
-                          <span className="bg-[#737579] py-1 text-white font-bold rounded w-16 text-center px-3 uppercase">
-                            {airport.ident}
-                          </span>
-                        </li>
-                      ))}
+                    {searchport.isLoading && <div>
+                      Loading..
+                      
+                      </div>}
+                      {!searchport.isLoading && searchport.info   && searchport.info.map((items)=>{
+return(
+  <div className="flex justify-between my-4 shadow-sm w-full px-2 items-center" onClick={()=>{setFromCity({municipality:items.properties.municipality,name:items.properties.name,iata:items.properties.iata}),  setIsPopupOpen(""), setsearchport({info:[],isLoading:false})}}>
+    <div>
+    <p >{items.properties.municipality}</p>
+    <p className="text-sm text-gray-600">{items.properties.name}</p>
+   </div>
+   {items.properties.iata &&
+   <div className="bg-black text-white  p-1 px-3 rounded-md">
+    {items.properties.iata}
+   </div>}
+  </div>
+)
+
+
+                      })}
 
 
 
@@ -420,42 +347,27 @@ const MobileHeader = () => {
 <li className="bg-[#ecf5fe] py-2 px-5 text-gray-600 text-sm uppercase">
   Popular Cities
 </li>
-{state &&!allport.isLoading &&  state.info &&!allport.info.data && state.info.map((airport, index) => (
-  <li
-    key={index}
-    className="flex justify-between items-center py-2 px-5 "
-     onClick={()=>{   setToCity(airport),openPopup("")}}
-    
-    >
+{searchport.isLoading && <div>
+                      Loading..
+                      
+                      </div>}
+                      {!searchport.isLoading && searchport.info   && searchport.info.map((items)=>{
+return(
+  <div className="flex justify-between my-4 shadow-sm w-full px-2 items-center" onClick={()=>{setToCity({municipality:items.properties.municipality,name:items.properties.name,iata:items.properties.iata}),  setIsPopupOpen("") ,   setsearchport({info:[],isLoading:false})}     }>
     <div>
-      <span className="font-bold">
-        {airport.municipality}, {airport.country}
-      </span>
-      <p className="text-sm">{airport.name}</p>
-    </div>
-    <span className="bg-[#737579] py-1 text-white font-bold rounded w-16 text-center px-3 uppercase">
-      {airport.ident}
-    </span>
-  </li>
-))}
-{allport && allport.info && allport.info.data && allport.info.data.map((airport, index) => (
-  <li
-    key={index}
-    className="flex justify-between items-center py-2 px-5 "
-     onClick={()=>{   setToCity(airport),openPopup("")}}
-    
-    >
-    <div>
-      <span className="font-bold">
-        {airport.municipality}, {airport.country}
-      </span>
-      <p className="text-sm">{airport.name}</p>
-    </div>
-    <span className="bg-[#737579] py-1 text-white font-bold rounded w-16 text-center px-3 uppercase">
-      {airport.ident}
-    </span>
-  </li>
-))}
+    <p >{items.properties.municipality}</p>
+    <p className="text-sm text-gray-600">{items.properties.name}</p>
+   </div>
+   {items.properties.iata &&
+   <div className="bg-black text-white  p-1 px-3 rounded-md">
+    {items.properties.iata}
+   </div>}
+  </div>
+)
+
+
+                      })}
+
                     </ul>
                   </div>
                 </div>

@@ -43,7 +43,7 @@ dispatch(getseeingApi({EndUserIp:"223.178.208.152",ResultIndex:info.ResultIndex,
       </div>
 
       }
-        <div className='p-3 grid grid-cols-3 m-10 gap-10'>
+        <div className='p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  m-10 gap-10'>
       {state && !state.isLoading && state.info && state.info.Response &&state.info.Response && state.info.Response.ResponseStatus==1 &&
 
 state.info.Response.SightseeingSearchResults.map((item)=>{
