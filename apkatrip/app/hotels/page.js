@@ -7,6 +7,7 @@ import Link from "next/link";
 import HotelChains from "../Component/AllComponent/HotelChain";
 import MobileHeader from "../Component/AllComponent/MobileHeader";
 import HotelComp from "../Component/AllComponent/formMaincomp/HotelsComp";
+import Hotelmobileheader from "../Component/AllComponent/Hotelmobilheader";
 
 const Page = () => {
   const [showAll, setShowAll] = useState(false);
@@ -119,7 +120,7 @@ const Page = () => {
   return (
     <>
       <HotelComp />
-      <MobileHeader />
+    <Hotelmobileheader />
       <CustomSlider />
       <div className="px-0 lg:px-20">
         <h2 className="text-lg text-center lg:text-2xl font-semibold mb-5">

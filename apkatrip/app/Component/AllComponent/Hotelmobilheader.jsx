@@ -1,105 +1,109 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { FaCalendarWeek, FaChevronDown } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import "react-day-picker/style.css";
 
-import TravellerDropDownhotels from "../TravellerDropDownhotels"
-import Link from "next/link";
+
 import { useRouter } from "next/navigation";
-import AutoSearchcity from "../AutoSearchcity"
 import { Calendar } from "@nextui-org/react";
 import { today, getLocalTimeZone } from "@internationalized/date";
 
 
-
-
-
-const HotelComp = () => {
-  const route=useRouter()
-  const localTimeZone = getLocalTimeZone();
-  const [isVisible, setIsVisible] = useState("");
-  const defalinfo=  JSON.parse(localStorage.getItem("hotelItems"));
-
-  const [city,setcity]=useState((defalinfo && defalinfo.place) || {Name:"delhi",Code:"130443"})
-  const currentDate = today(localTimeZone);
-const [arivitime,setarivetime]=useState(  new Date( (defalinfo && defalinfo.checkIntime) || Date.now()))
-const [checkOut,setcheckOut]=useState(  new Date( (defalinfo && defalinfo.checkouttime) ||arivitime))
-const [adultcount,setadultcount]=useState(1)
-const [childcount,setchildcount]=useState(0)
-const [numberOfRoom,setNumberOfRoom]=useState(1)
-
-
-  const handleCitySelect = (city) => {
-     setcity(city)
-    
-     setIsVisible(""); 
-  };
-
-
-
-
-  const handleVisibilityChange = (value) => {
-    setIsVisible(value);
    
-  };
+import { FaCalendarWeek, FaChevronDown } from "react-icons/fa";
+import Link from "next/link";
+import TravellerDropDownhotels from "./TravellerDropDownhotels"
+import AutoSearchcity from "./AutoSearchcity"
 
 
-  const handleClick = (option) => {
-    
-    setIsVisible(option);
+const Hotelmobileheader = () => {
 
+    const route=useRouter()
+    const localTimeZone = getLocalTimeZone();
+    const [isVisible, setIsVisible] = useState("");
+    const defalinfo=  JSON.parse(localStorage.getItem("hotelItems"));
   
-  };
-
-
-const handelreturn=(newRange)=>{
-  const date = new Date(newRange.year, newRange.month - 1, newRange.day);
-
-   setarivetime(date);
-  setIsVisible("")
-}
-const handelreturn2=(newRange)=>{
-  const date = new Date(newRange.year, newRange.month - 1, newRange.day);
-
-   setcheckOut(date);
-  setIsVisible("")
-}
-
-
+    const [city,setcity]=useState((defalinfo && defalinfo.place) || {Name:"delhi",Code:"130443"})
+    const currentDate = today(localTimeZone);
+  const [arivitime,setarivetime]=useState(  new Date( (defalinfo && defalinfo.checkIntime) || Date.now()))
+  const [checkOut,setcheckOut]=useState(  new Date( (defalinfo && defalinfo.checkouttime) ||arivitime))
+  const [adultcount,setadultcount]=useState(1)
+  const [childcount,setchildcount]=useState(0)
+  const [numberOfRoom,setNumberOfRoom]=useState(1)
   
-
- 
-
-  const handelhotelSearch=()=>{
-    localStorage.setItem("hotelItems",JSON.stringify({place:{Name:city.Name,Code:city.Code},checkIntime:arivitime,checkouttime:checkOut}))
-    const offset = 6*60*55*1000;
-    const check= new Date(arivitime);
-   
+  
+    const handleCitySelect = (city) => {
+       setcity(city)
+      
+       setIsVisible(""); 
+    };
+  
+  
+  
+  
+    const handleVisibilityChange = (value) => {
+      setIsVisible(value);
+     
+    };
+  
+  
+    const handleClick = (option) => {
+      
+      setIsVisible(option);
+  
     
-    const r_localDate = new Date(check.getTime() );
-    const checkindate = r_localDate.toISOString().slice(0, 10); 
-
-
-    const checko= new Date(checkOut);
-   
-    
-    const r_localDateo = new Date(checko.getTime());
-    const checkoutdate = r_localDateo.toISOString().slice(0, 10);
-route.push(`/hotels/cityName=${city.Name}&citycode=${city.Code}&checkin=${checkindate}&checkout=${checkoutdate}&adult=${adultcount}&child=${childcount}&roomes=${numberOfRoom}&page=0&star=0`)
+    };
+  
+  
+  const handelreturn=(newRange)=>{
+    const date = new Date(newRange.year, newRange.month - 1, newRange.day);
+  
+     setarivetime(date);
+    setIsVisible("")
   }
+  const handelreturn2=(newRange)=>{
+    const date = new Date(newRange.year, newRange.month - 1, newRange.day);
+  
+     setcheckOut(date);
+    setIsVisible("")
+  }
+  
+  
+    
+  
+   
+  
+    const handelhotelSearch=()=>{
+      localStorage.setItem("hotelItems",JSON.stringify({place:{Name:city.Name,Code:city.Code},checkIntime:arivitime,checkouttime:checkOut}))
+      const offset = 6*60*55*1000;
+      const check= new Date(arivitime);
+     
+      
+      const r_localDate = new Date(check.getTime() );
+      const checkindate = r_localDate.toISOString().slice(0, 10); 
+  
+  
+      const checko= new Date(checkOut);
+     
+      
+      const r_localDateo = new Date(checko.getTime());
+      const checkoutdate = r_localDateo.toISOString().slice(0, 10);
+  route.push(`/hotels/cityName=${city.Name}&citycode=${city.Code}&checkin=${checkindate}&checkout=${checkoutdate}&adult=${adultcount}&child=${childcount}&roomes=${numberOfRoom}&page=0&star=0`)
+    }
+  
 
 
   return (
     <>
-      <div className="flex flex-col hidden lg:block justify-end custom-color text-white md:px-10 lg:px-52  py-10">
+     <div className=" flex flex-col   lg:hidden justify-end custom-color text-white md:px-10 lg:px-52  py-10">
         <div className="flex justify-end ">
           <span className=" text-lg mb-2 mr-5 font-bold ">
             Cheapest price Hotels. Guaranteed!!
           </span>
         </div>
 
-        <div className=" flex justify-center gap-0">
+        <div className=" flex justify-center gap-4 p-3  flex-col">
           <div
-            className="  relative "
+            className="  relative  "
            
           >
             <div
@@ -150,13 +154,14 @@ route.push(`/hotels/cityName=${city.Name}&citycode=${city.Code}&checkin=${checki
               <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
             </div>
             </div>
-          {isVisible=="date"  &&  <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
+          {isVisible=="date"  &&  <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-50 ">
                         <Calendar
                           aria-label="Select a date"
                           value={""}
                           onChange={handelreturn}
                           minValue={currentDate}
-                          disabledDatesClassName=" opacity-50"
+                        //   disabledDatesClassName=" opacity-100 "
+                          className=""
                         />
                       </div>}
           </div>
@@ -190,13 +195,13 @@ route.push(`/hotels/cityName=${city.Name}&citycode=${city.Code}&checkin=${checki
             </div>
             
           </div>
-          {isVisible=="checkout"  &&  <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
+          {isVisible=="checkout"  &&  <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-50">
                         <Calendar
                           aria-label="Select a date"
                           value={""}
                           onChange={handelreturn2}
                           minValue={currentDate}
-                          disabledDatesClassName=" opacity-50"
+                          disabledDatesClassName=" opacity-100"
                         />
                       </div>}
 
@@ -262,4 +267,4 @@ route.push(`/hotels/cityName=${city.Name}&citycode=${city.Code}&checkin=${checki
   );
 };
 
-export default HotelComp;
+export default Hotelmobileheader;

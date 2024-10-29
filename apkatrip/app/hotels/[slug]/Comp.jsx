@@ -94,7 +94,7 @@ console.log(hotalbackup,"sdfsdfd",seepagination)
    
    <div className='p-2 flex gap-2 relative '>
       
-   <div className=' w-1/6 ps-2 sticky top-24 h-[85vh] p-1 mx-5 mt-4 myshadow bg-white border hover:border-blue-600  flex flex-col'>
+   <div className=' hidden  w-1/6 ps-2 sticky top-24 h-[85vh] p-1 mx-5 mt-4 myshadow bg-white border hover:border-blue-600  lg:flex flex-col'>
  <p className='flex items-center gap-3'> <MdFilterList  className='text-gray-600 text-2xl ' /> Filter</p> 
 <div className='mt-4 p-2'>
 <p className='font-semibold'>By Stars</p>
@@ -205,7 +205,7 @@ console.log(hotalbackup,"sdfsdfd",seepagination)
 </div>
 
 
-   <div className='w-5/6'>
+   <div className='lg:w-5/6'>
 {allhoteldata && allhoteldata.isLoading && <div className='h-[70vh] flex justify-center items-center'>
   
   <h4>Loading... </h4>
@@ -239,7 +239,7 @@ console.log(hotalbackup,"sdfsdfd",seepagination)
               src={hotel.HotelDetails.Images ?(hotel.HotelDetails.Images[0] || "/Images/not_found_img.png"):"/Images/not_found_img.png"}
               alt="hotelImg"
              
-              className="object-cover w-[35rem] h-[15rem] rounded-md"
+              className="object-cover w-full h-[10rem] lg:w-[35rem] lg:h-[15rem] rounded-md"
             />
             <div className="absolute bottom-2 right-2">
               <button className="bg-blue-600 text-white rounded-full w-20 h-8 flex items-center justify-center">
