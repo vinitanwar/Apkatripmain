@@ -422,7 +422,7 @@ setstate2([filterdata])
           src={
             info.Airline.AirlineName
               ? `/Images/${info.Airline.AirlineCode}.png`
-              : "/Images/logo-flight.webp"
+              : "/Images/planeicon.svg"
           }
           alt={`${
             info.Airline.AirlineName || "Default"
