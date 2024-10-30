@@ -48,21 +48,19 @@ const renderStars = (rating) => {
   );
 };
 
-useEffect(()=>{
-dispatch(getAllhotelsapi({cityCode,checkIn,checkOut,adults,children,page}))
-},[])
-useEffect(()=>{
-setallhotels(allhoteldata && !allhoteldata.isLoading && allhoteldata.info && allhoteldata.info.filteredResults
-  && allhoteldata.info.filteredResults)
-sethotalbackup(allhoteldata)
-},[allhoteldata])
 
-const handelRatingFilter=(e)=>{
-  // const newdata= hotalbackup.info.hotelDetails.HotelDetails ||     e.target.value;
-const newdata=hotalbackup.info.filteredResults.filter((data)=>data.HotelDetails.HotelRating==e.target.value)
-setallhotels(newdata)
-  setpagination(false)
-}
+// useEffect(()=>{
+// setallhotels(allhoteldata && !allhoteldata.isLoading && allhoteldata.info && allhoteldata.info.filteredResults
+//   && allhoteldata.info.allhotel)
+// sethotalbackup(allhoteldata)
+// },[allhoteldata])
+
+// const handelRatingFilter=(e)=>{
+//   // const newdata= hotalbackup.info.totalHotels.HotelDetails ||     e.target.value;
+// const newdata=hotalbackup.info.filteredResults.filter((data)=>data.HotelDetails.HotelRating==e.target.value)
+// setallhotels(newdata)
+//   setpagination(false)
+// }
 
 
 
@@ -79,20 +77,26 @@ const handelPrevpage=()=>{
 }
 
 }
-const resetfilter=()=>{
- setallhotels(hotalbackup.info.hotelDetails.HotelDetails)
- setpagination(true)
 
-}
 
-console.log(hotalbackup,"sdfsdfd",seepagination)
+
+useEffect(()=>{
+dispatch(getAllhotelsapi({cityCode,checkIn,checkOut,adults,children,page}))
+},[])
+useEffect(()=>{sethotalbackup(allhoteldata)
+  setallhotels(  allhoteldata.info.totalHotels && allhoteldata.info.totalHotels.HotelDetails)
+},[allhoteldata])
+
+
+console.log(hotalbackup,"sdfsdfd")
+console.log(allhotel,"kkiiin")
 
 
   return (
    <>
    <HotelComp />
    
-   <div className='p-2 flex gap-2 relative '>
+ <div className='p-2 flex gap-2 relative '>
       
    <div className=' hidden  w-1/6 ps-2 sticky top-24 h-[85vh] p-1 mx-5 mt-4 myshadow bg-white border hover:border-blue-600  lg:flex flex-col'>
  <p className='flex items-center gap-3'> <MdFilterList  className='text-gray-600 text-2xl ' /> Filter</p> 
@@ -225,7 +229,7 @@ console.log(hotalbackup,"sdfsdfd",seepagination)
     {showimg==index_num &&
       <div className='fixed top-16  left-0 z-40 w-full  h-[90vh] border-8 border-white bg-white overflow-scroll grid grid-cols-3 gap-2'>
 <MdOutlineCancel onClick={()=>setshowImg(null)} className='fixed top-24 cursor-pointer right-10 text-orange-500 text-5xl' />
-{hotel.HotelDetails.Images.map((imgs)=>{
+{hotel.Images.map((imgs)=>{
   return(
 <img src={imgs}  className='h-[25rem] w-full'/>
   )
@@ -236,7 +240,7 @@ console.log(hotalbackup,"sdfsdfd",seepagination)
         <div className="relative">
           <div className="relative">
             <img
-              src={hotel.HotelDetails.Images ?(hotel.HotelDetails.Images[0] || "/Images/not_found_img.png"):"/Images/not_found_img.png"}
+              src={hotel.Images ?(hotel.Images[0] || "/Images/not_found_img.png"):"/Images/not_found_img.png"}
               alt="hotelImg"
              
               className="object-cover w-full h-[10rem] lg:w-[35rem] lg:h-[15rem] rounded-md"
@@ -251,7 +255,7 @@ console.log(hotalbackup,"sdfsdfd",seepagination)
           </div>
 
           <div className="flex justify-center md:justify-start mt-2 space-x-2">
-            {hotel.HotelDetails.Images && hotel.HotelDetails.Images.slice(1, 5).map((image, index) => (
+            {hotel.Images && hotel.Images.slice(1, 5).map((image, index) => (
               <div key={index} className="relative rounded-sm">
                 <img
                   src={image}
@@ -271,39 +275,32 @@ console.log(hotalbackup,"sdfsdfd",seepagination)
 
       <div className="flex-1 pl-0 md:pl-5">
         <div className=" my-5 md:my-0 flex justify-between items-center">
-          <p className="text-base md:text-2xl font-black">{hotel.HotelDetails.HotelName}</p>
+          <p className="text-base md:text-2xl font-black">{hotel.HotelName}</p>
           <div>
             <div className="flex items-center">
               <span className="bg-blue-500 text-white px-2 text-sm rounded-full">
-                {hotel.HotelDetails.HotelRating} 
+                {hotel.HotelRating} 
               </span>
               <span className=" ml-2 text-blue-600">
-                {hotel.HotelDetails.HotelRating}
+                {hotel.HotelRating}
               </span>
             </div>
             <div className="hidden md:flex items-center justify-center mt-2">
-              {renderStars(hotel.HotelDetails.HotelRating)}
+              {renderStars(hotel.HotelRating)}
             </div>
           </div>
         </div>
 
         <div className="text-gray-500">
-          <span className="text-blue-600">{hotel.HotelDetails.Address}</span> |{" "}
-          {hotel.HotelDetails.distance}
+          <span className="text-blue-600">{hotel.Address}</span> |{" "}
+          {hotel.distance}
         </div>
 
         <div className="mt-2 hidden md:flex space-x-4 text-gray-500">
-          {/* {hotel.perks.map((perk, index) => (
-            <span
-              key={index}
-              className="bg-gray-200 px-2 py-1 text-sm rounded-full"
-            >
-              {perk}
-            </span>
-          ))} */}
+        
         </div>
        
-        {hotel.Rooms.map((items_price)=>{
+        {/* {hotel.Rooms.map((items_price)=>{
   return(
     <>
      <div className="flex items-end justify-between">
@@ -327,7 +324,7 @@ console.log(hotalbackup,"sdfsdfd",seepagination)
     </div>
     </>
   )
-}) }
+}) } */}
        
        
         </div>
@@ -360,7 +357,7 @@ console.log(hotalbackup,"sdfsdfd",seepagination)
 
 
    </div>
-   
+    
    </>
   )
 }
