@@ -7,19 +7,24 @@ use App\Http\Controllers\TopPorts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+
 use App\Http\Controllers\TBOController;
 
 use App\Http\Controllers\FlightController;
-
 use App\Http\Controllers\SightseeingController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\BusControllerSearch;
 use App\Http\Controllers\HotelControllerSearchRes;
+use App\Http\Controllers\CountryControllerCab;
+use App\Http\Controllers\TransferController;
 
+use App\Http\Controllers\TransferSearchController;
+
+
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
 Route::apiResource('v1/airports', AirportController::class);
 Route::apiResource('v1/topairports', TopPorts::class);
 
@@ -53,10 +58,17 @@ Route::post('v1/sightseeing', [SightseeingController::class, 'meRandomdata']);
 
 
 
-Route::get('/v1/bus/cities', [BusController::class, 'searchBusCityList']);
-Route::post('/v1/bus/search', [BusControllerSearch::class, 'searchBuses']);
+Route::get('v1/bus/cities', [BusController::class, 'searchBusCityList']);
+Route::post('v1/bus/search', [BusControllerSearch::class, 'searchBuses']);
 
 
+
+Route::post('/transfer-search', [TransferSearchController::class, 'searchTransfer']);
+
+
+Route::get('/transfers', [TransferController::class, 'getTransferData']);
+
+Route::get('v1/cab/countries', [CountryControllerCab::class, 'getCountryList']);
 // Route::get('/search-flights-one', (Request $request) {
-//     return "<h1>Hello world</h1>"
+//     return "<h1>Hello  nworld</h1>"
 // });
