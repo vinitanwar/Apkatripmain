@@ -7,7 +7,7 @@ import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Autoplay} from 'swiper/modules';
-
+import {useTranslations} from 'next-intl';
 const allData = [
   {
     title: "Exclusive Offer",
@@ -96,6 +96,7 @@ const allData = [
 ];
 
 const CustomSlider = ({ isLoading, children }) => {
+  const t = useTranslations('HomePage');
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("TopOffer");
 
@@ -137,7 +138,7 @@ const filteredData2=["/Images/flight-slide2.png","/Images/flight-slide1.png","/I
       <div className="my-6">
         {/* Tabs Section */}
         <div className="relative  pt-0 lg:pt-10 text-lg md:text-xl lg:text-3xl font-bold text-gray-900 flex justify-center items-center gap-2 my-5">
-          Why book with us?
+        {t('title')}
         </div>
         
 

@@ -9,10 +9,37 @@ import {
 } from "react-icons/fa";
 import Sidebar from "./Sidebar";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Navbar from "./AllComponent/Navbar";
+import Cookies from 'js-cookie';
+
+
 const Topbar = () => {
+
+  const router = useRouter();
+
   const [openDropdown, setOpenDropdown] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+
+
+  const [selectedLang, setSelectedLang] = useState('en');
+
+  useEffect(() => {
+    // Set the initial state from cookies (if available)
+    const localeFromCookie = Cookies.get('locale');
+    if (localeFromCookie) setSelectedLang(localeFromCookie);
+  }, []);
+
+  const handleLanguageChange = (e) => {
+    const newLang = e.target.value;
+    setSelectedLang(newLang);
+    Cookies.set('locale', newLang); // Save the selected language in cookies
+    // router.reload(); // Reload to apply the new locale
+    router.refresh();
+  };
+
+
 
   const openNav3 = () => {
     setIsSidebarOpen(true);
@@ -172,92 +199,41 @@ const Topbar = () => {
                   </div>
 
                   <div className="mt-3 border-t border-gray-200">
-                    <p className="font-semibold text-xs mt-2">
-                      Choose Language
-                    </p>
-                    <div className="mt-2 h-16 overflow-hidden overflow-y-auto flex flex-wrap gap-1 justify-between">
-                      <label className="border flex items-center px-2 py-1 cursor-pointer">
-                        <input
-                          type="radio"
-                          name="optLang"
-                          value="English"
-                          defaultChecked
-                          className="mr-2"
-                        />
-                        <span className="font-semibold text-xs">English</span>
-                      </label>
-                      <label className="border flex items-center px-2 py-1 cursor-pointer">
-                        <input
-                          type="radio"
-                          name="optLang"
-                          value="Hindi"
-                          defaultChecked
-                          className="mr-2"
-                        />
-                        <span className="font-semibold text-xs">Hindi</span>
-                      </label>
-                      <label className="border flex items-center px-2 py-1 cursor-pointer">
-                        <input
-                          type="radio"
-                          name="optLang"
-                          value="Bengali"
-                          defaultChecked
-                          className="mr-2"
-                        />
-                        <span className="font-semibold text-xs">Bengali</span>
-                      </label>
-                      <label className="border flex items-center px-2 py-1 cursor-pointer">
-                        <input
-                          type="radio"
-                          name="optLang"
-                          value="Bengali"
-                          defaultChecked
-                          className="mr-2"
-                        />
-                        <span className="font-semibold text-xs">Bengali</span>
-                      </label>
-                      <label className="border flex items-center px-2 py-1 cursor-pointer">
-                        <input
-                          type="radio"
-                          name="optLang"
-                          value="Bengali"
-                          defaultChecked
-                          className="mr-2"
-                        />
-                        <span className="font-semibold text-xs">Bengali</span>
-                      </label>
-                      <label className="border flex items-center px-2 py-1 cursor-pointer">
-                        <input
-                          type="radio"
-                          name="optLang"
-                          value="Bengali"
-                          defaultChecked
-                          className="mr-2"
-                        />
-                        <span className="font-semibold text-xs">Bengali</span>
-                      </label>
-                      <label className="border flex items-center px-2 py-1 cursor-pointer">
-                        <input
-                          type="radio"
-                          name="optLang"
-                          value="Bengali"
-                          defaultChecked
-                          className="mr-2"
-                        />
-                        <span className="font-semibold text-xs">Bengali</span>
-                      </label>
-                      <label className="border flex items-center px-2 py-1 cursor-pointer">
-                        <input
-                          type="radio"
-                          name="optLang"
-                          value="Bengali"
-                          defaultChecked
-                          className="mr-2"
-                        />
-                        <span className="font-semibold text-xs">Bengali</span>
-                      </label>
-                    </div>
-                  </div>
+      <p className="font-semibold text-xs mt-2">Choose Language</p>
+      <div className="mt-2 h-16 overflow-hidden overflow-y-auto flex flex-wrap gap-1 justify-between">
+        {['en', 'hi', 'bn', 'ar', 'pa', 'gu', 'ta'].map((langCode) => (
+          <label
+            key={langCode}
+            className="border flex items-center px-2 py-1 cursor-pointer"
+          >
+            <input
+              type="radio"
+              name="optLang"
+              value={langCode}
+              checked={selectedLang === langCode}
+              onChange={handleLanguageChange}
+              className="mr-2"
+            />
+            <span className="font-semibold text-xs">
+              {langCode === 'en'
+                ? 'English'
+                : langCode === 'hi'
+                ? 'Hindi'
+                : langCode === 'bn'
+                ? 'Bengali'
+                : langCode === 'ar'
+                ? 'Arabic'
+                : langCode === 'pa'
+                ? 'Punjabi'
+                : langCode === 'gu'
+                ? 'Gujarati'
+                : 'Tamil'}
+            </span>
+          </label>
+        ))}
+      </div>
+    </div>
+
                 </div>
               )}
             </div>
