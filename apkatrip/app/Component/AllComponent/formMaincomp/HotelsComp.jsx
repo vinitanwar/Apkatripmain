@@ -90,7 +90,7 @@ route.push(`/hotels/cityName=${city.Name}&citycode=${city.Code}&checkin=${checki
 
   return (
     <>
-      <div className="flex flex-col  lg:block justify-end custom-color text-white md:px-10 lg:px-52  py-10">
+      <div className="flex flex-col hidden lg:block justify-end custom-color text-white md:px-10 lg:px-52  py-10">
         <div className="flex justify-end ">
           <span className=" text-lg mb-2 mr-5 font-bold ">
             Cheapest price Hotels. Guaranteed!!
@@ -109,7 +109,7 @@ route.push(`/hotels/cityName=${city.Name}&citycode=${city.Code}&checkin=${checki
               Enter City Name or Specific hotel
             </p>
             <span className="text-3xl py-1 text-black font-bold textoverflowcss ">
-               {city.Name}
+               { city.Name}
             </span>
             <p className="text-black text-xs truncate">
              
