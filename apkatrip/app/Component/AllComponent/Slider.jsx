@@ -168,7 +168,7 @@ const filteredData2=["/Images/flight-slide2.png","/Images/flight-slide1.png","/I
             </Swiper>
             <div className="flex  lg:gap-4  lg:w-3/6 justify-around">
             {filteredData.slice(0,3).map((item)=>(
-              <div className="rounded-2xl overflow-hidden   h-[150px] md:h-[250px]  lg:h-full">
+              <div className="rounded-2xl overflow-hidden   h-[100px]   md:h-[250px]  lg:h-full">
                 <img src={item.imageUrl} alt="" className="h-full w-full" />
               </div>
             ))}

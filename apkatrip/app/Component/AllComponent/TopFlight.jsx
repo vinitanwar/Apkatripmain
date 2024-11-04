@@ -4,97 +4,100 @@ import React, { useState } from "react";
 import InfoSection from "./InfoSection";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
+
 
 const TopFlight = () => {
   const [viewAll,setviewAll]=useState(true)
+  const t=useTranslations("Popular")
   const cityData = [
     {
-      head: "Top Flight Routes",
+      head: t("heading1"),
       images: [
         {
           image: "/Images/london.webp",
           title: "New York to London",
-          description: "Connecting Two Major Cities",
+          description: t("des1"),
         },
         {
           image: "/Images/lose.webp",
           title: "Los Angeles to Tokyo",
-          description: "Gateway to Asia",
+          description: t("des2"),
         },
         {
           image: "/Images/tokyo.webp",
           title: " Sydney to Auckland",
-          description: "Across the Tasman Sea",
+          description: t("des3"),
         },
         {
           image: "/Images/rome.webp",
           title: "Paris to Rome",
-          description: "Romance and History Combined",
+          description: t("des4"),
         },
         {
           image: "/Images/dubai.webp",
           title: "Dubai to Mumbai",
-          description: "Connecting Major Economic Hubs",
+          description: t("des5"),
         },
       ],
     },
     {
-      head: "Top Holidays Packages",
+      head: t("heading2"),
       images: [
         {
           image: "/Images/europe.webp",
           title: "Explore the Wonders of Europe",
-          description: "Historic Cities Await You ",
+          description: t("desa1"),
         },
         {
           image: "/Images/getways.webp",
           title: "Exotic Getaways to the Caribbean",
-          description: "Sun, Sand, and Serenity ",
+          description: t("desa2"),
         },
         {
           image: "/Images/adventure.webp",
           title: "Adventure Awaits in Southeast Asia ",
-          description: "Thrill and Exploration Combined",
+          description: t("desa3"),
         },
         {
           image: "/Images/maldives.webp",
           title: "Serene Escapes to the Maldives",
-          description: "Luxury and Tranquility Redefined",
+          description: t("desa4"),
         },
         {
           image: "/Images/america2.webp",
           title: "Cultural Immersion in South America",
-          description: "Tradition Meets Adventure",
+          description: t("desa5"),
         },
       ],
     },
     {
-      head: "Top Hotel Facilities",
+      head: t("heading3"),
       images: [
         {
           image: "/Images/car1.webp",
           title: "Luxury Comfort",
-          description: "Premium Seating and Services",
+          description: t("desb1"),
         },
         {
           image: "/Images/24.webp",
           title: "24/7 Availability",
-          description: "Always-On Reliable Transportation",
+          description: t("desb2"),
         },
         {
           image: "/Images/wifi.webp",
           title: "Free Wi-Fi Access",
-          description: "Seamless Internet Connectivity Onboard",
+          description: t("desb3"),
         },
         {
           image: "/Images/safety-first.webp",
           title: "Safety First",
-          description: "Advanced Safety and Security",
+          description: t("desb4"),
         },
         {
           image: "/Images/businesswoman.webp",
           title: "Personalized Service",
-          description: "Tailored to Your Preferences",
+          description: t("desb5"),
         },
       ],
     },
@@ -129,7 +132,7 @@ const TopFlight = () => {
           <div className="">
             <div className="relative ">
               <div className="relative text-lg md:text-xl lg:text-3xl font-bold text-gray-900 flex justify-center items-center gap-2  mb-5 lg:mb-6">
-                Popular  Flight Destination
+               {t("mainheading")}
 
               </div>
             </div>
@@ -263,11 +266,10 @@ const TopFlight = () => {
           <div className="">
             <div className="p-4">
               <h3 className="text-4xl font-normal">
-                What service do you need? <br />
+               {t("service")}  <br />
               </h3>
               <p className="mt-4 mb-6">
-                Tell us more about your requirements so that we can connect you
-                to the right service provider.
+              {t("serviceans")}
               </p>
               <ul className="space-y-6">
                 <li className="flex items-start space-x-4">
@@ -278,11 +280,10 @@ const TopFlight = () => {
                   />
                   <div>
                     <h5 className="text-lg font-semibold">
-                      Tell us more about your requirements
+                      {t("moreabout")}
                     </h5>
                     <p className="mt-2">
-                      HI Imagine you have made your presence online through a
-                      local online directory, but your competitors have..
+                    {t("moreaboutans")}
                     </p>
                   </div>
                 </li>
@@ -294,11 +295,10 @@ const TopFlight = () => {
                   />
                   <div>
                     <h5 className="text-lg font-semibold">
-                      We connect with right service provider
+                     {t("serviceprovider")}
                     </h5>
                     <p className="mt-2">
-                      Advertising your business to area specific has many
-                      advantages. For local businessmen, it is an opportunity..
+                  {t("serviceproviderans")}
                     </p>
                   </div>
                 </li>
@@ -310,11 +310,11 @@ const TopFlight = () => {
                   />
                   <div>
                     <h5 className="text-lg font-semibold">
-                      Happy with our service
+                 {t("happyservice")}
                     </h5>
                     <p className="mt-2">
-                      Your local business too needs brand management and image
-                      making. As you know the local market..
+                    {t("happyserviceans")}
+
                     </p>
                   </div>
                 </li>

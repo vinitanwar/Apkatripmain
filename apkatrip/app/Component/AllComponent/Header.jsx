@@ -12,6 +12,7 @@ import { Calendar } from "@nextui-org/react";
 import { today, getLocalTimeZone } from "@internationalized/date";
 import { getip } from "../Store/slices/ipslice";
 import { toast,Bounce } from "react-toastify";
+import { useTranslations } from "next-intl";
 
 
 const Header = () => {
@@ -314,7 +315,7 @@ useEffect(() => {
    
     handleClick("");
   };
-
+const t=useTranslations("Navbar2")
 
   return (
     <>
@@ -356,7 +357,7 @@ useEffect(() => {
                       onClick={() => handleClick("from")}
                       className="flex flex-col bg-white  h-full px-4 py-2 rounded-tl-lg rounded-bl-lg border-r hover:bg-[#ECF5FE] cursor-pointer"
                     >
-                      <p className="text-sm text-[#7E7979] font-medium">From</p>
+                      <p className="text-sm text-[#7E7979] font-medium">{t("From")}</p>
                       <span className="text-3xl py-1 text-black font-bold">
                         {fromCity.municipality}
                       </span>
@@ -382,7 +383,7 @@ useEffect(() => {
                       className="flex flex-col px-4 py-2 h-full  bg-white border-r hover:bg-[#ECF5FE]"
                     >
                       <label className="text-sm text-[#7E7979] font-medium">
-                        To
+                      {t("To")}
                       </label>
                       <span className="text-3xl py-1 text-black font-bold">
                         {toCity.municipality}
@@ -413,7 +414,7 @@ useEffect(() => {
                       className="flex h-full flex-col  px-4 py-2 bg-white  border-r hover:bg-[#ECF5FE]"
                     >
                       <label className="text-sm text-[#7E7979] font-medium">
-                        Departure Date
+                      {t("Departure Date")}
                       </label>
                       {!selected && (
                         <div className="text-black font-bold">
@@ -467,7 +468,7 @@ useEffect(() => {
                       onClick={() => handleClick("return")}
                     >
                       <label className="text-sm text-[#7E7979] font-medium">
-                        Return Date
+                      {t("Return Date")}
                       </label>
                       {!selectedReturn && (
                         <div className="text-black font-bold h-full align-bottom">
@@ -517,7 +518,7 @@ useEffect(() => {
                       onClick={() => handleClick("traveller")}
                     >
                       <label className="text-sm text-[#7E7979] font-medium">
-                        Travelers
+                      {t("Travelers")}
                       </label>
                       <div className="flex items-center text-black">
                         <span className="text-3xl py-1 pr-1 text-black font-bold">
@@ -567,7 +568,7 @@ useEffect(() => {
                   className="flex flex-col bg-white relative px-4 py-2 rounded-tl-lg rounded-bl-lg border-r hover:bg-[#ECF5FE] cursor-pointer"
                   onClick={() => handleClick("from")}
                 >
-                  <p className="text-sm text-[#7E7979] font-medium">From</p>
+                  <p className="text-sm text-[#7E7979] font-medium">{t("From")}</p>
                   <span className="text-3xl py-1 text-black font-bold">
                     {fromCity.name}
                   </span>
@@ -591,7 +592,7 @@ useEffect(() => {
                   onClick={() => handleClick("to")}
                 >
                   <label className="text-sm text-[#7E7979] font-medium">
-                    To
+                  {t("To")}
                   </label>
                   <span className="text-3xl py-1 text-black font-bold">
                     {toCity.name}
@@ -613,7 +614,7 @@ useEffect(() => {
 
                 <div className="flex flex-col  px-4 py-2 bg-white  border-r hover:bg-[#ECF5FE]">
                   <label className="text-sm text-[#7E7979] font-medium">
-                    Departure Date
+                  {t("Departure Date")}
                   </label>
 
                   <div className="flex items-baseline text-black">
@@ -636,7 +637,7 @@ useEffect(() => {
                 </div>
                 <div className="flex flex-col  px-4 py-2 bg-white  border-r hover:bg-[#ECF5FE]">
                   <label className="text-sm text-[#7E7979] font-medium">
-                    Return Date
+                  {t("Return Date")}
                   </label>
                   <div className="flex items-baseline text-black">
                     <span className="text-3xl py-1 pr-1 text-black font-bold">
@@ -661,7 +662,7 @@ useEffect(() => {
                   onClick={() => handleClick("traveller")}
                 >
                   <label className="text-sm text-[#7E7979] font-medium">
-                    Travelers
+                  {t("Travelers")}
                   </label>
                   <div className="flex items-center text-black">
                     <span className="text-3xl py-1 pr-1 text-black font-bold">
@@ -696,7 +697,7 @@ useEffect(() => {
                   className="flex flex-col bg-white relative px-4 py-2 rounded-tl-lg rounded-bl-lg border-r border-b hover:bg-[#ECF5FE] cursor-pointer"
                   onClick={() => handleClick("from")}
                 >
-                  <p className="text-sm text-[#7E7979] font-medium">From</p>
+                  <p className="text-sm text-[#7E7979] font-medium">{t("From")}</p>
                   <span className="text-3xl py-1 text-black font-bold">
                     {fromCity.municipality}
                   </span>
@@ -719,7 +720,7 @@ useEffect(() => {
                   onClick={() => handleClick("to")}
                 >
                   <label className="text-sm text-[#7E7979] font-medium">
-                    To
+                  {t("To")}
                   </label>
                   <span className="text-3xl py-1 text-black font-bold">
                     {toCity.municipality}
@@ -740,7 +741,7 @@ useEffect(() => {
                 </div>
                 <div className="flex flex-col  px-4 py-2 bg-white  border-r border-b hover:bg-[#ECF5FE]">
                   <label className="text-sm text-[#7E7979] font-medium">
-                    Departure Date
+                  {t("Departure Date")}
                   </label>
                   <div className="flex items-baseline text-black">
                     <span className="text-3xl py-1 pr-1 text-black font-bold">
@@ -763,7 +764,7 @@ useEffect(() => {
                 </div>
                 <div className="flex flex-col  px-4 py-2 bg-white border-b rounded-tr-lg hover:bg-[#ECF5FE]">
                   <label className="text-sm text-[#7E7979] font-medium">
-                    Travelers
+                  {t("Travelers")}
                   </label>
                   <div className="flex items-center text-black">
                     <span className="text-3xl py-1 pr-1 text-black font-bold">
@@ -780,7 +781,7 @@ useEffect(() => {
                   className="flex flex-col bg-white relative px-4 py-2 rounded-tl-lg rounded-bl-lg border-r hover:bg-[#ECF5FE] cursor-pointer"
                   onClick={() => handleClick("from")}
                 >
-                  <p className="text-sm text-[#7E7979] font-medium">From</p>
+                  <p className="text-sm text-[#7E7979] font-medium">{t("From")}</p>
                   <span className="text-3xl py-1 text-black font-bold">
                     {fromCity.name}
                   </span>
@@ -804,7 +805,7 @@ useEffect(() => {
                   onClick={() => handleClick("to")}
                 >
                   <label className="text-sm text-[#7E7979] font-medium">
-                    To
+                  {t("To")}
                   </label>
                   <span className="text-3xl py-1 text-black font-bold">
                     {toCity.name}
@@ -825,7 +826,7 @@ useEffect(() => {
                 </div>
                 <div className="flex flex-col  px-4 py-2 bg-white  border-r border-b hover:bg-[#ECF5FE]">
                   <label className="text-sm text-[#7E7979] font-medium">
-                    Departure Date
+                  {t("Departure Date")}
                   </label>
                   <div className="flex items-baseline text-black">
                     <span className="text-3xl py-1 pr-1 text-black font-bold">

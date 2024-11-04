@@ -1,13 +1,15 @@
+import { useTranslations } from "next-intl";
 import React from "react";
 
 const Subscribe = () => {
+  const t=useTranslations("footer")
   return (
     <>
       <section className="mb-15 py-10 px-5 lg:px-20 animate__animated animate__fadeIn custom-color">
         <div className="block md:flex   items-center justify-center gap-10">
           <div className="w-full lg:w-1/3">
             <h2 className="text-2xl  text-white font-bold mb-5">
-              Subscribe to Our Newsletter
+              {t("subscribe")}
             </h2>
 
             <form className="mx-auto  my-5 lg:my-0  flex justify-center  rounded-full relative z-20 ">
@@ -26,8 +28,7 @@ const Subscribe = () => {
           </div>
 
           <p className="mt-auto text-2xl w-full lg:w-2/3 text-justify text-white font-semibold">
-          Subscribe now and get the latest travel  Trip, destination guides, and exclusive offers straight to your inbox. Your next adventure awaits!
-           
+           {t("sub2")}
           
           </p>
         </div>

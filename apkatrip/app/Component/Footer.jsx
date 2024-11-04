@@ -2,8 +2,10 @@
 import Link from "next/link";
 import React from "react";
 import Subscribe from "./AllComponent/Subscribe";
+import { useTranslations } from "next-intl";
 
 const Footer = () => {
+  const t=useTranslations("footer")
   return (
     <>
       <Subscribe />
@@ -107,7 +109,7 @@ const Footer = () => {
                         href="/listofhotels"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        List of Hotels
+                       {t("listofhotels")}
                       </Link>
                     </li>
                     <li>
@@ -115,7 +117,7 @@ const Footer = () => {
                         href="/TrainComponent/pnrcheck"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        Check PNR Status
+                        {t("pnr")}
                       </Link>
                     </li>
                     <li>
@@ -123,7 +125,7 @@ const Footer = () => {
                         href="/activities"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        Activities
+                       {t("activities")}
                       </Link>
                     </li>
                     <li>
@@ -138,7 +140,7 @@ const Footer = () => {
                 </div>
                 <div className="mt-10 md:mt-0">
                   <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                    Service
+                  {t("service")}
                   </h3>
                   <ul role="list" className="mt-6 space-y-4">
                     <li>
@@ -146,7 +148,7 @@ const Footer = () => {
                         href="/flight"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        Flights
+                        {t("flights")}
                       </Link>
                     </li>
                     <li>
@@ -270,15 +272,7 @@ const Footer = () => {
             <div className="flex justify-between items-center">
               <div className="text-sm leading-6 text-gray-600 hover:text-gray-900 w-3/5">
                 <p>
-                  At Apka Trip, we’re dedicated to turning your travel dreams
-                  into reality. Whether you're seeking affordable flights,
-                  luxurious hotels, reliable bus services, or exciting holiday
-                  packages, we’ve got you covered. Our flight search tool allows
-                  you to compare numerous airlines to find the best deal,
-                  ensuring a seamless booking experience. When it comes to
-                  accommodations, we offer a vast selection of hotels ranging
-                  from opulent suites to budget-friendly options, complete with
-                  guest reviews and exclusive deals.
+                 {t("text1")}
                 </p>
               </div>
 
