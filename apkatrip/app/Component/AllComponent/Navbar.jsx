@@ -33,7 +33,7 @@ const Navbar = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: false, // Disable arrows if not needed
+    arrows: false, 
   };
   const icons = [
     {

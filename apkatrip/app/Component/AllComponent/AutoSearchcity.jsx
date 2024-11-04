@@ -52,7 +52,7 @@ useEffect(()=>{dispatch(getAllcityes())},[])
 
 
  
-
+  console.log(cities?.info)
 
 
   return (
@@ -86,7 +86,7 @@ useEffect(()=>{dispatch(getAllcityes())},[])
 
           {cities && !cities.isLoading  && !cities.isError && cities.info && cities.info.map((item)=>{
             return(
-         <li className=" m-auto my-1 hover:bg-gray-200 cursor-pointer duration-150 p-2" onClick={()=>onSelect(item)} >
+         <li className=" m-auto my-1 hover:bg-blue-200 cursor-pointer duration-150 p-2" onClick={()=>onSelect(item)} >
             {item.Name}
          </li>
 
