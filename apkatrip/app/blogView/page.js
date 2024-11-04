@@ -4,8 +4,8 @@ import Link from "next/link";
 import { HiOutlineArrowTrendingUp } from "react-icons/hi2";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getBlogs } from "@/app/Component/Store/slices/blogslice";
-import { imgurl, localurl } from "@/app/Component/Store/flightUrls";
+import { getBlogs } from "../Component/Store/slices/blogslice";
+import { imgurl, localurl } from "../Component/Store/flightUrls";
 
 
 

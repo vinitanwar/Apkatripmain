@@ -14,7 +14,17 @@ const AutoSearch = ({ value, onSelect, }) => {
  
   const allcityes=useSelector((state)=>state.citysearch)
  const [inputValue,setinputvalue]=useState("")
-const [cities,setallcities]=useState()
+
+ const addCitdef = {
+  info: [
+    { Code: "100881", Name: "Haryana" },
+    { Code: "144227", Name: "Bheeramballi" },
+    { Code: "102750", Name: "Perambalur" },
+    { Code: "103345", Name: "Sambalpur" },
+  ],
+}
+const [cities,setallcities]=useState(addCitdef)
+console.log('sfr',cities)
 const debounceTimeoutRef = useRef(null);
 
   const dispatch = useDispatch();
@@ -52,7 +62,7 @@ useEffect(()=>{dispatch(getAllcityes())},[])
 
 
  
-  console.log(cities?.info)
+
 
 
   return (
@@ -86,7 +96,7 @@ useEffect(()=>{dispatch(getAllcityes())},[])
 
           {cities && !cities.isLoading  && !cities.isError && cities.info && cities.info.map((item)=>{
             return(
-         <li className=" m-auto my-1 hover:bg-blue-200 cursor-pointer duration-150 p-2" onClick={()=>onSelect(item)} >
+         <li className=" m-auto my-1 hover:bg-gray-200 cursor-pointer duration-150 p-2" onClick={()=>onSelect(item)} >
             {item.Name}
          </li>
 

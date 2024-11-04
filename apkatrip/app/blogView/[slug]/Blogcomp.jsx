@@ -11,7 +11,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import Image from "next/image";
-import { imgurl } from "@/app/Component/common";
+import { imgurl } from "../../Component/common";
 
 
 

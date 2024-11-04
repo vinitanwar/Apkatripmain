@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import { getSingleHotel } from '@/app/Component/Store/slices/getHotelSlice';
+import { getSingleHotel } from '../../Component/Store/slices/getHotelSlice';
 
 import { useDispatch, useSelector } from 'react-redux'
 import Image from "next/image";
@@ -33,7 +33,7 @@ import {
 
 
   import { ImCancelCircle } from "react-icons/im";
-import { gethotelPreBookingApi } from '@/app/Component/Store/slices/hotelpreBookslice';
+import { gethotelPreBookingApi } from '../../Component/Store/slices/hotelpreBookslice';
 
 
 const HotelSlugComp = ({slugs}) => {

@@ -8,7 +8,7 @@ import "swiper/css";
 import { IoLocationOutline, IoTimeOutline } from "react-icons/io5";
 import { FaStar, FaCheck } from "react-icons/fa6";
 import { FaRupeeSign } from "react-icons/fa";
-import FlightHotelFilter from "@/app/Component/Filter/FlightHotelFilter";
+import FlightHotelFilter from "../../Component/Filter/FlightHotelFilter";
 import Link from "next/link";
 
 export default function DelhiActivities() {

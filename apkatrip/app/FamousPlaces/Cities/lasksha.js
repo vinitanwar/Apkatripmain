@@ -14,7 +14,7 @@ import { RiFilter2Line } from "react-icons/ri";
 import { FaFilter, FaRupeeSign, FaTimes } from "react-icons/fa";
 import { TbRosetteDiscount } from "react-icons/tb";
 import Link from "next/link";
-import FamousPlacesFilter from "@/app/Component/Filter/FamousPlacesFilter";
+import FamousPlacesFilter from "../../Component/Filter/FamousPlacesFilter";
 
 const Lakshdeep = ({ selectedRange = [0, 300000], onApply }) => {
   // price range
