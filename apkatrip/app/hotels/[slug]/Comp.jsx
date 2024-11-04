@@ -99,7 +99,7 @@ console.log(allhotel,"kkiiin")
    
  <div className='p-2 flex gap-2 relative '>
       
-   <div className=' hidden  w-1/6 ps-2 sticky top-24 h-[85vh] p-1 mx-5 mt-4 myshadow bg-white border hover:border-blue-600  lg:flex flex-col'>
+   <div className=' hidden  w-1/6 ps-3 pt-2 sticky top-24 h-[85vh] p-1 mx-5 mt-4 myshadow rounded-sm bg-white border hover:border-blue-600  lg:flex flex-col'>
  <p className='flex items-center gap-3'> <MdFilterList  className='text-gray-600 text-2xl ' /> Filter</p> 
 <div className='mt-4 p-2'>
 <p className='font-semibold'>By Stars</p>

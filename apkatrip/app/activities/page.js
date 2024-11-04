@@ -8,8 +8,10 @@ import ActivitiesSlider from "../Component/AllComponent/ActivitiesSlider";
 import { FaArrowRight, FaClock, FaMapPin } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const Page = () => {
+  const t=useTranslations("activities")
   const slides = [
     { src: "/Images/activity9.webp", title: "Paris", tours: "100+ Tours" },
     { src: "/Images/activity6.webp", title: "Singapore", tours: "300+ Tours" },
@@ -35,7 +37,7 @@ const Page = () => {
       id: 1,
       image: "/Images/1bike.webp",
       location: "Paris, France",
-      title: "Centipede Tour - Guided Arizona Desert Tour by ATV",
+      title: t("title1"),
       rating: 4.8,
       reviews: 243,
       duration: "4 days",
@@ -46,7 +48,7 @@ const Page = () => {
       id: 2,
       image: "/Images/2.webp",
       location: "New York, USA",
-      title: "Molokini and Turtle Town Snorkeling Adventure Aboard",
+      title: t("title2"),
       rating: 4.8,
       reviews: 243,
       duration: "4 days",
@@ -57,7 +59,7 @@ const Page = () => {
       id: 3,
       image: "/Images/3.webp",
       location: "London, UK",
-      title: "Westminster Walking Tour & Westminster Abbey Entry",
+      title:  t("title3"),
       rating: 4.8,
       reviews: 243,
       duration: "4 days",
@@ -68,7 +70,7 @@ const Page = () => {
       id: 4,
       image: "/Images/4.webp",
       location: "New York, USA",
-      title: "All Inclusive Ultimate Circle Island Day Tour with Lunch",
+      title: t("title4"),
       rating: 4.8,
       reviews: 243,
       duration: "4 days",
@@ -79,7 +81,7 @@ const Page = () => {
       id: 5,
       image: "/Images/5.webp",
       location: "Paris, France",
-      title: "Space Center Houston Admission Ticket",
+      title:  t("title5"),
       rating: 4.8,
       reviews: 243,
       duration: "4 days",
@@ -90,7 +92,7 @@ const Page = () => {
       id: 6,
       image: "/Images/6.webp",
       location: "New York, USA",
-      title: "Clear Kayak Tour of Shell Key Preserve and Tampa Bay Area",
+      title:  t("title6"),
       rating: 4.8,
       reviews: 243,
       duration: "4 days",
@@ -101,7 +103,7 @@ const Page = () => {
       id: 7,
       image: "/Images/7.webp",
       location: "London, UK",
-      title: "History and Hauntings of Salem Guided Walking Tour",
+      title:  t("title7"),
       rating: 4.8,
       reviews: 243,
       duration: "4 days",
@@ -109,10 +111,10 @@ const Page = () => {
       link: "/tour-single-1/7",
     },
     {
-      id: 7,
+      id: 8,
       image: "/Images/9.webp",
       location: "London, UK",
-      title: "History and Hauntings of Salem Guided Walking Tour",
+      title:  t("title7"),
       rating: 4.8,
       reviews: 243,
       duration: "4 days",
@@ -132,7 +134,7 @@ const Page = () => {
               data-aos="fade-up"
               className="text-xl md:text-[24px] font-semibold aos-init aos-animate"
             >
-              Trending destinations
+              {t("trending")}
             </h2>
           </div>
           <div data-aos="fade-up" className="col-auto aos-init aos-animate">
@@ -197,7 +199,7 @@ const Page = () => {
             data-aos="fade-up"
             className="text-xl lg:text-3xl md:text-[24px] font-semibold aos-init aos-animate"
           >
-            Trending destinations
+            {t("trending")}
           </h2>
 
           <div data-aos="fade-up" className="col-auto aos-init aos-animate">

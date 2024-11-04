@@ -5,8 +5,10 @@ import CustomSlider from "../Component/AllComponent/Slider";
 import FAQSection from "../Component/AllComponent/FAQ";
 import Link from "next/link";
 import MobileHeader from "../Component/AllComponent/MobileHeader";
+import { useTranslations } from "next-intl";
 
 const page = () => {
+  const t=useTranslations("flight")
   const [city, setCity] = useState("DEL-Delhi, India");
 
   const handleCityChange = (e) => {
@@ -235,29 +237,13 @@ const page = () => {
 
       <div className="px-5 lg:px-20 py-5 lg:py-10">
         <h6 className="text-lg lg:text-xl font-semibold">
-          Book your flight ticket with Apka Trip for a memorable experience.
+          {t("memorable")}
         </h6>
         <p className="mt-5 text-justify">
-          Apka Trip is a reliable travel agent in India, which offers great
-          deals on air tickets. Book flights for all destinations across India
-          or the world at the lowest airfares with us. As one of the leading
-          travel portals of India, we constantly endeavour to make your vacation
-          memorable. So, why go anywhere else? Call us to save big on all kinds
-          of travel products/services and have a memorable travel experience on
-          a small budget. We believe in creating awesome vacations for our
-          clients through customized holiday packages & tours. Enjoy great
-          savings on flights, hotels and holiday trips with Apka Trip.
+         {t("memorable_1")}
         </p>
         <p className="mt-5  text-justify">
-          Apka Trip is a reliable travel agent in India, which offers great
-          deals on air tickets. Book flights for all destinations across India
-          or the world at the lowest airfares with us. As one of the leading
-          travel portals of India, we constantly endeavour to make your vacation
-          memorable. So, why go anywhere else? Call us to save big on all kinds
-          of travel products/services and have a memorable travel experience on
-          a small budget. We believe in creating awesome vacations for our
-          clients through customized holiday packages & tours. Enjoy great
-          savings on flights, hotels and holiday trips with Apka Trip.
+      {t("memorable_2")}
         </p>
       </div>
 

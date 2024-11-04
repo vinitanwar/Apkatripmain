@@ -6,8 +6,10 @@ import { getAllcityes } from "../Store/slices/citysearchSlice";
 import { getSightSeeingapi } from "../Store/slices/sightseeingSlice";
 import { Calendar } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const ActivitiesSlider = () => {
+  const t=useTranslations("activities")
 const [cityval,setcityval]=useState()
 const [allsearchdata,setAllsearchdata]=useState()
 const debounceTimeoutRef = useRef(null);
@@ -93,7 +95,7 @@ setShow("")
 
       <div className="absolute bottom-16 left-0 right-0 text-center pb-6">
         <h1 className="text-white text-2xl lg:text-4xl font-bold">
-          Where Every Experience Counts!
+          {t("experience")}
         </h1>
         <div className="flex justify-between mt-5 items-center border rounded-full  w-full md:w-[600px] bg-white mx-auto ">
           <div className="relative flex p-2 px-4 w-full items-center">

@@ -1,18 +1,21 @@
 // components/FAQSection.js
 
-import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { use, useState } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
-const faqs = [
-  { question: 'How do I book a tour?', answer: 'You can book a tour through our website, by phone, or by visiting our office.' },
-  { question: 'What is your cancellation policy?', answer: 'Our cancellation policy varies depending on the tour. Please refer to the specific tour details or contact us for more information.' },
-  { question: 'Do you offer custom itineraries?', answer: 'Yes, we specialize in creating custom itineraries tailored to your preferences. Contact us to discuss your travel plans.' },
-  { question: 'Is travel insurance included?', answer: ' Travel insurance is not included but can be arranged upon request. We highly recommend purchasing travel insurance for your trip.' },
-  { question: 'How can I get updates on travel restrictions?', answer: 'We provide the latest travel updates on our blog and social media channels. You can also contact us directly for specific information.' },
-  // Add more FAQs as needed
-];
 
 const FAQSection = () => {
+  const t=useTranslations("flight")
+  const faqs = [
+    { question: t("questions1"), answer: t("ans1") },
+    { question: t("questions2"), answer: t("ans2")  },
+    { question:t("questions3") , answer: t("ans3")  },
+    { question: t("questions4") , answer: t("ans4")  },
+    { question:t("questions5") , answer: t("ans5")  },
+    // Add more FAQs as needed
+  ];
+  
   const [openIndex, setOpenIndex] = useState(0);
 
   const toggleFAQ = (index) => {
