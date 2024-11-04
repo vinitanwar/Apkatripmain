@@ -56,38 +56,39 @@ class HotelControllerSearchRes extends Controller
             $hotelDetails = json_decode($response2->getBody()->getContents(), true);
 
             // 3rd API request: Search hotels using the given parameters
-            // $response3 = $client->post('https://affiliate.tektravels.com/HotelAPI/Search', [
-            //     'auth' => ['Apkatrip', 'Apkatrip@1234'],
-            //     'json' => [
-            //         "CheckIn" => $validated['checkIn'],
-            //         "CheckOut" => $validated['checkOut'],
-            //         "HotelCodes" => $hotelCodesString, // Ensure to use the correct string of hotel codes
-            //         "GuestNationality" => $validated['guestNationality'],
-            //         "PaxRooms" => [
-            //             [
-            //                 "Adults" => $validated['adults'],
-            //                 "Children" => $validated['children'],
-            //                 "ChildrenAges" => $validated['children'] > 0 ? [null] : null,
-            //             ]
-            //         ],
-            //         "ResponseTime" => 23.0,
-            //         "IsDetailedResponse" => true,
-            //         "Filters" => [
-            //             "Refundable" => false,
-            //             "NoOfRooms" => 1,
-            //             "MealType" => 0,
-            //             "OrderBy" => 0,
-            //             "StarRating" => 0,
-            //             "HotelName" => null,
-            //         ]
-            //     ]
-            // ]);
+            $response3 = $client->post('https://affiliate.tektravels.com/HotelAPI/Search', [
+                'auth' => ['Apkatrip', 'Apkatrip@1234'],
+                'json' => [
+                    "CheckIn" => $validated['checkIn'],
+                    "CheckOut" => $validated['checkOut'],
+                    "HotelCodes" => $hotelCodesString, // Ensure to use the correct string of hotel codes
+                    "GuestNationality" => $validated['guestNationality'],
+                    "PaxRooms" => [
+                        [
+                            "Adults" => $validated['adults'],
+                            "Children" => $validated['children'],
+                            "ChildrenAges" => $validated['children'] > 0 ? [null] : null,
+                        ]
+                    ],
+                    "ResponseTime" => 23.0,
+                    "IsDetailedResponse" => true,
+                    "Filters" => [
+                        "Refundable" => false,
+                        "NoOfRooms" => 1,
+                        "MealType" => 0,
+                        "OrderBy" => 0,
+                        "StarRating" => 0,
+                        "HotelName" => null,
+                    ]
+                ]
+            ]);
 
-            // $hotelSearchResults = json_decode($response3->getBody()->getContents(), true);
+            $hotelSearchResults = json_decode($response3->getBody()->getContents(), true);
 
             // Directly return the total hotels search results
             return response()->json([
                 'totalHotels' => $hotelDetails,
+                'hotelSearchResults'=>$hotelSearchResults
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

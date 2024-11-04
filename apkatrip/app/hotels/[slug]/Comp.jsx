@@ -1,6 +1,7 @@
 "use client"
-import HotelComp from '@/app/Component/AllComponent/formMaincomp/HotelsComp';
-import { getAllhotelsapi } from '@/app/Component/Store/slices/hotelsSlices';
+import HotelsComp from '../../Component/AllComponent/formMaincomp/HotelsComp';
+
+import { getAllhotelsapi } from '../../Component/Store/slices/hotelsSlices';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { FaShareAlt, FaStar, FaFilter, FaTimes } from "react-icons/fa";
@@ -94,7 +95,7 @@ console.log(allhotel,"kkiiin")
 
   return (
    <>
-   <HotelComp />
+   <HotelsComp />
    
  <div className='p-2 flex gap-2 relative '>
       
