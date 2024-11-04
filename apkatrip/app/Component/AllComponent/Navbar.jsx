@@ -37,54 +37,55 @@ const Navbar = () => {
   };
   const icons = [
     {
-      name: "Flights",
+      name: t("flight"),
       className: "meuicowidth flightmenuico",
       class: "flight-icon",
       link: "/flight",
     },
     {
-      name: "Hotels",
+      name: t("hotels"),
       className: "meuicowidth hotelmenuico",
       class: "hotel-icon",
       link: "/hotels",
     },
     {
-      name: "Flight + Hotel",
+      name: t("flightHotel"),
       className: "meuicowidth fphmenuico",
       class: "fph-icon",
       link: "/flight+hotels",
     },
     {
-      name: "Trains",
+      name: t("trains"),
       className: "meuicowidth trainmenuico",
       class: "trains-icon",
       link: "/train",
     },
     {
-      name: "Bus",
+      name: t("bus"),
       className: "meuicowidth busmenuico",
       class: "buses-icon",
       link: "/buses",
     },
     {
-      name: "Holidays",
+      name: t("holidays"),
       className: "meuicowidth holidaymenuico",
       class: "holiday-icon",
       link: "/holidayspackage",
     },
     {
-      name: "Cabs",
+      name: t("cabs"),
       className: "meuicowidth cabmenuico",
       class: "cab-icon",
       link: "/cabs",
     },
     {
-      name: "Activities",
+      name: t("activities"),
       className: "meuicowidth actvitymenuico",
       class: "activity-icon",
       link: "/activities",
     },
   ];
+  
 
   return (
     <>

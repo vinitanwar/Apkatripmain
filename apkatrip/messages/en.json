@@ -3,11 +3,103 @@
       "title": "Why book with us!",
       "description": "This is a sample page for your multilingual website."
     },
-    "navbar": {
-      "home": "Home",
+    "Navbar": {
+      "flight": "Flight",
       "about": "About",
       "contact": "Contact",
-      "language": "Language"
+      "language": "Language",
+      "hotels": "Hotels",
+      "flightHotel": "Flight + Hotel",
+      "trains": "Trains",
+      "bus": "Bus",
+      "holidays": "Holidays",
+      "cabs": "Cabs",
+      "activities": "Activities"
 
-    }
+    },
+
+"Navbar2":{
+"From":"From",
+"To":"To",
+"Departure Date":"Departure Date",
+"Return Date":"Return Date",
+"Travelers":"Travelers"
+},
+
+
+ 
+
+"Popular":{
+"mainheading":"Popular Flight Destination",
+
+"heading1":"Top Flight Routes",
+"des1":"Connecting Two Major Cities",
+"des2":"Gateway to Asia",
+"des3":"Across the Tasman Sea",
+"des4":"Romance and History Combined",
+"des5":"Connecting Major Economic Hubs" ,
+
+
+ "heading2": "Top Holidays Packages",
+ "desa1":"Historic Cities Await You",
+ "desa2":"Sun, Sand, and Serenity",
+ "desa3":"Thrill and Exploration Combined",
+ "desa4":"Luxury and Tranquility Redefined",
+ "desa5":"Tradition Meets Adventure",
+
+ "heading3": "Top Hotel Facilities",
+ "desb1":"Premium Seating and Services",
+ "desb2":"Always-On Reliable Transportation",
+ "desb3":"Seamless Internet Connectivity Onboard",
+ "desb4":"Advanced Safety and Security",
+ "desb5":"Tailored to Your Preferences",
+
+"service":" What service do you need?",
+"serviceans":"  Tell us more about your requirements so that we can connect you to the right service provider.",
+"moreabout":"Tell us more about your requirements",
+"moreaboutans":"  HI Imagine you have made your presence online through a local online directory, but your competitors have..",
+"serviceprovider":" We connect with right service provider",
+"serviceproviderans":"Advertising your business to area specific has many advantages. For local businessmen, it is an opportunity..",
+"happyservice":"Happy with our service",
+"happyserviceans":"Your local business too needs brand management and image making. As you know the local market.."
+
+},
+"Bookwithus":{
+  "bookwith":"Why book with us?",
+  "title1":"Easy Booking",
+  "des1":"Our user-friendly platform simplifies the process of reserving flights, hotels, bus tickets, and holiday packages. ",
+  "title2":"Lowest Price",
+  "des2":"Our advanced search technology compares a wide range of options to ensure you get the best deals available.",
+   "title3":"Exciting Deals",
+   "des3":"From exclusive discounts on flights and hotels to special offers on bus services and holiday packages, our platform is designed to help you ",
+   "title4":"24/7 Support",
+   "des4":"Our dedicated team is available 24/7 to assist you with any questions or concerns you may have throughout your travel journey. ",
+"packages":"Search Flights, Hotels, Bus and Holiday Packages",
+"packageans":"  At Apka Trip, we’re dedicated to turning your travel dreams into reality. Whether you're seeking affordable flights, luxurious hotels, reliable bus services, or exciting holiday packages, we’ve got you covered. Our flight search tool allows you to compare numerous airlines to find the best deal, ensuring a seamless booking experience. When it comes to accommodations, we offer a vast selection of hotels ranging from opulent suites to budget-friendly options, complete with guest reviews and exclusive deals. For convenient and comfortable bus travel, our platform connects you with reliable services that cater to both city commutes and long-distance journeys. And for those looking to explore new destinations, our holiday packages offer a variety of options, from relaxing beach escapes to adventurous mountain retreats. With Apka Trip, every aspect of your journey is taken care of, so you can focus on enjoying your travels."
+
+},
+"FreshTravel":{
+"travelblogs":" Enjoy Fresh Travel Blogs",
+"travelblogdes1":"  Discover new and exciting places to visit, to popular hotspots.",
+"travelblogtitle1":"Enjoy Fresh Travel Blogs",
+"travelblogdes2":"  Receive valuable advice and tips from seasoned travel experts..",
+"travelblogtitle2":"Expert Insights",
+"travelblogdes3":"  Stay informed about the latest travel trends and innovations to enhance your journey.",
+"travelblogtitle3":"Travel Trends",
+"travelblogdes4":"  Read engaging travel stories and experiences from fellow travelers.",
+"travelblogtitle4":"Personal Stories"
+},
+
+
+"footer":{
+  "subscribe":"Subscribe to Our Newsletter",
+"sub2":"Subscribe now and get the latest travel  Trip, destination guides, and exclusive offers straight to your inbox. Your next adventure awaits!",
+"text1":" At Apka Trip, we’re dedicated to turning your travel dreams into reality. Whether you're seeking affordable flights,  luxurious hotels, reliable bus services, or exciting holiday  packages, we’ve got you covered. Our flight search tool allows you to compare numerous airlines to find the best deal,  ensuring a seamless booking experience. When it comes to accommodations, we offer a vast selection of hotels ranging  from opulent suites to budget-friendly options, complete with  guest reviews and exclusive deals.",
+"listofhotels":" List of Hotels",
+"pnr":"Check PNR Status",
+"activities":" Activities",
+"service":"Service",
+"flights":"Flights"
+}
+
   }

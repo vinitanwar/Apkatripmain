@@ -1,14 +1,16 @@
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 // components/BlogSection.js
 const BlogSection = () => {
+  const t=useTranslations("FreshTravel")
   return (
     <>
       <section className="bg-gray-100 py-10 ">
         <div className="w-full ">
           <div className="text-center mb-0 lg:mb-6">
             <h2 className="text-2xl font-bold text-black _hdrtxt py-0 lg:py-5">
-              Enjoy Fresh Travel Blogs
+             {t("travelblogs")}
             </h2>
           </div>
           <div className="event-box-main flex flex-wrap   items-center justify-center gap-3">
@@ -16,12 +18,11 @@ const BlogSection = () => {
               <img src="/Images/Routes/new1.webp" />
               <div>
                 <h2>
-                  Discover new and exciting places to visit, to popular
-                  hotspots.
+                {t("travelblogdes1")}
                 </h2>
                 <Link href="/blogView/aboutblog">
                 
-                  <span>Enjoy Fresh Travel Blogs</span>
+                  <span>{t("travelblogtitle1")}</span>
                 </Link>
               </div>
             </div>
@@ -29,19 +30,18 @@ const BlogSection = () => {
               <img src="/Images/Routes/new2.webp" />
               <div>
                 <h2>
-                  Receive valuable advice and tips from seasoned travel experts.{" "}
+                {t("travelblogdes2")}
                 </h2>
-                <Link href="/blogView">   <span>Expert Insights</span> </Link>
+                <Link href="/blogView">   <span>{t("travelblogtitle2")}</span> </Link>
               </div>
             </div>
             <div className="event-box">
               <img src="/Images/Routes/new3.webp" />
               <div>
                 <h2>
-                  Stay informed about the latest travel trends and innovations
-                  to enhance your journey.
+                {t("travelblogdes3")}
                 </h2>
-                <Link href="/blogView/aboutblog">       <span>Travel Trends</span> </Link>
+                <Link href="/blogView/aboutblog">       <span>{t("travelblogtitle3")}</span> </Link>
               </div>
             </div>
             <div className="event-box">
@@ -49,10 +49,9 @@ const BlogSection = () => {
               <div>
                 <h2>
                   {" "}
-                  Read engaging travel stories and experiences from fellow
-                  travelers.
+                  {t("travelblogdes4")}
                 </h2>
-                <Link href="/blogView/aboutblog"> <span>Personal Stories</span></Link> 
+                <Link href="/blogView/aboutblog"> <span>{t("travelblogtitle4")}</span></Link> 
               </div>
             </div>
           </div>
