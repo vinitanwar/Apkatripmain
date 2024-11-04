@@ -328,7 +328,7 @@ const t=useTranslations("Navbar2")
               } transition-colors duration-300 ease-in-out`}
               onClick={() => handleTabClick(1)}
             >
-              One Way
+             {t("oneway")}
             </button>
             <button
               className={`px-4 py-1 text-xs font-bold rounded-3xl ${
@@ -336,7 +336,7 @@ const t=useTranslations("Navbar2")
               } transition-colors duration-300 ease-in-out`}
               onClick={() => handleTabClick(2)}
             >
-              Round Trip
+              {t("roundtrip")}
             </button>
             <button
               className={`px-4 py-1 text-xs font-bold rounded-3xl ${
@@ -344,7 +344,7 @@ const t=useTranslations("Navbar2")
               } transition-colors duration-300 ease-in-out`}
               onClick={() => handleTabClick(3)}
             >
-              Multicity
+              {t("multicity")}
             </button>
           </div>
           <div className="tab-content">
@@ -866,7 +866,7 @@ const t=useTranslations("Navbar2")
                 <li className="mr-5">
                   <label className="container_df corp-hidden cscshw flex items-center">
                     {/* Defence Forces */}
-                    Defence Forces
+                    {t("defenceforces")}
                     <input
                       name="FF"
                       id="chkArmy"
@@ -881,7 +881,7 @@ const t=useTranslations("Navbar2")
                 <li className="mr-5">
                   <label className="container_df corp-hidden cscshw flex items-center">
                     {/* Defence Forces */}
-                    Students
+                    {t("students")}
                     <input
                       name="FF"
                       id="chkArmy"
@@ -896,7 +896,7 @@ const t=useTranslations("Navbar2")
                 <li className="mr-5">
                   <label className="container_df corp-hidden cscshw flex items-center">
                     {/* Defence Forces */}
-                    Senior Citizens
+                    {t("seniorcitizens")}
                     <input
                       name="FF"
                       id="chkArmy"
@@ -911,7 +911,7 @@ const t=useTranslations("Navbar2")
                 <li className="mr-5">
                   <label className="container_df corp-hidden cscshw flex items-center">
                     {/* Defence Forces */}
-                    Doctors Nurses
+                    {t("doctorsnurses")}
                     <input
                       name="FF"
                       id="chkArmy"
