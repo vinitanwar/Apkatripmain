@@ -1,4 +1,4 @@
-import { apilink } from '@/app/Component/common'
+import { apilink } from '../../Component/common'
 import axios from 'axios'
 import React from 'react'
 import Blogcomp from './Blogcomp'

@@ -1,13 +1,13 @@
 "use client"
-import { getSightSeeingapi } from '@/app/Component/Store/slices/sightseeingSlice';
+import { getSightSeeingapi } from '../../Component/Store/slices/sightseeingSlice';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 
 import 'swiper/css';
-import ActivitiesSlider from '@/app/Component/AllComponent/ActivitiesSlider';
-import { getseeingApi } from '@/app/Component/Store/slices/sightseeingGetSlice';
+import ActivitiesSlider from '../../Component/AllComponent/ActivitiesSlider';
+import { getseeingApi } from '../../Component/Store/slices/sightseeingGetSlice';
 
 
 const Compo = ({slug}) => {
