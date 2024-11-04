@@ -133,14 +133,14 @@ const Footer = () => {
                         href="/MyBooking/mybooking"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        My Booking
+                        {t("booking")}
                       </Link>
                     </li>
                   </ul>
                 </div>
                 <div className="mt-10 md:mt-0">
                   <h3 className="text-lg font-semibold leading-6 text-gray-900">
-                  {t("service")}
+                  Service
                   </h3>
                   <ul role="list" className="mt-6 space-y-4">
                     <li>
@@ -156,7 +156,7 @@ const Footer = () => {
                         href="/hotels"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        Hotels
+                        {t("hotels")}
                       </Link>
                     </li>
                     <li>
@@ -164,7 +164,7 @@ const Footer = () => {
                         href="/flight+hotels"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        Flight + Hotels
+                        {t("fhotels")}
                       </Link>
                     </li>
                     <li>
@@ -172,7 +172,7 @@ const Footer = () => {
                         href="/train"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        Trains
+                        {t("trains")}
                       </Link>
                     </li>
                   </ul>
@@ -189,7 +189,7 @@ const Footer = () => {
                         href="/about"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        About
+                        {t("about")}
                       </Link>
                     </li>
                     <li>
@@ -197,7 +197,7 @@ const Footer = () => {
                         href="/condition/privacy-policy"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        Privacy
+                        {t("privacy")}
                       </Link>
                     </li>
                     <li>
@@ -213,7 +213,7 @@ const Footer = () => {
                         href="/contact"
                         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                       >
-                        Contact Us
+                        {t("contactus")}
                       </Link>
                     </li>
                   </ul>

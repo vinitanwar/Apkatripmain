@@ -23,7 +23,14 @@
 "To":"To",
 "Departure Date":"Departure Date",
 "Return Date":"Return Date",
-"Travelers":"Travelers"
+"Travelers":"Travelers",
+"oneway":"One Way",
+"roundtrip":" Round Trip",
+"multicity":"Multicity",
+"defenceforces":"Defence Forces",
+"students":"Students",
+"seniorcitizens":"Senior Citizens",
+"doctorsnurses":"Doctors Nurses"
 },
 
 
@@ -98,8 +105,15 @@
 "listofhotels":" List of Hotels",
 "pnr":"Check PNR Status",
 "activities":" Activities",
-"service":"Service",
-"flights":"Flights"
+"flights":"Flights",
+"booking":"My Booking",
+"hotels":"Hotels",
+"fhotels":"Flight + Hotels",
+"trains":"Trains",
+"about":"About",
+"privacy":"Privacy",
+"terms":"Terms",
+"contactus":"Contact Us"
 }
 
   }
