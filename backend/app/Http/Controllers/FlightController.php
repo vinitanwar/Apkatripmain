@@ -173,13 +173,13 @@ class FlightController extends Controller
            "ResultIndex"=>"required",
            "Source"=>"required",
            "IsLCC"=>"required",
-"IsRefundable"=>"required",
-"AirlineRemark"=>"nullable",
-"TripIndicator"=>"required",
-"SegmentIndicator"=>"required",
-"AirlineCode"=>"required",
-"AirlineName"=>"required",
-"FlightNumber"=>"required",
+           "IsRefundable"=>"required",
+         "AirlineRemark"=>"nullable",
+     "TripIndicator"=>"required",
+     "SegmentIndicator"=>"required",
+    "AirlineCode"=>"required",
+    "AirlineName"=>"required",
+  "FlightNumber"=>"required",
 "FareClass"=>"required",
 "OperatingCarrier"=>"nullable"
         ]);
@@ -230,11 +230,43 @@ class FlightController extends Controller
 
             $response = Http::timeout(90)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/PriceRBD', $searchPayload);
 
-        }
+        } 
     
         //  Return the search response
         return $response->json();
     }
+
+
+ function ssrrequest(Request $request ){
+    $token = $this->apiService->getToken();
+
+    
+    $validatedData = $request->validate([
+        "EndUserIp"=>'required',
+        "TraceId"=>"required",
+       "ResultIndex"=>"required",
+    ]);
+
+$searchpayload=[
+    "EndUserIp"=> $validatedData["EndUserIp"],
+    "TokenId"=>$token,
+    "TraceId"=> $validatedData["TraceId"],
+    "ResultIndex"=>$validatedData["ResultIndex"]
+];
+
+
+$response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/SSR', $searchpayload);
+if ($response->json('Response.Error.ErrorCode') === 6) {
+         
+    $token = $this->apiService->authenticate();
+
+
+    $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/SSR', $searchpayload);
+  
+} 
+return $searchpayload;
+
+ }
 
 
 
