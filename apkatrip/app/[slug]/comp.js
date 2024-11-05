@@ -218,6 +218,9 @@ const returnstate = useSelector((state) => state.searchreturn);
     } else {
       setActivePopup(id);
     }
+
+
+    
   };
 
   const settings = {
@@ -311,7 +314,7 @@ setstate2([filterdata])
 }
 
 
-
+console.log(state2,"infoooo")
 
   return (
     <>
@@ -2410,8 +2413,8 @@ setstate2([filterdata])
       </div>
 
       {activePopup === "view-price" && (
-        <div className="fixed inset-0 flex z-[9999] items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-md">
+        <div className="fixed inset-0 flex z-[9999] items-center justify-center bg-black bg-opacity-50 ">
+          <div className="bg-white rounded-md w-full h-full">
             <div className="flex items-center justify-between p-4">
               <p className="text-xl text-gray-900 flex items-center">
                 <strong className="text-teal-600 mr-2">FARE OPTIONS </strong>
