@@ -200,8 +200,8 @@ const Topbar = () => {
 
                   <div className="mt-3 border-t border-gray-200">
       <p className="font-semibold text-xs mt-2">Choose Language</p>
-      <div className="mt-2 h-16 overflow-hidden overflow-y-auto flex flex-wrap gap-1 justify-between">
-        {['en', 'hi', 'bn', 'ar', 'pa', 'gu', 'ta'].map((langCode) => (
+      <div className="mt-2 h-16 overflow-hidden overflow-y-auto grid grid-cols-3 gap-1 justify-between">
+        {['en', 'hi', 'bn', 'ar', 'pa', 'gu',"ru", "sp","fr",'ta'].map((langCode) => (
           <label
             key={langCode}
             className="border flex items-center px-2 py-1 cursor-pointer"
@@ -227,7 +227,16 @@ const Topbar = () => {
                 ? 'Punjabi'
                 : langCode === 'gu'
                 ? 'Gujarati'
-                : 'Tamil'}
+                 : langCode === 'sp'
+                ? 'Spanish'
+                 : langCode === 'fr'
+                ? 'French'
+                 : langCode === 'ru'
+                ? 'Russian'
+                : 'Tamil'
+                
+                
+                }
             </span>
           </label>
         ))}

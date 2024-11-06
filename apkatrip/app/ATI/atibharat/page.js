@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,148 +9,194 @@ import "swiper/css/pagination";
 import { Autoplay, Navigation } from "swiper/modules";
 
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { useTranslations } from "next-intl";
+
+
 
 export default function page() {
-  const explore = [
-    
-      {
-        "exploreImage": "/Images/desert.webp",
-        "placeName": "Thar Desert",
-      },
-      {
-        "exploreImage": "/Images/goldenTemple.webp",
-        "placeName": "Golden Temple",
-      },
-      {
-        "exploreImage": "/Images/kerla.avif",
-        "placeName": "Kerala",
-      },
-      {
-        "exploreImage": "/Images/tajMahal.avif",
-        "placeName": "Taj Mahal",
-      },
-      {
-        "exploreImage": "/Images/SwiperBharat1.avif",
-        "placeName": "Jaisalmer Fort",
-      },
-      {
-        "exploreImage": "/Images/lakshadweep.jpg",
-        "placeName": "Lake Pichola",
-      },
-      {
-        "exploreImage": "/Images/Ladkh.avif",
-        "placeName": "Ladakh",
-      },
-      {
-        "exploreImage": "/Images/PushKarLake.avif",
-        "placeName": "Pushkar Lake",
-      }
-   
-    
-  ];
+  const t=useTranslations("atibharat")
+
 
   const swiperData = [
     {
-      heading: "Young & Buzzing",
-      para: "Witness the thrilling vibe of India’s young and buzzing places.",
+      heading: "Adventure Travel",
+      para: t("swiperdata1"),
       image: "/Images/desert.webp",
     },
     {
-      heading: "Cultural Richness",
-      para: "Explore the diverse cultures and traditions that define India.",
+      heading: "Cultural Immersions",
+      para: t("swiperdata2"),
       image: "/Images/tajMahal.avif",
     },
     {
-      heading: "Breathtaking Landscapes",
-      para: "Experience the stunning beauty of India’s natural landscapes.",
+      heading: "Luxury Escapes",
+      para: t("swiperdata3"),
       image: "/Images/PushKarLake.avif",
     },
     {
-      heading: "Historical Marvels",
-      para: "Discover the ancient monuments that tell stories of India’s past.",
+      heading: "Eco and Sustainable Travel",
+      para: t("swiperdata4"),
       image: "/Images/tajMahal.avif",
     },
     {
-      heading: "Culinary Delights",
-      para: "Indulge in the rich flavors of Indian cuisine across the regions.",
+      heading: "Family Adventures",
+      para: t("swiperdata5"),
       image: "/Images/SwiperBharat1.avif",
     },
     {
-      heading: "Adventure Awaits",
-      para: "Join thrilling activities and adventures across India’s landscapes.",
+      heading: "Solo Journeys",
+      para: t("swiperdata6"),
       image: "/Images/PushKarLake.avif",
     },
-    {
-      heading: "Spiritual Journeys",
-      para: "Embark on a quest for peace in India’s sacred places.",
-      image: "/Images/SwiperBharat1.avif",
-    },
-    {
-      heading: "Beach Escapes",
-      para: "Relax on the pristine beaches that line India’s coast.",
-      image: "/Images/goldenTemple.webp",
-    },
+   
   ];
+  const swiperData2=[
+    {
+      heading: "Share Your Dream Destination",
+      para: "Tell us about your dream destination or the kind of experience you&#39;re looking for. Whether it’s a quiet retreat, a cultural immersion, or an adventurous exploration, we listen closely to your needs.",
+     
+    },
+    {
+      heading: "Customized Itinerary Planning",
+      para: "Our travel experts will create a personalized itinerary tailored to your preferences, ensuring that each day of your trip is filled with unique, memorable activities. Every detail is taken care of, from flights and accommodations to guided tours and activities.",
+     
+    },
+    {
+      heading: "Book with Confidence",
+      para: "With ApkaTrip, you can rest easy knowing that every aspect of your trip is taken care of. We handle all the logistics, so you can focus on the joy of travel. Plus, we offer flexible booking policies to accommodate your changing plans.",
+   
+    },
+    {
+      heading: "Embark on the Journey of a Lifetime",
+      para: "Your adventure is ready! Whether you’re exploring a new city or embarking on arugged outdoor adventure, we’re here to support you every step of the way. Our dedicated team is available throughout your trip to assist with any requests or adjustments.",
+     
+    }
+   
+  ];
+ const [showheading,setshowheadimng]=useState(false);
+const [faqindex,setfaqindex]=useState()
+
+  const FAQ=[{que:"Tailor-Made Experiences for Every Explorer",ans:"At ApkaTrip, we know that no two travelers are alike. Whether you’re a solo wanderer, a couple seeking romance, a family on an adventure, or a group of friends looking for excitement, we create bespoke itineraries that cater to your unique passions and interests. From cultural immersions and adventurous escapades to serene retreats, your trip will be customized to match your travel dreams."},
+  {que:"Vast Global Reach, Endless Possibilities",ans:"The world is your oyster. With ApkaTrip, you can explore iconic destinations such as the majestic temples of Kyoto, the vibrant streets of Marrakech, the untouched beauty of Patagonia, or the crystal-clear waters of the Maldives. Our global network of partners ensures that every destination, no matter how remote, is accessible to you."},
+  {que:"Authentic, Off-the-Beaten-Path Adventures",ans:"While some travel agencies focus on the popular spots, ApkaTrip takes pride in helping you discover the hidden gems of the world. Imagine exploring a secret waterfall in Bali, wandering through the backstreets of Rome, or dining with locals in a remote Peruvian village. We believe in authentic travel experiences that go beyond the tourist trail—because the best stories are found off the beaten path."},
+  {que:"Expert Travel Advisors to Guide You",ans:"Our team of experienced travel experts are passionate about travel—and it shows. Whether you need advice on the best hiking trails in the Swiss Alps or want recommendations for a hidden cultural gem in India, our knowledgeable advisors are here to guide you every step of the way. With our insider expertise, you’ll always be one step ahead on your journey."}
+  ]
+
+
+
+
+ useEffect(()=>{
+ const intervel= setInterval(() => {
+  setshowheadimng((prev) => !prev);
+}, 2000);
+
+
+return ()=>clearInterval(intervel)
+
+ },[])
+
   return (
+
+
     <div className="exploreBharat">
       <div className="Banner-Image px-4 md:px-20 lg:px-40 relative bg-[url('/Images/exploreBharat.avif')] bg-cover bg-center   min-h-[80vh] md:min-h-[100vh] flex justify-center items-center">
         <div className="content relative z-10 text-center text-white">
-          <h3 className="text-3xl md:text-4xl lg:text-5xl tracking-widest font-bold">
+          <h3 className="text-3xl md:text-4xl tracking-widest font-bold">
             WELCOME TO
           </h3>
-          <h2 className="text-6xl md:text-7xl xl:text-9xl text-white uppercase font-extrabold">
-            Bharat
+          <h2 className="text-6xl md:text-7xl  text-white uppercase font-extrabold">
+            ApkaTrip
           </h2>
           <p className="px-4 md:px-20 text-white xl:px-60 mt-4 text-sm md:text-base lg:text-lg">
-            Bharat, known globally as India, is a land of rich cultural
-            heritage, diverse landscapes, and deep-rooted traditions. With a
-            history spanning thousands of years, Bharat is home to ancient
-            civilizations, spiritual teachings, and remarkable achievements in
-            art, science, and philosophy, offering a vibrant tapestry of unity
-            in diversity.
+          <span className="font-semibold">Discover, Wander, and Experience the Wonders of the World with ApkaTrip </span>
+Are you ready to explore the world in ways you’ve never imagined? With ApkaTrip, we
+believe travel is more than just reaching a destination—it’s about diving deep into cultures,
+finding hidden gems, and creating memories that last a lifetime. Whether you dream of
+traversing ancient cities, hiking through lush forests, or exploring remote islands, we’re
+here to make it all happen.
+Let us be your trusted travel partner as you embark on unforgettable journeys across the
+globe.   <span className="font-semibold">The world is vast, and adventure awaits.</span>
           </p>
         </div>
       </div>
 
+
+     
+                                            
+
+
+
+
       <div className="cardss-Section   xl:px-20 mt-5 md:mt-0 pt-10  px-2">
-        <div className="grid items-center  grid-cols-1 xl:grid-cols-2  gap-6 lg:gap-10 px-2 md:px-8 lg:px-16">
-          <div className="flex flex-col gap-3 xl:block lg:space-y-10">
-            <div className="md:flex items-center xl:block">
-              <h3 className="text-xl text-center md:text-start md:text-3xl lg:text-4xl ps-2 font-extrabold   lg:leading-snug">
-                Immerse Yourself in the Mesmerizing Wonders of{" "}
-                <span className="text-[#C09552]">India</span>
-              </h3>
-
-           
-              <div className="xl:hidden rounded-3xl  lg:px-10 py-5">
-                <img
-                  src="/Images/indiamap.avif"
-                  alt="Map of India"
-                  className="w-full md:w-[40vw] h-auto rounded-3xl"
-                />
-              </div>
-            </div>
-
- 
-            <div className="bg-[#FFF6E8] shadow-lg text-sm md:text-base lg:text-lg space-y-3 md:space-y-4 font-normal px-4 md:px-5 py-3 rounded-lg">
-              <p>
-                India, a land steeped in rich history and vibrant culture,
-                offers a treasure trove of experiences waiting to be explored.
-                From the majestic Himalayas to the serene backwaters of Kerala,
-                each region showcases its unique beauty and charm. Whether India
-                reveals a story.
-              </p>
-              <p>
-                As you embark on your journey through this incredible country,
-                prepare to uncover hidden gems that are often overshadowed by
-                popular destinations. Discover the lesser-known towns, each with
-                its own distinctive allure, where time seems to. From the
-                intricate craftsmanship of artisans to the breathtaking
-                landscapes that stretch across the horizon, India invites you to
-                experience its treasures firsthand.
+        <div className="grid items-center  grid-cols-1 xl:grid-cols-2  gap-6  px-2 md:px-8 lg:px-16">
+        <section className="">
+      <div className="mx-auto">
+        <div className="mb-16">
+          <h2
+            className="text-4xl font-manrope text-center font-bold text-gray-900 leading-[3.25rem]"
+          >
+        Why ApkaTrip?
+          </h2>
+        </div>
+        <div className="accordion-group" data-accordion="default-accordion">
+          {FAQ.map((item,index)=>{
+            return(
+<div
+            className="accordion border border-solid border-gray-300 p-4 rounded-xl transition duration-500 accordion-active:bg-indigo-50 accordion-active:border-indigo-600 mb-2 lg:p-4 active"
+   
+          >
+            <button onClick={()=>{ faqindex==index?setfaqindex():setfaqindex(index)}}
+              className="accordion-toggle group inline-flex items-center justify-between text-left text-lg font-normal leading-8 text-gray-900 w-full transition duration-500 hover:text-indigo-600 accordion-active:font-medium accordion-active:text-indigo-600"
+              aria-controls="basic-collapse-one-with-icon"
+            >
+              <h5>{item.que}</h5>
+              <svg
+                className={`w-6 h-6 text-gray-900 transition duration-500  ${faqindex==index?"hidden":"block" } accordion-active:text-indigo-600 accordion-active:hidden group-hover:text-indigo-600 origin-center`}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 12H18M12 18V6"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+              <svg
+                className={`w-6 h-6 text-gray-900 transition duration-500 ${faqindex !=index?"hidden":"block" }  accordion-active:text-indigo-600 accordion-active:block group-hover:text-indigo-600`}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 12H18"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </button>
+            <div
+              id="basic-collapse-one-with-icon"
+              className="accordion-content w-full overflow-hidden pr-4"
+              aria-labelledby="basic-heading-one"
+              // style="max-height: 250px;"
+            >
+              <p className={`text-base text-gray-900 font-normal leading-6 ${faqindex==index?"":"hidden"}`}>
+              {item.ans}
               </p>
             </div>
           </div>
+            )
+          })}
+          
+         
+        </div>
+      </div>
+    </section>
 
  
           <div className="hidden xl:flex justify-center rounded-3xl px-4 lg:px-10 py-5">
@@ -161,36 +207,118 @@ export default function page() {
             />
           </div>
         </div>
+        <div className="india unveiled py-10 px-3 lg:px-10 xl:px-20">
+          <h3 className="text-2xl text-center lg:text-start md:text-3xl ps-2 font-extrabold  lg:leading-relaxed font-serif">
+          How It Works: Your Journey with {""}
+            <span className="text-[#C09552]"> ApkaTrip</span>{" "}
+          </h3>
 
+          <div className="swiperSection">
+            <Swiper
+              spaceBetween={30}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              loop={true}
+              modules={[Autoplay, Navigation]}
+              className="mySwiper mt-5 xl:mt-10 px-4 sm:px-10 "
+              breakpoints={{
+                320: {
+                  slidesPerView: 1,
+                  spaceBetween: 10,
+                },
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 30,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 20,
+                },
+                1280: {
+                  slidesPerView: 4,
+                  spaceBetween: 30,
+                },
+                1800: {
+                  slidesPerView: 6,
+                  spaceBetween: 20,
+                },
+              }}
+            >
+              {swiperData2.map((elm, index) => (
+                  <SwiperSlide key={index} className="flex justify-center h-full">
+                  
+                   
+
+                      <div className="relative z-40 p-4 bg-white rounded-b-xl shadow-lg h-full">
+                        <h5 className="font-bold text-black text-xl mb-2">
+                          {elm.heading}
+                        </h5>
+                        <p className="text-sm text-gray-600">
+                          {elm.para}
+                        </p>
+                     
+                    </div>
+                  </SwiperSlide>
+                ))}
+
+         
+              <div className="swiper-button-prev custom-nav-button hidden lg:flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg  transition duration-300">
+                <FaArrowLeftLong className="text-[#C09552] " />
+              </div>
+              <div className="swiper-button-next custom-nav-button hidden lg:flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg  transition duration-300">
+                <FaArrowLeftLong className="rotate-180 text-[#C09552] " />
+              </div>
+            </Swiper>
+          </div>
+        </div>
         <div className="space-y-4 lg:space-y-10 explore px-2 lg:px-20 xl:px-20 ">
           <div className="discover pt-5 lg:pt-10">
             <h3 className="text-2xl text-center lg:text-start md:text-3xl ps-2 font-extrabold  lg:leading-relaxed font-serif">
-              Find Your Dream Adventure in {""}
-              <span className="text-[#C09552]">India</span>{" "}
+            How It Works: Your Journey with {""}
+              <span className="text-[#C09552]"> ApkaTrip</span>{" "}
             </h3>
           </div>
-          <div className="cardParent grid justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 ">
-            {explore.map((elm) => (
-              <div className="h-64 w-full lg:w-64 relative">
-                <img
-                  src={elm.exploreImage}
-                  alt=""
-                  className="h-full max-w-[90%] w-full  rounded-3xl object-cover"
-                />
-                <div className="absolute  bottom-3 max-w-[90%]  w-full ">
-                  <h5 className="text-xl  text-center font-bold   text-white w-full">
-                    {elm.placeName}{" "}
-                  </h5>
-                </div>
-              </div>
-            ))}
-          </div>
+          <div class="container mx-auto px-4 ">
+
+<div class="bg-white shadow-lg rounded-lg p-8 mb-12">
+    <h2 class="text-3xl font-semibold text-blue-600">1. Share Your Dream Destination</h2>
+    <p class="mt-4 text-lg">Tell us about your dream destination or the kind of experience you're looking for. Whether it’s a quiet retreat, a cultural immersion, or an adventurous exploration, we listen closely to your needs.</p>
+</div>
+
+<div class="bg-white shadow-lg rounded-lg p-8 mb-12">
+    <h2 class="text-3xl font-semibold text-blue-600">2. Customized Itinerary Planning</h2>
+    <p class="mt-4 text-lg">Our travel experts will create a personalized itinerary tailored to your preferences, ensuring that each day of your trip is filled with unique, memorable activities. Every detail is taken care of, from flights and accommodations to guided tours and activities.</p>
+</div>
+
+<div class="bg-white shadow-lg rounded-lg p-8 mb-12">
+    <h2 class="text-3xl font-semibold text-blue-600">3. Book with Confidence</h2>
+    <p class="mt-4 text-lg">With ApkaTrip, you can rest easy knowing that every aspect of your trip is taken care of. We handle all the logistics, so you can focus on the joy of travel. Plus, we offer flexible booking policies to accommodate your changing plans.</p>
+</div>
+
+<div class="bg-white shadow-lg rounded-lg p-8">
+    <h2 class="text-3xl font-semibold text-blue-600">4. Embark on the Journey of a Lifetime</h2>
+    <p class="mt-4 text-lg">Your adventure is ready! Whether you’re exploring a new city or embarking on a rugged outdoor adventure, we’re here to support you every step of the way. Our dedicated team is available throughout your trip to assist with any requests or adjustments.</p>
+</div>
+</div>
+          
         </div>
+
+
+
+
+
+
 
         <div className="india unveiled py-10 px-3 lg:px-10 xl:px-20">
           <h3 className="text-2xl text-center lg:text-start md:text-3xl ps-2 font-extrabold  lg:leading-relaxed font-serif">
-            India {""}
-            <span className="text-[#C09552]">Rediscovered</span>{" "}
+          Explore Our Signature Travel {""}
+            <span className="text-[#C09552]">Categories</span>{" "}
           </h3>
 
           <div className="swiperSection">
@@ -231,25 +359,18 @@ export default function page() {
               }}
             >
               {swiperData.map((elm, index) => (
-                  <SwiperSlide key={index} className="flex justify-center ">
-                    <div className="w-72 transition-transform duration-300 hover:scale-105">
-                      <div className="h-80 overflow-hidden rounded-xl shadow-lg bg-white relative group">
-                        <img
-                          src={elm.image}
-                          alt="Young & Buzzing"
-                          className="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-75"
-                        />
-                        <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition duration-500"></div>
-                      </div>
+                  <SwiperSlide key={index} className="flex justify-center h-full">
+                  
+                   
 
-                      <div className="relative z-40 p-4 bg-white rounded-b-xl shadow-lg">
+                      <div className="relative z-40 p-4 bg-white rounded-b-xl shadow-lg h-full">
                         <h5 className="font-bold text-black text-xl mb-2">
                           {elm.heading}
                         </h5>
                         <p className="text-sm text-gray-600">
                           {elm.para}
                         </p>
-                      </div>
+                     
                     </div>
                   </SwiperSlide>
                 ))}
@@ -265,76 +386,12 @@ export default function page() {
           </div>
         </div>
       </div>
+   
 
-      <div className="Incredible-Bharat   lg:py-10 px-3 ">
-        <div className="w-full min-h-[60vh] bg-[url('/Images/exploreBharat.avif')] bg-center rounded-3xl px-5 xl:px-40 py-16 bg-no-repeat bg-cover  ">
-          <div className="flex flex-col gap-5 justify-center items-start">
-            <h3 className="text-2xl xl:text-5xl font-extrabold font-serif text-white">
-              Amazing <br />
-              India Awaits
-            </h3>
-            <p className="text-white ">
-              Here’s an expanded version of your content that adds more detail
-              and excitement: Embark on an unforgettable adventure through the
-              iconic UNESCO World Heritage sites, towering skyscrapers,
-              breathtaking natural landscapes, and majestic palaces like the Taj
-              Mahal. From the ancient temples of Khajuraho to the vibrant
-              streets of Jaipur, every corner of Bharat tells a story waiting to
-              be explored. Delve into the rich tapestry of cultures, where
-              tradition meets modernity, and every experience is a celebration
-              of diversity. Immerse yourself in the bustling markets, savor the
-              delectable flavors of regional cuisines, and engage with the
-              warm-hearted locals who embody the spirit of Bharat. Create
-              lasting memories with our meticulously crafted itineraries,
-              designed to cater to every traveler's desire. Whether you seek
-              adventure in the serene backwaters of Kerala, a spiritual journey
-              in Varanasi, or a wildlife safari in the heart of Ranthambore, we
-              have something for everyone. Our knowledgeable guides are ready to
-              lead you through hidden gems and iconic landmarks, ensuring you
-              experience the very best of this enchanting land..
-            </p>
-          </div>
-        </div>
-      </div>
+     </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-5 xl:px-40 items-center">
-        <div className="flex flex-col  gap-2">
-          <img src="/Images/india.jpg" alt="" className="w-16 rounded-full" />
-          <p>
-            Introducing Explore Bharat, a pioneering travel initiative by the
-            renowned online platform, EaseMyTrip. This unique program presents
-            thoughtfully curated tour packages with tailor-made itineraries,
-            carefully designed by a team of expert travel planners to offer you
-            an exceptional holiday experience.
-          </p>
-        </div>
-        <div className="flex flex-col gap-2">
-          <div className="bg-orange-800 py-[2px] w-10"></div>
-          <p>
-            Indulge in unmatched luxury with world-class infrastructure,
-            exceptional travel amenities, versatile transportation choices, and
-            upscale accommodations, ensuring every detail of your trip reflects
-            the highest standards. With each package, you’ll enjoy the services
-            of a dedicated and expert personal guide, offering customized
-            assistance throughout your journey, making your experience truly
-            worthwhile.
-          </p>
-        </div>
-        <div className="flex flex-col gap-2">
-          <div className="bg-green-800 py-[2px] w-10"></div>
 
-          <p>
-            Discover unmatched luxury with a selection of world-class
-            infrastructure, exceptional travel amenities, diverse transport
-            options, and premium accommodations, ensuring every part of your
-            journey is marked by sophistication and quality. Each package offers
-            the added value of a skilled personal guide, dedicated to providing
-            personalized support and enriching your travel experience from start
-            to finish.
-          </p>
-        </div>
-      </div>
-    </div>
+
   );
 }
 

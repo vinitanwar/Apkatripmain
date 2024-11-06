@@ -1,5 +1,5 @@
-export const apilink =  'https://admin.gursimran.online/api/v1'
-// 'https://admin.apkatrip.com/api/v1'
-export const imgurl = 'https://admin.gursimran.online'
-// "https://admin.apkatrip.com"
+export const apilink =  'http://localhost:8000/api/v1'
+//https://admin.gursimran.online
+export const imgurl = 'http://localhost:8000'
+
 //http://localhost:8000

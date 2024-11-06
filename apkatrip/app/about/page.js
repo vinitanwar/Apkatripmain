@@ -10,7 +10,9 @@ import {
 import React, { useState } from "react";
 import Link from "next/link";
 import FAQSection from "../Component/AllComponent/FAQ";
+import { useTranslations } from "next-intl";
 export default function page() {
+  const t=useTranslations("about2")
   const [activeTab, setActiveTab] = useState("mission");
   return (
     <>
@@ -21,8 +23,7 @@ export default function page() {
           <div className="relative z-10  mx-auto px-0 md:px-6 text-center">
             <h1 className="text-5xl font-extrabold mb-4">About Us</h1>
             <p className="text-lg text-white mb-8">
-              We are passionate about delivering exceptional value and creating
-              memorable experiences.
+              {t("about1")}
             </p>
             <Link
               href="/about"
@@ -37,58 +38,31 @@ export default function page() {
           <div className=" mx-auto text-center">
             <h2 className="text-4xl font-bold text-gray-800 mb-8">Our Story</h2>
             <p className="text-lg text-gray-600 mb-12 text-justify px-0 md:px-20">
-              We also believe that travel is about more than just visiting new
-              destinations; it's about creating memories that last a lifetime.
-              Whether you're seeking adventure, cultural immersion, relaxation
-              or a mix of everything, we design itineraries that offer unique
-              and enriching experiences. Our goal is to help you discover the
-              world in a way that is meaningful and memorable.
+              {t("about2")}
             </p>
             <div className="flex flex-wrap justify-center gap-8">
               <div className="bg-white p-6 border border-blue-200 rounded-lg shadow-lg max-w-xs">
                 <FaHandshake className="mx-auto text-5xl mb-4" />
                 <p className="text-sm text-gray-700 text-justify">
-                  Our commitment to you starts with meticulous planning and
-                  extends through every moment of your adventure. We believe in
-                  taking care of all the details so you can focus on enjoying
-                  your trip. From the initial consultation to the moment you
-                  return home, our team is with you every step of the way,
-                  providing personalized service and support.
+                {t("about3")}
                 </p>
               </div>
               <div className="bg-white p-6 border border-blue-200 rounded-lg shadow-lg max-w-xs">
                 <FaUsers className="mx-auto text-5xl mb-4" />
                 <p className="text-sm text-gray-700 text-justify">
-                  At Apka Trip, we pride ourselves on our expertise and deep
-                  knowledge of destinations around the world. Our team is
-                  composed of seasoned travellers and industry professionals who
-                  are passionate about delivering exceptional travel
-                  experiences. We take the time to understand your preferences,
-                  interests and needs, ensuring that every aspect of your
-                  journey is tailored to you.
+                {t("about4")}
                 </p>
               </div>
               <div className=" text-sm bg-white border border-blue-200 p-6 rounded-lg shadow-lg max-w-xs">
                 <FaShieldAlt className="mx-auto text-5xl mb-4" />
                 <p className="text-sm text-gray-700 text-justify">
-                  Safety and security are at the forefront of our operations. We
-                  work diligently to ensure that all our partners,
-                  accommodations and activities adhere to the highest standards.
-                  Your well-being is our top priority and we implement rigorous
-                  safety protocols to give you peace of mind while you explore
-                  new places.
+                {t("about5")}
                 </p>
               </div>
               <div className=" text-sm bg-white border border-blue-200 p-6 rounded-lg shadow-lg max-w-xs">
                 <FaLocationArrow className="mx-auto text-5xl mb-4" />
                 <p className="text-sm text-gray-700 text-justify">
-                  We also believe that travel is about more than just visiting
-                  new destinations; it's about creating memories that last a
-                  lifetime. Whether you're seeking adventure, cultural
-                  immersion, relaxation or a mix of everything, we design
-                  itineraries that offer unique and enriching experiences. Our
-                  goal is to help you discover the world in a way that is
-                  meaningful and memorable.
+                {t("about6")}
                 </p>
               </div>
             </div>
@@ -186,9 +160,7 @@ export default function page() {
           
 
             <p className="text-lg text-gray-600 my-0 md:my-12 px-0 md:px-20">
-              Thank you for considering Apka Trip for your travel needs. We look
-              forward to crafting a journey that not only meets but exceeds your
-              expectations, turning your travel dreams into reality
+            {t("about7")}
             </p>
           </div>
         </section>

@@ -2414,7 +2414,7 @@ console.log(state2,"infoooo")
 
       {activePopup === "view-price" && (
         <div className="fixed inset-0 flex z-[9999] items-center justify-center bg-black bg-opacity-50 ">
-          <div className="bg-white rounded-md w-full h-full">
+          <div className="bg-white rounded-md ">
             <div className="flex items-center justify-between p-4">
               <p className="text-xl text-gray-900 flex items-center">
                 <strong className="text-teal-600 mr-2">FARE OPTIONS </strong>

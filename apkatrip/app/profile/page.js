@@ -144,6 +144,7 @@ const page = () => {
         </div>
 
         <div className="w-full md:w-3/4 mt-8 md:mt-0">
+        
           <div className=" bg-white myshadow rounded-xl p-6">
             <div className=" ">
               <p className=" flex justify-between">
@@ -173,6 +174,7 @@ const page = () => {
               </li>
             </ul>
           </div>
+        
 
           <div
             ref={profileRef}
@@ -385,6 +387,7 @@ const page = () => {
             </div>
           </div>
 
+
           <div
             ref={loginDetailsRef}
             className=" bg-white myshadow rounded-xl p-6 mt-6"
@@ -416,6 +419,7 @@ const page = () => {
             </ul>
           </div>
 
+
           <div
             ref={coTravellersRef}
             className=" bg-white myshadow rounded-xl p-6 mt-6"
@@ -436,6 +440,7 @@ const page = () => {
               </button>
             </div>
           </div>
+
 
           {isPopupOpen === "traveller" && (
             <div className="fixed inset-0 flex z-[9999] items-center justify-center bg-black bg-opacity-50">
@@ -840,8 +845,12 @@ const page = () => {
                 </div>
               </div>
             </div>
+
           )}
+
+
         </div>
+
       </div>
     </>
   );
