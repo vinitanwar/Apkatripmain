@@ -1,5 +1,5 @@
-export const apilink =  'http://admin.gursimran.online/api/v1'
+export const apilink =  'https://admin.gursimran.online/api/v1'
 //https://admin.gursimran.online
-export const imgurl = 'http://admin.gursimran.online'
+export const imgurl = 'https://admin.gursimran.online'
 
 //http://localhost:8000
