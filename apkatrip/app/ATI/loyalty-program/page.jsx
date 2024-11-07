@@ -92,9 +92,7 @@ travel packages, your points will accumulate seamlessly.</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h4 className="text-xl font-semibold mb-3">4. Redeem and Enjoy</h4>
-            <p>Ready to use your points? Whether you want to upgrade to first-class, extend your stay
-at a luxurious hotel, or enjoy VIP access to exclusive events, your points can be
-redeemed in many exciting ways. The more you travel, the more you can enjoy!</p>
+            <p>Redeem your points for exclusive upgrades, VIP access, or even special experiences.</p>
           </div>
         </div>
       </div>

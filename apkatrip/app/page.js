@@ -8,10 +8,15 @@ import TipsTricks from './Component/AllComponent/TipsTricks'
 import Navbar from './Component/AllComponent/Navbar'
 import Footer from './Component/Footer'
 import CustomSlider from './Component/AllComponent/Slider'
+import { redirect } from 'next/navigation'
+import { development } from './Component/common'
 
 
 
 const page = () => {
+  if(development=="production"){
+  redirect("/maintenance")
+}
   return (
     <>
      

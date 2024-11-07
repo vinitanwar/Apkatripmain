@@ -21,26 +21,27 @@ const page = () => {
     <section className="py-16 px-4 text-center">
       <div className="max-w-screen-xl mx-auto">
         <h2 className="text-3xl font-semibold text-blue-600 mb-8">Why Join the ApkaTrip Membership Club?</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">Unlock a World of VIP Access and Exclusive Benefits</h4>
-            <p>
-              Gain exclusive access to high-end accommodations, bespoke travel services, and privileged events that others can only dream of.
-            </p>
-          </div>
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">Priority Access to the Best Deals and Offers</h4>
-            <p>
-              Be the first to get exclusive offers, seasonal deals, and promotions available only to our members.
-            </p>
-          </div>
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">Personalized Travel Experiences Tailored Just for You</h4>
-            <p>
-              Experience travel like never before, with customized itineraries, private tours, and experiences based on your personal style and preferences.
-            </p>
-          </div>
-        </div>
+      
+        <section className="dark:bg-gray-100 dark:text-gray-800">
+	<div className="container flex flex-col justify-centermx-auto ">
+	
+		<div className="grid gap-5 md:gap-8 sm:p-3 md:grid-cols-3 ">
+			<div>
+				<h3 className="font-semibold">Unlock a World of VIP Access and Exclusive Benefits</h3>
+				<p className="mt-1 dark:text-gray-600">Gain exclusive access to high-end accommodations, bespoke travel services, and privileged events that others can only dream of.</p>
+			</div>
+			<div>
+				<h3 className="font-semibold">Priority Access to the Best Deals and Offers</h3>
+				<p className="mt-1 dark:text-gray-600"> Be the first to get exclusive offers, seasonal deals, and promotions available only to our members.</p>
+			</div>
+			<div>
+				<h3 className="font-semibold">Personalized Travel Experiences Tailored Just for You</h3>
+				<p className="mt-1 dark:text-gray-600">Experience travel like never before, with customized itineraries, private tours, and experiences based on your personal style and preferences.</p>
+			</div>
+			
+		</div>
+	</div>
+</section>
       </div>
     </section>
 

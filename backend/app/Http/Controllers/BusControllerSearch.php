@@ -43,7 +43,7 @@ class BusControllerSearch extends Controller
         ];
 
         // Make the API request to search buses
-        $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Bus/Busservice.svc/rest/Search', $searchPayload);
+        $response = Http::timeout(100)->withHeaders([])->post('https://busbe.tektravels.com/Busservice.svc/rest/Search', $searchPayload);
 
         // Handle token expiration or other errors and retry
         if ($response->json('Response.Error.ErrorCode') === 6) {
@@ -52,10 +52,12 @@ class BusControllerSearch extends Controller
             $searchPayload['TokenId'] = $token;
 
             // Retry the API request with the new token
-            $response = Http::timeout(90)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Bus/Busservice.svc/rest/Search', $searchPayload);
+            $response = Http::timeout(90)->withHeaders([])->post('https://busbe.tektravels.com/Busservice.svc/rest/Search', $searchPayload);
         }
 
         // Return the API response as JSON
         return $response->json();
     }
+
+    
 }

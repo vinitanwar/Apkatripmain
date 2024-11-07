@@ -6,6 +6,9 @@ import Topbar from "./Component/Topbar";
 import Providerfile from "./Component/Store/Providerfile";
 import {NextIntlClientProvider} from 'next-intl';
 import {getLocale, getMessages} from 'next-intl/server';
+import { development } from "./Component/common";
+import { redirect } from "next/navigation";
+import Maintenance from "./Component/AllComponent/Maintenance"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -31,7 +34,8 @@ export default async function RootLayout({ children }) {
      
       </head>
       <body className={inter.className}>
-      <NextIntlClientProvider messages={messages}>
+     
+     {development !="production"&& <NextIntlClientProvider messages={messages}>
         <Providerfile>
         <Topbar />
 
@@ -42,6 +46,10 @@ export default async function RootLayout({ children }) {
         <Footer />
         </Providerfile>
       </NextIntlClientProvider>
+}
+      {
+        development=="production" && <Maintenance />
+      }
       </body>
       
     </html>

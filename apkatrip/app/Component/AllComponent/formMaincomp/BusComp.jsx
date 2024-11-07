@@ -9,19 +9,53 @@ import {
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { getBuscityapi } from "../../Store/slices/busSearchSlice";
+import { select } from "@nextui-org/react";
+import { Calendar } from "@nextui-org/react";
+import { today, getLocalTimeZone } from "@internationalized/date";
+import { getbuses } from "../../Store/slices/busslices";
+
+
+
+
+
 
 const BusComp = () => {
+  const [selected,setselected]=useState("")
   
   const [fromCity, setFromCity] = useState({
-    code: "DEL",
+  CityId: 1354,
     CityName: "Delhi",
-    airport: "Indira Gandhi International Airport",
+    
   });
   const [toCity, setToCity] = useState({
-    code: "MUM",
-    name: "Mumbai",
-    airport: "Chhatrapati Shivaji Maharaj International Airport",
+      CityId:3534,
+      CityName: "Mumbai",
+ 
   });
+  const localTimeZone = getLocalTimeZone();
+  const currentDate = today(localTimeZone);
+
+  const [pickupdate,setpickdate]=useState(new Date(Date.now()))
+
+console.log(pickupdate)
+
+const handleRangeChange = (newRange) => {
+  const date = new Date(newRange.year, newRange.month - 1, newRange.day);
+
+  setpickdate(date);
+  setselected("");
+};
+
+const handelSearch=()=>{
+  
+  dispatch(getbuses({DateOfJourney:pickupdate,OriginId:`${fromCity.CityId}`,DestinationId:`${toCity.CityId}`}))
+}
+
+
+
+
+
+
 
 
 
@@ -57,21 +91,12 @@ const BusComp = () => {
     "Saturday",
   ];
 
-  const getDateComponents = (date) => {
-    return {
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-      day: String(date.getDate()).padStart(2, "0"),
-      dayOfWeek: daysOfWeek[date.getDay()],
-    };
-  };
-
-  const currentDate = new Date();
+ 
+  
   const futureDate = new Date();
-  futureDate.setDate(currentDate.getDate() + 3);
 
-  const currentDateComponents = getDateComponents(currentDate);
-  const futureDateComponents = getDateComponents(futureDate);
+
+ 
   const [isVisible, setIsVisible] = useState(false);
 
   const [selectedOption, setSelectedOption] = useState("");
@@ -127,11 +152,11 @@ const [searchparam,setsearchparam]=useState("")
   dispatch(getBuscityapi(e.target.value))
   setsearchparam(e.target.value)
  }
-console.log(state)
+
 
   return (
     <>
-      <div className="flex flex-col hidden lg:block custom-color text-white md:px-10 lg:px-52  py-10">
+      <div className="flex flex-col  lg:block custom-color text-white md:px-10 lg:px-52  py-10">
     
               <span className=" text-lg mb-2 mr-2 font-bold  rounded-full ">Online Bus Tickets</span>
         
@@ -140,7 +165,7 @@ console.log(state)
                 <div className="relative">
                   <div
                     className="flex flex-col bg-white relative px-4 py-3 rounded-tl-lg rounded-bl-lg border-r hover:bg-[#ECF5FE] cursor-pointer"
-                    onClick={() => handleClick("from")}
+                    onClick={() => setselected("from")}
                   >
                     <p className="text-sm text-[#7E7979] font-medium">From</p>
                     <span className="text-3xl py-1 text-black font-bold">
@@ -149,54 +174,92 @@ console.log(state)
                   
                   </div>
 
-     <div className="absolute top-full bg-white w-full z-30">
+  { selected=="from" && 
+   <div className="absolute top-full bg-white w-full z-30">
 <input type="text" value={searchparam} className="w-full text-black" placeholder="Search city..." onChange={(e)=>handelBusSearch(e)}  />
 <div className="h-32 overflow-hidden overflow-y-scroll">
 {state && !state.isLoading && state.info && state.info.BusCities &&state.info.BusCities.map((item)=>{
   return(
-    <p className=" border-b-2 p-1 cursor-pointer">{item.CityName}</p>
+    <p className=" border-b-2 p-1 cursor-pointer" onClick={()=>{setFromCity({
+      CityId: item.CityId,
+      CityName: item.CityName,
+    }),setselected("to").setsearchparam("")}}>{item.CityName}</p>
   )
 })}</div>
-     </div>
+     </div>}
+
 
                   </div>
+
+
+                  <div className="relative">
                   <div
                     className="flex flex-col px-4 py-3 relative bg-white border-r hover:bg-[#ECF5FE]"
-                    onClick={() => handleClick("to")}
+                    onClick={() => setselected("to")}
                   >
                     <label className="text-sm text-[#7E7979] font-medium">
                       To
                     </label>
                     <span className="text-3xl py-1 text-black font-bold">
-                      {toCity.name}
+                      {toCity.CityName}
                     </span>
                    
                   </div>
+                  { selected=="to" && 
+   <div className="absolute top-full bg-white w-full z-30">
+<input type="text" value={searchparam} className="w-full text-black" placeholder="Search city..." onChange={(e)=>handelBusSearch(e)}  />
+<div className="h-32 overflow-hidden overflow-y-scroll">
+{state && !state.isLoading && state.info && state.info.BusCities &&state.info.BusCities.map((item)=>{
+  return(
+    <p className=" border-b-2 p-1 cursor-pointer" onClick={()=>{setToCity({
+      CityId:item.CityId,
+      CityName:item.CityName,
+    }),setselected("date") ,setsearchparam("")   }}>{item.CityName}</p>
+  )
+})}</div>
+     </div>}
+ 
+     </div>
 
-                  <div className="flex flex-col  px-4 py-3 bg-white  border-r hover:bg-[#ECF5FE]">
+
+
+
+<div className="relative">
+                  <div className="flex flex-col  px-4 py-3 bg-white  border-r hover:bg-[#ECF5FE]" onClick={()=>setselected("date")}>
                     <label className="text-sm text-[#7E7979] font-medium">
                       Departure Date
                     </label>
                     <div className="flex items-baseline text-black">
                       <span className="text-3xl py-1 pr-1 text-black font-bold">
                         {" "}
-                        {currentDateComponents.day}
+                        {pickupdate.getDate()-1}
                       </span>
                       <span className="text-sm font-semibold">
-                        {months[currentDateComponents.month]}'
+                        {pickupdate.toLocaleString('en-US', { month: 'short' })}'
                       </span>
                       <span className="text-sm font-semibold">
                         {" "}
-                        {currentDateComponents.year}
+                        {pickupdate.getFullYear()}
                       </span>
                       <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
                     </div>
                   
                   </div>
-                 
-                  <Link href="/busSearch" className="text-white flex items-center justify-center text-2xl font-bold p-4 primary-col rounded-br-lg rounded-tr-lg">
+                  { selected === "date" && (
+                      <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
+                        <Calendar
+                          aria-label="Select a date"
+                          value={""}
+                          onChange={handleRangeChange}
+                          minValue={currentDate}
+                          
+                        />
+                      </div>
+                    )}
+            </div>     
+                  <button onClick={handelSearch} className="text-white flex items-center justify-center text-2xl font-bold p-4 primary-col rounded-br-lg rounded-tr-lg">
                     Search
-                  </Link>
+                  </button>
                 </div>
                 </div>
            </>
