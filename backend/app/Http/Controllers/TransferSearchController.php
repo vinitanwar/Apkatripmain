@@ -33,7 +33,7 @@ class TransferSearchController extends Controller
             'dropoffPointCode' => 'required|string', // e.g., "LHR"
             'countryCode' => 'required|string', // e.g., "GB"
         ]);
-
+  
         try {
             // Retrieve the token using the ApiService
             $token = $this->apiService->getToken();

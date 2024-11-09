@@ -59,5 +59,36 @@ class BusControllerSearch extends Controller
         return $response->json();
     }
 
-    
+    public function busSeatLayout(Request $request){
+        $token = $this->apiService->getToken();
+
+        // Validate the request input, including IP address
+        $validatedData = $request->validate([
+            'TraceId' => 'required',
+            'ResultIndex' => 'required',
+          
+            'EndUserIp' => 'required|ip',  
+        ]);
+
+        $searchPayload = [
+            "TraceId" => $validatedData['TraceId'],
+            "ResultIndex" => $validatedData['ResultIndex'],
+            "EndUserIp" => $validatedData['EndUserIp'],  // Use validated IP
+            "TokenId" => $token,  // Use the token from the service
+        ];
+
+        $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Bus/Busservice.svc/rest/GetBusSeatLayOut', $searchPayload);
+
+        if ($response->json('Response.Error.ErrorCode') === 6) {
+            // Re-authenticate to get a new token
+            $token = $this->apiService->authenticate();
+            $searchPayload['TokenId'] = $token;
+
+            // Retry the API request with the new token
+            $response = Http::timeout(90)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Bus/Busservice.svc/rest/GetBusSeatLayOut', $searchPayload);
+        }
+        return $response->json();
+
+
+    }
 }

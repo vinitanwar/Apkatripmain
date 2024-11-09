@@ -13,6 +13,7 @@ import { select } from "@nextui-org/react";
 import { Calendar } from "@nextui-org/react";
 import { today, getLocalTimeZone } from "@internationalized/date";
 import { getbuses } from "../../Store/slices/busslices";
+import { useRouter } from "next/navigation";
 
 
 
@@ -21,13 +22,14 @@ import { getbuses } from "../../Store/slices/busslices";
 
 const BusComp = () => {
   const [selected,setselected]=useState("")
+  const defaultstore =    JSON.parse(localStorage.getItem("busSearch"))
   
-  const [fromCity, setFromCity] = useState({
+  const [fromCity, setFromCity] = useState( (defaultstore && defaultstore.fromCity) || {
   CityId: 1354,
     CityName: "Delhi",
     
   });
-  const [toCity, setToCity] = useState({
+  const [toCity, setToCity] = useState ( ( defaultstore && defaultstore.toCity) || {
       CityId:3534,
       CityName: "Mumbai",
  
@@ -35,21 +37,24 @@ const BusComp = () => {
   const localTimeZone = getLocalTimeZone();
   const currentDate = today(localTimeZone);
 
-  const [pickupdate,setpickdate]=useState(new Date(Date.now()))
+  const [pickupdate,setpickdate]=useState( (defaultstore && new Date(defaultstore.pickupdate)) || new Date(Date.now()))
 
-console.log(pickupdate)
+  const route=useRouter()
 
 const handleRangeChange = (newRange) => {
-  const date = new Date(newRange.year, newRange.month - 1, newRange.day);
-
+  const date = new Date(newRange.year, newRange.month - 1, newRange.day+1);
+  1
   setpickdate(date);
   setselected("");
 };
 
 const handelSearch=()=>{
-  
-  dispatch(getbuses({DateOfJourney:pickupdate,OriginId:`${fromCity.CityId}`,DestinationId:`${toCity.CityId}`}))
+  localStorage.setItem("busSearch",JSON.stringify({fromCity,toCity,pickupdate}))
+ const newdate=  pickupdate.toISOString().split('T')[0];
+route.push(`/buses/DateOfJourney=${newdate}&OriginId=${fromCity.CityId}&DestinationId=${toCity.CityId}`)
+ 
 }
+
 
 
 
@@ -149,12 +154,18 @@ const handelSearch=()=>{
   };
 const [searchparam,setsearchparam]=useState("")
  const handelBusSearch=(e)=>{
-  dispatch(getBuscityapi(e.target.value))
+ 
   setsearchparam(e.target.value)
  }
+ useEffect(()=>{
+ const intervels= setTimeout(() => {
+  dispatch(getBuscityapi(searchparam))
+}, 500);
+return ()=>clearTimeout(intervels)
+ },[searchparam])
 
 
-  return (
+return (
     <>
       <div className="flex flex-col  lg:block custom-color text-white md:px-10 lg:px-52  py-10">
     
@@ -183,7 +194,7 @@ const [searchparam,setsearchparam]=useState("")
     <p className=" border-b-2 p-1 cursor-pointer" onClick={()=>{setFromCity({
       CityId: item.CityId,
       CityName: item.CityName,
-    }),setselected("to").setsearchparam("")}}>{item.CityName}</p>
+    }),setselected("to"),setsearchparam("")}}>{item.CityName}</p>
   )
 })}</div>
      </div>}
@@ -262,6 +273,7 @@ const [searchparam,setsearchparam]=useState("")
                   </button>
                 </div>
                 </div>
+         
            </>
   );
 };

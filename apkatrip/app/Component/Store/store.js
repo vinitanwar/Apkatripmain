@@ -15,11 +15,11 @@ import busCityslice from "./slices/busSearchSlice"
 import gethotelslice from './slices/getHotelSlice';
 import preBookSlice from "./slices/hotelpreBookslice";
 import busslice from "./slices/busslices"
-
+import busSeatSlice from "./slices/busSearchSlice"
 
 
 export const store = configureStore({
   reducer: { searchFlightslice, Allairport, topPortsSlice, blogslice, ipslice, searchreturn,advanceSearchFlight,citysearch,hotelsSlice,
-    sightseeingslice,sightseeingGetslice,busCityslice,gethotelslice,preBookSlice,busslice
+    sightseeingslice,sightseeingGetslice,busCityslice,gethotelslice,preBookSlice,busslice,busSeatSlice
   },
 });

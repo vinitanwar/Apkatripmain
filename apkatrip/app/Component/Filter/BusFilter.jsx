@@ -23,7 +23,7 @@ const BusFilter = () => {
   return (
     <>
     
-    <div className="h-full sticky top-24 bg-white myshadow px-5  py-3 w-full">
+    <div className="  bg-white myshadow px-5  py-3 ">
           <div className="filter-container">
             <div className="flex justify-between items-center container header mb-3">
               <h3 className="font-black text-lg">Filters</h3>
