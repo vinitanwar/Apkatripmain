@@ -11,57 +11,54 @@ import { Calendar } from "@nextui-org/react";
 import { today, getLocalTimeZone } from "@internationalized/date";
 
 import axios from "axios";
+import { getBuscityapi } from "../Store/slices/busSearchSlice";
      
 
 
 
 
-const MobileHeader = () => {
-  const defaultFromCity = {
-    id: 26555,
-    ident: "VIDP",
-    type: "large_airport",
-    name: "Indira Gandhi International Airport",
-    latitude_deg: "28.55563",
-    longitude_deg: "77.09519",
-    elevation_ft: "777",
-    continent: "AS",
-    iso_country: "IN",
-    iso_region: "IN-DL",
-    municipality: "New Delhi",
-    scheduled_service: "yes",
-    gps_code: "VIDP",
-    iata_code: "DEL",
-    local_code: "",
-    home_link: "http://www.newdelhiairport.in/",
-    wikipedia_link: "https://en.wikipedia.org/wiki/Indira_Gandhi_International_Airport",
-    keywords: "Palam Air Force Station",
-  };
-  
-  const defaultToCity = {
-    id: 26434,
-    ident: "VABB",
-    type: "large_airport",
-    name: "Chhatrapati Shivaji International Airport",
-    latitude_deg: "19.0886993408",
-    longitude_deg: "72.8678970337",
-    elevation_ft: "39",
-    continent: "AS",
-    iso_country: "IN",
-    iso_region: "IN-MM",
-    municipality: "Mumbai",
-    scheduled_service: "yes",
-    gps_code: "VABB",
-    iata_code: "BOM",
-    local_code: "",
-    home_link: "http://www.csia.in/",
-    wikipedia_link: "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_International_Airport",
-    keywords: "Bombay, Sahar International Airport",
-  };
+const BusMobileheader = () => {
+  const [selected,setselected]=useState("")
+const dispatch=useDispatch()
+  const defaultstore =    JSON.parse(localStorage.getItem("busSearch"))
+  const [fromCity, setFromCity] = useState( (defaultstore && defaultstore.fromCity) || {
+    CityId: 1354,
+      CityName: "Delhi",
+      
+    });
+    const [toCity, setToCity] = useState ( ( defaultstore && defaultstore.toCity) || {
+      CityId:3534,
+      CityName: "Mumbai",
+ 
+  });
   const localTimeZone = getLocalTimeZone();
   const currentDate = today(localTimeZone);
+
+  const [pickupdate,setpickdate]=useState( (defaultstore && new Date(defaultstore.pickupdate)) || new Date(Date.now()))
+  
+  const handleRangeChange = (newRange) => {
+    const date = new Date(newRange.year, newRange.month - 1, newRange.day+1);
+    
+    setpickdate(date);
+    setselected("");
+  };
+ 
+  const [searchparam,setsearchparam]=useState("")
+  const handelBusSearch=(e)=>{
+  
+   setsearchparam(e.target.value)
+  }
+  useEffect(()=>{
+  const intervels= setTimeout(() => {
+   dispatch(getBuscityapi(searchparam))
+ }, 500);
+ return ()=>clearTimeout(intervels)
+  },[searchparam])
+  const state = useSelector((state) => state.busCityslice);
+
+
   const [selectedTab, setSelectedTab] = useState("oneWay");
-  const [selected, setSelected] = useState(new Date());
+
   const [isPopupOpen, setIsPopupOpen] = useState(null);
   const [rooms, setRooms] = useState(1);
   const [nights, setNights] = useState(1);
@@ -71,18 +68,15 @@ const MobileHeader = () => {
   const [infantCount, setInfantCount] = useState(0);
 
   const [selectedClass, setSelectedClass] = useState(1);
-  const dispatch = useDispatch();
-  const ipstate=useSelector(state=>state.ipslice)
+
   const route = useRouter();
-  const state=  useSelector(state=>state.Allairport);
-  const state2=useSelector(state=>state.topPortsSlice)
-   const seatclass=["All","Economy","Premium Economy","Business","PremiumBusiness","First Class"]
+ 
+
   const [allport,setAllport]=useState()
   const [inputValue, setInputValue] = useState('');
 const [JourneyType,setjurnytype]=useState(0)
 
-   const [fromCity, setFromCity] = useState({municipality:"New Delhi",name:"Indira Gandhi International Airport",iata:"DEL"});
-  const [toCity, setToCity] = useState({municipality:"Mumbai",name:"Chhatrapati Shivaji International Airport",iata:"BOM"});
+  
 const [searchport,setsearchport]=useState( {info:[],isLoading:false})
 
 
@@ -133,29 +127,16 @@ const [searchport,setsearchport]=useState( {info:[],isLoading:false})
   useEffect(()=>{
     setAllport(state)
   },[state]) 
-  const handleRangeChange = (newRange) => {
-    const date = new Date(newRange.year, newRange.month - 1, newRange.day);
-  
-    setSelected(date);
-    setIsHovered(false)
-  };
+ 
 
 
-   const handelSearch=()=>{
+  const handelSearch=()=>{
+  localStorage.setItem("busSearch",JSON.stringify({fromCity,toCity,pickupdate}))
+ const newdate=  pickupdate.toISOString().split('T')[0];
+route.push(`/buses/DateOfJourney=${newdate}&OriginId=${fromCity.CityId}&DestinationId=${toCity.CityId}`)
+ 
+}
 
-    const date = new Date(selected);
-   
-    const offset = 6*60*55*1000;
-    
-    const localDate = new Date(date.getTime() + offset);
-    const localFormattedDate = localDate.toISOString().slice(0, 19); 
-
-    let searchUrl = `/flightto=${fromCity.iata}&from=${toCity.iata}&date=${localFormattedDate}&prfdate=${localFormattedDate}&JourneyType=${JourneyType}&adultcount=${adultCount}&childCount=${childCount}&infantCount=${infantCount}&selectedClass=${selectedClass}`;  
-
-
-
-  route.push(searchUrl);
-   }
 
 
 
@@ -181,6 +162,7 @@ const [searchport,setsearchport]=useState( {info:[],isLoading:false})
     return ()=>clearTimeout(inter)
   },[inputValue])
 
+  console.log(state.info)
 
   return (
     <>
@@ -222,16 +204,16 @@ const [searchport,setsearchport]=useState( {info:[],isLoading:false})
               </div>
               <div
                 className="flex-1 w-5/6 relative cursor-pointer"
-                onClick={() => openPopup("from")}
+                onClick={() => setselected("from")}
               >
                 <div className="text-sm font-light">From</div>
-                <span className="text-xl py-1 text-black font-bold">{fromCity.municipality}</span>
+                <span className="text-xl py-1 text-black font-bold">{fromCity.CityName}</span>
                 <p id="fromCity" className="text-sm">
-                  {fromCity.name}
+                  {fromCity.CityName}
                 </p> 
               </div>
 
-              {isPopupOpen === "from" && (
+              {selected === "from" && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 z-[9999]">
                   <div className="bg-white w-full h-full ">
                     <div className=" bg-blue-500 p-4">
@@ -246,44 +228,28 @@ const [searchport,setsearchport]=useState( {info:[],isLoading:false})
                           Select Origin City
                         </h2>
                       </div>
-                      <div className=" relative">
+                      <div className=" relative ">
                         <input
                           type="text"
                           className=" h-10 mt-3 pl-8 rounded w-full"
                           placeholder="Search your city"
-                          value={inputValue}
-          onChange={handleChangePort}
+                          value={searchparam}          onChange={handelBusSearch}
                         />
                         <FaSearch className="absolute top-6 left-2  text-gray-400" />
                       </div>
                     </div>
 
                     <ul className="h-[85vh] overflow-hidden overflow-y-auto pb-10">
-                    { allport && allport.isLoading &&  <div>loading....</div> }
-
-                      <li className="bg-[#ecf5fe] py-2 px-5 text-gray-600 text-sm uppercase">
-                        Popular Cities
-                      </li>
-                    {searchport.isLoading && <div>
-                      Loading..
-                      
-                      </div>}
-                      {!searchport.isLoading && searchport.info   && searchport.info.map((items)=>{
-return(
-  <div className="flex justify-between my-4 shadow-sm w-full px-2 items-center" onClick={()=>{setFromCity({municipality:items.properties.municipality,name:items.properties.name,iata:items.properties.iata}),  setIsPopupOpen(""), setsearchport({info:[],isLoading:false})}}>
-    <div>
-    <p >{items.properties.municipality}</p>
-    <p className="text-sm text-gray-600">{items.properties.name}</p>
-   </div>
-   {items.properties.iata &&
-   <div className="bg-black text-white  p-1 px-3 rounded-md">
-    {items.properties.iata}
-   </div>}
-  </div>
-)
-
-
-                      })}
+                 
+                     
+                      {state && !state.isLoading && state.info && state.info.BusCities &&state.info.BusCities.map((item)=>{
+  return(
+    <p className=" border-b-2 p-1 cursor-pointer" onClick={()=>{setFromCity({
+      CityId: item.CityId,
+      CityName: item.CityName,
+    }),setselected(""),setsearchparam("")}}>{item.CityName}</p>
+  )
+})}
 
 
 
@@ -304,16 +270,16 @@ return(
               </div>
               <div
                 className="flex-1 w-5/6 relative cursor-pointer"
-                onClick={() => openPopup("to")}
+                onClick={() => setselected("to")}
               >
                 <div className="text-sm font-light">To</div>
-                <span className="text-xl py-1 text-black font-bold">{toCity.municipality}</span>
+                <span className="text-xl py-1 text-black font-bold">{toCity.CityName}</span>
                 <p id="toCity" className="text-sm">
-                 {toCity.name}
+                 {toCity.CityName}
                 </p>
               </div>
 
-              {isPopupOpen === "to" && (
+              {selected == "to" && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 z-[9999]">
                   <div className="bg-white w-full h-full ">
                     <div className=" bg-blue-500 p-4">
@@ -325,7 +291,7 @@ return(
                           <FaArrowLeft />
                         </button>
                         <h2 className="text-xl text-white leading-none font-bold">
-                          Select Destination City
+                          Select Destination City 
                         </h2>
                       </div>
                       <div className=" relative">
@@ -333,8 +299,7 @@ return(
                           type="text"
                           className=" h-10 mt-3 pl-8 rounded w-full"
                           placeholder="Search your city"
-                          value={inputValue}
-          onChange={handleChangePort}
+                          value={searchparam}          onChange={handelBusSearch}
                         />
                         <FaSearch className="absolute top-6 left-2  text-gray-400" />
                       </div>
@@ -347,26 +312,14 @@ return(
 <li className="bg-[#ecf5fe] py-2 px-5 text-gray-600 text-sm uppercase">
   Popular Cities
 </li>
-{searchport.isLoading && <div>
-                      Loading..
-                      
-                      </div>}
-                      {!searchport.isLoading && searchport.info   && searchport.info.map((items)=>{
-return(
-  <div className="flex justify-between my-4 shadow-sm w-full px-2 items-center" onClick={()=>{setToCity({municipality:items.properties.municipality,name:items.properties.name,iata:items.properties.iata}),  setIsPopupOpen("") ,   setsearchport({info:[],isLoading:false})}     }>
-    <div>
-    <p >{items.properties.municipality}</p>
-    <p className="text-sm text-gray-600">{items.properties.name}</p>
-   </div>
-   {items.properties.iata &&
-   <div className="bg-black text-white  p-1 px-3 rounded-md">
-    {items.properties.iata}
-   </div>}
-  </div>
-)
-
-
-                      })}
+{state && !state.isLoading && state.info && state.info.BusCities &&state.info.BusCities.map((item)=>{
+  return(
+    <p className=" border-b-2 p-1 cursor-pointer" onClick={()=>{setToCity({
+      CityId: item.CityId,
+      CityName: item.CityName,
+    }),setselected(""),setsearchparam("")}}>{item.CityName}</p>
+  )
+})}
 
                     </ul>
                   </div>
@@ -376,10 +329,12 @@ return(
 
             <div className="flex gap-2 my-3 ">
               <div
-                className="relative flex items-center bg-[#ecf5fe] rounded-lg border border-[#2196f3] p-2 w-full"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+               className="relative w-full "
               >
+<div 
+ className=" flex items-center bg-[#ecf5fe] rounded-lg border border-[#2196f3] p-2 w-full "
+ onClick={() => setselected("date")}>
+  
                 <div className="mr-3">
                   <Image
                     src="/Images/calender.svg"
@@ -391,11 +346,12 @@ return(
                 <div>
                   <div className="text-sm font-light">Travel Date</div>
                   <span className="text-sm py-1 text-black font-bold">
-                    {selected ? selected.toLocaleDateString() : "29/11/2003"}
+                    {pickupdate ? pickupdate.toLocaleDateString() : "29/11/2003"}
                   </span>
                 </div>
+                </div>
 
-                {isHovered && (
+                {selected=="date" && (
                   <div className="bg-white p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
                    <Calendar
                           aria-label="Select a date"
@@ -411,179 +367,7 @@ return(
              
             </div>
 
-            <div className="flex gap-2 my-3 ">
-              <div
-                className="flex  items-center bg-[#ecf5fe]  rounded-lg border border-[#2196f3] p-2 w-1/2 relative cursor-pointer"
-                onClick={() => openPopup("passenger")}
-              >
-                <div className="mr-3">
-                  <Image src="/Images/user.svg" width={24} height={24} alt="" />
-                </div>
-                <div>
-                  <div className="text-sm font-light">Passenger</div>
-                  <div className="font-semibold">1 Traveller</div>
-                </div>
-              </div>
-
-              {isPopupOpen === "passenger" && (
-                <div className="fixed flex justify-end inset-0 bg-[#0009] bottom-0   z-[9999]">
-                  <div className=" w-full  absolute bottom-0 ">
-                    <div className="border-b bg-white p-4">
-                      <div className="flex justify-between items-center ">
-                        <h2 className="text-xl  leading-none font-bold">
-                          No. of Travellers
-                        </h2>
-                        <button
-                          className=" text-xl text-blue-600 leading-none font-normal"
-                          onClick={closePopup}
-                        >
-                          Done
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="p-4  bg-white">
-                      <div className="mb-6">
-                        <div className="font-semibold">Adults (12+ yrs)</div>
-                        <ul className="flex justify-between gap-1 mt-2">
-                          {[...Array(9).keys()].map((i) => (
-                            <li
-                              key={i + 1}
-                              className={`cursor-pointer font-semibold py-2 px-3 ${
-                                adultCount === i + 1
-                                  ? "bg-blue-500 text-white"
-                                  : "border bg-white"
-                              } `}
-                              onClick={() => handleSelect("adult", i + 1)}
-                            >
-                              {i + 1}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="mb-6">
-                        <div className="font-semibold">Children (2-12 yrs)</div>
-                        <ul className="flex justify-between gap-1 mt-2">
-                          {[...Array(9).keys()].map((i) => (
-                            <li
-                              key={i}
-                              className={`cursor-pointer font-semibold py-2 px-3 ${
-                                childCount === i
-                                  ? "bg-blue-500 text-white"
-                                  : "border bg-white"
-                              } `}
-                              onClick={() => handleSelect("child", i)}
-                            >
-                              {i}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Infants Section */}
-                      <div className="mb-6">
-                        <div className="font-semibold">Infant (0-2 yrs)</div>
-                        <ul className="flex  gap-2 mt-2">
-                          {[...Array(5).keys()].map((i) => (
-                            <li
-                              key={i}
-                              className={`cursor-pointer font-semibold py-2 px-3 ${
-                                infantCount === i
-                                  ? "bg-blue-500 text-white"
-                                  : "border bg-white"
-                              } `}
-                              onClick={() => handleSelect("infant", i)}
-                            >
-                              {i}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Error Messages */}
-                      <div id="errorfrm" className="mt-4">
-                        {/* Replace the style with Tailwind CSS utility classes if needed */}
-                        <div
-                          id="alertdiv_maxTraveler"
-                          className="hidden bg-red-500 text-white p-2 rounded"
-                        >
-                          Currently, booking can only be made for up to 9
-                          travellers. You can make multiple bookings to
-                          accommodate your entire party.
-                        </div>
-                        <div
-                          id="alertdiv_maxInfant"
-                          className="hidden bg-red-500 text-white p-2 rounded"
-                        >
-                          Infant cannot travel more than the adult.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              <div
-                className="flex  items-center bg-[#ecf5fe] rounded-lg border border-[#2196f3] p-2 w-1/2 relative cursor-pointer"
-                onClick={() => openPopup("seat")}
-              >
-                <div className="mr-3">
-                  <Image src="/Images/seat.svg" width={24} height={24} alt="" />
-                </div>
-                <div>
-                  <div className="text-sm font-light">Seat Class</div>
-                  <div className="font-semibold">{seatclass.filter((info,index)=>selectedClass === index+1)}</div>
-                </div>
-              </div>
-
-              {isPopupOpen === "seat" && (
-                <div className="fixed inset-0 bg-[#0009] bottom-0   z-[9999]">
-                  <div className=" w-full  absolute bottom-0 ">
-                    <div className=" bg-white p-4">
-                      <div className="flex justify-between items-center ">
-                        <h2 className="text-xl  leading-none font-bold">
-                          Select Class
-                        </h2>
-                        <button
-                          className=" text-2xl  rounded"
-                          onClick={closePopup}
-                        >
-                          <FaTimes />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="bg-white p-4">
-
-
-                      {seatclass.map((info,index)=>(
-                        <label className="flex items-center mb-2" onChange={()=>setSelectedClass(index+1)}>
-                        <input
-                          type="radio"
-                          name="class"
-                          value="Economy"
-                          checked={selectedClass === index+1}
-                          
-                          className="mr-2"
-                        />
-                        <span className="text-gray-700">{info}</span>
-                      </label>
-                      ))}
-                      
-                      
-                      <button
-                      onClick={() => openPopup("")}
-                        className="bg-blue-500 text-white w-full py-2 px-4 rounded hover:bg-blue-600"
-                      >
-                        Done
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
+           
             <div className="mt-4">
               <button
               onClick={handelSearch}
@@ -753,7 +537,7 @@ return(
                 <div>
                   <div className="text-sm font-light">Travel Date</div>
                   <span className="text-sm py-1 text-black font-bold">
-                    {selected ? selected.toLocaleDateString() : "29/11/2003"}
+                    {pickupdate ? pickupdate.toLocaleDateString() : "29/11/2003"}
                   </span>
                 </div>
 
@@ -761,8 +545,8 @@ return(
                   <div className="bg-white p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
                     <DayPicker
                       mode="single"
-                      selected={selected}
-                      onSelect={setSelected}
+                      pickupdate={pickupdate}
+                      onSelect={pickupdate}
                     />
                   </div>
                 )}
@@ -928,7 +712,7 @@ return(
                         </ul>
                       </div>
 
-                      {/* Infants Section */}
+                      
                       <div className="mb-6">
                         <div className="font-semibold">Infant (0-2 yrs)</div>
                         <ul className="flex  gap-2 mt-2">
@@ -948,9 +732,9 @@ return(
                         </ul>
                       </div>
 
-                      {/* Error Messages */}
+                      
                       <div id="errorfrm" className="mt-4">
-                        {/* Replace the style with Tailwind CSS utility classes if needed */}
+                        
                         <div
                           id="alertdiv_maxTraveler"
                           className="hidden bg-red-500 text-white p-2 rounded"
@@ -1068,8 +852,8 @@ return(
           </div>
         )}
       </div>
-    </>
+    </> 
   );
 };
 
-export default MobileHeader;
+export default BusMobileheader;
