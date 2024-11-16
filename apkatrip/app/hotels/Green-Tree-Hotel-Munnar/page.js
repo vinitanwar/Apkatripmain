@@ -13,16 +13,22 @@ const hoteldata={
     dscription:"",
     Links:[],
    rooms:[{
-roomeType:"",
+roomeType:"lu",
 price:2323,
 fetures:[],
 img:"",
 
 
    },{
-
+    roomeType:"",
+    price:2323,
+    fetures:[],
+    img:"",
    },{
-
+    roomeType:"",
+    price:2323,
+    fetures:[],
+    img:"",
    }]
 }
 
