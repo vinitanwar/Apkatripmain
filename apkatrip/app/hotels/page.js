@@ -8,6 +8,8 @@ import HotelChains from "../Component/AllComponent/HotelChain";
 import MobileHeader from "../Component/AllComponent/MobileHeader";
 import HotelComp from "../Component/AllComponent/formMaincomp/HotelsComp";
 import Hotelmobileheader from "../Component/AllComponent/Hotelmobilheader";
+import { distance } from "framer-motion";
+import { FaStar } from "react-icons/fa6";
 
 const Page = () => {
   const [showAll, setShowAll] = useState(false);
@@ -15,96 +17,17 @@ const Page = () => {
   const destinations = [
     {
       city: "Delhi",
+      hotelName:"Green Tree Hotel Munnar",
+      Address:"GreenTrees Resort,Chithirapuram P O Dobipalam, Munnar-685 565",
       url: "/listofhotels", 
-      imgSrc: "/Images/del-sm.webp",
+      imgSrc:[ "/greenhotel/imgpsh_fullsize_anim.jfif","/greenhotel/imgpsh_fullsize_anim.jfif","/greenhotel/imgpsh_fullsize_anim.jfif"],
       alt: "Delhi",
+      rating:4,
+      price:15000
     },
-    {
-      city: "Goa",
-      url: "/listofhotels",
-      imgSrc: "/Images/goa-sm.webp",
-      alt: "Goa",
-    },
-    {
-      city: "Mumbai",
-      url: "/listofhotels",
-      imgSrc: "/Images/mumb-sm.webp",
-      alt: "Mumbai",
-    },
-
-    {
-      city: "Chennai",
-      url: "/listofhotels",
-      imgSrc: "/Images/chennai-sm.webp",
-      alt: "Chennai",
-    },
-    {
-      city: "Hyderabad",
-      url: "/listofhotels",
-      imgSrc: "/Images/hyd-sm.webp",
-      alt: "Hyderabad",
-    },
-    {
-      city: "Jaipur",
-      url: "/listofhotels",
-      imgSrc: "/Images/jaipur-sm.webp",
-      alt: "Jaipur",
-    },
-    {
-      city: "Kolkata",
-      url: "/listofhotels",
-      imgSrc: "/Images/kolkata-sm.webp",
-      alt: "Kolkata",
-    },
-    {
-      city: "Agra",
-      url: "/listofhotels",
-      imgSrc: "/Images/agra-sm.webp",
-      alt: "Agra",
-    },
-    {
-      city: "Udaipur",
-      url: "/listofhotels",
-      imgSrc: "/Images/udr-sm.webp",
-      alt: "Udaipur",
-    },
-    {
-      city: "Shimla",
-      url: "/listofhotels",
-      imgSrc: "/Images/shimla-sm.webp",
-      alt: "Shimla",
-    },
-    {
-      city: "Manali",
-      url: "/listofhotels",
-      imgSrc: "/Images/manali-sm.webp",
-      alt: "Manali",
-    },
-
-    {
-      city: "Ahemdabad",
-      url: "/listofhotels",
-      imgSrc: "/Images/ahmd-sm.webp",
-      alt: "Pondicherry",
-    },
-    {
-      city: "Varanasi",
-      url: "/listofhotels",
-      imgSrc: "/Images/varn-sm.webp",
-      alt: "Ranthambore",
-    },
-    {
-      city: "Chandigarh",
-      url: "/listofhotels",
-      imgSrc: "/Images/chnd-sm.webp",
-      alt: "Sawai Madhopur",
-    },
-    {
-      city: "Lucknow",
-      url: "/listofhotels",
-      imgSrc: "/Images/lkcnw-sm.webp",
-      alt: "Kolkata",
-    },
+   
+   
+  
   ];
 
   // Function to handle button click
@@ -119,7 +42,7 @@ const Page = () => {
 
   return (
     <>
-      <HotelComp />
+    <HotelComp />
     <Hotelmobileheader />
       <CustomSlider />
       <div className="px-0 lg:px-20">
@@ -128,66 +51,67 @@ const Page = () => {
         </h2>
         <div className="_polrdestnbx mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {displayedDestinations.map((dest, index) => (
-            <div
+            <Link
               key={index}
+              href={"/hotels/Green-Tree-Hotel-Munnar"}
               className="ecpl_rbx bg-[#F6FBFF] border border-[#2196F3] m-1 lg:m-0 shadow rounded-lg overflow-hidden"
             >
-              <div className="flex gap-5 items-center p-2">
-                <Link href={dest.url} passHref className="text-nowrap">
+              <div className="flex gap-5  p-2">
+              <div>
                   <img
-                    src={dest.imgSrc}
+                    src={dest.imgSrc[0]}
                     alt={dest.alt}
-                    width={100}
+                   
                     layout="responsive"
-                    className="rounded"
+                    className="rounded-md"
                   />
-                </Link>
-                <div className="">
-                  <Link href={dest.url} passHref className="text-nowrap ">
-                    <h5 className="text-xl font-bold mb-1">{dest.city}</h5>
-                  </Link>
-                  <div className="text-sm">
-                    <Link
-                      href={dest.url}
-                      passHref
-                      className="text-nowrap  relative"
-                    >
-                      Hotels,
-                    </Link>
-                    <Link
-                      href={`${dest.url}`}
-                      passHref
-                      className="text-nowrap  px-1 relative"
-                    >
-                      Budget Hotels,
-                    </Link>
-                    <Link
-                      href={`${dest.url}`}
-                      passHref
-                      className="text-nowrap  px-1 relative"
-                    >
-                      3 Star Hotels,
-                    </Link>
-                    <br />
-                    <Link
-                      href={`${dest.url}`}
-                      passHref
-                      className="text-nowrap  relative"
-                    >
-                      4 Star Hotels,
-                    </Link>
-                    <Link
-                      href={`${dest.url}`}
-                      passHref
-                      className="text-nowrap  px-1 relative"
-                    >
-                      5 Star Hotels
-                    </Link>
+                  <div className="flex gap-1 mt-1 justify-around">
+{dest.imgSrc.slice(0,3).map((imag)=>(
+  
+  <img src={imag}  
+                   
+  layout="responsive"
+  className="rounded-md w-16"      />
+))}
+          
                   </div>
-                </div>
+               </div>
+                <div className=" flex flex-col gap-2">
+                  
+                    <h5 className="text-xl font-bold mb-1 text-nowrap">{dest.hotelName}</h5>
+                                  <div className="text-sm">
+                   
+                  <p className="text-sm">
+                    {dest.Address}
+                  </p>
+                  </div>
+                  <div className="flex gap-2 text-black ">
+                  {Array.from({ length: dest.rating }).map((_,index)=>(
+<FaStar/>
+                  )) }
+                  </div>
+                  <div className=" flex items-end gap-2  pt-2 pe-2 justify-self-end">
+<div className="text-lg font-semibold">Price   ₹{dest.price}</div>
+<s >  ₹{dest.price + (dest.price*6)/100}</s>
+             
               </div>
-            </div>
+                </div>
+              
+              </div>
+              
+
+             
+            </Link>
           ))}
+
+
+
+
+
+
+
+
+
         </div>
 
         <div className="mt-4 text-center">
@@ -341,7 +265,7 @@ const Page = () => {
       <div className="pb-3">
         <FAQSection />
       </div>
-    </>
+       </>
   );
 };
 

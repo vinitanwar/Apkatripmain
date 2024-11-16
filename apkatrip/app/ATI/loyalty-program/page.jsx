@@ -1,146 +1,293 @@
 import React from 'react'
-
+import Link from 'next/link';
 const page = () => {
+  const loyaltyProgramDetails = [
+    {
+      title: "Get Rewards for Each Booking",
+      description:
+        "With every trip, you are getting closer to terrific rewards with ApkaTrip. With flight reservations, accommodation bookings, vacation packages, and exclusive experiences—everything earns you points. The more you travel, the more you will earn.",
+    },
+    {
+      title: "Exclusive Member Benefits",
+      description:
+        "As a member of our loyalty program, you’ll unlock a range of premium benefits that elevate your travel experience. Enjoy priority customer support, special discounts, exclusive access to private tours and experiences, and even complimentary upgrades at select hotels.",
+    },
+    {
+      title: "Targeted Promotions and Personalized Recommendations",
+      description:
+        "Your loyalty matters to us, and that's the reason we take that little extra step to make your experience with ApkaTrip as personal and rewarding as possible. Once you become a loyalty member, offers and suggestions tailored to your preferences will be available, making each trip unique and more enjoyable.",
+    },
+    {
+      title: "Redeem Your Points for Awesome Prizes",
+      description:
+        "Under our Loyalty Program, your points can be worth as much as your journey. Use them to purchase future travel, exclusive upgrades, access to VIP lounges, special experiences like private yacht rentals, or even gift cards for your favorite brands. The possibilities are boundless.",
+    },
+    {
+      title: "VIP Customer Care",
+      description:
+        "You will be assigned a personal travel concierge to ensure your travel plans are easy, stress-free, and perfectly suited to your needs. Our team is available for special requests, last-minute changes, or any other arrangements you need, 24/7.",
+    },
+    {
+      title: "Exclusives and Debits Offer",
+      description:
+        "As a member, you'll have access to special promotions, limited-time offers, and seasonal discounts available only to loyal members. From discounted rates on holiday packages to exclusive flight deals, members get early access to offers not available to the public.",
+    },
+  ];
+
+  const howItWorksSteps = [
+    {
+      title: "Registration and End Earned",
+      description:
+        "Join our ApkaTrip Loyalty Program, which is absolutely free and easy to join. Register on our website and start earning points at every trip. Be it flight bookings, hotel stays, or any package travel, the points will keep accumulating.",
+    },
+    {
+      title: "Book Your Next Holiday",
+      description:
+        "Enjoy a variety of exceptional offers and promotions, exclusive to loyalty members, with your membership. Book your next adventure with us, and your points will grow.",
+    },
+    {
+      title: "Collect and Track Points",
+      description:
+        "Points are converted once you book, and you can track them quite easily from your account on ApkaTrip. So keep a closer eye on your balance—you’ll know when you’ve managed to accrue enough for another reward!",
+    },
+    {
+      title: "Redeem and Enjoy Your Rewards",
+      description:
+        "Just earning miles will bring cash back for you. Award of additional nights in a stunning hotel, first-class upgrade, or VIP access to privileged events—everything comes true from your miles. The more you travel, the more you can!",
+    },
+  ];
+
+  const loyaltyBenefits = [
+    {
+      title: "Unlocks an entire world of rewards with ApkaTrip Loyalty",
+      description:
+        "Double points for unique experience. Be a loyalty member and get double points on specific activities and experiences - exclusive tours, dining experiences, adventure packages - so that every time you travel, your travel is always rewarded.",
+    },
+    {
+      title: "Privilege lounge access",
+      description:
+        "With free, complimentary premium access to worldwide airport lounges, you can start your journey from anywhere in comfort.",
+    },
+    {
+      title: "Free room upgrade",
+      description:
+        "Stay in style with a room upgrade at the finest hotels participating, from 5-star resorts to boutique hotels. Whatever the style of accommodation, enjoy a more enjoyable stay amidst this luxury and fantastic views.",
+    },
+    {
+      title: "Early Inroads to Sales and Promotions",
+      description:
+        "It puts loyalty members at its top priority so they never miss any exclusive sales - either time-limited promotions or last-minute deals.",
+    },
+    {
+      title: "Special Deals for Friends and Family",
+      description:
+        "Share the love - transfer your loyalty points to family or friends or bring them along for exclusive travel offers. Make each trip more enjoyable by sharing the experience.",
+    },
+  ];
+
+  const membershipLevels = [
+    {
+      title: "Explorer Level",
+      pointsPerDollar: "1 point for every dollar spent",
+      benefits: [
+        "Access to core advantages such as discounts, member-only offers, and infrequent promotions.",
+        "A welcome gift during the first booking.",
+      ],
+    },
+    {
+      title: "Adventurer Level",
+      pointsPerDollar: "1.5 points for every dollar spent",
+      benefits: [
+        "Priority customer support and special promotions.",
+        "Free entry to airport lounge for one person accompanying each journey.",
+        "Free space upgrade on specific reservations.",
+      ],
+    },
+    {
+      title: "Globetrotter Level",
+      pointsPerDollar: "2 points for every dollar spent",
+      benefits: [
+        "Special tours and experiences have priority booking.",
+        "Free lounge access for two.",
+        "Bonus points for specific adventures, upgrades, and premium services.",
+        "Exclusive deals and personalized travel concierge.",
+      ],
+    },
+  ];
+
+  const apkaTripInfo = {
+    loyaltyProgramCTA: "Join the ApkaTrip Loyalty Program today",
+    introduction: "Are you ready to turn your passion for travel into fantastic rewards? Whether you're an avid traveler or just starting out, the Loyalty Program from ApkaTrip offers you unbeatable value and unmatched benefits.",
+    ctaButtons: [
+      { text: "Start Earning, Start Exploring", link: "#" },
+      { text: "Sign up now", link: "#" },
+      { text: "Learn more about Rewards", link: "#" },
+      { text: "Contact us", link: "#" }
+    ],
+    aboutTitle: "About ApkaTrip",
+    aboutText: "ApkaTrip is one of the world's most trusted travel agencies, believing every trip should be memorable, smooth, and rewarding. Our Loyalty Program is our endeavour to make your travel experience as unique as possible with exclusive rewards and personalized services that help you find and explore the world and enjoy great benefits along the way.",
+    companyDetails: {
+      address: "Company Address",
+      city: "City, Country",
+      telephone: "[Telephone Number]",
+      email: "[e-mail address]"
+    },
+    socialLinks: [
+      { platform: "Instagram", link: "#" },
+      { platform: "Facebook", link: "#" },
+      { platform: "Twitter", link: "#" },
+      { platform: "LinkedIn", link: "#" }
+    ]
+  };
+  
   return (
-    <div className="bg-gray-100 text-gray-900">
-   <section className="bg-cover bg-center text-[gray] text-center py-10  px-40 bg-[#5cc5fa] " >
-      <div className=" mx-auto">
-        <h2 className="text-4xl font-bold mb-4">Welcome to ApkaTrip’s Exclusive Loyalty Program</h2>
-        <p className="text-lg mb-6 ">Travel More, Earn More, and Enjoy Exceptional Rewards</p>
-<p className='text-gray-900'>At ApkaTrip, we believe that loyalty deserves to be rewarded. Whether you’re a frequent
-traveler or just starting to explore the world, our Loyalty Program is designed to enhance
-your travel experiences and offer you exclusive benefits every step of the way.
-When you book with us, you’re not just securing a trip—you’re unlocking a world of
-privileges, exclusive rewards, and personalized services that make every journey even
-more memorable.
-Join the ApkaTrip Loyalty Program today and start earning points, perks, and privileges
-that make your travel dreams a reality.</p>      </div>
-    </section>
+    <>
+     <section className="bg-gradient-to-tr py-5 lg:py-10 from-[#1c265e] via-[#062c61] to-[#031932] relative bg-no-repeat bg-cover min-h-[70vh] space-y-5 lg:space-y-20 flex flex-col justify-center items-center px-5 text-white">
+  <h5 className="text-2xl pt-5 md:text-3xl lg:text-4xl text-white text-center font-bold">
+    Welcome to Exclusive{" "}
+    <span className="text-green-600 lg:border-b-4 lg:border-green-800 border-dotted lg:pb-2">
+      Loyalty{" "}
+    </span>{" "}
+    Program of ApkaTrip.
+  </h5>
 
-    {/* Loyalty Program Overview */}
-    <section id="loyalty-program" className="py-16 px-4">
-      <div className="max-w-screen-xl mx-auto text-center">
-        <h3 className="text-3xl font-bold text-blue-600 mb-8">Why Join the ApkaTrip Loyalty Program?</h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">Earn Points with Every Booking</h4>
-            <p>Every trip you take with ApkaTrip brings you closer to incredible rewards. From flights to
-accommodations, and holiday packages to exclusive experiences, you’ll earn points on
-each booking. The more you travel, the more you earn.</p>
-          </div>
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">Exclusive Member Benefits</h4>
-            <p>As a member of our loyalty program, you’ll unlock a range of premium benefits that elevate
-your travel experience. Enjoy priority customer support, special discounts, exclusive
-access to private tours and experiences, and even complimentary upgrades at select
-hotels.</p>
-          </div>
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">Tailored Offers & Personalized Recommendations</h4>
-            <p>Your loyalty matters to us, which is why we go the extra mile to make your experience with
-ApkaTrip as personal and rewarding as possible. As a loyalty member, you’ll receive
-customized travel offers and recommendations based on your preferences, making each
-trip unique and personalized to your taste.</p>
-          </div>
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">Redeem Points for Exciting Rewards</h4>
-            <p>With our Loyalty Program, your points are as valuable as the trips themselves. Redeem
-them for future travel, exclusive upgrades, access to VIP lounges, special experiences like
-private yacht rentals, or even gift cards for your favorite brands. The possibilities are
-endless..</p>
-          </div>
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">VIP Customer Support</h4>
-            <p>As a loyalty member, you get access to dedicated travel concierge services, ensuring
-that your travel plans are seamless, stress-free, and perfectly tailored to your needs. Our
-team is available around the clock to assist with special requests, last-minute changes,
-and exclusive arrangements.</p>
-          </div>
-          <div className="bg-white p-8 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">Exclusive Promotions &amp; Deals</h4>
-            <p>Be the first to know about our special promotions, limited-time offers, and seasonal
-discounts available only to our loyal members. Whether it&#39;s discounted rates on holiday
+  <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10 px-5 md:px-16 lg:px-20 space-y-5 md:space-y-0">
+    <div className="space-y-5 lg:w-[50%] text-center md:text-left">
+      <h5 className="text-xl lg:text-3xl font-bold tracking-wide">
+        Travel More Earn More <br /> and Enjoy Superior Rewards
+      </h5>
+      <p className="text-base lg:text-lg text-justify text-[#bbbbbb] ">
+        In other words, loyalty should be repaid. Whether you're a frequent
+        traveler or a beginner venturing into this amazing world, our Loyalty
+        Program is here to make your travels better and more rewarding every
+        step with ApkaTrip. Book with us and unlock a world of privilege, with
+        exclusive rewards and personalized services, making each journey even
+        more memorable. Join the ApkaTrip Loyalty Program today and start earning
+        all those points, perks, and privileges that will make your travel dreams
+        come true.
+      </p>
+    </div>
 
-packages or special deals on flights, our members enjoy early access to deals that are
-unavailable to the general public.
-and exclusive arrangements.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    {/* How It Works */}
-    <section className="bg-gray-50 py-16" id="how-it-works">
-      <div className="max-w-screen-xl mx-auto text-center">
-        <h3 className="text-3xl font-bold text-blue-600 mb-8">How It Works: Simple, Transparent, and Rewarding</h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">1. Sign Up and Start Earning</h4>
-            <p>Joining the ApkaTrip Loyalty Program is quick and free. Simply sign up on our website and
-start earning points on every trip. Whether you’re booking flights, accommodations, or full
-travel packages, your points will accumulate seamlessly.</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">2. Book Your Next Trip</h4>
-            <p>With your membership, enjoy a range of exclusive offers and discounts available only to
-            loyalty members. Book your next adventure with us and watch your points grow.</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">3. Earn and Track Points</h4>
-            <p>Points accumulate with each booking and can be tracked easily through your ApkaTrip
-            account. Keep an eye on your balance to see how close you are to your next reward!</p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">4. Redeem and Enjoy</h4>
-            <p>Redeem your points for exclusive upgrades, VIP access, or even special experiences.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    {/* Membership Levels */}
-    <section id="membership-levels" className="py-16 px-4 bg-white">
-      <div className="max-w-screen-xl mx-auto text-center">
-        <h3 className="text-3xl font-bold text-blue-600 mb-8">Levels of Membership</h3>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
-          <div className="bg-gray-100 p-8 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">Explorer Level</h4>
-            <ul className="list-disc pl-5">
-              <li>1 point per dollar spent</li>
-              <li>Welcome gift</li>
-              <li>Basic member benefits</li>
-            </ul>
-          </div>
-          <div className="bg-gray-100 p-8 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">Adventurer Level</h4>
-            <ul className="list-disc pl-5">
-              <li>1.5 points per dollar spent</li>
-              <li>Priority customer support</li>
-              <li>Free lounge access</li>
-            </ul>
-          </div>
-          <div className="bg-gray-100 p-8 rounded-lg shadow-lg">
-            <h4 className="text-xl font-semibold mb-3">Globetrotter Level</h4>
-            <ul className="list-disc pl-5">
-              <li>2 points per dollar spent</li>
-              <li>Priority booking for exclusive tours</li>
-              <li>Double points on select experiences</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    {/* Call to Action */}
-    <section className="bg-[#5cc5fa] text-white py-16 text-center" id="signup">
-      <h3 className="text-3xl font-bold mb-4">Join the ApkaTrip Loyalty Program Today</h3>
-      <p className="mb-6">Start earning points and enjoy amazing rewards with ApkaTrip.</p>
-      <a href="signup.html" className="inline-block bg-yellow-500 text-gray-900 py-3 px-6 rounded-lg font-semibold hover:bg-yellow-400 transition duration-200">Sign Up Now</a>
-    </section>
-
- 
+    <div className="md:w-[50%] hidden lg:block">
+      <img
+        src="/Images/page2/Loyalty1.jpg"
+        alt="Loyalty Program"
+        className="rounded-lg w-full object-cover h-full"
+      />
+    </div>
   </div>
-  )
+</section>
+
+      <div className="space-y-8 lg:space-y-12 mt-10">
+        <section className="px-5 md:px-16 lg:px-20  ">
+          <div className="bg-[#F1F5F9] px-5 py-6 rounded-lg md:px-10 md:py-12 space-y-6">
+            <h6 className="text-lg md:text-2xl font-semibold text-gray-700">
+              Why Join the ApkaTrip Loyalty Program?
+            </h6>
+            {loyaltyProgramDetails.map((benefit, index) => (
+              <div key={index} className="space-y-4">
+                <h5 className="text-lg md:text-xl font-semibold text-gray-800">
+                  {benefit.title}
+                </h5>
+                <p className="text-base text-gray-600">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="px-5 md:px-16 lg:px-20  ">
+          <div className="bg-[#F1F5F9] px-5 py-6 md:px-10 md:py-12 space-y-6 rounded-lg">
+            <h6 className="text-lg md:text-2xl font-semibold text-gray-700">
+              How It Works: Simple, Transparent, and Rewarding
+            </h6>
+            {howItWorksSteps.map((step, index) => (
+              <div key={index} className="space-y-4">
+                <h5 className="text-lg md:text-xl font-semibold text-gray-800">
+                  {step.title}
+                </h5>
+                <p className="text-base text-gray-600">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="px-5 md:px-16 lg:px-20  ">
+          <div className="bg-[#F1F5F9] px-5 py-6 md:px-10 md:py-12 space-y-6 rounded-lg">
+            <h6 className="text-lg md:text-2xl font-semibold text-gray-700">
+              Exclusive Loyalty Program Benefits
+            </h6>
+            {loyaltyBenefits.map((benefit, index) => (
+              <div key={index} className="space-y-4">
+                <h5 className="text-lg md:text-xl font-semibold text-gray-800">
+                  {benefit.title}
+                </h5>
+                <p className="text-base text-gray-600">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+
+        <section className="px-5 md:px-16 lg:px-20 ">
+  <div className="bg-[#F1F5F9] px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
+    <h6 className="text-lg md:text-2xl font-semibold text-gray-700">Levels of Membership: The More You Travel, the More You Benefit</h6>
+    
+    {membershipLevels.map((level, index) => (
+      <div key={index} className="space-y-4">
+        <h5 className="text-lg md:text-xl font-semibold text-gray-800">{level.title}</h5>
+        <p className="text-base text-gray-600">{level.pointsPerDollar}</p>
+        <ul className="list-disc pl-5 space-y-2 text-gray-600">
+          {level.benefits.map((benefit, idx) => (
+            <li key={idx}>{benefit}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
+
+
+<section className="px-5 md:px-16 lg:px-20 py-10">
+  <div className="bg-[#F1F5F9] px-5 py-6 md:px-10 md:py-12 space-y-8 rounded-lg">
+    {/* Loyalty Program CTA */}
+    <div className="space-y-4">
+      <h6 className="text-lg md:text-2xl font-semibold">{apkaTripInfo.loyaltyProgramCTA}</h6>
+      <p>{apkaTripInfo.introduction}</p>
+      <div className="md:space-x-4 space-y-5  ">
+        {apkaTripInfo.ctaButtons.map((button, index) => (
+          <Link key={index} href={button.link} className="inline-block w-full md:w-auto px-6 py-2 text-white bg-blue-600 rounded-md">{button.text}</Link>
+        ))}
+      </div>
+    </div>
+
+    {/* About ApkaTrip */}
+    <div className="space-y-4">
+      <h6 className="text-lg md:text-2xl font-semibold">{apkaTripInfo.aboutTitle}</h6>
+      <p>{apkaTripInfo.aboutText}</p>
+    </div>
+
+    {/* Company Details */}
+    <div className="space-y-3">
+      <p className="font-semibold">Headquarters:</p>
+      <p>{apkaTripInfo.companyDetails.address}</p>
+      <p>{apkaTripInfo.companyDetails.city}</p>
+      <p>{apkaTripInfo.companyDetails.telephone}</p>
+      <p>{apkaTripInfo.companyDetails.email}</p>
+    </div>
+
+    {/* Social Media Links */}
+    <div className="space-x-4">
+      {apkaTripInfo.socialLinks.map((social, index) => (
+        <a key={index} href={social.link} className="text-blue-600 hover:underline">{social.platform}</a>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+      </div>
+    </>
+  );
 }
 
 export default page

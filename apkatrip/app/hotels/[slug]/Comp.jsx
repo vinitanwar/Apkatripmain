@@ -85,11 +85,10 @@ useEffect(()=>{
 dispatch(getAllhotelsapi({cityCode,checkIn,checkOut,adults,children,page}))
 },[])
 useEffect(()=>{sethotalbackup(allhoteldata)
-  setallhotels(  allhoteldata.info.totalHotels && allhoteldata.info.totalHotels.HotelDetails)
+  setallhotels(allhoteldata.info.totalHotels && allhoteldata.info.totalHotels)
 },[allhoteldata])
 
 
-console.log(hotalbackup,"sdfsdfd")
 console.log(allhotel,"kkiiin")
 
 
@@ -230,7 +229,7 @@ console.log(allhotel,"kkiiin")
     {showimg==index_num &&
       <div className='fixed top-16  left-0 z-40 w-full  h-[90vh] border-8 border-white bg-white overflow-scroll grid grid-cols-3 gap-2'>
 <MdOutlineCancel onClick={()=>setshowImg(null)} className='fixed top-24 cursor-pointer right-10 text-orange-500 text-5xl' />
-{hotel.Images.map((imgs)=>{
+{hotel.hotelDetails.HotelDetails[0].Images.map((imgs)=>{
   return(
 <img src={imgs}  className='h-[25rem] w-full'/>
   )
@@ -241,7 +240,7 @@ console.log(allhotel,"kkiiin")
         <div className="relative">
           <div className="relative">
             <img
-              src={hotel.Images ?(hotel.Images[0] || "/Images/not_found_img.png"):"/Images/not_found_img.png"}
+              src={hotel.hotelDetails.HotelDetails[0].Images ?(hotel.hotelDetails.HotelDetails[0].Images[0] || "/Images/not_found_img.png"):"/Images/not_found_img.png"}
               alt="hotelImg"
              
               className="object-cover w-full h-[10rem] lg:w-[35rem] lg:h-[15rem] rounded-md"
@@ -256,7 +255,7 @@ console.log(allhotel,"kkiiin")
           </div>
 
           <div className="flex justify-center md:justify-start mt-2 space-x-2">
-            {hotel.Images && hotel.Images.slice(1, 5).map((image, index) => (
+            {hotel.hotelDetails.HotelDetails[0].Images && hotel.hotelDetails.HotelDetails[0].Images.slice(1, 5).map((image, index) => (
               <div key={index} className="relative rounded-sm">
                 <img
                   src={image}
@@ -276,32 +275,32 @@ console.log(allhotel,"kkiiin")
 
       <div className="flex-1 pl-0 md:pl-5">
         <div className=" my-5 md:my-0 flex justify-between items-center">
-          <p className="text-base md:text-2xl font-black">{hotel.HotelName}</p>
+          <p className="text-base md:text-2xl font-black">{hotel.hotelDetails.HotelDetails[0].HotelName}</p>
           <div>
             <div className="flex items-center">
               <span className="bg-blue-500 text-white px-2 text-sm rounded-full">
-                {hotel.HotelRating} 
+                {hotel.hotelDetails.HotelDetails[0].HotelRating} 
               </span>
               <span className=" ml-2 text-blue-600">
-                {hotel.HotelRating}
+                {hotel.hotelDetails.HotelDetails[0].HotelRating}
               </span>
             </div>
             <div className="hidden md:flex items-center justify-center mt-2">
-              {renderStars(hotel.HotelRating)}
+              {renderStars(hotel.hotelDetails.HotelDetails[0].HotelRating)}
             </div>
           </div>
         </div>
 
         <div className="text-gray-500">
-          <span className="text-blue-600">{hotel.Address}</span> |{" "}
-          {hotel.distance}
+          <span className="text-blue-600">{hotel.hotelDetails.HotelDetails[0].Address}</span> |{" "}
+          {hotel.hotelDetails.HotelDetails[0].distance}
         </div>
 
         <div className="mt-2 hidden md:flex space-x-4 text-gray-500">
         
         </div>
        
-        {/* {hotel.Rooms.map((items_price)=>{
+       {    hotel.searchResults.Status.Code==200 ? hotel.searchResults.HotelResult[0].Rooms.map((items_price)=>{
   return(
     <>
      <div className="flex items-end justify-between">
@@ -325,7 +324,9 @@ console.log(allhotel,"kkiiin")
     </div>
     </>
   )
-}) } */}
+}):  <div className=' p-5 mt-10'>
+  No Available rooms 
+</div> } 
        
        
         </div>
@@ -347,7 +348,7 @@ console.log(allhotel,"kkiiin")
 
 <div className='flex justify-between p-2 px-5'>
   <button className={`${page==0?"bg-gray-700 cursor-not-allowed":"bg-black" } text-white font-semibold p-2 px-3 rounded-md `} onClick={handelPrevpage}> Prev</button>
-  <button className={`${page>=hotalbackup.info.len-1?"bg-gray-700":"bg-black" } text-white font-semibold p-2 px-3 rounded-md `} onClick={handelNextpage}> Next</button>
+  <button className={`${page>=hotalbackup.info.count-1?"bg-gray-700 cursor-not-allowed":"bg-black" } text-white font-semibold p-2 px-3 rounded-md `} onClick={handelNextpage}> Next</button>
 
 </div>
 } 

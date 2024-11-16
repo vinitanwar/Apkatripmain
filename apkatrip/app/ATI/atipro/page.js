@@ -1,283 +1,185 @@
 "use client";
 
-import { FaRupeeSign } from "react-icons/fa";
-import { TiPlus } from "react-icons/ti";
-import { TiMinus } from "react-icons/ti";
+
 import React, { useRef, useState } from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { FaInstagram,FaFacebookSquare,FaLinkedin} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-cards";
-import { Autoplay } from "swiper/modules";
-
-// import required modules
-import { EffectCards } from "swiper/modules";
 
 export default function page() {
-  const [expandedIndex, setExpandedIndex] = useState(0);
-  const toggleAnswer = (index) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
+  const keyBenefits = [
+    {
+      title: "Customization Beautiful",
+      description: "Every traveler and every trip is different. ApkaTrip specializes in creating highly personalized itineraries that reflect your passions and desires. Whether it's a yacht in the Caribbean or a secluded villa in the Mediterranean, every experience is tailored to the last detail."
+    },
+    {
+      title: "Exclusive Access to World’s Best Destinations",
+      description: "Experience the glamour of the French Riviera, serenity in the Maldives, or the thrill of Patagonia. ApkaTrip offers insider access to experiences often unavailable to the average traveler, with connections to top resorts, estates, and boutique accommodations."
+    },
+    {
+      title: "VIP Service, Anytime, Anywhere",
+      description: "Luxury is more than a destination; it’s an experience. Our concierge team is available 24/7 to ensure your journey is flawless, from private jets and chauffeur-driven cars to personal butlers and spa treatments."
+    },
+    {
+      title: "Handpicked Luxury Partnerships",
+      description: "Our curated partnerships include the finest hotels, resorts, and restaurants worldwide. With ApkaTrip, every detail of your journey reflects luxury, comfort, and sophistication."
+    }
+  ];
+
+  const eliteCollection = [
+    {
+      title: "Private Jets & Helicopter Transfers",
+      description: "Travel in absolute style with private jets and helicopter services tailored to your schedule and preferences, offering the convenience of direct flights to exclusive destinations."
+    },
+    {
+      title: "Luxury Villas & Private Residences",
+      description: "Find luxury in intimacy with private villas offering breathtaking views, exclusive amenities, and impeccable service, perfect for families, couples, or groups."
+    },
+    {
+      title: "Tailor-Made Exotic Experiences",
+      description: "From island getaways and safaris to private shopping tours in Paris, we design custom experiences that exceed the ordinary."
+    },
+    {
+      title: "Personalized Itineraries & Travel Planning",
+      description: "Each journey is unique, whether it’s cultural immersion, special events, or luxury adventure travel, with fully bespoke itineraries."
+    },
+    {
+      title: "Luxury Cruises & Yacht Charters",
+      description: "Explore the world's coastlines aboard a private yacht or luxury cruise, with custom itineraries, gourmet dining, and professional crews at your service."
+    },
+    {
+      title: "Concierge & Lifestyle Management",
+      description: "Need a last-minute reservation at a Michelin-starred restaurant or access to a sold-out show? Our concierge team is available 24/7 to make every experience fabulous and stress-free."
+    }
+  ];
+
+  const testimonials = [
+    {
+      quote: "ApkaTrip is not just an agency but an experience. From the private jet to the villa, everything was perfectly arranged. It was my best vacation.",
+      client: "Samantha W.",
+      title: "Executive, Luxury Brand"
+    },
+    {
+      quote: "ApkaTrip created a memorable anniversary, with private yachts in Santorini and candle-lit dinners on cliffs. Their team anticipated every need, and the service was unparalleled.",
+      client: "James H.",
+      title: "Entrepreneur"
+    }
+  ];
+
+  const socialLinks = {
+    instagram: '#',
+    facebook: '#',
+    twitter: '#',
+    linkedin: '#',
   };
+  
+return (
+<>
+ <div className='h-[80vh] bg-gradient-to-r from-[#fbc2eb] to-[#a6c1ee] flex justify-center items-center px-5 md:px-16 lg:px-20'>
+  <div className='text-center lg:space-y-8'>
+    <h5 className='text-2x md:text-3xl lg:text-4xl font-bold'>Welcome to ApkaTrip - Curators of Exceptional Luxury Travel.</h5>
+    <p className='text-base md:text-lg'>Your Passport to incomparable sophistication and exceptional experiences
+At ApkaTrip, luxury is not only a style of traveling but also a way of living. For those who seek serenity in an overwater villa, a bespoke city escape, or an unforgettable adventure in any of the world's most luxurious destinations, we take care of all the details, transforming each journey to its perfect tune at ApkaTrip. 
+World where great service and ultimate indulgence blend with rare experience- the world of ApkaTrip. Come and elevate your travel experience with this affair of luxury-known no boundary.
+</p>
+  </div>
+</div>
 
-  const vouchers = [
-    {
-      id: 1,
-      text: "5000 Vouchers",
-      brands: "from Multiple Brands",
-      image: "/Images/giftboxati.webp",
-    },
-    {
-      id: 2,
-      text: "5000 Vouchers",
-      brands: "from Multiple Brands",
-      image: "/Images/healthcareati.webp",
-    },
-    {
-      id: 3,
-      text: "5000 Vouchers",
-      brands: "from Multiple Brands",
-      image: "/Images/5-starsati.webp",
-    },
-    {
-      id: 4,
-      text: "5000 Vouchers",
-      brands: "from Multiple Brands",
-      image: "/Images/airplaneati.webp",
-    },
-    {
-      id: 5,
-      text: "5000 Vouchers",
-      brands: "from Multiple Brands",
-      image: "/Images/busati.webp",
-    },
-    {
-      id: 6,
-      text: "5000 Vouchers",
-      brands: "from Multiple Brands",
-      image: "/Images/money-bagati.webp",
-    },
-    {
-      id: 7,
-      text: "5000 Vouchers",
-      brands: "from Multiple Brands",
-      image: "/Images/bookingati.webp",
-    },
-    {
-      id: 8,
-      text: "5000 Vouchers",
-      brands: "from Multiple Brands",
-      image: "/Images/travelati.webp",
-    },
-  ];
+<section className="px-6 md:px-16 lg:px-20 space-y-10 mt-10">
+{/* Key Benefits Section */}
+<div className="space-y-6">
+<h2 className="text-2xl md:text-3xl font-semibold text-gray-800">Why Choose ApkaTrip for Your Luxury Escape?</h2>
+{keyBenefits.map((benefit, index) => (
+  <div key={index} className="space-y-2">
+    <h4 className="text-xl font-semibold text-gray-700">{benefit.title}</h4>
+    <p className="text-base text-gray-600">{benefit.description}</p>
+  </div>
+))}
+</div>
 
-  const faqData = [
-    {
-      question: "What medical assistance is available on board?",
-      answers: [
-        "Most airlines are equipped to provide basic first aid on board. Cabin crew are trained to handle medical emergencies and have access to a first aid kit. Some flights may also have automated external defibrillators (AEDs) available.",
-      ],
-    },
-    {
-      question: "Can I carry my medications on the flight?",
-      answers: [
-        "Yes, passengers are allowed to carry necessary medications on flights. It’s recommended to carry medications in their original packaging, along with a copy of your prescription, especially for international travel.",
-      ],
-    },
-    {
-      question: "Are there any restrictions on carrying medical equipment?",
-      answers: [
-        "Passengers can bring essential medical equipment, such as oxygen concentrators, on board. However, it’s important to notify the airline in advance and ensure the equipment complies with airline regulations. Some equipment may require medical clearance.",
-      ],
-    },
-    {
-      question:
-        "How can I request special medical assistance during my flight?",
-      answers: [
-        "You can request special medical assistance when booking your flight or by contacting the airline’s customer service. Services include wheelchair assistance, priority boarding, and extra help for passengers with medical conditions.",
-      ],
-    },
-    {
-      question: "Can I bring my oxygen supply on the plane?",
-      answers: [
-        "Passengers who need supplemental oxygen can bring their own oxygen concentrators, provided they meet the airline’s requirements. It's important to inform the airline in advance and bring any necessary medical documentation.",
-      ],
-    },
-    {
-      question: "Is there an in-flight doctor available during the flight?",
-      answers: [
-        "While most flights do not have an in-flight doctor, some airlines have access to medical professionals via radio or satellite communication. If a medical emergency occurs, the cabin crew can also request help from medical professionals on board.",
-      ],
-    },
-    {
-      question: "What should I do if I feel unwell during the flight?",
-      answers: [
-        "If you feel unwell during the flight, notify the cabin crew immediately. They are trained to assist with common health issues, and if necessary, they can provide first aid or arrange for medical help at the destination.",
-      ],
-    },
-    {
-      question: "Are there any medical services available at the airport?",
-      answers: [
-        "Many major airports have medical services available, including clinics and pharmacies. If you require medical assistance before or after your flight, you can inquire at the airport’s information desk.",
-      ],
-    },
-    {
-      question: "How do airlines handle medical emergencies in flight?",
-      answers: [
-        "In case of a medical emergency during the flight, cabin crew are trained to provide first aid and can contact medical professionals on the ground. In serious cases, flights may be diverted to the nearest airport for medical assistance.",
-      ],
-    },
-  ];
+{/* Elite Collection Section */}
+<div className="bg-[#F1F5F9] p-8 rounded-lg space-y-8">
+<h3 className="text-2xl font-semibold text-gray-800">Our Elite Collection of Luxury Services</h3>
+{eliteCollection.map((service, index) => (
+  <div key={index} className="space-y-2">
+    <h5 className="text-lg font-semibold text-gray-700">{service.title}</h5>
+    <p className="text-base text-gray-600">{service.description}</p>
+  </div>
+))}
+</div>
 
-  return (
-    <div className="joinPro overflow-x-hidden">
-      <div className="">
-        <div className="firstLinear bg-[#00045D] pt-3 md:pt-10">
-          <div className="md:max-h-[80vh] lg:max-h-[28vh] px-5 md:px-20 lg:px-40  text-white">
-            <div className="flex justify-between">
-              <h3 className="text-xl md:text-2xl font-serif">Apka Trip</h3>
-              <button className="text-white border py-1 px-3 md:py-2 rounded md:px-6 text-xs  md:text-sm">
-                Login
-              </button>
-            </div>
-            <div className="py-10 flex flex-col gap-10 lg:flex-row justify-between items-center  ">
-              <div className="space-y-1">
-                <h3 className="text-xl text-center lg:text-start md:text-5xl text-[#F6A50F] capitalize font-extrabold">
-                  join Apka Trip
-                </h3>
-                <p className="text-md text-center lg:text-start text-white font-semibold md:text-2xl lg:text-3xl tracking-wide  leading-relaxed py-4">
-                  & Get a Chance to Earn Unlimited
-                </p>
-                <div className="px-2 w-full md:px-3 rounded-lg flex  py-2 bg-[#2B317C]">
-                  <input
-                    type="text"
-                    className="py-2  text-lg  md:text-md w-full bg-white text-black px-3  rounded-l"
-                    placeholder="Enter Your Email id /Phone No"
-                  />
-                  <button className="bg-orange-600 text-white px-3 py-1 md:py-4 rounded-r">
-                    Sumbit
-                  </button>
-                </div>
-              </div>
-              <div className="swiperLeftSection custom-swipe  ps-3 ">
-                <Swiper
-                  effect={"cards"}
-                  grabCursor={true}
-                  loop={true}
-                  modules={[EffectCards, Autoplay]}
-                  autoplay={{
-                    delay: 2500,
-                    disableOnInteraction: false,
-                  }}
-                  className="mySwiper overflow-x-hidden"
-                >
-                  <SwiperSlide>
-                    <img
-                      src="/Images/pro1.png"
-                      className="h-full object-cover"
-                      alt=""
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <img
-                      src="/Images/pro2.png"
-                      className="h-full object-cover"
-                      alt=""
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <img
-                      src="/Images/pro3.png"
-                      className="h-full object-cover"
-                      alt=""
-                    />
-                  </SwiperSlide>{" "}
-                
-                </Swiper>
-              </div>
-            </div>
-          </div>
-         <div className="hidden md:block">
-         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250">
-            <path
-              fill="#060C49"
-              fill-opacity="1"
-              d="M0,160L120,176C240,192,480,224,720,213.3C960,203,1200,149,1320,122.7L1440,96L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
-            ></path>
-          </svg>
-         </div>
-        </div>
-        <div className="secondLinear space-y-7 min-h-[40vh] bg-[#060C49] px-3 md:px-20 lg:px-40 text-white ">
-          <div className="text-center text-xl pt-10 lg:pt-0 lg:text-4xl font-bold ">
-            <h3>APKA TRIP Benefits</h3>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  justify-center gap-5 sm:gap-8 lg:gap-10 px-4">
-            {vouchers.map((voucher, index) => (
-              <div
-                key={voucher.id}
-                className="flex w-full sm:w-auto max-w-xs justify-between mx-auto lg:mx-0 rounded-3xl px-4 sm:px-6 border py-3 sm:py-4 items-center gap-3 bg-gradient-to-r from-blue-400 to-light-green-300"
-              >
-                <div>
-                  <h1 className="text-yellow-500 flex items-center">
-                    <FaRupeeSign />
-                    <span className="text-md lg:text-lg font-bold text-nowrap">
-                      {voucher.text}
-                    </span>
-                  </h1>
-                  <p className="text-xs text-white sm:text-sm lg:text-xl">
-                    {voucher.brands}
-                  </p>
-                </div>
-                <div>
-                  <img
-                    src={voucher.image}
-                    className="w-14 sm:w-16 lg:w-24"
-                    alt="Gift"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
+{/* Experience the ApkaTrip Difference Section */}
+<div className="space-y-4">
+<h3 className="text-2xl font-semibold text-gray-800">Experience the ApkaTrip Difference</h3>
+<p className="text-base text-gray-600">
+  At ApkaTrip, we redefine luxury travel through personalized service, exclusive access, and unparalleled luxury. Every moment of your trip is extraordinary.
+</p>
+<p className="text-base text-gray-600">
+  From romantic shores in Italy to untouched beauty in New Zealand, our global luxury options guarantee comfort and style at every step.
+</p>
+<p className="text-base text-gray-600">
+  Your privacy and security are paramount. We offer high-security travel solutions including private flights, exclusive villas, and VIP-only experiences.
+</p>
+</div>
 
-          <section id="faq" className="py-8 md:py-12 lg:py-16 text-white">
-            <div className="container mx-auto px-4 lg:px-8">
-              <h2 className="text-xl lg:text-3xl text-center font-semibold mb-6 md:mb-8 lg:mb-10">
-                FAQs
-              </h2>
-              {faqData.map((faq, index) => (
-                <div
-                  key={index}
-                  className="mb-6 border-b border-gray-300 flex flex-col justify-center py-4 px-5 rounded-lg"
-                >
-                  <h3
-                    className={`text-lg lg:text-xl flex justify-between items-center font-semibold cursor-pointer transition-colors duration-300`}
-                    onClick={() => toggleAnswer(index)}
-                  >
-                    {index + 1}. {faq.question}{" "}
-                    <span>
-                      {expandedIndex === index ? <TiMinus /> : <TiPlus />}
-                    </span>
-                  </h3>
-                  <ul
-                    className={`${
-                      expandedIndex === index
-                        ? "h-max mt-5"
-                        : "h-0 overflow-hidden"
-                    } list-disc pl-6 space-y-2 duration-500`}
-                  >
-                    {faq.answers.map((answer, i) => (
-                      <li key={i} className="text-sm lg:text-md">
-                        {answer}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </section>
-        </div>
-      </div>
+{/* Testimonials Section */}
+<div className="bg-white p-8 rounded-lg space-y-6">
+<h3 className="text-2xl font-semibold text-gray-800">Our Clients’ Precious Moments</h3>
+{testimonials.map((testimonial, index) => (
+  <div key={index} className="space-y-2">
+    <p className="text-base italic text-gray-600">"{testimonial.quote}"</p>
+    <p className="text-sm font-semibold text-gray-800">{testimonial.client}</p>
+    <p className="text-sm text-gray-500">{testimonial.title}</p>
+  </div>
+))}
+</div>
+
+{/* Contact Section */}
+<div className="bg-[#F1F5F9] p-8 rounded-lg">
+<h3 className="text-2xl font-semibold text-gray-800">Find Your Favorite Luxury Getaway</h3>
+<p className="text-base text-gray-600">Ready to embark on your elite adventure? Whether planning a romantic escape, family holiday, or grand celebration, ApkaTrip will surpass every expectation.</p>
+<p className="text-base text-gray-600">Contact our luxury travel specialists today and let us tailor your dream trip.</p>
+<div className="mt-4 space-y-2">
+  <button className="bg-blue-600 text-white px-6 py-2 rounded">Contact Us</button>
+  <button className="bg-gray-600 text-white px-6 py-2 rounded">Start Planning Your Trip</button>
+</div>
+</div>
+
+<div className="bg-[#F1F5F9] p-8 rounded-lg space-y-8">
+  <h2 className="text-3xl font-semibold text-gray-800">About ApkaTrip</h2>
+  <p className="text-lg text-gray-700">
+    Luxury travel leader ApkaTrip curates and delivers unparalleled access, high-end experiences, and exceptional service for the discerning traveler on any trip. With a team of expert curators and a network of elite partners around the world, ApkaTrip creates unforgettable moments. For the quiet charm of private beach resorts or extravagant city adventures, ApkaTrip is your trusted partner in luxury travel.
+  </p>
+
+  <h3 className="text-2xl font-semibold text-gray-800">Headquarters</h3>
+  <p className="text-lg text-gray-700">[Company Address]</p>
+  <p className="text-lg text-gray-700">City, Country</p>
+  <p className="text-lg text-gray-700">[Phone Number]</p>
+  <p className="text-lg text-gray-700">[Email Address]</p>
+
+  <div className="space-y-4">
+    <h4 className="text-xl font-semibold text-gray-800">Follow us on our Luxury Journeys</h4>
+    <p className="text-lg text-gray-700">
+      Stay inspired, stay connected—keep updated with the latest happenings in luxury travel, exclusive offers, and bespoke experiences.
+    </p>
+    <div className="flex space-x-4 text-2xl">
+      <a href={socialLinks.instagram} className="text-xl text-gray-700 hover:text-gray-900"><FaInstagram/></a>
+      <a href={socialLinks.facebook} className="text-xl text-gray-700 hover:text-gray-900"><FaFacebookSquare /></a>
+      <a href={socialLinks.twitter} className="text-xl text-gray-700 hover:text-gray-900"><FaXTwitter/></a>
+      <a href={socialLinks.linkedin} className="text-xl text-gray-700 hover:text-gray-900"><FaLinkedin/></a>
     </div>
-  );
+  </div>
+
+  <div className="space-y-4">
+    <h4 className="text-xl font-semibold text-gray-800">Discover the Art of Luxury Travel with ApkaTrip</h4>
+    <p className="text-lg text-gray-700">
+      Indulge in a limitless world. ApkaTrip: Luxury travel is no longer a dream but a reality.
+    </p>
+  </div>
+</div>
+</section>
+
+</>
+)
 }
