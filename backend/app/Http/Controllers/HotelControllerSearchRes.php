@@ -23,6 +23,9 @@ class HotelControllerSearchRes extends Controller
             'page' => 'required|integer',
         ]);
 
+
+
+
         try {
             $client = new \GuzzleHttp\Client();
 
@@ -39,66 +42,125 @@ class HotelControllerSearchRes extends Controller
             $hotelCodes = array_column($hotelData['Hotels'], 'HotelCode'); // Extract hotel codes
 
             // Paginate hotel codes
-            $pageSize = 10;
+            $pageSize = 100;
             $start = ($validated['page'] - 1) * $pageSize;
             $limitedHotelCodes = array_slice($hotelCodes, $start, $pageSize);
-            $hotelCodesString = implode(',', $limitedHotelCodes); // Convert to string
+            // $hotelCodesString = implode(',', $limitedHotelCodes); // Convert to string
+     
+$hotelresult=[];
+
+foreach($limitedHotelCodes as $limitedHotelCode){
+    
+
+
+            $response3 = $client->post('https://affiliate.tektravels.com/HotelAPI/Search', [
+                    'auth' => ['Apkatrip', 'Apkatrip@1234'],
+                    'json' => [
+                        "CheckIn" => $validated['checkIn'],
+                        "CheckOut" => $validated['checkOut'],
+                        "HotelCodes" => $limitedHotelCode, // Ensure to use the correct string of hotel codes
+                        "GuestNationality" => $validated['guestNationality'],
+                        "PaxRooms" => [
+                            [
+                                "Adults" => $validated['adults'],
+                                "Children" => $validated['children'],
+                                "ChildrenAges" => $validated['children'] > 0 ? [null] : null,
+                            ]
+                        ],
+                        "ResponseTime" => 23.0,
+                        "IsDetailedResponse" => true,
+                        "Filters" => [
+                            "Refundable" => false,
+                            "NoOfRooms" => 1,
+                            "MealType" => 0,
+                            "OrderBy" => 0,
+                            "StarRating" => 0,
+                            "HotelName" => null,
+                        ]
+                    ]
+                ]);
+                $searchResults = json_decode($response3->getBody()->getContents(), true);
+
+                if($searchResults['Status']['Code'] == 200){
+                    $response2 = $client->post('http://api.tbotechnology.in/TBOHolidays_HotelAPI/Hoteldetails', [
+                        'auth' => ['TBOStaticAPITest', 'Tbo@11530818'],
+                        'json' => [
+                            "Hotelcodes" => $limitedHotelCode,
+                            "Language" => "EN",
+                        ]]);
+                        $hotelDetails = json_decode($response2->getBody()->getContents(), true);
+
+                        $hotelresult[] =["hotelDetails"=> $hotelDetails,"searchResults"=>$searchResults];
+                }
+           
+}
+
+
+ return response()->json([
+        'totalHotels' => $hotelresult,
+        "count"=>count($hotelCodes)/$pageSize
+    ]);
+
 
             // 2nd API request: Fetch hotel details
-            $response2 = $client->post('http://api.tbotechnology.in/TBOHolidays_HotelAPI/Hoteldetails', [
-                'auth' => ['TBOStaticAPITest', 'Tbo@11530818'],
-                'json' => [
-                    "Hotelcodes" => $hotelCodesString,
-                    "Language" => "EN",
-                ]
-            ]);
+            // $response2 = $client->post('http://api.tbotechnology.in/TBOHolidays_HotelAPI/Hoteldetails', [
+            //     'auth' => ['TBOStaticAPITest', 'Tbo@11530818'],
+            //     'json' => [
+            //         "Hotelcodes" => $hotelCodesString,
+            //         "Language" => "EN",
+            //     ]
+            // ]);
 
-            $hotelDetails = json_decode($response2->getBody()->getContents(), true);
+            // $hotelDetails = json_decode($response2->getBody()->getContents(), true);
 
-            // 3rd API request: Search hotels using the given parameters
-            $response3 = $client->post('https://affiliate.tektravels.com/HotelAPI/Search', [
-                'auth' => ['Apkatrip', 'Apkatrip@1234'],
-                'json' => [
-                    "CheckIn" => $validated['checkIn'],
-                    "CheckOut" => $validated['checkOut'],
-                    "HotelCodes" => $hotelCodesString, // Ensure to use the correct string of hotel codes
-                    "GuestNationality" => $validated['guestNationality'],
-                    "PaxRooms" => [
-                        [
-                            "Adults" => $validated['adults'],
-                            "Children" => $validated['children'],
-                            "ChildrenAges" => $validated['children'] > 0 ? [null] : null,
-                        ]
-                    ],
-                    "ResponseTime" => 23.0,
-                    "IsDetailedResponse" => true,
-                    "Filters" => [
-                        "Refundable" => false,
-                        "NoOfRooms" => 1,
-                        "MealType" => 0,
-                        "OrderBy" => 0,
-                        "StarRating" => 0,
-                        "HotelName" => null,
-                    ]
-                ]
-            ]);
+            // // 3rd API request: Search hotels using the given parameters
+            // $response3 = $client->post('https://affiliate.tektravels.com/HotelAPI/Search', [
+            //     'auth' => ['Apkatrip', 'Apkatrip@1234'],
+            //     'json' => [
+            //         "CheckIn" => $validated['checkIn'],
+            //         "CheckOut" => $validated['checkOut'],
+            //         "HotelCodes" => $hotelCodesString, // Ensure to use the correct string of hotel codes
+            //         "GuestNationality" => $validated['guestNationality'],
+            //         "PaxRooms" => [
+            //             [
+            //                 "Adults" => $validated['adults'],
+            //                 "Children" => $validated['children'],
+            //                 "ChildrenAges" => $validated['children'] > 0 ? [null] : null,
+            //             ]
+            //         ],
+            //         "ResponseTime" => 23.0,
+            //         "IsDetailedResponse" => true,
+            //         "Filters" => [
+            //             "Refundable" => false,
+            //             "NoOfRooms" => 1,
+            //             "MealType" => 0,
+            //             "OrderBy" => 0,
+            //             "StarRating" => 0,
+            //             "HotelName" => null,
+            //         ]
+            //     ]
+            // ]);
 
-            $hotelSearchResults = json_decode($response3->getBody()->getContents(), true);
+
+
+            // $hotelSearchResults = json_decode($response3->getBody()->getContents(), true);
 
             // Directly return the total hotels search results
-            return response()->json([
-                'totalHotels' => $hotelDetails,
-                'hotelSearchResults'=>$hotelSearchResults
-            ]);
+            // return response()->json([
+            //     'totalHotels' => $hotelDetails,
+            //     'hotelSearchResults'=>$hotelSearchResults
+            // ]);
+
+
+
+
+
+
+
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-
-
-
-
-
 
     function singleHotelget(Request $request)
     {
@@ -224,7 +286,7 @@ class HotelControllerSearchRes extends Controller
         // return $response1;
     }
 
-
+    
     function preBooking(Request $request)
     {
         $validated = $request->validate([
@@ -243,4 +305,5 @@ class HotelControllerSearchRes extends Controller
 
         return $response1;
     }
+
 }
