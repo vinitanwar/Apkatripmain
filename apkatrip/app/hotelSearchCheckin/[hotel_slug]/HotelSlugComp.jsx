@@ -68,8 +68,7 @@ const handelprebooking=(BookingCode)=>{
 dispatch(gethotelPreBookingApi({BookingCode}))
 }
 
-
-console.log(hotelinfo && hotelinfo.info && hotelinfo.info && hotelinfo.info)
+console.log(hotelinfo,"hotel")
   return (
 <>
 <div className="lg:px-20 py-5">
@@ -77,7 +76,7 @@ console.log(hotelinfo && hotelinfo.info && hotelinfo.info && hotelinfo.info)
           className="flex space-x-2 text-sm text-gray-600 mt-5 mb-5"
           id="detpg_bread_crumbs"
         >
-          <li>
+       <li>
             <Link href="/hotels" className="text-blue-600 font-semibold">
               Home
             </Link>
