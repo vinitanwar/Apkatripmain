@@ -10,6 +10,7 @@ use App\Http\Controllers\BlogController;
 
 use App\Http\Controllers\TBOController;
 
+use App\Http\Controllers\HotelRegistrationController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\SightseeingController;
 use App\Http\Controllers\HotelController;
@@ -52,7 +53,7 @@ Route::post('v1/hotels/prebooking', [HotelControllerSearchRes::class, 'preBookin
 
 
 
- 
+
 
 
 Route::post('v1/hotelslist', [HotelController::class, 'getHotelDetails']);
@@ -76,3 +77,9 @@ Route::get('v1/cab/countries', [CountryControllerCab::class, 'getCountryList']);
 // Route::get('/search-flights-one', (Request $request) {
 //     return "<h1>Hello  nworld</h1>"
 // });
+
+
+
+Route::prefix('v1')->group(function () {
+    Route::apiResource('hotelreg', HotelRegistrationController::class);
+});
