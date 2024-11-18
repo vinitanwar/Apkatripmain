@@ -16,31 +16,28 @@ class HotelRegistration extends Model
     protected $fillable = [
         'hotel_name',
         'address',
-        'latitude',
-        'longitude',
-        'outer_area_images',
-        'hotel_images',
-        'room_images',
-        'weekdays_packages',
-        'weekends_packages',
-        'is_allowed_by_admin',
-        'commission',
-        'features',
+        'coordinates',
         'description',
-        'extra_info',
+        'imgSrc',
+        'rooms',
+        'city',
+        'rating',
+        'Amenities',
+        'contacts',
+        'price',
+        'social_media',
+        'is_allowed_by_admin',
         'refund_policy',
-        'privacy_policy',
-        'social_media_links',
+        'privacy_policies'
     ];
 
     // Define cast types for JSON or array fields
     protected $casts = [
-        'outer_area_images' => 'array',
-        'hotel_images' => 'array',
-        'room_images' => 'array',
-        'weekdays_packages' => 'array',
-        'weekends_packages' => 'array',
-        'features' => 'array',
-        'social_media_links' => 'array',
+        'coordinates' => 'array', // Automatically cast to array when retrieving
+        'imgSrc' => 'array',      // Automatically cast to array
+        'rooms' => 'array',       // Automatically cast to array
+        'Amenities' => 'array',    // Automatically cast to array
+        'contacts' => 'array',    // Automatically cast to array
+        'social_media' => 'array' // Automatically cast to array
     ];
 }

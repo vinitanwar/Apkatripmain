@@ -15,19 +15,20 @@ return new class extends Migration
             $table->id();
             $table->string('hotel_name');
             $table->text('address');
-            $table->decimal('latitude', 10, 7)->nullable();
-            $table->decimal('longitude', 10, 7)->nullable();
-            $table->json('pictures')->nullable(); // JSON to store multiple images for Outer Area, Hotel Images, Rooms
-            $table->json('packages')->nullable(); // JSON for packages like weekdays/weekends
-            $table->boolean('is_allowed_by_admin')->default(false); // Checkbox for admin approval
-            $table->decimal('commission', 8, 2)->nullable(); // Commission percentage
-            $table->json('features')->nullable(); // JSON to store hotel features
-            $table->text('description')->nullable(); // Description about the hotel
-            $table->text('extra_info')->nullable(); // Additional information
-            $table->boolean('refund_policy')->default(false); // Yes or No for refunds
-            $table->text('privacy_policies')->nullable(); // Privacy and Policies
-            $table->json('social_media_links')->nullable(); // JSON for social media links
-            $table->timestamps();
+            $table->json('coordinates')->nullable(); // Array: latitude and longitude
+            $table->text('description')->nullable();
+            $table->json('imgSrc')->nullable(); // Array: image sources
+            $table->json('rooms')->nullable(); // Array: room types and details
+            $table->string('city')->nullable(); // Changed "City" to lowercase "city"
+            $table->decimal('rating', 2, 1)->nullable(); // Rating as decimal, example: 4.5
+            $table->json('Amenities')->nullable(); // Array: Hotel features like "wifi", "pool"
+            $table->json('contacts')->nullable(); // Array: Contact details (phones, emails)
+            $table->decimal('price', 10, 2)->nullable(); // Price field
+            $table->json('social_media')->nullable(); // Array: social media links
+            $table->boolean('is_allowed_by_admin')->default(false); // Admin approval flag
+            $table->text('refund_policy')->nullable(); // Refund policy (nullable)
+            $table->text('privacy_policies')->nullable(); // Privacy policy (nullable)
+            $table->timestamps(); // Created at, Updated at
         });
     }
 
