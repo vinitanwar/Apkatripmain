@@ -20,7 +20,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\Toggle;
-
+use Filament\Tables\Columns\BooleanColumn;
 
 class HotelRegistrationResource extends Resource
 {
@@ -177,9 +177,9 @@ class HotelRegistrationResource extends Resource
 
                     ]),
 
-                
-                
-                    // Features (like Wi-Fi, Gym, etc.)
+
+
+                // Features (like Wi-Fi, Gym, etc.)
                 Select::make('Amenities')
                     ->label('Amenities')
                     ->multiple()
@@ -205,9 +205,9 @@ class HotelRegistrationResource extends Resource
                     ])
                     ->required(),
 
-                
-                
-                    // Rating (could be a number from 0 to 5)
+
+
+                // Rating (could be a number from 0 to 5)
                 TextInput::make('rating')
                     ->label('Rating')
                     ->numeric()
@@ -281,19 +281,93 @@ class HotelRegistrationResource extends Resource
     {
         return $table
             ->columns([
+                // Hotel Name
                 TextColumn::make('hotel_name')->label('Hotel Name')->sortable()->searchable(),
+
+                // City
                 TextColumn::make('city')->label('City')->sortable(),
+
+                // Rating
                 TextColumn::make('rating')->label('Rating')->sortable(),
-                TextColumn::make('address')->label('Address')->sortable(), // maxLength instead of limit
+
+                // Address
+                TextColumn::make('address')->label('Address')->sortable(),
+
+                // Price
                 TextColumn::make('price')->label('Price')->sortable(),
-                ImageColumn::make('imgSrc.outer_images')->label('Outer Image')->sortable(),
-                ImageColumn::make('imgSrc.hotel_images')->label('Hotel Image')->sortable(),
-                ImageColumn::make('imgSrc.room_images')->label('Room Image')->sortable(),
+
+                // Outer Image (Display first image in the outer_images array)
+                ImageColumn::make('imgSrc.0.outer_images.0.image')
+                    ->label('Outer Image')
+                    ->sortable()
+                    ->width(100)
+                    ->height(100),
+
+                // Hotel Image (Display first image in the hotel_images array)
+                ImageColumn::make('imgSrc.0.hotel_images.0.image')
+                    ->label('Hotel Image')
+                    ->sortable()
+                    ->width(100)
+                    ->height(100),
+
+                // Room Image (Display first image in the room_images array)
+                ImageColumn::make('imgSrc.0.room_images.0.image')
+                    ->label('Room Image')
+                    ->sortable()
+                    ->width(100)
+                    ->height(100),
+
+                // Rooms (Show first room type and price)
+                TextColumn::make('rooms.0.roomeType')
+                    ->label('Room Type')
+                    ->sortable(),
+                TextColumn::make('rooms.0.price')
+                    ->label('Room Price')
+                    ->sortable(),
+                TextColumn::make('rooms.0.final_price')
+                    ->label('Final Room Price')
+                    ->sortable(),
+
+                // Amenities (Show list of amenities, comma-separated)
+                TextColumn::make('Amenities')
+                    ->label('Amenities')
+                    ->sortable()
+                    ->getStateUsing(function ($record) {
+                        return implode(', ', $record->Amenities);
+                    }),
+
+                // Contacts (Show first contact number and platform)
+                TextColumn::make('contacts.0.Contact')
+                    ->label('Contact Number')
+                    ->sortable(),
+                TextColumn::make('contacts.0.platform')
+                    ->label('Contact Platform')
+                    ->sortable(),
+
+                // Social Media (Show first social media link and platform)
+                TextColumn::make('social_media.0.url')
+                    ->label('Social Media URL')
+                    ->sortable(),
+                TextColumn::make('social_media.0.platform')
+                    ->label('Social Media Platform')
+                    ->sortable(),
+
+                // Refund Policy (Text)
+                TextColumn::make('refund_policy')->label('Refund Policy')->sortable(),
+
+                // Privacy Policy (Text)
+                TextColumn::make('privacy_policies')->label('Privacy Policy')->sortable(),
             ])
             ->filters([
-                // Add filters here if needed (e.g., by rating, city, etc.)
+                // You can add filters for city, rating, or any other fields
+                // TextFilter::make('city')
+                //     ->label('Filter by City'),
+                // NumberFilter::make('rating')
+                //     ->label('Filter by Rating')
+                //     ->range(),
             ]);
     }
+
 
     public static function getPages(): array
     {
