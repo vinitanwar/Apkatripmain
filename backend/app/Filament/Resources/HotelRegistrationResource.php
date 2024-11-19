@@ -281,6 +281,15 @@ class HotelRegistrationResource extends Resource
     {
         return $table
             ->columns([
+
+                TextColumn::make('s_no')
+                    ->label('S.No.')
+                    ->sortable(false)
+                    ->getStateUsing(function ($record, $rowLoop) {
+                        return $rowLoop->index + 1;
+                    }),
+
+
                 // Hotel Name
                 TextColumn::make('hotel_name')->label('Hotel Name')->sortable()->searchable(),
 
@@ -353,10 +362,10 @@ class HotelRegistrationResource extends Resource
                     ->sortable(),
 
                 // Refund Policy (Text)
-                TextColumn::make('refund_policy')->label('Refund Policy')->sortable(),
+                // TextColumn::make('refund_policy')->label('Refund Policy')->sortable(),
 
                 // Privacy Policy (Text)
-                TextColumn::make('privacy_policies')->label('Privacy Policy')->sortable(),
+                // TextColumn::make('privacy_policies')->label('Privacy Policy')->sortable(),
             ])
             ->filters([
                 // You can add filters for city, rating, or any other fields
