@@ -169,7 +169,109 @@ const page = () => {
   ];
   return (
     <>
-      <TrainComp />
+      {/* <TrainComp /> */}
+
+      <div className="bg-[url(/Images/trainBanner.webp)] relative bg-center bg-cover text-white  px-5 lg:px-20 py-5 lg:py-16">
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent z-0"></div>
+        <div className="flex relative z-10 flex-col xl:flex-row justify-between items-center space-y-8 xl:space-y-0 md:space-x-8 px-6 lg:px-12 py-10 ">
+          {/* Left Content Section */}
+          <div className="w-full text-center xl:text-start xl:w-[65%]">
+  <div className="space-y-8 md:space-y-12 px-4 md:px-0">
+    <h5 className="font-extrabold text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+      Travel in Style: Luxury Trains for Every Explorer
+    </h5>
+    <p className="text-base lg:text-lg text-white leading-relaxed md:leading-loose">
+      Experience the allure of travel like never before with our luxury train journeys. Whether you’re gliding through the majestic Swiss Alps, marveling at the rugged beauty of the Australian outback, or exploring the vibrant cities of India, our trains offer an unparalleled blend of elegance, comfort, and adventure. Enjoy gourmet dining, panoramic views, and world-class service as you traverse iconic landscapes. From historic routes steeped in tradition to modern marvels of engineering, our luxury trains promise a journey where every moment is as captivating as the destination. Rediscover the romance of rail travel and create memories to treasure for a lifetime.
+    </p>
+  </div>
+</div>
+
+
+          {/* Right Form Section */}
+          <div className="form w-full  xl:w-[40%] bg-white shadow-lg rounded-lg px-8 py-6">
+            <h1 className="text-3xl font-bold mb-6 text-gray-800">
+              Book Your Train
+            </h1>
+            <form>
+              {/* Name Field */}
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-semibold mb-2"
+                  htmlFor="name"
+                >
+                  Name
+                </label>
+                <input
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  type="text"
+                  id="name"
+                  placeholder="Enter your full name"
+                />
+              </div>
+
+              {/* Email Field */}
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-semibold mb-2"
+                  htmlFor="email"
+                >
+                  Email
+                </label>
+                <input
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email address"
+                />
+              </div>
+
+              {/* Destination Field */}
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-semibold mb-2"
+                  htmlFor="destination"
+                >
+                  Preferred Destination
+                </label>
+                <input
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  type="text"
+                  id="destination"
+                  placeholder="E.g., Mediterranean, Caribbean"
+                />
+              </div>
+
+              {/* Message Field */}
+              <div className="mb-6">
+                <label
+                  className="block text-gray-700 text-sm font-semibold mb-2"
+                  htmlFor="message"
+                >
+                  Additional Notes
+                </label>
+                <textarea
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  id="message"
+                  rows="4"
+                  placeholder="Let us know any specific requests or preferences"
+                ></textarea>
+              </div>
+
+              {/* Submit Button */}
+              <div className="text-center">
+                <button
+                  type="submit"
+                  className="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                >
+                  Submit Inquiry
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
       <MobileHeader />
       <CustomSlider />
 

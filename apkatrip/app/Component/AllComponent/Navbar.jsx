@@ -84,6 +84,12 @@ const Navbar = () => {
       class: "activity-icon",
       link: "/activities",
     },
+    {
+      name: "Cruise",
+      className: "meuicowidth Cruisemenuico",
+      class: "Cruise-icon",
+      link: "/cruise",
+    },
   ];
   
 

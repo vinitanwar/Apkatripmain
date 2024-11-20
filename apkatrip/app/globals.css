@@ -72,6 +72,10 @@ a.text-sm {
 .actvitymenuico {
   background: url(../public/Images/activities.webp);
 }
+.Cruisemenuico{
+  background: url(../public/Images/cruiseIcon.webp);
+
+}
 .visa-roicon2 {
   background: url(../public/Images/more.webp);
 }
@@ -483,10 +487,34 @@ input#a_FromSector_show:focus-visible {
   align-items: center;
   justify-content: center;
 }
+.Cruise-icon{
+  width: 40px;
+  height: 45px;
+  background: url(../public/Images/Bus-icon.svg);
+  background-size: 40px 45px;
+  margin: 0px auto;
+  display: flex;
+  background-repeat: no-repeat;
+  background-position: center;
+  align-items: center;
+  justify-content: center;
+}
 .cab-icon {
   width: 40px;
   height: 45px;
   background: url(../public/Images/cabs-icon.svg);
+  background-size: 40px 45px;
+  margin: 0px auto;
+  display: flex;
+  background-repeat: no-repeat;
+  background-position: center;
+  align-items: center;
+  justify-content: center;
+}
+.Cruise-icon{
+  width: 40px;
+  height: 45px;
+  background: url(../public/Images/cruiseIcon.webp);
   background-size: 40px 45px;
   margin: 0px auto;
   display: flex;
@@ -1130,4 +1158,25 @@ background-color: #d41145;
   overflow: hidden;
   text-overflow: ellipsis; 
 
+}
+
+
+
+.cruiseMove {
+  animation: cruiseMoveAnime 3s ease-in-out forwards infinite;
+}
+
+@keyframes cruiseMoveAnime {
+  0% {
+    transform: translateX(0); /* Start position */
+    opacity: 1;
+  }
+  50% {
+    opacity: 0; /* Fades out */
+    transform: translateX(400px); /* Moves to the right */
+  }
+  100% {
+    opacity: 0; /* Stays invisible */
+    transform: translateX(400px); /* Final position */
+  }
 }
