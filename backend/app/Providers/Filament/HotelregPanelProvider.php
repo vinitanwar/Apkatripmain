@@ -25,6 +25,7 @@ class HotelregPanelProvider extends PanelProvider
         return $panel
             ->id('hotelreg')
             ->path('hotelreg')
+            ->login()
             ->colors([
                 'primary' => Color::Amber,
             ])
