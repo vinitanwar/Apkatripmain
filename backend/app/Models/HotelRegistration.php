@@ -11,7 +11,10 @@ class HotelRegistration extends Model
 
     // Define the table name if it's not the plural of the model name
     protected $table = 'hotelregistrations';
-
+    public function users()
+    {
+        return $this->hasMany(HotelRegUser::class, 'hotel_id', 'id');
+    }
     // Define fillable fields for mass assignment
     protected $fillable = [
         'hotel_name',
@@ -40,4 +43,5 @@ class HotelRegistration extends Model
         'contacts' => 'array',    // Automatically cast to array
         'social_media' => 'array' // Automatically cast to array
     ];
+  
 }
