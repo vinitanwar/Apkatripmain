@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Auth\HotelLogin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -25,8 +26,14 @@ class HotelregPanelProvider extends PanelProvider
         return $panel
             ->id('hotelreg')
             ->path('hotelreg')
+            ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'danger' => Color::Red,
+                'gray' => Color::Slate,
+                'info' => Color::Blue,
+                'primary' => Color::Violet,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
             ])
             ->discoverResources(in: app_path('Filament/Hotelreg/Resources'), for: 'App\\Filament\\Hotelreg\\Resources')
             ->discoverPages(in: app_path('Filament/Hotelreg/Pages'), for: 'App\\Filament\\Hotelreg\\Pages')
