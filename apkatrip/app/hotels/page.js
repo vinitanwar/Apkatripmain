@@ -1,14 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import Header from "../Component/AllComponent/Header";
 import CustomSlider from "../Component/AllComponent/Slider";
 import FAQSection from "../Component/AllComponent/FAQ";
 import Link from "next/link";
 import HotelChains from "../Component/AllComponent/HotelChain";
-import MobileHeader from "../Component/AllComponent/MobileHeader";
 import HotelComp from "../Component/AllComponent/formMaincomp/HotelsComp";
 import Hotelmobileheader from "../Component/AllComponent/Hotelmobilheader";
-import { distance } from "framer-motion";
 import { FaStar } from "react-icons/fa6";
 
 const Page = () => {
@@ -54,7 +51,7 @@ const Page = () => {
             <Link
               key={index}
               href={"/hotels/Green-Tree-Hotel-Munnar"}
-              className="ecpl_rbx bg-[#F6FBFF] border border-[#2196F3] m-1 lg:m-0 shadow rounded-lg overflow-hidden"
+              className="ecpl_rbx bg-[#6dffe234] border border-[#5c6fff] m-1 lg:m-0 shadow rounded-lg overflow-hidden"
             >
               <div className="flex gap-5  p-2">
               <div>
@@ -71,7 +68,7 @@ const Page = () => {
   <img src={imag}  
                    
   layout="responsive"
-  className="rounded-md w-16"      />
+  className="rounded-md w-12"      />
 ))}
           
                   </div>

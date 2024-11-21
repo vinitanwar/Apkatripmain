@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+ import {getfarequote} from "../Component/Store/slices/farequateflight"
 
 import {
   FaArrowRight,
@@ -207,21 +207,7 @@ const returnstate = useSelector((state) => state.searchreturn);
 
   }, [returnstate]);
 
-  const togglePopup = (id, data, ofprice) => {
-   
-
-    setfareData([data]);
-    setPrice(ofprice);
-
-    if (activePopup === id) {
-      setActivePopup(null);
-    } else {
-      setActivePopup(id);
-    }
-
-
-    
-  };
+  
 
   const settings = {
     infinite: true,
@@ -312,9 +298,22 @@ setstate2([filterdata])
   }
   
 }
+const togglePopup = (id, data, ofprice, ResultIndex) => {
+   dispatch(getfarequote({ResultIndex,TraceId:info.data.Response.TraceId}))
+console.log(info.data.Response.TraceId,`<br><br>${ResultIndex}`)
+  setfareData([data]);
+  setPrice(ofprice);
+
+  if (activePopup === id) {
+    setActivePopup(null);
+  } else {
+    setActivePopup(id);
+  }
 
 
-console.log(state2,"infoooo")
+  
+};
+
 
   return (
     <>
@@ -507,7 +506,7 @@ console.log(state2,"infoooo")
         </div>
         <button
           onClick={() =>
-            togglePopup("view-price", info,flight.Fare.OfferedFare)
+            togglePopup("view-price", info,flight.Fare.OfferedFare, flight.ResultIndex)
             // handelPrice(flight)
           }
           className="hidden sm:hidden  md:block text-sm font-semibold lg:h-8 text-blue-600 rounded-full px-4 bg-blue-200 border border-blue-600"
@@ -1012,7 +1011,8 @@ console.log(state2,"infoooo")
                    togglePopup(
                      "view-price",
                      flight.Segments[0][0],
-                     flight.Fare.OfferedFare
+                     flight.Fare.OfferedFare,
+                     flight.ResultIndex
                    )
                   // handelPrice(flight)
                  }

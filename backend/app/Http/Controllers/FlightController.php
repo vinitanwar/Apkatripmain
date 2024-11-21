@@ -270,5 +270,32 @@ return $searchpayload;
 
 
 
+function farequate( Request  $request){
+    $token = $this->apiService->getToken();
+
+    $validatedData = $request->validate([
+        "EndUserIp"=>"required",
+        "TraceId"=>"required|string",
+        "ResultIndex"=>"required|string"
+
+     ]);
+    $validatedData["TokenId"]=$token;
+    $response;
+    $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/SSR', $validatedData);
+if ($response->json('Response.Error.ErrorCode') === 6) {
+         
+    $token = $this->apiService->authenticate();
+
+
+    $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/SSR', $validatedData);
+  
+} 
+    return $response;
+
+}
+
+
+
+
    
 }

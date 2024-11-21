@@ -43,14 +43,20 @@ other:[{type:"Room Only",services:["Free Wi-Fi","Breakfast not included","Free C
 
 
 ],
-
-
 features:["wifi","gym","pool","hot bath","parking","free Lunch","sea view","wedding hall","smoking area" ,"Bar"],
-
 contect :{number1:"+91 9876543210",number2:"+91 9876543320",mail:"nmsfwe@mail.com"},
 returnPolicy:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
 hotelPolicy:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
 }
+
+
+
+
+
+
+
+
+
 
 const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
   return (
@@ -62,6 +68,7 @@ const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
   <p className='text-2xl text-black font-bold '>{hoteldata.hotelName}</p> <div className='flex gap-1'>{Array.from({length:hoteldata.rating}).map((star,key)=>(<FaStar key={key}/>))}</div>
   <p className='border-2 border-sky-300 px-3 text-sky-300'>Hotel</p>
   </div>
+
         <p className='text-gray-400'>{hoteldata.Address}</p>
 
     </div>
@@ -91,7 +98,7 @@ const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
    <div className='flex '>
 
  
-   <p className='text-xl '>
+   <p className='text-2xl font-bold '>
    ₹{hoteldata.rooms[0].price}
 
    </p>
@@ -184,7 +191,7 @@ const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
       </div>
     </div>
 <div className='flex items-start gap-2'>
-  <p className='text-xl'>₹{hotel.price}</p> <s className='text-sm text-red-700 hidden md:block'>₹{(hotel.price*15)/100 + hotel.price} </s>
+  <p className='text-2xl font-bold'>₹{hotel.price}</p> <s className='text-sm text-red-700 hidden md:block'>₹{(hotel.price*15)/100 + hotel.price} </s>
 </div>
 
 <div>
@@ -223,8 +230,7 @@ dangerouslySetInnerHTML={{
 dangerouslySetInnerHTML={{
   __html: hoteldata.description,
 }}
-></div>
-
+></div> 
   </div>
 }
 
@@ -331,7 +337,7 @@ hotelinfoIndex==2 && <div >
               </div>
               <div className="p-2 w-full">
                 <button className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                  Button
+                  Send
                 </button>
               </div>
               

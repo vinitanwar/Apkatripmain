@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 
 const Footer = () => {
   const t=useTranslations("footer")
+  
   return (
     <>
       <Subscribe />
