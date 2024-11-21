@@ -112,139 +112,225 @@ const page = () => {
       title: "South Korea Cruise",
     },
   ];
-  
+
   const cruiseData = [
     {
       id: 1,
       title: "Caribbean Escape",
-      description: "Discover the pristine beaches and vibrant culture of the Caribbean islands. Immerse yourself in turquoise waters and white sandy beaches, while enjoying vibrant nightlife and exciting excursions. Explore exotic destinations like Jamaica, the Bahamas, and Puerto Rico. Indulge in luxury onboard, with world-class dining, entertainment, and wellness treatments, all while sailing through some of the most beautiful coastlines on earth.",
+      description:
+        "Discover the pristine beaches and vibrant culture of the Caribbean islands. Immerse yourself in turquoise waters and white sandy beaches, while enjoying vibrant nightlife and exciting excursions. Explore exotic destinations like Jamaica, the Bahamas, and Puerto Rico. Indulge in luxury onboard, with world-class dining, entertainment, and wellness treatments, all while sailing through some of the most beautiful coastlines on earth.",
     },
     {
       id: 2,
       title: "Mediterranean Odyssey",
-      description: "Sail through iconic cities along the Mediterranean coast, from Greece to Italy. Uncover ancient ruins in Athens, relax on the Amalfi Coast, or discover the romantic streets of Venice. This journey combines rich history, stunning landscapes, and world-class cuisine. Enjoy Mediterranean specialties and fine wines while exploring charming coastal towns and beautiful islands such as Santorini and Capri. A perfect mix of culture, adventure, and relaxation awaits.",
+      description:
+        "Sail through iconic cities along the Mediterranean coast, from Greece to Italy. Uncover ancient ruins in Athens, relax on the Amalfi Coast, or discover the romantic streets of Venice. This journey combines rich history, stunning landscapes, and world-class cuisine. Enjoy Mediterranean specialties and fine wines while exploring charming coastal towns and beautiful islands such as Santorini and Capri. A perfect mix of culture, adventure, and relaxation awaits.",
     },
     {
       id: 3,
       title: "Alaskan Adventure",
-      description: "Experience breathtaking glaciers, towering mountains, and wildlife on an unforgettable Alaskan cruise. Sail through the icy waters of the Inside Passage, witness majestic glaciers calving into the sea, and encounter wildlife such as humpback whales, bald eagles, and brown bears. Onshore, explore the rugged beauty of Denali National Park, visit charming fishing villages, and learn about the history and culture of the Last Frontier. This is the ultimate adventure for nature lovers and thrill-seekers alike.",
+      description:
+        "Experience breathtaking glaciers, towering mountains, and wildlife on an unforgettable Alaskan cruise. Sail through the icy waters of the Inside Passage, witness majestic glaciers calving into the sea, and encounter wildlife such as humpback whales, bald eagles, and brown bears. Onshore, explore the rugged beauty of Denali National Park, visit charming fishing villages, and learn about the history and culture of the Last Frontier. This is the ultimate adventure for nature lovers and thrill-seekers alike.",
     },
     {
       id: 4,
       title: "Asian Expedition",
-      description: "Explore the rich culture and scenic beauty of Southeast Asia aboard our luxury ship. From the vibrant cities of Singapore and Hong Kong to the ancient temples of Thailand and Vietnam, this cruise offers a perfect blend of modernity and tradition. Visit bustling markets, indulge in authentic cuisine, and experience diverse cultures. Cruise through tropical archipelagos, discover breathtaking landscapes, and unwind with luxurious spa treatments and local performances on board. An unforgettable adventure for explorers seeking to immerse themselves in Asia’s diverse charm.",
+      description:
+        "Explore the rich culture and scenic beauty of Southeast Asia aboard our luxury ship. From the vibrant cities of Singapore and Hong Kong to the ancient temples of Thailand and Vietnam, this cruise offers a perfect blend of modernity and tradition. Visit bustling markets, indulge in authentic cuisine, and experience diverse cultures. Cruise through tropical archipelagos, discover breathtaking landscapes, and unwind with luxurious spa treatments and local performances on board. An unforgettable adventure for explorers seeking to immerse themselves in Asia’s diverse charm.",
     },
     {
       id: 5,
       title: "South Pacific Paradise",
-      description: "Embark on a journey through the idyllic islands of the South Pacific. From the stunning beaches of Bora Bora to the lush landscapes of Fiji, this cruise takes you to some of the most exotic destinations in the world. Enjoy pristine waters perfect for snorkeling and diving, visit vibrant Polynesian villages, and relax on some of the world’s most beautiful beaches. Indulge in a relaxing spa day or take part in thrilling water activities, all while cruising aboard a luxurious ship with unparalleled service and stunning ocean views.",
+      description:
+        "Embark on a journey through the idyllic islands of the South Pacific. From the stunning beaches of Bora Bora to the lush landscapes of Fiji, this cruise takes you to some of the most exotic destinations in the world. Enjoy pristine waters perfect for snorkeling and diving, visit vibrant Polynesian villages, and relax on some of the world’s most beautiful beaches. Indulge in a relaxing spa day or take part in thrilling water activities, all while cruising aboard a luxurious ship with unparalleled service and stunning ocean views.",
     },
     {
       id: 6,
       title: "Transatlantic Crossing",
-      description: "Set sail on a historic journey across the Atlantic Ocean, traveling between the charming shores of Europe and the vibrant cities of the Americas. Experience classic ocean cruising with luxurious amenities, exceptional service, and leisurely days at sea. Visit iconic ports such as Southampton, New York City, and Lisbon, and enjoy scenic coastal views along the way. Perfect for those who enjoy the serenity of the open ocean, along with port stops rich in culture and history.",
+      description:
+        "Set sail on a historic journey across the Atlantic Ocean, traveling between the charming shores of Europe and the vibrant cities of the Americas. Experience classic ocean cruising with luxurious amenities, exceptional service, and leisurely days at sea. Visit iconic ports such as Southampton, New York City, and Lisbon, and enjoy scenic coastal views along the way. Perfect for those who enjoy the serenity of the open ocean, along with port stops rich in culture and history.",
     },
   ];
-  
+
   return (
     <div className="">
-    <div className="bg-[url(/Images/CruiseBanner.webp)] relative bg-center bg-cover text-white  px-5 lg:px-20 py-5 lg:py-16">
+      <div className="bg-[url(/Images/CruiseBanner.webp)] relative bg-center bg-cover text-white  px-5 lg:px-20 py-5 lg:py-16">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent z-0"></div>
         <div className="flex relative z-10 flex-col xl:flex-row justify-between items-center space-y-8 xl:space-y-0 md:space-x-8 px-6 lg:px-12 py-10 ">
           {/* Left Content Section */}
-          <div className="w-full text-center xl:text-start xl:w-[65%]">
-  <div className="space-y-8 md:space-y-12 px-4 md:px-0">
-    <h5 className="font-extrabold text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
-      Travel in Style: Luxury Trains for Every Explorer
+          <div className="w-full text-center xl:text-left xl:w-[75%] px-4 md:px-8 lg:px-16">
+  <div className="space-y-8 md:space-y-12">
+    {/* Heading */}
+    <h5 className="font-extrabold lg:leading-tight text-3xl md:text-4xl lg:text-5xl text-white ">
+      Travel in Style Luxury Cruise for Every Explorer
     </h5>
+
+    {/* Paragraph */}
     <p className="text-base lg:text-lg text-white leading-relaxed md:leading-loose">
       Experience the allure of travel like never before with our luxury train journeys. Whether you’re gliding through the majestic Swiss Alps, marveling at the rugged beauty of the Australian outback, or exploring the vibrant cities of India, our trains offer an unparalleled blend of elegance, comfort, and adventure. Enjoy gourmet dining, panoramic views, and world-class service as you traverse iconic landscapes. From historic routes steeped in tradition to modern marvels of engineering, our luxury trains promise a journey where every moment is as captivating as the destination. Rediscover the romance of rail travel and create memories to treasure for a lifetime.
     </p>
+
+    {/* Image */}
+    <div className="flex justify-center md:justify-start">
+      <img
+        src="/Images/cruiseMove.webp"
+        alt="Luxury Cruise"
+        className="cruiseMove w-16 h-16 "
+      />
+    </div>
   </div>
 </div>
 
 
           {/* Right Form Section */}
-          <div className="form w-full  xl:w-[40%] bg-white shadow-lg rounded-lg px-8 py-6">
-            <h1 className="text-3xl font-bold mb-6 text-gray-800">
-              Book Your Train
-            </h1>
-            <form>
-              {/* Name Field */}
+          <form className="text-black max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg">
+            {/* Form Heading */}
+            <h2 className="text-2xl font-bold text-center text-[#42A6EF] mb-6">
+              Book Your Cruise
+            </h2>
+
+            {/* Name Field */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="name"
+              >
+                Name
+              </label>
+              <input
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                type="text"
+                id="name"
+                placeholder="Enter your full name"
+                aria-label="Name"
+                required
+              />
+              <p className="text-sm text-red-500 mt-1 hidden">
+                Please enter your name
+              </p>
+            </div>
+
+            {/* Email Field */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="email"
+              >
+                Email
+              </label>
+              <input
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                type="email"
+                id="email"
+                placeholder="Enter your email address"
+                aria-label="Email"
+                required
+              />
+              <p className="text-sm text-red-500 mt-1 hidden">
+                Please enter a valid email
+              </p>
+            </div>
+
+            {/* Pickup and Drop Fields */}
+            <div className="grid md:grid-cols-2 gap-4">
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-semibold mb-2"
-                  htmlFor="name"
+                  htmlFor="pickup"
                 >
-                  Name
+                  Pickup Destination
                 </label>
                 <input
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                   type="text"
-                  id="name"
-                  placeholder="Enter your full name"
+                  id="pickup"
+                  placeholder="E.g., New York, NY"
+                  aria-label="Pickup Destination"
+                  required
                 />
               </div>
 
-              {/* Email Field */}
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-semibold mb-2"
-                  htmlFor="email"
+                  htmlFor="drop"
                 >
-                  Email
-                </label>
-                <input
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  type="email"
-                  id="email"
-                  placeholder="Enter your email address"
-                />
-              </div>
-
-              {/* Destination Field */}
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-semibold mb-2"
-                  htmlFor="destination"
-                >
-                  Preferred Destination
+                  Drop Destination
                 </label>
                 <input
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                   type="text"
-                  id="destination"
-                  placeholder="E.g., Mediterranean, Caribbean"
+                  id="drop"
+                  placeholder="E.g., Boston, MA"
+                  aria-label="Drop Destination"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Booking Date and Time */}
+            <div className="grid md:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label
+                  className="block text-gray-700 text-sm font-semibold mb-2"
+                  htmlFor="booking-date"
+                >
+                  Booking Date
+                </label>
+                <input
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  type="date"
+                  id="booking-date"
+                  aria-label="Booking Date"
+                  required
                 />
               </div>
 
-              {/* Message Field */}
-              <div className="mb-6">
+              <div>
                 <label
                   className="block text-gray-700 text-sm font-semibold mb-2"
-                  htmlFor="message"
+                  htmlFor="booking-time"
                 >
-                  Additional Notes
+                  Booking Time
                 </label>
-                <textarea
+                <input
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  id="message"
-                  rows="4"
-                  placeholder="Let us know any specific requests or preferences"
-                ></textarea>
+                  type="time"
+                  id="booking-time"
+                  aria-label="Booking Time"
+                  required
+                />
               </div>
+            </div>
 
-              {/* Submit Button */}
-              <div className="text-center">
-                <button
-                  type="submit"
-                  className="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
-                >
-                  Submit Inquiry
-                </button>
-              </div>
-            </form>
-          </div>
+            {/* Additional Notes */}
+            <div className="mb-6">
+              <label
+                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="message"
+              >
+                Additional Notes
+              </label>
+              <textarea
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                id="message"
+                rows="4"
+                placeholder="Let us know any specific requests or preferences"
+                aria-label="Additional Notes"
+              ></textarea>
+            </div>
+
+            {/* Submit Button */}
+            <div className="text-center">
+              <button
+                type="submit"
+                className="w-full bg-[#42A6EF] hover:bg-[#398cc8] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                aria-label="Submit Inquiry"
+              >
+                Submit Inquiry
+              </button>
+            </div>
+          </form>
         </div>
       </div>
       <div className="px-5 lg:px-20  space-y-16">
@@ -308,29 +394,31 @@ const page = () => {
         </div>
 
         <section className="details space-y-5 py-10 ">
-        <div className="text-center">
-        <h2 className="text-2xl  font-extrabold leading-tight ">
-          Cruise Adventures for Every Explorer
-        </h2>
-        <p>
-        Embark on a cruise journey like no other. From tropical islands to majestic glaciers, our
-        luxury cruises offer something for every type of traveler.
-        </p>
-        </div>
-        <div className="space-y-5">
-                {cruiseData.map((curElm,index)=>{
-                    return(
-                        <div key={index} className="shadow-lg px-5 py-3 rounded-lg space-y-5">
-                            <h5 className="text-2xl font-bold">{curElm.title}</h5>
-                            <p>{curElm.description}</p>
-                        </div>
-                    )
-                })}
-        </div>
-    </section>
+          <div className="text-center">
+            <h2 className="text-2xl  font-extrabold leading-tight ">
+              Cruise Adventures for Every Explorer
+            </h2>
+            <p>
+              Embark on a cruise journey like no other. From tropical islands to
+              majestic glaciers, our luxury cruises offer something for every
+              type of traveler.
+            </p>
+          </div>
+          <div className="space-y-5">
+            {cruiseData.map((curElm, index) => {
+              return (
+                <div
+                  key={index}
+                  className="shadow-lg px-5 py-3 rounded-lg space-y-5"
+                >
+                  <h5 className="text-2xl font-bold">{curElm.title}</h5>
+                  <p>{curElm.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </section>
       </div>
-
-     
     </div>
   );
 };
