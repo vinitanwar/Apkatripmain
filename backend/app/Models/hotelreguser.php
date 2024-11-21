@@ -20,7 +20,13 @@ class hotelreguser extends Model
     {
         $this->attributes['password'] = Hash::make($value);
     }
-
+    protected $casts = [
+        'useractive' => 'boolean',
+    ];
+    public function hotel()
+    {
+        return $this->belongsTo(HotelReg::class, 'hotel_id', 'id');
+    }
 
 
 }
