@@ -27,6 +27,7 @@ class HotelregPanelProvider extends PanelProvider
             ->id('hotelreg')
             ->path('hotelreg')
             ->login()
+            ->registration()
             ->colors([
                 'danger' => Color::Red,
                 'gray' => Color::Slate,
@@ -58,6 +59,8 @@ class HotelregPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->authGuard('hotels');
+            
     }
 }
