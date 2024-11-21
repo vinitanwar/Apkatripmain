@@ -18,29 +18,22 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class HotelsPanelProvider extends PanelProvider
+class UserPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->id('hotels')
-            ->path('hotels')
-            ->login()
+            ->id('user')
+            ->path('user')
             ->colors([
-                'primary' => Color::Green,
-                'danger' => Color::Red,
-                'gray' => Color::Zinc,
-                'info' => Color::Blue,
                 'primary' => Color::Amber,
-                'success' => Color::Green,
-                'warning' => Color::Amber,
             ])
-            ->discoverResources(in: app_path('Filament/Hotels/Resources'), for: 'App\\Filament\\Hotels\\Resources')
-            ->discoverPages(in: app_path('Filament/Hotels/Pages'), for: 'App\\Filament\\Hotels\\Pages')
+            ->discoverResources(in: app_path('Filament/User/Resources'), for: 'App\\Filament\\User\\Resources')
+            ->discoverPages(in: app_path('Filament/User/Pages'), for: 'App\\Filament\\User\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Hotels/Widgets'), for: 'App\\Filament\\Hotels\\Widgets')
+            ->discoverWidgets(in: app_path('Filament/User/Widgets'), for: 'App\\Filament\\User\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
