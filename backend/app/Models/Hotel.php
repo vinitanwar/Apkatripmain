@@ -26,8 +26,9 @@ class Hotel extends Authenticatable
         'name',
         'email',
         'password',
-        'address',   // Example additional fields
-        'phone',     // Example additional fields
+        'address',  
+        'phone', 
+        'useractive',
     ];
 
     /**

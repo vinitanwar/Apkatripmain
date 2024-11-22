@@ -2,9 +2,9 @@
 
 namespace App\Filament\Hotelreg\Resources;
 
-use App\Filament\Hotelreg\Resources\HotelregResource\Pages;
-use App\Filament\Hotelreg\Resources\HotelregResource\RelationManagers;
-use App\Models\Hotelreg;
+use App\Filament\Hotelreg\Resources\HoteldetailsResource\Pages;
+use App\Filament\Hotelreg\Resources\HoteldetailsResource\RelationManagers;
+use App\Models\hoteldetails;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class HotelregResource extends Resource
+class HoteldetailsResource extends Resource
 {
-    protected static ?string $model = Hotelreg::class;
+    protected static ?string $model = Hoteldetails::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -56,9 +56,9 @@ class HotelregResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListHotelregs::route('/'),
-            'create' => Pages\CreateHotelreg::route('/create'),
-            'edit' => Pages\EditHotelreg::route('/{record}/edit'),
+            'index' => Pages\ListHoteldetails::route('/'),
+            'create' => Pages\CreateHoteldetails::route('/create'),
+            'edit' => Pages\EditHoteldetails::route('/{record}/edit'),
         ];
     }
 }
