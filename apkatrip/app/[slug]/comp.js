@@ -9,7 +9,6 @@ import {
   FaArrowRight,
  
   FaFilter,
-
   FaPlane,
   FaTimes,
   FaUsb,
@@ -202,7 +201,7 @@ const returnstate = useSelector((state) => state.searchreturn);
         returnstate.data.Response.Results
     );
    
-    
+  
 
 
   }, [returnstate]);

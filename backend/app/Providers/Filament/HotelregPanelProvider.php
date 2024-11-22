@@ -43,7 +43,7 @@ class HotelregPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Hotelreg/Widgets'), for: 'App\\Filament\\Hotelreg\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
+                Widgets\AccountWidget::class, 
                 Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([

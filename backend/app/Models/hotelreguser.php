@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 class hotelreguser extends Model
 {
+    protected $table = 'hotel_regs';
     use HasFactory;
  protected $fillable=[
-    "Full_Name",
+    "name",
     "email",
 "password",
-"hotel_id",
+
 "useractive"
  ];
 
@@ -23,10 +24,7 @@ class hotelreguser extends Model
     protected $casts = [
         'useractive' => 'boolean',
     ];
-    public function hotel()
-    {
-        return $this->belongsTo(HotelReg::class, 'hotel_id', 'id');
-    }
+ 
 
 
 }
