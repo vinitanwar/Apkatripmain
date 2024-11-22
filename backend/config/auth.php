@@ -71,7 +71,7 @@ return [
 
         'hotels' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\hotelreguser::class),
+            'model' => env('AUTH_MODEL', App\Models\Hotel::class),
         ],
 
         // 'users' => [
