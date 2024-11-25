@@ -169,7 +169,177 @@ const page = () => {
   ];
   return (
     <>
-      <TrainComp />
+      {/* <TrainComp /> */}
+
+      <div className="bg-[url(/Images/trainBanner.webp)] relative bg-center bg-cover text-white  px-5 lg:px-20 py-5 lg:py-16">
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent z-0"></div>
+        <div className="flex relative z-10 flex-col xl:flex-row justify-between items-center space-y-8 xl:space-y-0 md:space-x-8 px-6 lg:px-12 py-10 ">
+          {/* Left Content Section */}
+          <div className="w-full text-center xl:text-start xl:w-[65%]">
+  <div className="space-y-8 md:space-y-12 px-4 md:px-0">
+    <h5 className="font-extrabold lg:leading-tight text-3xl md:text-4xl lg:text-5xl text-white ">
+    The Ultimate Luxury Train Experience for the Modern Explorer
+    </h5>
+    <p className="text-base lg:text-lg text-white leading-relaxed md:leading-loose">
+      Experience the allure of travel like never before with our luxury train journeys. Whether you’re gliding through the majestic Swiss Alps, marveling at the rugged beauty of the Australian outback, or exploring the vibrant cities of India, our trains offer an unparalleled blend of elegance, comfort, and adventure. Enjoy gourmet dining, panoramic views, and world-class service as you traverse iconic landscapes. From historic routes steeped in tradition to modern marvels of engineering, our luxury trains promise a journey where every moment is as captivating as the destination. Rediscover the romance of rail travel and create memories to treasure for a lifetime.
+    </p>
+  </div>
+</div>
+
+
+          {/* Right Form Section */}
+          <form className="text-black max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg">
+            {/* Form Heading */}
+            <h2 className="text-2xl font-bold text-center text-[#42A6EF] mb-6">
+              Book Your Train
+            </h2>
+
+            {/* Name Field */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="name"
+              >
+                Name
+              </label>
+              <input
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                type="text"
+                id="name"
+                placeholder="Enter your full name"
+                aria-label="Name"
+                required
+              />
+              <p className="text-sm text-red-500 mt-1 hidden">
+                Please enter your name
+              </p>
+            </div>
+
+            {/* Email Field */}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="email"
+              >
+                Email
+              </label>
+              <input
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                type="email"
+                id="email"
+                placeholder="Enter your email address"
+                aria-label="Email"
+                required
+              />
+              <p className="text-sm text-red-500 mt-1 hidden">
+                Please enter a valid email
+              </p>
+            </div>
+
+            {/* Pickup and Drop Fields */}
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-semibold mb-2"
+                  htmlFor="pickup"
+                >
+                  Pickup Destination
+                </label>
+                <input
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  type="text"
+                  id="pickup"
+                  placeholder="E.g., New York, NY"
+                  aria-label="Pickup Destination"
+                  required
+                />
+              </div>
+
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-semibold mb-2"
+                  htmlFor="drop"
+                >
+                  Drop Destination
+                </label>
+                <input
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  type="text"
+                  id="drop"
+                  placeholder="E.g., Boston, MA"
+                  aria-label="Drop Destination"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Booking Date and Time */}
+            <div className="grid md:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label
+                  className="block text-gray-700 text-sm font-semibold mb-2"
+                  htmlFor="booking-date"
+                >
+                  Booking Date
+                </label>
+                <input
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  type="date"
+                  id="booking-date"
+                  aria-label="Booking Date"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  className="block text-gray-700 text-sm font-semibold mb-2"
+                  htmlFor="booking-time"
+                >
+                  Booking Time
+                </label>
+                <input
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  type="time"
+                  id="booking-time"
+                  aria-label="Booking Time"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Additional Notes */}
+            <div className="mb-6">
+              <label
+                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="message"
+              >
+                Additional Notes
+              </label>
+              <textarea
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                id="message"
+                rows="4"
+                placeholder="Let us know any specific requests or preferences"
+                aria-label="Additional Notes"
+              ></textarea>
+            </div>
+
+            {/* Submit Button */}
+            <div className="text-center">
+              <button
+                type="submit"
+                className="w-full bg-[#42A6EF] hover:bg-[#3d95d3] text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                aria-label="Submit Inquiry"
+              >
+                Submit Inquiry
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
       <MobileHeader />
       <CustomSlider />
 
