@@ -67,7 +67,7 @@ return new class extends Migration
             $table->json("indoor_activities");
             $table->json("family_kids");
             $table->json("pets_essentials");
-            $table->unsignedBigInteger('hotel_id');
+            $table->unsignedBigInteger('hotel_id')->nullable();
             $table->foreign('hotel_id')->references('id')->on('hotel_regs')->onDelete('cascade');
             $table->timestamps();
         });
@@ -85,7 +85,7 @@ return new class extends Migration
             $table->json('image');
             $table->text('room_des');
             $table->json('additional_serv');
-            $table->unsignedBigInteger('hotel_id');
+            $table->unsignedBigInteger('hotel_id')->nullable();
             $table->foreign('hotel_id')->references('id')->on('hotel_regs')->onDelete('cascade');
             $table->timestamps();
         });

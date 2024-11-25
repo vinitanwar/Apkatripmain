@@ -15,6 +15,7 @@ use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\TextColumn;
 
 class AmenitiesResource extends Resource
 {
@@ -620,6 +621,29 @@ class AmenitiesResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('mandatory'),
+                TextColumn::make('basic_facilities'),
+                TextColumn::make('general_services'),
+                TextColumn::make('outdoor_activities'),
+                TextColumn::make('common_areas'),
+                TextColumn::make('food_drinks'),
+                TextColumn::make('health_wellness'),
+                TextColumn::make('business_center'),
+                TextColumn::make('beauty_spa'),
+                TextColumn::make('security'),
+                TextColumn::make('transfers'),
+                TextColumn::make('shopping'),
+                TextColumn::make('payment_services'),
+                TextColumn::make('indoor_activities'),
+                TextColumn::make('family_kids'),
+                TextColumn::make('pets_essentials'),
+
+
+
+
+
+
+
             ])
             ->filters([
                 //

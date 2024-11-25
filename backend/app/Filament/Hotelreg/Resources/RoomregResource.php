@@ -13,6 +13,14 @@ use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\ImageColumn;
+
+
+
+
+
+
+
 
 class RoomregResource extends Resource
 {
@@ -100,7 +108,18 @@ class RoomregResource extends Resource
         return $table
             ->columns([
                 //
-            ])
+                ImageColumn::make('image'),
+                TextColumn::make('room_type'),
+                TextColumn::make('size'),
+                TextColumn::make('bed_type'),
+                TextColumn::make('price'),
+                TextColumn::make('max_occupancy'),
+                TextColumn::make('room_ava'),
+                TextColumn::make('features'),
+            
+                TextColumn::make('room_des'),
+                TextColumn::make('additional_serv'),
+                  ])
             ->filters([
                 //
             ])
