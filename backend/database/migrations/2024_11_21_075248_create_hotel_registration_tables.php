@@ -33,8 +33,8 @@ return new class extends Migration
             $table->string("number");
             $table->string("land_line");
             $table->string("address");
-            $table->decimal('lat', 10, 6); 
-            $table->decimal('lang', 10, 6);
+            $table->decimal('lat', 10, 6)->nullable(); 
+            $table->decimal('lang', 10, 6)->nullable();
             $table->string("house_no");
             $table->json('social_media')->nullable();
             $table->string("locality");
@@ -43,7 +43,7 @@ return new class extends Migration
             $table->string("state");
             $table->string("city");
             $table->text("terms");
-            $table->unsignedBigInteger('hotel_id');
+            $table->unsignedBigInteger('hotel_id')->nullable();
             $table->foreign('hotel_id')->references('id')->on('hotel_regs')->onDelete('cascade');
             $table->timestamps();
         });
@@ -92,11 +92,11 @@ return new class extends Migration
 
         // Update hotel_details table to link with amenities and room_regs
         Schema::table('hotel_details', function (Blueprint $table) {
-            $table->unsignedBigInteger('amenities_id');
+            $table->unsignedBigInteger('amenities_id')->nullable();
             $table->foreign('amenities_id')->references('id')->on('amenities')->onDelete('cascade');
 
             // Assuming one room for each hotel, hence room_id as foreign key
-            $table->unsignedBigInteger('room_id');
+            $table->unsignedBigInteger('room_id')->nullable();
             $table->foreign('room_id')->references('id')->on('room_regs')->onDelete('cascade');
         });
     }

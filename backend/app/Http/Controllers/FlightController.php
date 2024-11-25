@@ -16,7 +16,7 @@ class FlightController extends Controller
     }
 
     public function searchFlights(Request $request)
-    {
+    {   
       
         $token = $this->apiService->getToken();
 
@@ -75,7 +75,7 @@ class FlightController extends Controller
         }
     
         //  Return the search response
-        return $response->json();
+        return $validatedData->json();
     }
 
 
