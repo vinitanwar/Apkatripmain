@@ -23,7 +23,7 @@ const page = () => {
         "Witness captivating horizons, golden sunsets, and stunning coastal landscapes that will leave you enchanted.",
       
         icon: <FaEye />,
-        price:400
+        price:40000
     },
     {
       imgSrc: "/Images/cruise7.webp",
@@ -31,7 +31,7 @@ const page = () => {
       description:
         "Pamper yourself with elegant accommodations, gourmet dining, and top-tier entertainment for an unforgettable voyage.",
       icon: <FaRegStar />,
-      price:600
+      price:60000
 
     },
     {
@@ -40,7 +40,7 @@ const page = () => {
       description:
         "Unpack once and explore iconic landmarks, vibrant cities, and hidden gems all in one seamless journey.",
       icon: <FaShip />,
-      price:700
+      price:90000
 
     },
     {
@@ -49,7 +49,7 @@ const page = () => {
       description:
         "From kids' clubs to family excursions, our cruises offer activities that ensure a memorable experience for everyone.",
       icon: <FaRegCircle />,
-      price:800
+      price:120000
 
     },
     {
@@ -58,7 +58,7 @@ const page = () => {
       description:
         "Experience the ultimate cruise getaway with value-packed deals and incredible offers designed for every budget.",
       icon: <FaCreditCard />,
-      price:200
+      price:70000
 
     },
     {
@@ -67,7 +67,7 @@ const page = () => {
       description:
         "Recharge your mind and body with soothing spa treatments, peaceful ocean views, and serene onboard amenities.",
       icon: <FaSpa />,
-      price:100
+      price:1700000
 
     },
     {
@@ -76,7 +76,7 @@ const page = () => {
       description:
         "Immerse yourself in diverse traditions and explore vibrant cultures through curated shore excursions.",
       icon: <FaMapMarkedAlt />,
-      price:150
+      price:40000
 
     },
     {
