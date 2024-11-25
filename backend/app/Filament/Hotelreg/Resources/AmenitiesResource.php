@@ -23,20 +23,50 @@ class AmenitiesResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Fieldset::make('Mandatory Amenities')
+                Forms\Components\Fieldset::make('Mandatory')
                     ->schema([
-                        Forms\Components\Toggle::make('mandatory')
-                            ->label('Mandatory Amenities')
-                            ->required(),
+                        Forms\Components\CheckboxList::make('mandatory')
+                            ->options([
+                                'Air Conditioning' => 'Air Conditioning',
+                                'Laundry' => 'Laundry',
+                                'Newspaper' => 'Newspaper',
+                                'Parking' => 'Parking',
+                                'Room Service' => 'Room Service',
+                                'Smoke Detector' => 'Smoke Detector',
+                                'Smoking Rooms' => 'Smoking Rooms',
+                                'Swimming Pool' => 'Swimming Pool',
+                                'Wi-Fi' => 'Wi-Fi',
+                                'Lounge' => 'Lounge',
+                                'Reception' => 'Reception',
+                                'Bar' => 'Bar',
+                                'Restaurant' => 'Restaurant',
+                                'Luggage Assistance' => 'Luggage Assistance',
+                                'Wheelchair' => 'Wheelchair',
+                                'Gym/Fitness Center' => 'Gym/Fitness Center',
+                                'CCTV' => 'CCTV',
+                                'Fire Extinguishers' => 'Fire Extinguishers',
+                                'Airport Transfers' => 'Airport Transfers',
+                                'First Aid Services' => 'First Aid Services',
+                            ])
+                            ->label('Mandatory Amenities'),
                     ]),
+
 
                 Forms\Components\Fieldset::make('Basic Facilities')
                     ->schema([
                         Forms\Components\CheckboxList::make('basic_facilities')
                             ->options([
-                                'Free Wi-Fi' => 'Free Wi-Fi',
-                                '24-hour Reception' => '24-hour Reception',
+                                'Elevator/Lift' => 'Elevator/Lift',
+                                'Housekeeping' => 'Housekeeping',
+                                'Kitchen' => 'Kitchen',
+                                'LAN' => 'LAN',
                                 'Power Backup' => 'Power Backup',
+                                'Refrigerator' => 'Refrigerator',
+                                'Umbrellas' => 'Umbrellas',
+                                'Washing Machine' => 'Washing Machine',
+                                'Laundromat' => 'Laundromat',
+                                'EV Charging Station' => 'EV Charging Station',
+                                'Driver’s Accommodation' => 'Driver’s Accommodation',
                             ])
                             ->label('Basic Facilities'),
                     ]),
@@ -45,34 +75,64 @@ class AmenitiesResource extends Resource
                     ->schema([
                         Forms\Components\CheckboxList::make('general_services')
                             ->options([
-                                'Room Service' => 'Room Service',
-                                'Laundry Service' => 'Laundry Service',
-                                'Housekeeping' => 'Housekeeping',
+                                'Bellboy Services' => 'Bellboy Services',
+                                'Caretaker' => 'Caretaker',
+                                'Concierge' => 'Concierge',
+                                'Multilingual Staff' => 'Multilingual Staff',
+                                'Luggage Storage' => 'Luggage Storage',
+                                'Specially-Abled Assistance' => 'Specially-Abled Assistance',
+                                'Wake-Up Call Service' => 'Wake-Up Call Service',
+                                'Butler Services' => 'Butler Services',
+                                'Doctor on Call' => 'Doctor on Call',
+                                'Medical Center' => 'Medical Center',
+                                'Pool/Beach Towels' => 'Pool/Beach Towels',
                             ])
                             ->label('General Services'),
                     ]),
+
 
                 Forms\Components\Fieldset::make('Outdoor Activities')
                     ->schema([
                         Forms\Components\CheckboxList::make('outdoor_activities')
                             ->options([
-                                'Swimming Pool' => 'Swimming Pool',
-                                'Tennis Court' => 'Tennis Court',
+                                'Beach' => 'Beach',
+                                'Bonfire' => 'Bonfire',
+                                'Golf' => 'Golf',
+                                'Kayaks' => 'Kayaks',
+                                'Outdoor Games' => 'Outdoor Games',
+                                'Snorkeling' => 'Snorkeling',
+                                'Telescope' => 'Telescope',
+                                'Water Sports' => 'Water Sports',
+                                'Canoeing' => 'Canoeing',
+                                'Skiing' => 'Skiing',
+                                'Jungle Safari' => 'Jungle Safari',
                                 'Cycling' => 'Cycling',
                             ])
                             ->label('Outdoor Activities'),
                     ]),
 
+
                 Forms\Components\Fieldset::make('Common Areas')
                     ->schema([
                         Forms\Components\CheckboxList::make('common_areas')
                             ->options([
-                                'Lobby' => 'Lobby',
-                                'Garden' => 'Garden',
-                                'Terrace' => 'Terrace',
+                                'Balcony/Terrace' => 'Balcony/Terrace',
+                                'Fireplace' => 'Fireplace',
+                                'Lawn' => 'Lawn',
+                                'Library' => 'Library',
+                                'Seating Area' => 'Seating Area',
+                                'Sun Deck Verandah' => 'Sun Deck Verandah',
+                                'Jacuzzi' => 'Jacuzzi',
+                                'Living Room' => 'Living Room',
+                                'Outdoor Furniture' => 'Outdoor Furniture',
+                                'Panic Rooms' => 'Panic Rooms',
+                                'Game Room' => 'Game Room',
+                                'Sitout Areas' => 'Sitout Areas',
+                                'Bonfire Pit' => 'Bonfire Pit',
                             ])
                             ->label('Common Areas'),
                     ]),
+
 
                 Forms\Components\Fieldset::make('Food & Drinks')
                     ->schema([
@@ -81,9 +141,16 @@ class AmenitiesResource extends Resource
                                 'Restaurant' => 'Restaurant',
                                 'Bar' => 'Bar',
                                 'Coffee Shop' => 'Coffee Shop',
+                                'Barbeque' => 'Barbeque',
+                                'Cafe' => 'Cafe',
+                                'Dining Area' => 'Dining Area',
+                                'Kid\'s Menu' => 'Kid\'s Menu',
+                                'Bakery' => 'Bakery',
+                                'Breakfast Food Options Available' => 'Breakfast Food Options Available',
                             ])
                             ->label('Food & Drinks'),
                     ]),
+
 
                 Forms\Components\Fieldset::make('Health & Wellness')
                     ->schema([
@@ -92,9 +159,167 @@ class AmenitiesResource extends Resource
                                 'Gym' => 'Gym',
                                 'Spa' => 'Spa',
                                 'Yoga Center' => 'Yoga Center',
+                                'Activity Center' => 'Activity Center',
+                                'Reflexology' => 'Reflexology',
+                                'Meditation Room' => 'Meditation Room',
                             ])
                             ->label('Health & Wellness'),
                     ]),
+
+
+                Forms\Components\Fieldset::make('Business and Conference')
+                    ->schema([
+                        Forms\Components\CheckboxList::make('business_center')
+                            ->options([
+                                'Banquet' => 'Banquet',
+                                'Business Center' => 'Business Center',
+                                'Conference Room' => 'Conference Room',
+                                'Photocopying' => 'Photocopying',
+                                'Fax Services' => 'Fax Services',
+                                'Printer' => 'Printer',
+                            ])
+                            ->label('Business and Conference Facilities'),
+                    ]),
+
+
+                Forms\Components\Fieldset::make('Beauty and Spa')
+                    ->schema([
+                        Forms\Components\CheckboxList::make('beauty_spa')
+                            ->options([
+                                'Beauty Treatments' => 'Beauty Treatments',
+                                'Massage' => 'Massage',
+                                'Facial' => 'Facial',
+                                'Manicure/Pedicure' => 'Manicure/Pedicure',
+                                'Aromatherapy' => 'Aromatherapy',
+                                'Hair Salon' => 'Hair Salon',
+                                'Nail Salon' => 'Nail Salon',
+                            ])
+                            ->label('Beauty and Spa'),
+                    ]),
+
+
+                Forms\Components\Fieldset::make('Security')
+                    ->schema([
+                        Forms\Components\CheckboxList::make('security')
+                            ->options([
+                                'CCTV Surveillance' => 'CCTV Surveillance',
+                                'Fire Extinguisher' => 'Fire Extinguisher',
+                                '24/7 Security' => '24/7 Security',
+                                'Emergency Exits' => 'Emergency Exits',
+                                'Security Guards' => 'Security Guards',
+                                'Metal Detectors' => 'Metal Detectors',
+                                'First Aid Kit' => 'First Aid Kit',
+                                'Secure Parking' => 'Secure Parking',
+                                'Disaster Management' => 'Disaster Management',
+                            ])
+                            ->label('Security'),
+                    ]),
+
+
+                Forms\Components\Fieldset::make('Transfers')
+                    ->schema([
+                        Forms\Components\CheckboxList::make('transfers')
+                            ->options([
+                                'Airport Transfer' => 'Airport Transfer',
+                                'Railway Station Transfer' => 'Railway Station Transfer',
+                                'Bus Station Transfer' => 'Bus Station Transfer',
+                                'Car Rental' => 'Car Rental',
+                                'Shuttle Service' => 'Shuttle Service',
+                                'Private Cabs' => 'Private Cabs',
+                                'Bicycle Rental' => 'Bicycle Rental',
+                                'City Transfers' => 'City Transfers',
+                                'Hotel Pickup & Drop' => 'Hotel Pickup & Drop',
+                                'Luxury Transfers' => 'Luxury Transfers',
+                            ])
+                            ->label('Transfers'),
+                    ]),
+
+
+
+                Forms\Components\Fieldset::make('Shopping')
+                    ->schema([
+                        Forms\Components\CheckboxList::make('shopping')
+                            ->options([
+                                'Shopping Mall' => 'Shopping Mall',
+                                'Souvenir Shops' => 'Souvenir Shops',
+                                'Local Markets' => 'Local Markets',
+                                'Duty-Free Shops' => 'Duty-Free Shops',
+                                'Luxury Boutiques' => 'Luxury Boutiques',
+                                'Art & Craft Stores' => 'Art & Craft Stores',
+                                'Street Shopping' => 'Street Shopping',
+                                'Bookstores' => 'Bookstores',
+                                'Fashion Outlets' => 'Fashion Outlets',
+                            ])
+                            ->label('Shopping Options'),
+                    ]),
+
+                Forms\Components\Fieldset::make('Payment Services')
+                    ->schema([
+                        Forms\Components\CheckboxList::make('payment_services')
+                            ->options([
+                                'Credit Card' => 'Credit Card',
+                                'Debit Card' => 'Debit Card',
+                                'UPI' => 'UPI',
+                                'Cash' => 'Cash',
+                                'PayPal' => 'PayPal',
+                                'Mobile Wallets' => 'Mobile Wallets',
+                                'Net Banking' => 'Net Banking',
+                                'Cryptocurrency' => 'Cryptocurrency',
+                            ])
+                            ->label('Payment Options'),
+                    ]),
+
+                Forms\Components\Fieldset::make('Indoor Activities')
+                    ->schema([
+                        Forms\Components\CheckboxList::make('indoor_activities')
+                            ->options([
+                                'Board Games' => 'Board Games',
+                                'Table Tennis' => 'Table Tennis',
+                                'Billiards' => 'Billiards',
+                                'Chess' => 'Chess',
+                                'Karaoke' => 'Karaoke',
+                                'Reading Lounge' => 'Reading Lounge',
+                                'Virtual Reality Games' => 'Virtual Reality Games',
+                                'Indoor Swimming Pool' => 'Indoor Swimming Pool',
+                            ])
+                            ->label('Indoor Activities'),
+                    ]),
+
+                Forms\Components\Fieldset::make('Family & Kids')
+                    ->schema([
+                        Forms\Components\CheckboxList::make('family_kids')
+                            ->options([
+                                'Kids Play Area' => 'Kids Play Area',
+                                'Babysitting Services' => 'Babysitting Services',
+                                'Family Dining' => 'Family Dining',
+                                'Children’s Pool' => 'Children’s Pool',
+                                'Arcade Games' => 'Arcade Games',
+                                'Storytelling Sessions' => 'Storytelling Sessions',
+                                'Family Movie Nights' => 'Family Movie Nights',
+                                'Parenting Room' => 'Parenting Room',
+                            ])
+                            ->label('Family & Kids'),
+                    ]),
+
+                Forms\Components\Fieldset::make('Pets Essentials')
+                    ->schema([
+                        Forms\Components\CheckboxList::make('pets_essentials')
+                            ->options([
+                                'Pet-Friendly Rooms' => 'Pet-Friendly Rooms',
+                                'Pet Grooming Services' => 'Pet Grooming Services',
+                                'Pet Food Supplies' => 'Pet Food Supplies',
+                                'Pet Walking Areas' => 'Pet Walking Areas',
+                                'Veterinary Services' => 'Veterinary Services',
+                                'Pet Daycare' => 'Pet Daycare',
+                                'Pet Toys' => 'Pet Toys',
+                                'Pet Waste Bags' => 'Pet Waste Bags',
+                            ])
+                            ->label('Pets Essentials'),
+                    ]),
+
+
+
+
             ]);
     }
 
