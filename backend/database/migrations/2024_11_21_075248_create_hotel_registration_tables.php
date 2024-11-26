@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+  
     public function up(): void
     {
         Schema::create('hotel_regs', function (Blueprint $table) {
@@ -20,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Create hotel_details table
+      
         Schema::create('hotel_details', function (Blueprint $table) {
             $table->id();
             $table->string("property_name");
@@ -48,7 +46,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Create amenities table
+    
         Schema::create('amenities', function (Blueprint $table) {
             $table->id();
             $table->json("mandatory");
@@ -91,14 +89,14 @@ return new class extends Migration
         });
 
         // Update hotel_details table to link with amenities and room_regs
-        Schema::table('hotel_details', function (Blueprint $table) {
-            $table->unsignedBigInteger('amenities_id')->nullable();
-            $table->foreign('amenities_id')->references('id')->on('amenities')->onDelete('cascade');
+        // Schema::table('hotel_details', function (Blueprint $table) {
+        //     $table->unsignedBigInteger('amenities_id')->nullable();
+        //     $table->foreign('amenities_id')->references('id')->on('amenities')->onDelete('cascade');
 
-            // Assuming one room for each hotel, hence room_id as foreign key
-            $table->unsignedBigInteger('room_id')->nullable();
-            $table->foreign('room_id')->references('id')->on('room_regs')->onDelete('cascade');
-        });
+        //     // Assuming one room for each hotel, hence room_id as foreign key
+        //     $table->unsignedBigInteger('room_id')->nullable();
+        //     $table->foreign('room_id')->references('id')->on('room_regs')->onDelete('cascade');
+        // });
     }
 
     /**
