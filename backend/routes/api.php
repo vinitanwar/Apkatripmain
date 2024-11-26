@@ -85,3 +85,7 @@ Route::get('v1/cab/countries', [CountryControllerCab::class, 'getCountryList']);
 Route::prefix('v1')->group(function () {
     Route::apiResource('hotelreg', HotelRegistrationController::class);
 });
+
+Route::get("v1/test",function(){
+    return "okk";
+});
