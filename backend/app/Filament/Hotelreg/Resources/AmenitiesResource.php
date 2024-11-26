@@ -341,13 +341,6 @@ class AmenitiesResource extends Resource
                 TextColumn::make('indoor_activities'),
                 TextColumn::make('family_kids'),
                 TextColumn::make('pets_essentials'),
-
-
-
-
-
-
-
             ])
             ->filters([
                 //
