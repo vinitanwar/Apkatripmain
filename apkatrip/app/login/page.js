@@ -2,85 +2,86 @@
 import axios from 'axios';
 import React, { useState,useEffect } from 'react'
 import { FaEyeSlash,FaEye } from "react-icons/fa";
-import { apilink } from '../../Component/common';
+import { apilink } from '../Component/common';
+// import { apilink } from '../../Component/common';
 import { useRouter } from 'next/navigation';
 import { toast,Bounce } from 'react-toastify';
 
 const page = () => {
-
+const route=useRouter()
 const [showpassword,setshowpassword]=useState({login:false,signup:false})
 const [loginpage,setloginpage]=useState(false)
 const [sighupinfo,setsighupinfo]=useState({})
 const [logininfo,setlogininfo]=useState({})
 
-const route=useRouter()
-
-
-const handelSignup= async (e)=>{
-e.preventDefault()
-
-  const data=await axios.post(`${apilink}/hotelreq/signupHotel`,{name:`${sighupinfo.fname} ${sighupinfo.lname}`,email:sighupinfo.semail,password:sighupinfo.spassword})
-  if(data.data.success){
-    localStorage.setItem("hotelregid",JSON.stringify(data.data.info.id))
-    toast.success(data.data.message, {
-      position: "top-right",
-      autoClose: 5000,
-   
-      transition: Bounce,
-      })
-   route.push("/property-listing")
-  }
-  else{
-    setsighupinfo({...sighupinfo,semail:"",spassword:""})
-toast.error(data.data.message, {
-position: "top-right",
-autoClose: 5000,
-
-transition: Bounce,
-});
-  }
-
-
-}
 useEffect(()=>{
+const alreadylogin=JSON.parse(localStorage.getItem("apkatripUser"))
+if(alreadylogin){
+    route.push("/")
+}
+
+},[])
+
+
+
+const handelSignup=async()=>{
+const res=await axios.post(`${apilink}/user/signup`,{name:`${sighupinfo.fname} ${sighupinfo.lname}`,email:sighupinfo.semail,password:sighupinfo.spassword})
+if(res.data.success){
+localStorage.setItem("apkatripUser",JSON.stringify(res.data.info.id))
+toast.success(res.data.message, {
+    position: "top-right",
+    autoClose: 5000,
  
+    transition: Bounce,
+    })
+    route.push("/")
+}
+else{
 
-  const userIdCheck=JSON.parse(localStorage.getItem("hotelregid"))
-  if(userIdCheck){
-   
-    route.push("/property-listing")
-  }
- 
-  
+    setsighupinfo({...sighupinfo,semail:"",spassword:""})
+    toast.error(res.data.message, {
+    position: "top-right",
+    autoClose: 5000,
+    
+    transition: Bounce,
+    });
 
-
-  },[])
-
-
-const handelLogin =async(e)=>{
-  e.preventDefault()
-  const data=await axios.post(`${apilink}/hotelreq/loginhotel`,{email:logininfo.email,password:logininfo.password})
-  if(data.data.success){
-    localStorage.setItem("hotelregid",JSON.stringify(data.data.info.id))
-    toast.success(data.data.message, {
-      position: "top-right",
-      autoClose: 5000,
-   
-      transition: Bounce,
-      })
-   route.push("/property-listing")
-  }
-  else{
-    setlogininfo({email:"",password:"" })
-toast.error(data.data.message, {
-position: "top-right",
-autoClose: 5000,
-
-transition: Bounce,
-});
-  }
 
 }
+
+
+}
+
+const handelLogin =async()=>{
+    const res= await axios.post(`${apilink}/user/login`,{email:logininfo.email,password:logininfo.password})
+    if(res.data.success){
+        localStorage.setItem("apkatripUser",JSON.stringify(res.data.info.id))
+        toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+         
+            transition: Bounce,
+            })
+            route.push("/")
+
+    }
+    else{
+
+        toast.error(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+         
+            transition: Bounce,
+            })
+    }
+
+
+
+    }
+
+
+
+
   return (
     <div className='min-h-[70vh] bg-[#d4d4d485] flex justify-center items-center'>
   <div className='relative'>
@@ -106,7 +107,9 @@ transition: Bounce,
     Forgot password?
 </div>
 <div>
-    <button className='text-white bg-blue-600 px-4 py-1 rounded-lg font-semibold text-xl' onClick={handelLogin}>Login</button>
+    <button className='text-white bg-blue-600 px-4 py-1 rounded-lg font-semibold text-xl'
+     onClick={handelLogin}
+     >Login</button>
 </div>
 
 <div className='cursor-pointer' onClick={()=>setloginpage(true)} >
@@ -155,7 +158,9 @@ Don't have Account? Signup
     Forgot password?
 </div>
 <div className='text-center'>
-    <button className='text-white bg-blue-600 px-4 py-1 rounded-lg font-semibold text-xl' onClick={handelSignup}>Signup</button>
+    <button className='text-white bg-blue-600 px-4 py-1 rounded-lg font-semibold text-xl' 
+    onClick={handelSignup}
+    >Signup</button>
 </div>
 
 <div className='cursor-pointer text-center' onClick={()=>setloginpage(false)} >

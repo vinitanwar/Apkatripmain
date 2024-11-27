@@ -85,7 +85,17 @@ Route::get('v1/cab/countries', [CountryControllerCab::class, 'getCountryList']);
 Route::prefix('v1')->group(function () {
     Route::apiResource('hotelreg', HotelRegistrationController::class);
 });
+use App\Http\Controllers\HotelRegesController;
 
-Route::get("v1/test",function(){
-    return "okk";
-});
+Route::post("v1/test",[HotelRegesController::class,"getHotelUser"]);
+Route::post("v1/hotelreq/signupHotel",[HotelRegesController::class,"signupHotel"]);
+Route::post("v1/hotelreq/loginhotel",[HotelRegesController::class,"loginhotel"]);
+
+
+
+use  App\Http\Controllers\SiteUser;
+
+Route::post("v1/user/signup",[SiteUser::class,"signupUser"]);
+Route::post("v1/user/login",[SiteUser::class,"loginUser"]);
+
+
