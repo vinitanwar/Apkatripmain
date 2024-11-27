@@ -1,13 +1,86 @@
 "use client"
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useState,useEffect } from 'react'
 import { FaEyeSlash,FaEye } from "react-icons/fa";
+import { apilink } from '../../Component/common';
+import { useRouter } from 'next/navigation';
+import { toast,Bounce } from 'react-toastify';
 
 const page = () => {
 
 const [showpassword,setshowpassword]=useState({login:false,signup:false})
-const [loginpage,setloginpage]=useState(true)
+const [loginpage,setloginpage]=useState(false)
+const [sighupinfo,setsighupinfo]=useState({})
+const [logininfo,setlogininfo]=useState({})
+
+const route=useRouter()
 
 
+const handelSignup= async (e)=>{
+e.preventDefault()
+
+  const data=await axios.post(`${apilink}/hotelreq/signupHotel`,{name:`${sighupinfo.fname} ${sighupinfo.lname}`,email:sighupinfo.semail,password:sighupinfo.spassword})
+  if(data.data.success){
+    localStorage.setItem("hotelregid",JSON.stringify(data.data.info.id))
+    toast.success(data.data.message, {
+      position: "top-right",
+      autoClose: 5000,
+   
+      transition: Bounce,
+      })
+   route.push("/property-listing")
+  }
+  else{
+    setsighupinfo({...sighupinfo,semail:"",spassword:""})
+toast.error(data.data.message, {
+position: "top-right",
+autoClose: 5000,
+
+transition: Bounce,
+});
+  }
+
+
+}
+useEffect(()=>{
+ 
+
+  const userIdCheck=JSON.parse(localStorage.getItem("hotelregid"))
+  if(userIdCheck){
+   
+    route.push("/property-listing")
+  }
+ 
+  
+
+
+  },[])
+
+
+const handelLogin =async(e)=>{
+  e.preventDefault()
+  const data=await axios.post(`${apilink}/hotelreq/loginhotel`,{email:logininfo.email,password:logininfo.password})
+  if(data.data.success){
+    localStorage.setItem("hotelregid",JSON.stringify(data.data.info.id))
+    toast.success(data.data.message, {
+      position: "top-right",
+      autoClose: 5000,
+   
+      transition: Bounce,
+      })
+   route.push("/property-listing")
+  }
+  else{
+    setlogininfo({email:"",password:"" })
+toast.error(data.data.message, {
+position: "top-right",
+autoClose: 5000,
+
+transition: Bounce,
+});
+  }
+
+}
   return (
     <div className='min-h-[70vh] bg-[#d4d4d485] flex justify-center items-center'>
   <div className='relative'>
@@ -16,13 +89,13 @@ const [loginpage,setloginpage]=useState(true)
 
 <div className='text-[#4B97F0] font-bold'>  <span className='text-orange-600'>Welcome </span> to  Apka Trip  </div>
 <div className='w-full flex flex-col gap-1'>
-<label htmlFor="number" >Mobile number</label>
-<input type="text" id='number' placeholder='Enter mobile number'  className='border p-1 px-2 rounded-md'/>
+<label htmlFor="email" >Email</label>
+<input type="email"  value={logininfo.email} id='email' placeholder='Enter Email' onChange={(e)=>setlogininfo({...logininfo,email:e.target.value})}  className='border p-1 px-2 rounded-md'/>
 </div>
 <div className='w-full flex flex-col gap-1'>
 <label htmlFor="password" >Password</label>
 <div className='w-full relative'>
-<input type={`${showpassword.login?"text":"password"}`} id='password' placeholder='Enter password' className='border p-1 px-2 rounded-md w-full' />
+<input type={`${showpassword.login?"text":"password"}`} value={logininfo.password}   onChange={(e)=>setlogininfo({...logininfo,password:e.target.value})} id='password' placeholder='Enter password' className='border p-1 px-2 rounded-md w-full' />
 <div className='absolute right-5 top-1.5 cursor-pointer text-xl font-semibold'onClick={()=>setshowpassword( { login:!showpassword.login,signup:false})}>
  { showpassword.login?<FaEye />:< FaEyeSlash />}
 </div>
@@ -33,7 +106,7 @@ const [loginpage,setloginpage]=useState(true)
     Forgot password?
 </div>
 <div>
-    <button className='text-white bg-blue-600 px-4 py-1 rounded-lg font-semibold text-xl'>Login</button>
+    <button className='text-white bg-blue-600 px-4 py-1 rounded-lg font-semibold text-xl' onClick={handelLogin}>Login</button>
 </div>
 
 <div className='cursor-pointer' onClick={()=>setloginpage(true)} >
@@ -55,23 +128,23 @@ Don't have Account? Signup
 <div className='md:w-full flex flex-col md:flex-row  md:gap-5' >
 <div className=' flex flex-col gap-1 w-full'>
 <label htmlFor="fname" >First Name</label>
-<input type="text" id='fname' placeholder='First name'  className='border p-1 px-2 rounded-md'/>
+<input type="text" id='fname' value={sighupinfo.fname} placeholder='First name' required  className='border p-1 px-2 rounded-md' onChange={(e)=>setsighupinfo({...sighupinfo,fname:e.target.value})}/>
 </div>
 <div className=' flex flex-col gap-1 md:w-full'>
 <label htmlFor="lname" >Last Name</label>
-<input type="text" id='lname' placeholder='Last name'  className='border p-1 px-2 rounded-md'/>
+<input type="text" id='lname' value={sighupinfo.lname}  placeholder='Last name' required  className='border p-1 px-2 rounded-md' onChange={(e)=>setsighupinfo({...sighupinfo,lname:e.target.value})}/>
 </div>
 
 
 </div>
 <div className='md:w-full flex flex-col gap-1'>
-<label htmlFor="snumber" >Mobile number</label>
-<input type="text" id='snumber' placeholder='Enter mobile number'  className='border p-1 px-2 rounded-md'/>
+<label htmlFor="semail" >Email</label>
+<input type="email" id='semail' value={sighupinfo.semail}  placeholder='Enter Email'required onChange={(e)=>setsighupinfo({...sighupinfo,semail:e.target.value})}  className='border p-1 px-2 rounded-md'/>
 </div>
 <div className='md:w-full flex flex-col gap-1'>
 <label htmlFor="spassword" >Password</label>
 <div className='w-full relative'>
-<input type={`${showpassword.signup?"text":"password"}`} id='spassword' placeholder='Enter password' className='border p-1 px-2 rounded-md w-full' />
+<input type={`${showpassword.signup?"text":"password"}`} value={sighupinfo.spassword}  id='spassword' placeholder='Enter password' className='border p-1 px-2 rounded-md w-full' required onChange={(e)=>setsighupinfo({...sighupinfo,spassword:e.target.value})} />
 <div className='absolute right-5 top-1.5 cursor-pointer text-xl font-semibold' onClick={()=>setshowpassword( { login:false,signup:!showpassword.signup})}>
  { showpassword.signup?<FaEye />:< FaEyeSlash />}
 </div>
@@ -82,7 +155,7 @@ Don't have Account? Signup
     Forgot password?
 </div>
 <div className='text-center'>
-    <button className='text-white bg-blue-600 px-4 py-1 rounded-lg font-semibold text-xl'>Login</button>
+    <button className='text-white bg-blue-600 px-4 py-1 rounded-lg font-semibold text-xl' onClick={handelSignup}>Signup</button>
 </div>
 
 <div className='cursor-pointer text-center' onClick={()=>setloginpage(false)} >

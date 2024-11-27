@@ -12,7 +12,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Navbar from "./AllComponent/Navbar";
 import Cookies from 'js-cookie';
-
+import UserLogin from "./AllComponent/UserLogin"
 
 const Topbar = () => {
 
@@ -20,16 +20,21 @@ const Topbar = () => {
 
   const [openDropdown, setOpenDropdown] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+const [userRegister,setUserRegister]=useState(false)
 
 
   const [selectedLang, setSelectedLang] = useState('en');
 
   useEffect(() => {
-    // Set the initial state from cookies (if available)
+ 
+    const alreadylogin=JSON.parse(localStorage.getItem("apkatripUser"))
+    if(alreadylogin){
+    setUserRegister(true)    
+    }
+
     const localeFromCookie = Cookies.get('locale');
     if (localeFromCookie) setSelectedLang(localeFromCookie);
-  }, []);
+    }, [ ]);
 
   const handleLanguageChange = (e) => {
     const newLang = e.target.value;
@@ -74,6 +79,13 @@ const Topbar = () => {
     }
   };
   const [activeTab, setActiveTab] = useState("signup");
+
+const handelLogout =()=>{
+  localStorage.clear("apkatripUser")
+  setOpenDropdown(null);
+}
+
+
 
   return (
     <div className="bg-white border-b py-2   relative md:sticky top-0 navbar-main lg:py-0 border-blue-100 px-4  md:px-8 lg:px-16 xl:px-20">
@@ -289,177 +301,24 @@ const Topbar = () => {
             </div>
           </div>
 
-          <div className=" md:flex items-center justify-center space-x-4 mt-1  hidden ">
-            <div
+          {!userRegister &&<div className=" md:flex items-center justify-center space-x-4 mt-1  hidden ">
+            <Link
+            href={"/login"}
               className="relative"
-              onMouseEnter={() => handleMouseEnter("signUp")}
             >
               <div className="bg-blue-500 text-white px-3 py-1 font-semibold rounded-full text-xs">
                 Login or Signup
               </div>
 
-              {openDropdown === "signUp" && (
-                <div
-                  className="absolute w-72 z-[999] top-full right-0 mt-2 bg-white text-black rounded-lg shadow-two"
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <div>
-                    <div
-                      className="flex items-center  border-b p-3"
-                      onClick={() => togglePopup(1)}
-                    >
-                      <span
-                        className="w-10 h-10 bg-[#f9f8fa] bg-center rounded-lg bg-no-repeat mr-2 custlog-roico"
-                        style={{ backgroundSize: "100%" }}
-                      ></span>
-                      <div>
-                        <span className="font-semibold text-xs">
-                          Customer Login
-                        </span>
-                        <span className="block text-sm font-semibold">
-                          Login & check bookings
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <Link
-                    href="/admin-login"
-                    className="flex items-center  border-b p-3"
-                  >
-                    <span
-                      className="w-10 h-10 bg-[#f9f8fa] bg-center rounded-lg bg-no-repeat mr-2 corplog-roico"
-                      style={{ backgroundSize: "100%" }}
-                    ></span>
-                    <div>
-                      <span className="font-semibold text-xs">Admin Login</span>
-                      <span className="block text-sm font-semibold">
-                        Login your admin account
-                      </span>
-                    </div>
-                  </Link>
+              
+            
+            </Link>
+          </div>}
 
-                  <Link href="/profile" className="flex items-center p-3">
-                    <span
-                      className="w-10 h-10 bg-[#f9f8fa] bg-center rounded-lg bg-no-repeat mr-2 mybooking-roico"
-                      style={{ backgroundSize: "100%" }}
-                    ></span>
-                    <div>
-                      <span className="font-semibold text-xs">My Booking</span>
-                      <span className="block text-sm font-semibold">
-                        Manage your bookings here
-                      </span>
-                    </div>
-                  </Link>
-                </div>
-              )}
-              {showPopup === 1 ? (
-                <div className="fixed inset-0 flex z-[9999] items-center justify-center bg-black bg-opacity-50">
-                  <div className="bg-white p-5 rounded-lg shadow-lg max-w-sm w-full">
-                    <div className="flex items-center mb-4 justify-between">
-                      <h2 className="text-lg font-bold">
-                        {activeTab === "signup" ? "Sign Up" : "Login"}
-                      </h2>
-                      <button className="text-sm" onClick={togglePopup}>
-                        <FaTimes />
-                      </button>
-                    </div>
-                    <div className="mb-4">
-                      <div className="flex border-b">
-                        <button
-                          className={`w-1/2 py-2 text-sm font-semibold ${
-                            activeTab === "signup"
-                              ? "border-b-2 border-blue-500"
-                              : ""
-                          }`}
-                          onClick={() => setActiveTab("signup")}
-                        >
-                          Sign Up
-                        </button>
-                        <button
-                          className={`w-1/2 py-2 text-sm font-semibold ${
-                            activeTab === "login"
-                              ? "border-b-2 border-blue-500"
-                              : ""
-                          }`}
-                          onClick={() => setActiveTab("login")}
-                        >
-                          Login
-                        </button>
-                      </div>
-                    </div>
-                    <form>
-                      {activeTab === "signup" ? (
-                        <>
-                          <div className="mb-4 ">
-                            <label className="block text-sm relative font-semibold mb-2">
-                              Email
-                              <FaEnvelope className="absolute right-3 top-10" />
-                            </label>
-                            <input
-                              type="email"
-                              className="w-full p-2 border rounded-md"
-                              placeholder="Enter your email"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label className="block text-sm font-semibold relative mb-2">
-                              Password
-                              <FaEyeDropper className="absolute right-3 top-10" />
-                            </label>
-                            <input
-                              type="password"
-                              className="w-full p-2 border rounded-md"
-                              placeholder="Enter your password"
-                            />
-                          </div>
-                          <button
-                            type="submit"
-                            className="w-full bg-blue-500 text-white py-2 rounded-md"
-                          >
-                            Sign Up
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          <div className="mb-4">
-                            <label className="block text-sm font-semibold relative mb-2">
-                              Email
-                              <FaEnvelope className="absolute right-3 top-10" />
-                            </label>
-                            <input
-                              type="email"
-                              className="w-full p-2 border rounded-md"
-                              placeholder="Enter your email"
-                            />
-                          </div>
-                          <div className="mb-4">
-                            <label className="block text-sm font-semibold relative mb-2">
-                              Password
-                              <FaEyeDropper className="absolute right-3 top-10" />
-                            </label>
-                            <input
-                              type="password"
-                              className="w-full p-2 border rounded-md"
-                              placeholder="Enter your password"
-                            />
-                          </div>
-                          <button
-                            type="submit"
-                            className="w-full bg-blue-500 text-white py-2 rounded-md"
-                          >
-                            Login
-                          </button>
-                        </>
-                      )}
-                    </form>
-                  </div>
-                </div>
-              ) : (
-                ""
-              )}
-            </div>
-          </div>
+
+          
         </div>
+        { userRegister &&<button className="p-1 px-4 bg-blue-600 text-white font-semibold rounded-lg cursor-pointer" onClick={handelLogout}>logout</button>}
       </div>
    
     </div>
