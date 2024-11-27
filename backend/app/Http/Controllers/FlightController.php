@@ -19,7 +19,7 @@ class FlightController extends Controller
     {   
       
         $token = $this->apiService->getToken();
-
+        
         $validatedData = $request->validate([
             "EndUserIp"=>'required',
             'AdultCount' => 'required|integer',
@@ -75,8 +75,7 @@ class FlightController extends Controller
 
         }
     
-        //  Return the search response
-        return $validatedData->json();
+        return $response;
     }
 
 

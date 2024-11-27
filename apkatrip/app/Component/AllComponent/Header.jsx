@@ -218,19 +218,7 @@ useEffect(() => {
     setSelectedOption(option);
     setIsVisible(true);
 
-    // switch (option) {
-    //   case "from":
-    //     handleFromClick();
-    //     break;
-    //   case "to":
-    //     handleToClick();
-    //     break;
-    //   case "traveller":
-    //     handleToClick(); // Add the appropriate handler for traveller
-    //     break;
-    //   default:
-    //     
-    // }
+
   };
 
 
@@ -264,11 +252,10 @@ useEffect(() => {
 
 
     const date = new Date(selected);
-   
-    const offset = 6*60*55*1000;
     
-    const localDate = new Date(date.getTime() + offset);
-    const localFormattedDate = localDate.toISOString().slice(0, 19); 
+   
+    let localFormattedDate = date.toISOString().slice(0, 19); 
+        localFormattedDate = localFormattedDate.split('T')[0] + 'T00:00:00'
     let searchUrl;
     if(JourneyType==1){    searchUrl = `/flightto=${fromCity.iata}&from=${toCity.iata}&date=${localFormattedDate}&prfdate=${localFormattedDate}&JourneyType=${JourneyType}&adultcount=${adultCount}&childCount=${childCount}&infantCount=${infantCount}&selectedClass=${selectedClass}`;
   }

@@ -53,11 +53,11 @@ return response()->json([
 
 public function loginUser(Request $request){
 $validate =$request->validate([
-    "email"=>"required",
+    "number"=>"required",
     "password"=>"required|min:6",
 ]);
 
-$verifyemail=apkatripuser::where("email",$validate["email"])->first();
+$verifyemail=apkatripuser::where("number",$validate["number"])->first();
 
 
 
@@ -65,6 +65,7 @@ if(!$verifyemail){
     return response()->json(["message"=>"Enter valide data","success"=>false]);
 
 }
+
 $verifypass= Hash::check($validate["password"], $verifyemail->password);
 if(!$verifypass){
     return response()->json(["message"=>"Enter valide data","success"=>false]);

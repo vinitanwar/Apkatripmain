@@ -15,7 +15,7 @@ class apkatripuser extends Model
     protected $table="apkatripusers";
 protected $fillable=[
 "name",
-"email",
+"number",
 "password",
 "others",
 ];

@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('apkatripusers', function (Blueprint $table) {
+        Schema::create('otps', function (Blueprint $table) {
             $table->id();
-            $table->string("name",80);
-            $table->string("number")->unique();
-            $table->string("password");
-            $table->string("others")->nullable();
+            $table->string("otp");
+            $table->string("number");
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('apkatripusers');
+        Schema::dropIfExists('otps');
     }
 };
