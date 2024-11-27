@@ -53,8 +53,9 @@ class FlightController extends Controller
                     "Destination" =>$validatedData['Destination'],
                     "FlightCabinClass" =>$validatedData['FlightCabinClass'],     
                     "PreferredDepartureTime" =>$validatedData['PreferredDepartureTime'],        
-                    "PreferredArrivalTime" =>$validatedData['PreferredDepartureTime']                    // "PreferredDepartureTime" =>$validatedData['PreferredDepartureTime'],
-                    // "PreferredArrivalTime" =>$validatedData['PreferredDepartureTime']
+                    "PreferredArrivalTime" =>$validatedData['PreferredDepartureTime']    
+                 // "PreferredDepartureTime" =>$validatedData['PreferredDepartureTime'],
+                 // "PreferredArrivalTime" =>$validatedData['PreferredDepartureTime']
                 ]
             ],
             "Sources" => null
