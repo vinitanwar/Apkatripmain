@@ -21,17 +21,6 @@ return new class extends Migration
             $table->timestamps(); 
         });
 
-        // Schema::create('hotels', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string("name");
-        //     $table->string("phone")->unique();
-        //     $table->string("password");
-        //     $table->string("slug");
-        //     $table->boolean("useractive")->default(true);
-        //     $table->timestamps();
-        // });
-
-
         Schema::create('hotel_details', function (Blueprint $table) {
             $table->id();
             $table->string('property_name');
