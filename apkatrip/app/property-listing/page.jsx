@@ -45,12 +45,13 @@ const [otp, setOtp] = useState(['', '', '', '', '', '']);
   };
 
   const Otp = (e) => {
+
 setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-  const info=await axios.post(`${apilink}/hotelreq/otp`,{phone:formData.phone})
+  const info=await axios.post(`${apilink}/hotelreq/otp`,{phone:formData.phone,email:formData.email})
     if(info.data.success){
   toast.success(info.data.message, {
     position: "top-right",
@@ -86,9 +87,25 @@ const handelnumber =(e)=>{
 const handelotpverify=async()=>{
  const newformentotp= otp.join("")
 
- const info=await axios.post(`${apilink}/hotelreq/signupHotel`,{phone:formData.phone,name:`${formData.firstName} ${formData.lastName}`,otp:newformentotp,password:formData.password})
+ const info=await axios.post(`${apilink}/hotelreq/signupHotel`,{email:formData.email,phone:formData.phone,name:`${formData.firstName} ${formData.lastName}`,otp:newformentotp,password:formData.password})
    
- console.log(info.data)
+ if(info.data.success){
+  toast.success(info.data.message, {
+    position: "top-right",
+    autoClose: 5000,
+
+    transition: Bounce,
+  });
+  setSendOtp(false)
+}
+else{
+  toast.error(info.data.message, {
+    position: "top-right",
+    autoClose: 5000,
+
+    transition: Bounce,
+  });
+}
 }
 
   return (<>
@@ -161,6 +178,32 @@ const handelotpverify=async()=>{
             </div>
           </div>
 
+
+{/* email  */}
+
+<div className="relative">
+            <label htmlFor="email" className="text-sm font-medium text-gray-600">Email</label>
+            <div className="flex items-center border-b-2 border-gray-300 focus-within:border-blue-500 mt-2">
+              <FaUser className="text-gray-500 mr-3" />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={Otp}
+                required
+                className="w-full px-3 py-2 text-gray-700 placeholder-gray-400 focus:outline-none bg-transparent"
+                placeholder="Enter Email "
+              />
+            </div>
+          </div>
+
+
+
+
+
+
+
           {/* Phone */}
           <div className="relative">
             <label htmlFor="phone" className="text-sm font-medium text-gray-600">Phone</label>
@@ -221,3 +264,7 @@ const handelotpverify=async()=>{
     </>
   );
 }
+
+
+
+
