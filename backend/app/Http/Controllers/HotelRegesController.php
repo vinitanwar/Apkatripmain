@@ -14,13 +14,17 @@ class HotelRegesController extends Controller
 
  public function sendHotelOtp(Request $req){
     $validated=$req->validate([
-        "phone"=>"required"
+        "phone"=>"required",
+        "email"=>"required"
     ]);
  $allreadyhotel=Hotel::where("phone",$validated["phone"])->first();
 if($allreadyhotel){
     return response()->json(["message"=>"Number allready exist","success"=>false]);
 }
-
+$allreadyemail=Hotel::where("email",$validated["email"])->first();
+if($allreadyemail){
+    return response()->json(["message"=>"Email allready exist","success"=>false]);
+}
 $otpsend = Http::post('https://otp-verify-service.onrender.com/send-otp', [
     'phone' => $validated['phone'],
 ]);
@@ -34,12 +38,13 @@ public function  sendVerify(Request $req){
         'name'=>'required|string|max:25',
         'phone'=>'required',
         "otp"=> "required",
+        "email"=>"required",
         'password'=>'required|min:6',
          ]);
 
 
          $otpsend = Http::post('https://otp-verify-service.onrender.com/verify-otp', [
-            'phone' => $validated['number'],
+            'phone' => $validated['phone'],
             "code"=>$validated["otp"]
         ]);
         if(!$otpsend["success"]){
@@ -56,6 +61,7 @@ public function  sendVerify(Request $req){
             'name' => $validated["name"],
             'phone' => $validated["phone"],
             "slug"=>$hashedSlug,
+            "email"=>$validated["email"],
             'password' => $validated["password"]]);
              
     return  response()->json(["message"=>"Signup Success","success"=>true,"info"=>$newuser],201);

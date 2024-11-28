@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string("name",80);
             $table->string("number")->unique();
             $table->string("password");
+            $table->string("email")->unique();
+            $table->boolean("useractive")->default(true);
             $table->string("others")->nullable();
             $table->timestamps();
         });
