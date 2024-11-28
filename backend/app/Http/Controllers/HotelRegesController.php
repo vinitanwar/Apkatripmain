@@ -29,20 +29,20 @@ class HotelRegesController extends Controller
     {
         $validated = $req->validate([
             'name' => 'required|string|max:25',
-            'email' => 'required',
+            'phone' => 'required',
             'password' => 'required|min:6',
         ]);
 
-        $Alreadyuser = hotelreguser::where("email", $validated['email'])->first();
+        $Alreadyuser = hotelreguser::where("phone", $validated['phone'])->first();
 
         if ($Alreadyuser) {
-            return response()->json(["message" => "email Allready exist", "success" => false]);
+            return response()->json(["message" => "Phone Allready exist", "success" => false]);
         }
 
 
         $newuser = hotelreguser::create([
             'name' => $validated["name"],
-            'email' => $validated["email"],
+            'phone' => $validated["phone"],
             'password' => $validated["password"],
 
         ]);
@@ -59,11 +59,11 @@ class HotelRegesController extends Controller
     public function loginhotel(Request $req)
     {
         $validated = $req->validate([
-            "email" => "required",
+            "phone" => "required",
             "password" => "required|min:6"
         ]);
 
-        $userFind = hotelreguser::where("email", $validated['email'])->first();
+        $userFind = hotelreguser::where("phone", $validated['phone'])->first();
 
         if (!$userFind) {
             return response()->json([

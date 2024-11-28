@@ -9,4 +9,10 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateHoteldetails extends CreateRecord
 {
     protected static string $resource = HoteldetailsResource::class;
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['hotel_id'] = auth()->user()->id;
+        return $data;
+    }
 }

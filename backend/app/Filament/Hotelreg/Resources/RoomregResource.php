@@ -18,55 +18,49 @@ use Filament\Tables\Columns\ImageColumn;
 
 
 
-
-
-
-
 class RoomregResource extends Resource
 {
     protected static ?string $model = Roomreg::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function query(): Builder
+    {
+        return Roomreg::query()->where('hotel_id', auth()->user()->hotel_id);
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                // Room Type Field
                 Forms\Components\TextInput::make('room_type')
                     ->required()
                     ->label('Room Type'),
 
-                // Room Size Field
                 Forms\Components\TextInput::make('size')
                     ->required()
                     ->label('Room Size'),
 
-                // Bed Type Field
                 Forms\Components\TextInput::make('bed_type')
                     ->required()
                     ->label('Bed Type'),
 
-                // Price Field
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->label('Price')
                     ->numeric(),
 
-                // Max Occupancy Field
                 Forms\Components\TextInput::make('max_occupancy')
                     ->required()
                     ->label('Max Occupancy')
                     ->numeric(),
 
-                // Room Availability (String)
                 Forms\Components\TextInput::make('room_ava')
                     ->required()
                     ->label('Room Availability')
                     ->placeholder('e.g., Available, Booked, Under Maintenance')
                     ->maxLength(100),
 
-                // Room Features (Multi-Select for Amenities)
                 Forms\Components\Select::make('features')
                     ->multiple()
                     ->options([
@@ -77,22 +71,18 @@ class RoomregResource extends Resource
                         'Gym' => 'Gym',
                         'Parking' => 'Parking',
                         'Spa' => 'Spa',
-                        // Add more features as needed
                     ])
                     ->label('Room Features'),
 
-                // Room Description (TextArea for multiline text)
                 Forms\Components\TextArea::make('room_des')
                     ->required()
                     ->label('Room Description')
                     ->placeholder('Describe the room in detail'),
 
-                // Additional Services (TextArea)
                 Forms\Components\TextArea::make('additional_serv')
                     ->label('Additional Services')
                     ->placeholder('Optional services offered with the room'),
 
-                // Room Images (Multiple file upload)0
                 Forms\Components\FileUpload::make('image')
                     ->multiple()
                     ->image()
@@ -107,7 +97,6 @@ class RoomregResource extends Resource
     {
         return $table
             ->columns([
-                //
                 ImageColumn::make('image'),
                 TextColumn::make('room_type'),
                 TextColumn::make('size'),
@@ -116,13 +105,11 @@ class RoomregResource extends Resource
                 TextColumn::make('max_occupancy'),
                 TextColumn::make('room_ava'),
                 TextColumn::make('features'),
-            
+
                 TextColumn::make('room_des'),
                 TextColumn::make('additional_serv'),
-                  ])
-            ->filters([
-                //
             ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -135,9 +122,7 @@ class RoomregResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

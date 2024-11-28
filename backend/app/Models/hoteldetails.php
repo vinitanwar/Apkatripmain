@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class hoteldetails extends Model
 {
     use HasFactory;
 
+    protected $table = 'hotel_details';
 
-    protected $table= 'hotel_details';
-    
-    protected $fillable=[
+    protected $fillable = [
         'property_name',
         'hotel_des',
         'hotel_img',
@@ -32,22 +32,32 @@ class hoteldetails extends Model
         'state',
         'city',
         'terms',
-        'amenities_id',
+        'hotel_id',
+    ];
 
+    protected $casts = [
+        'hotel_img' => 'array',
     ];
 
     protected $dates = [
-        'built_year', 
-        'accepting_since'
+        'built_year',
+        'accepting_since',
     ];
-    public function amenities()
+
+    /**
+     * Relationship with Hotel model.
+     */
+    public function hotel()
     {
-        return $this->belongsTo(Amenity::class, 'amenities_id');
+        return $this->belongsTo(Hotel::class, 'hotel_id');
     }
 
-    
-    protected $casts = [
-        'hotel_img' => 'array',  
-    ];
-
+    protected static function booted()
+    {
+        static::addGlobalScope('hotel', function (Builder $builder) {
+            if (auth()->check()) {
+                $builder->where('hotel_id', auth()->user()->id);
+            }
+        });
+    }
 }

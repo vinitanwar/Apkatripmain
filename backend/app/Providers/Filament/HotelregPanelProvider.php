@@ -3,6 +3,8 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Auth\HotelLogin;
+use App\Models\Hotel;
+use App\Policies\HotelPolicy;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -18,16 +20,20 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Illuminate\Support\Facades\Gate;
 
 class HotelregPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        // Register the HotelPolicy for the actions
+        Gate::policy(Hotel::class, HotelPolicy::class);
+
         return $panel
             ->id('hotelreg')
             ->path('hotelreg')
             ->login()
-            ->registration()
+            // ->registration()
             ->colors([
                 'danger' => Color::Red,
                 'gray' => Color::Slate,
@@ -39,11 +45,11 @@ class HotelregPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Hotelreg/Resources'), for: 'App\\Filament\\Hotelreg\\Resources')
             ->discoverPages(in: app_path('Filament/Hotelreg/Pages'), for: 'App\\Filament\\Hotelreg\\Pages')
             ->pages([
-                Pages\Dashboard::class,
+                Pages\Dashboard::class,  // Add more pages as needed
             ])
             ->discoverWidgets(in: app_path('Filament/Hotelreg/Widgets'), for: 'App\\Filament\\Hotelreg\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class, 
+                Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
@@ -61,6 +67,5 @@ class HotelregPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->authGuard('hotels');
-            
     }
 }

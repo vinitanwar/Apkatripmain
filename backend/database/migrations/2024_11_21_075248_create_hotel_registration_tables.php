@@ -9,28 +9,28 @@ return new class extends Migration
 
     public function up(): void
     {
-        // Schema::create('hotels', function (Blueprint $table) {
-        //     $table->id(); 
-        //     $table->string('name'); 
-        //     $table->string('email')->unique(); 
-        //     $table->string('password'); 
-        //     $table->boolean('useractive')->default(true); 
-        //     $table->string('address')->nullable(); 
-        //     $table->string('phone')->nullable(); 
-        //     $table->timestamp('email_verified_at')->nullable(); 
-        //     $table->string('remember_token', 100)->nullable(); 
-        //     $table->timestamps(); 
-        // });
-
         Schema::create('hotels', function (Blueprint $table) {
-            $table->id();
-            $table->string("name");
-            $table->string("phone")->unique();
-            $table->string("password");
-            $table->string("slug");
-            $table->boolean("useractive")->default(true);
-            $table->timestamps();
+            $table->id(); 
+            $table->string('name'); 
+            $table->string('email')->unique(); 
+            $table->string('password'); 
+            $table->string('address')->nullable(); 
+            $table->string('phone')->nullable(); 
+            $table->boolean('useractive')->default(true); 
+            $table->timestamp('email_verified_at')->nullable(); 
+            $table->string('remember_token', 100)->nullable(); 
+            $table->timestamps(); 
         });
+
+        // Schema::create('hotels', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string("name");
+        //     $table->string("phone")->unique();
+        //     $table->string("password");
+        //     $table->string("slug");
+        //     $table->boolean("useractive")->default(true);
+        //     $table->timestamps();
+        // });
 
 
         Schema::create('hotel_details', function (Blueprint $table) {
@@ -125,6 +125,6 @@ return new class extends Migration
         Schema::dropIfExists('room_regs');
         Schema::dropIfExists('amenities');
         Schema::dropIfExists('hotel_details');
-        Schema::dropIfExists('hotel_regs');
+        Schema::dropIfExists('hotels');
     }
 };

@@ -10,46 +10,48 @@ class Hotel extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
     protected $table = 'hotels';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
+        'email',
+        'password',
+        'address',  
         'phone', 
-        'password', 
-        'slug', 
         'useractive',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @return array<string, string>
+     * Relationship with HotelDetails model.
      */
-    protected function casts(): array
+    public function hotelDetails()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasOne(hoteldetails::class, 'hotel_id');
+    }
+
+    /**
+     * Relationship with RoomReg model.
+     */
+    public function roomRegs()
+    {
+        return $this->hasMany(roomreg::class, 'hotel_id');
+    }
+
+    /**
+     * Relationship with Amenities model.
+     */
+    public function amenities()
+    {
+        return $this->hasOne(amenities::class, 'hotel_id');
     }
 }

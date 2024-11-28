@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class amenities extends Model
 {
     use HasFactory;
+
+    protected $table = 'amenities';
+
     protected $fillable = [
         'mandatory',
         'basic_facilities',
@@ -24,8 +29,10 @@ class amenities extends Model
         'payment_services',
         'indoor_activities',
         'family_kids',
-        'pets_essentials'
+        'pets_essentials',
+        'hotel_id',
     ];
+
     protected $casts = [
         'mandatory' => 'array',
         'basic_facilities' => 'array',
@@ -42,6 +49,23 @@ class amenities extends Model
         'payment_services' => 'array',
         'indoor_activities' => 'array',
         'family_kids' => 'array',
-        'pets_essentials' => 'array'
+        'pets_essentials' => 'array',
     ];
+
+    /**
+     * Relationship with Hotel model.
+     */
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class, 'hotel_id');
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope('hotel', function (Builder $builder) {
+            if (auth()->check()) {
+                $builder->where('hotel_id', auth()->user()->id);
+            }
+        });
+    }
 }
