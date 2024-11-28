@@ -3,17 +3,83 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\hotelreguser;
+use App\Models\Hotel;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+
 
 class HotelRegesController extends Controller
 {
     //
 
+ public function sendHotelOtp(Request $req){
+    $validated=$req->validate([
+        "phone"=>"required"
+    ]);
+ $allreadyhotel=Hotel::where("phone",$validated["phone"])->first();
+if($allreadyhotel){
+    return response()->json(["message"=>"Number allready exist","success"=>false]);
+}
+
+$otpsend = Http::post('https://otp-verify-service.onrender.com/send-otp', [
+    'phone' => $validated['phone'],
+]);
+
+return $otpsend;
+}
+
+
+public function  sendVerify(Request $req){
+    $validated = $req->validate([
+        'name'=>'required|string|max:25',
+        'phone'=>'required',
+        "otp"=> "required",
+        'password'=>'required|min:6',
+         ]);
+
+
+         $otpsend = Http::post('https://otp-verify-service.onrender.com/verify-otp', [
+            'phone' => $validated['number'],
+            "code"=>$validated["otp"]
+        ]);
+        if(!$otpsend["success"]){
+            return response()->json(["message"=>"Enter valid otp","success"=>false]);
+        }
+        $datePart = date('Y-m-d'); 
+
+       
+        $slug = $datePart . '-' . $validated['name'];
+        $hashedSlug = Hash::make($slug);
+
+
+        $newuser=Hotel::create([
+            'name' => $validated["name"],
+            'phone' => $validated["phone"],
+            "slug"=>$hashedSlug,
+            'password' => $validated["password"]]);
+             
+    return  response()->json(["message"=>"Signup Success","success"=>true,"info"=>$newuser],201);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function getHotelUser(Request $Req)
     {
 
-        $user = hotelreguser::find($Req->id);
+     $user=hotelreguser::find($Req->id);
 
         if ($user) {
             return $user;
@@ -25,25 +91,27 @@ class HotelRegesController extends Controller
 
 
 
-    public function signupHotel(Request $req)
-    {
-        $validated = $req->validate([
-            'name' => 'required|string|max:25',
-            'email' => 'required',
-            'password' => 'required|min:6',
-        ]);
 
-        $Alreadyuser = hotelreguser::where("email", $validated['email'])->first();
+
+    public function signupHotel(Request $req){
+    $validated = $req->validate([
+'name'=>'required|string|max:25',
+'email'=>'required',
+'password'=>'required|min:6',
+ ]);
+
+    $Alreadyuser=hotelreguser::where("email",$validated['email'])->first();
 
         if ($Alreadyuser) {
             return response()->json(["message" => "email Allready exist", "success" => false]);
         }
 
 
-        $newuser = hotelreguser::create([
-            'name' => $validated["name"],
-            'email' => $validated["email"],
-            'password' => $validated["password"],
+      
+    $newuser=hotelreguser::create([
+        'name' => $validated["name"],
+        'email' => $validated["email"],
+        'password' => $validated["password"],
 
         ]);
 
@@ -56,14 +124,13 @@ class HotelRegesController extends Controller
 
 
 
-    public function loginhotel(Request $req)
-    {
-        $validated = $req->validate([
-            "email" => "required",
-            "password" => "required|min:6"
-        ]);
+ public function loginhotel(Request $req){
+$validated=$req->validate([
+    "email"=>"required",
+    "password"=>"required|min:6"
+]);
 
-        $userFind = hotelreguser::where("email", $validated['email'])->first();
+$userFind = hotelreguser::where("email", $validated['email'])->first();
 
         if (!$userFind) {
             return response()->json([

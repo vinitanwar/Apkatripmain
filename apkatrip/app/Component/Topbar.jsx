@@ -6,7 +6,14 @@ import {
   FaEnvelope,
   FaEyeDropper,
   FaTimes,
+  FaHistory ,
+  FaUserCircle
 } from "react-icons/fa";
+import { RiProfileLine } from "react-icons/ri";
+import { SiSpringsecurity } from "react-icons/si";
+import { FcAbout } from "react-icons/fc";
+
+
 import Sidebar from "./Sidebar";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -79,10 +86,11 @@ const [userRegister,setUserRegister]=useState(false)
     }
   };
   const [activeTab, setActiveTab] = useState("signup");
-
+const [showuser,setshowuser]=useState(false)
 const handelLogout =()=>{
   localStorage.clear("apkatripUser")
   setOpenDropdown(null);
+  setshowuser(!showuser)
 }
 
 
@@ -318,7 +326,23 @@ const handelLogout =()=>{
 
           
         </div>
-        { userRegister &&<button className="p-1 px-4 bg-blue-600 text-white font-semibold rounded-lg cursor-pointer" onClick={handelLogout}>logout</button>}
+        <div className="relative">
+{ userRegister && <><button className=" text-4xl  text-blue-600  font-semibold  cursor-pointer" onClick={()=>setshowuser(!showuser)}><FaUserCircle /> </button>
+          
+
+     <div className={`absolute top-full right-0  bg-white flex flex-col gap-3 p-5 text-lg  ${showuser?"scale-100":"scale-0"} duration-200 origin-top-right`}>
+        <div className="px-3 border-b-2 hover:border-blue-600 shadow-md hover:shadow-lg cursor-pointer hover:translate-x-2 duration-200 flex gap-3 items-center"> <RiProfileLine />Profile</div>
+        <div className="px-3 border-b-2 hover:border-blue-600 shadow-md hover:shadow-lg cursor-pointer hover:translate-x-2 duration-200 flex gap-3 items-center"> <SiSpringsecurity /> Security</div>
+
+        <div className="px-3 border-b-2 hover:border-blue-600 shadow-md hover:shadow-lg cursor-pointer hover:translate-x-2 duration-200 flex gap-3 items-center"><FcAbout/> About</div>
+        <div className="px-3 border-b-2 hover:border-blue-600 shadow-md hover:shadow-lg cursor-pointer hover:translate-x-2 duration-200 flex gap-3 items-center"><FaHistory /> History</div>
+       <button className="p-1 px-2 bg-blue-600 text-white font-bold rounded-md" onClick={handelLogout}>Logout</button>
+  
+</div>
+
+     </>
+        }
+        </div>
       </div>
    
     </div>
