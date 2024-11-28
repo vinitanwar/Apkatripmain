@@ -88,8 +88,18 @@ Route::prefix('v1')->group(function () {
 use App\Http\Controllers\HotelRegesController;
 
 Route::post("v1/test",[HotelRegesController::class,"getHotelUser"]);
-Route::post("v1/hotelreq/signupHotel",[HotelRegesController::class,"signupHotel"]);
+Route::post("v1/hotelreq/signupHotel",[HotelRegesController::class,"sendVerify"]);
+Route::post("v1/hotelreq/otp",[HotelRegesController::class,"sendHotelOtp"]);
+
 Route::post("v1/hotelreq/loginhotel",[HotelRegesController::class,"loginhotel"]);
+
+
+use  App\Http\Controllers\OtpController;
+
+Route::post("v1/user/sendotp",[OtpController::class,"sendOtp"]);
+Route::post("v1/user/verifyotp",[OtpController::class,"verifyOtp"]);
+Route::post("v1/user/forgotPassword",[OtpController::class,"forgotPasswordSendotp"]);
+
 
 
 

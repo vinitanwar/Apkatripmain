@@ -19,15 +19,15 @@ const LayoutCompo =({children}) => {
   return (
     <>
     
-     { path !="/property-listing/" &&  <>  <Topbar />
+      <>  <Topbar />
 
 <div className="block md:hidden">
   <Navbar />
-</div> </>}
+</div> </>
 {children}
 
 
-{ path !="/property-listing/" &&  <Footer />}
+ <Footer />
   
     
     </>
