@@ -24,10 +24,9 @@ class Hotel extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
-        'password',
-        'address',  
         'phone', 
+        'password', 
+        'slug', 
         'useractive',
     ];
 

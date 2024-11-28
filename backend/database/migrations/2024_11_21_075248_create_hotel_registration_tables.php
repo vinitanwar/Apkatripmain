@@ -6,19 +6,33 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-  
+
     public function up(): void
     {
-        Schema::create('hotel_regs', function (Blueprint $table) {
+        // Schema::create('hotels', function (Blueprint $table) {
+        //     $table->id(); 
+        //     $table->string('name'); 
+        //     $table->string('email')->unique(); 
+        //     $table->string('password'); 
+        //     $table->boolean('useractive')->default(true); 
+        //     $table->string('address')->nullable(); 
+        //     $table->string('phone')->nullable(); 
+        //     $table->timestamp('email_verified_at')->nullable(); 
+        //     $table->string('remember_token', 100)->nullable(); 
+        //     $table->timestamps(); 
+        // });
+
+        Schema::create('hotels', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("email")->unique();
+            $table->string("phone")->unique();
             $table->string("password");
+            $table->string("slug");
             $table->boolean("useractive")->default(true);
             $table->timestamps();
         });
 
-      
+
         Schema::create('hotel_details', function (Blueprint $table) {
             $table->id();
             $table->string("property_name");
@@ -31,7 +45,7 @@ return new class extends Migration
             $table->string("number");
             $table->string("land_line");
             $table->string("address");
-            $table->decimal('lat', 10, 6)->nullable(); 
+            $table->decimal('lat', 10, 6)->nullable();
             $table->decimal('lang', 10, 6)->nullable();
             $table->string("house_no");
             $table->json('social_media')->nullable();
@@ -42,11 +56,11 @@ return new class extends Migration
             $table->string("city");
             $table->text("terms");
             $table->unsignedBigInteger('hotel_id')->nullable();
-            $table->foreign('hotel_id')->references('id')->on('hotel_regs')->onDelete('cascade');
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
             $table->timestamps();
         });
 
-    
+
         Schema::create('amenities', function (Blueprint $table) {
             $table->id();
             $table->json("mandatory");
@@ -66,7 +80,7 @@ return new class extends Migration
             $table->json("family_kids");
             $table->json("pets_essentials");
             $table->unsignedBigInteger('hotel_id')->nullable();
-            $table->foreign('hotel_id')->references('id')->on('hotel_regs')->onDelete('cascade');
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
             $table->timestamps();
         });
 
@@ -84,7 +98,7 @@ return new class extends Migration
             $table->text('room_des');
             $table->json('additional_serv');
             $table->unsignedBigInteger('hotel_id')->nullable();
-            $table->foreign('hotel_id')->references('id')->on('hotel_regs')->onDelete('cascade');
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
             $table->timestamps();
         });
 
