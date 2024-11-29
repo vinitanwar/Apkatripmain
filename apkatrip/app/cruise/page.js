@@ -12,73 +12,84 @@ import {
   FaCalendarAlt,
 } from "react-icons/fa";
 import { IoMdArrowDropright } from "react-icons/io";
-import { url } from "inspector";
+import { FaRupeeSign } from "react-icons/fa";
 
 const page = () => {
   const topDestination = [
     {
-      imgSrc:"/Images/cruiseNew.webp",
-      heading: "Unparalleled Scenic Views",
+      imgSrc: "/Images/cruiseNew.webp",
+      heading: "Mesmerizing Ocean Views",
       description:
-        "Cruises offer breathtaking views of the sea, stunning coastlines, and picturesque sunsets that no other mode of travel can match.",
-      icon: <FaEye />,
+        "Witness captivating horizons, golden sunsets, and stunning coastal landscapes that will leave you enchanted.",
+      
+        icon: <FaEye />,
+        price:40000
     },
-    { 
-      imgSrc:"/Images/newYorkCruise.webp",
-      heading: "All-Inclusive Luxury",
+    {
+      imgSrc: "/Images/cruise7.webp",
+      heading: "Ultimate Luxury on Board",
       description:
-        "Enjoy luxurious accommodations, gourmet dining, entertainment, and activities all included in one package.",
+        "Pamper yourself with elegant accommodations, gourmet dining, and top-tier entertainment for an unforgettable voyage.",
       icon: <FaRegStar />,
+      price:60000
+
     },
     {
-      imgSrc:"/Images/newYorkCruise.webp",
-
-      heading: "Multiple Destinations in One Trip",
+      imgSrc: "/Images/cruise5.webp",
+      heading: "Discover Multiple Destinations",
       description:
-        "Visit multiple cities or countries without the hassle of packing and unpacking at every stop.",
+        "Unpack once and explore iconic landmarks, vibrant cities, and hidden gems all in one seamless journey.",
       icon: <FaShip />,
+      price:90000
+
     },
     {
-      imgSrc:"/Images/newYorkCruise.webp",
-
-      heading: "Family-Friendly Activities",
+      imgSrc: "/Images/cruise4.webp",
+      heading: "Fun for the Entire Family",
       description:
-        "Cruises cater to all ages with kids’ clubs, pools, and entertainment, making them ideal for family vacations.",
+        "From kids' clubs to family excursions, our cruises offer activities that ensure a memorable experience for everyone.",
       icon: <FaRegCircle />,
+      price:120000
+
     },
     {
-      imgSrc:"/Images/newYorkCruise.webp",
-
-      heading: "Affordable Packages and Discounts",
+      imgSrc: "/Images/cruise5.webp",
+      heading: "Affordable Luxury Travel",
       description:
-        "Take advantage of promotions and early-bird discounts to make your cruise vacation budget-friendly.",
+        "Experience the ultimate cruise getaway with value-packed deals and incredible offers designed for every budget.",
       icon: <FaCreditCard />,
+      price:70000
+
     },
     {
-      imgSrc:"/Images/newYorkCruise.webp",
-
-      heading: "Relaxation and Wellness",
+      imgSrc: "/Images/cruise6.webp",
+      heading: "Relax and Rejuvenate",
       description:
-        "Unwind with spa treatments, fitness classes, and serene ocean views to rejuvenate your mind and body.",
+        "Recharge your mind and body with soothing spa treatments, peaceful ocean views, and serene onboard amenities.",
       icon: <FaSpa />,
+      price:1700000
+
     },
     {
-      imgSrc:"/Images/newYorkCruise.webp",
-
-      heading: "Cultural and Shore Excursions",
+      imgSrc: "/Images/cruise7.webp",
+      heading: "Cultural Exploration Awaits",
       description:
-        "Experience diverse cultures through guided shore excursions at various ports of call.",
+        "Immerse yourself in diverse traditions and explore vibrant cultures through curated shore excursions.",
       icon: <FaMapMarkedAlt />,
+      price:40000
+
     },
     {
-      imgSrc:"/Images/newYorkCruise.webp",
-
-      heading: "Flexible Booking Options",
+      imgSrc: "/Images/cruise8.webp",
+      heading: "Flexible Cruise Itineraries",
       description:
-        "Cruises offer a variety of itineraries and durations to fit your schedule and preferences.",
+        "Plan your dream vacation with customizable schedules and itineraries that fit your preferences perfectly.",
       icon: <FaCalendarAlt />,
+      price:350
+
     },
   ];
+
   const journeyItems = [
     {
       bgPath: "/Images/cruise.webp",
@@ -88,7 +99,7 @@ const page = () => {
       title: "UK Cruise",
     },
     {
-      bgPath: "/Images/cruise2.webp",
+      bgPath: "/Images/cruise6.webp",
 
       href: "/trainSearch",
       imgSrc: "/Images/1ny6u12000djzth5m52EE.webp",
@@ -96,7 +107,7 @@ const page = () => {
       title: "Europe Cruise",
     },
     {
-      bgPath: "/Images/cruise3.webp",
+      bgPath: "/Images/cruise7.webp",
 
       href: "/Cruiseearch",
       imgSrc: "/Images/1ny7412000djztnftC466.webp",
@@ -168,234 +179,241 @@ const page = () => {
 
   return (
     <div className="">
-      <div className="bg-[url(/Images/cruiseNew.webp)] min-h-[80vh] py-10 relative bg-center bg-cover text-white  px-5 lg:px-20  ">
+      <div className="bg-[url(/Images/cruiseNew.webp)] min-h-[80vh] py-10 relative flex items-center bg-center bg-cover text-white  px-5 lg:px-20  ">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent z-0"></div>
-        <div className=" h-full  w-full flex flex-col lg:flex-row items-center lg:justify-between relative z-10">
-          <div className=" w-1/2 space-y-4 ">
+        <div className=" h-full   w-full flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between relative z-10">
+          <div className=" lg:w-1/2 space-y-4 ">
             <h5 className="font-extrabold  lg:leading-tight text-2xl md:text-3xl lg:text-4xl  text-white ">
               Travel in Style Luxury Cruise for Every Explorer
             </h5>
             <p className="text-white">
-              
-            Embark on a journey of a lifetime aboard a luxury cruise, where every moment is designed to captivate your senses and leave you with unforgettable memories. Perfect for adventurers who crave the perfect balance of style, comfort, and excitement, this voyage offers more than just a trip — it’s an experience like no other. From opulent accommodations and world-class dining to exhilarating activities and breathtaking destinations, every detail is tailored to create an extraordinary escape. Whether you’re exploring hidden gems
-
-
-
-
-
-
-            
+              Embark on a journey of a lifetime aboard a luxury cruise, where
+              every moment is designed to captivate your senses and leave you
+              with unforgettable memories. Perfect for adventurers who crave the
+              perfect balance of style, comfort, and excitement, this voyage
+              offers more than just a trip — it’s an experience like no other.
+              From opulent accommodations and world-class dining to exhilarating
+              activities and breathtaking destinations, every detail is tailored
+              to create an extraordinary escape. Whether you’re exploring hidden
+              gems
             </p>
           </div>
-         <div>
-         <form className="text-black   max-w-md mx-auto p-4 bg-white shadow-md rounded-lg">
-            {/* Form Heading */}
-            <h2 className="text-xl font-semibold text-center text-[#42A6EF] mb-4">
-              Book Your Cruise
-            </h2>
+          <div className="w-full md:w-fit">
+            <form className="text-black w-full   lg:max-w-md lg:mx-auto p-4 bg-white shadow-md rounded-lg">
+              {/* Form Heading */}
+              <h2 className="text-xl font-semibold text-center text-[#42A6EF] mb-4">
+                Book Your Cruise
+              </h2>
 
-            {/* Name Field */}
-            <div className="mb-3">
-              <label
-                className="block text-gray-700 text-sm font-medium mb-1"
-                htmlFor="name"
-              >
-                Name
-              </label>
-              <input
-                className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
-                type="text"
-                id="name"
-                placeholder="Enter your full name"
-                aria-label="Name"
-                required
-              />
-              <p className="text-xs text-red-500 mt-1 hidden">
-                Please enter your name
-              </p>
-            </div>
-
-            {/* Email Field */}
-            <div className="mb-3">
-              <label
-                className="block text-gray-700 text-sm font-medium mb-1"
-                htmlFor="email"
-              >
-                Email
-              </label>
-              <input
-                className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
-                type="email"
-                id="email"
-                placeholder="Enter your email address"
-                aria-label="Email"
-                required
-              />
-              <p className="text-xs text-red-500 mt-1 hidden">
-                Please enter a valid email
-              </p>
-            </div>
-
-            {/* Pickup and Drop Fields */}
-            <div className="grid md:grid-cols-2 gap-3">
+              {/* Name Field */}
               <div className="mb-3">
                 <label
                   className="block text-gray-700 text-sm font-medium mb-1"
-                  htmlFor="pickup"
+                  htmlFor="name"
                 >
-                  Pickup Destination
+                  Name
                 </label>
                 <input
                   className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
                   type="text"
-                  id="pickup"
-                  placeholder="E.g., New York, NY"
-                  aria-label="Pickup Destination"
+                  id="name"
+                  placeholder="Enter your full name"
+                  aria-label="Name"
                   required
                 />
+                <p className="text-xs text-red-500 mt-1 hidden">
+                  Please enter your name
+                </p>
               </div>
 
+              {/* Email Field */}
               <div className="mb-3">
                 <label
                   className="block text-gray-700 text-sm font-medium mb-1"
-                  htmlFor="drop"
+                  htmlFor="email"
                 >
-                  Drop Destination
+                  Email
                 </label>
                 <input
                   className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  type="text"
-                  id="drop"
-                  placeholder="E.g., Boston, MA"
-                  aria-label="Drop Destination"
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email address"
+                  aria-label="Email"
                   required
                 />
+                <p className="text-xs text-red-500 mt-1 hidden">
+                  Please enter a valid email
+                </p>
               </div>
-            </div>
 
-            {/* Booking Date and Time */}
-            <div className="grid md:grid-cols-2 gap-3 mb-3">
-              <div>
+              {/* Pickup and Drop Fields */}
+              <div className="grid md:grid-cols-2 gap-3">
+                <div className="mb-3">
+                  <label
+                    className="block text-gray-700 text-sm font-medium mb-1"
+                    htmlFor="pickup"
+                  >
+                    Pickup Destination
+                  </label>
+                  <input
+                    className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    type="text"
+                    id="pickup"
+                    placeholder="E.g., New York, NY"
+                    aria-label="Pickup Destination"
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label
+                    className="block text-gray-700 text-sm font-medium mb-1"
+                    htmlFor="drop"
+                  >
+                    Drop Destination
+                  </label>
+                  <input
+                    className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    type="text"
+                    id="drop"
+                    placeholder="E.g., Boston, MA"
+                    aria-label="Drop Destination"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Booking Date and Time */}
+              <div className="grid md:grid-cols-2 gap-3 mb-3">
+                <div>
+                  <label
+                    className="block text-gray-700 text-sm font-medium mb-1"
+                    htmlFor="booking-date"
+                  >
+                    Booking Date
+                  </label>
+                  <input
+                    className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    type="date"
+                    id="booking-date"
+                    aria-label="Booking Date"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className="block text-gray-700 text-sm font-medium mb-1"
+                    htmlFor="booking-time"
+                  >
+                    Booking Time
+                  </label>
+                  <input
+                    className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    type="time"
+                    id="booking-time"
+                    aria-label="Booking Time"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Additional Notes */}
+              <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-medium mb-1"
-                  htmlFor="booking-date"
+                  htmlFor="message"
                 >
-                  Booking Date
+                  Additional Notes
                 </label>
-                <input
+                <textarea
                   className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  type="date"
-                  id="booking-date"
-                  aria-label="Booking Date"
-                  required
-                />
+                  id="message"
+                  rows="3"
+                  placeholder="Let us know any specific requests or preferences"
+                  aria-label="Additional Notes"
+                ></textarea>
               </div>
 
-              <div>
-                <label
-                  className="block text-gray-700 text-sm font-medium mb-1"
-                  htmlFor="booking-time"
+              {/* Submit Button */}
+              <div className="text-center">
+                <button
+                  type="submit"
+                  className="w-full bg-[#42A6EF] hover:bg-[#398cc8] text-white font-medium py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                  aria-label="Submit Inquiry"
                 >
-                  Booking Time
-                </label>
-                <input
-                  className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  type="time"
-                  id="booking-time"
-                  aria-label="Booking Time"
-                  required
-                />
+                  Submit Inquiry
+                </button>
               </div>
-            </div>
-
-            {/* Additional Notes */}
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-medium mb-1"
-                htmlFor="message"
-              >
-                Additional Notes
-              </label>
-              <textarea
-                className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
-                id="message"
-                rows="3"
-                placeholder="Let us know any specific requests or preferences"
-                aria-label="Additional Notes"
-              ></textarea>
-            </div>
-
-            {/* Submit Button */}
-            <div className="text-center">
-              <button
-                type="submit"
-                className="w-full bg-[#42A6EF] hover:bg-[#398cc8] text-white font-medium py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
-                aria-label="Submit Inquiry"
-              >
-                Submit Inquiry
-              </button>
-            </div>
-          </form>
-         </div>
+            </form>
+          </div>
         </div>
-
-        
       </div>
 
       <div className="px-5 lg:px-20  space-y-16">
         <CustomSlider />
 
-      {/* <div className="Disover-your-love">
-        <div className="text-center">
-          <h6 className="text-lg text-[#589DF1] font-bold">Top Destination</h6>
-          <p className="text-2xl font-bold">Discover Your love</p>
-        </div>
-      </div> */}
-
         <div className="space-y-10">
-        <div className="text-center">
-          <h6 className="text-lg text-[#589DF1] font-bold">Top Destination</h6>
-          <p className="text-2xl font-bold">Discover Your love</p>
-        </div>
-          <div className="flex flex-wrap gap-16 justify-center">
+          <div className="text-center">
+            <h6 className="text-lg text-[#589DF1] font-bold">
+              Top Destination
+            </h6>
+            <p className="text-2xl font-bold">Discover Your love</p>
+          </div>
+          <div className="flex flex-wrap gap-8 justify-center">
             {topDestination.map((item, index) => (
               <div
                 key={index}
-                className="flex shadow-lg hover:scale-105 text-center gap-2 border  rounded-lg  flex-col w-[350px] items-center mb-4"
-              > 
-                <div>
-                  <img src={item.img} alt={item.heading} />
+                className="shadow-lg hover:scale-105 transition-transform transform text-start gap-4 border rounded-lg flex flex-col w-[320px] md:w-[350px] bg-white mb-4"
+              >
+                {/* Image Section */}
+                <div className="h-[200px] md:h-[250px] w-full">
+                  <img
+                    src={item.imgSrc}
+                    alt={item.heading}
+                    className="h-full w-full rounded-t-lg object-cover"
+                  />
                 </div>
-                <div className="mr-3 text-[#3181ED] text-3xl ">{item.icon}</div>
-                <div className="space-y-2 px-3 py-2">
-                  <h3 className="font-bold">{item.heading}</h3>
-                  <p>{item.description}</p>
+
+                {/* Content Section */}
+                <div className="space-y-3 px-4 py-4">
+                  <h3 className="font-bold text-lg md:text-xl text-gray-800">
+                    {item.heading}
+                  </h3>
+                  <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                    {item.description.slice(0,100)}...
+                  </p>
+                  <p className="text-gray-700 font-medium flex items-center gap-4">
+                    Starting from:{" "}
+                    <span className="text-[#42A6EF] font-bold flex items-center"><FaRupeeSign />
+                    {item.price}</span>
+                  </p>
+                  <button className="bg-[#42A6EF] text-white px-5 py-2 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:bg-[#1E90FF] focus:outline-none focus:ring-2 focus:ring-[#42A6EF]">
+                    Explore
+                  </button>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="flex items-center justify-center gap-10">
-          <div className="w-[50%]">
-            <img src="/Images/WhyCruise.webp" alt="" />
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 p-4 md:p-8">
+          {/* Image Section */}
+          <div className="w-full">
+            <img src="/Images/WhyCruise.webp" alt="Why Cruise" className=" " />
           </div>
-          <div className="w-[70%] space-y-10">
-            <h4 className="font-bold text-2xl">
-              "Why Book Your Cruise with Apka Trip?"
+
+          {/* Text Section */}
+          <div className="w-full space-y-6 md:space-y-10 text-center md:text-left">
+            <h4 className="font-bold text-xl md:text-2xl lg:text-3xl text-[#42A6EF]">
+              Benefits of Choosing Apka Trip for Your Cruise
             </h4>
-            <p>
-              When it comes to planning the perfect cruise vacation, Apka Trip
-              stands out as your trusted travel partner. We are dedicated to
-              making your journey seamless, enjoyable, and tailored to your
-              needs. From start to finish, our comprehensive services and
-              customer-centric approach ensure that your cruise experience is
-              nothing short of extraordinary. With a wide range of customizable
-              cruise packages, we cater to every traveler—whether you're seeking
-              a romantic getaway, a family adventure, or a luxurious solo
-              escape. Our expert team offers personalized guidance, helping you
-              choose from an array of stunning destinations and top-rated cruise
-              lines.
+            <p className="text-gray-700 text-sm md:text-base lg:text-lg leading-relaxed">
+              Experience seamless planning, exclusive deals, and personalized
+              service with Apka Trip. We ensure your cruise vacation is
+              unforgettable, offering expert advice, flexible options, and
+              unparalleled support every step of the way.
             </p>
           </div>
         </div>
@@ -412,11 +430,11 @@ const page = () => {
             </p>
           </div>
           <div className="journey-body mt-5 rounded-t-lg">
-            <div className=" grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 rounded-b-lg p-5">
+            <div className=" grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10 rounded-b-lg p-5">
               {journeyItems.map((item, index) => (
                 <div
                   key={index}
-                  className="h-[200px] relative bg-center bg-no-repeat  bg-cover"
+                  className="h-[280px] relative  bg-no-repeat  bg-cover bg-center"
                   style={{ backgroundImage: `url(${item.bgPath})` }}
                 >
                   <div className="shadow-lg bg-gray-200 px-5 absolute bottom-0  py-2 w-full flex justify-between items-center">
