@@ -36,22 +36,22 @@ export default function Page() {
             <h2 className="text-xl font-bold mb-6 text-gray-800">
               Contact Information
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 ">
               <div>
                 {" "}
-                <div className="flex items-center mb-5 space-x-3">
+                <div className="flex items-center  space-x-3 mb-2">
                   <FontAwesomeIcon
                     icon={faPhone}
-                    className="text-blue-500 text-xl"
+                    className="text-blue-500 text-md"
                   />
                   <Link href="tel:9877579319" className="text-lg font-semibold text-gray-700">
                     +(91) 9877579319
                   </Link>
                 </div>
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <FontAwesomeIcon
                     icon={faMapMarkerAlt}
-                    className="text-blue-500 text-xl"
+                    className="text-blue-500 text-md"
                   />
                   <p className="text-lg font-semibold text-gray-700">
                     Sector 48, Chandigarh, India
@@ -59,11 +59,11 @@ export default function Page() {
                 </div>
               </div>
 
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-2 gap-2">
                 <div className="flex items-center space-x-3">
                   <FontAwesomeIcon
                     icon={faEnvelope}
-                    className="text-blue-500 text-xl"
+                    className="text-blue-500 text-md"
                   />
                   <p className="text-lg font-semibold text-gray-700">
                     tr@apkatrip.com
@@ -72,7 +72,7 @@ export default function Page() {
                 <div className="flex items-center space-x-3">
                   <FontAwesomeIcon
                     icon={faEnvelope}
-                    className="text-blue-500 text-xl"
+                    className="text-blue-500 text-md"
                   />
                   <p className="text-lg font-semibold text-gray-700">
                     apkatripindia@gmail.com
@@ -81,7 +81,7 @@ export default function Page() {
                 <div className="flex items-center space-x-3">
                   <FontAwesomeIcon
                     icon={faEnvelope}
-                    className="text-blue-500 text-xl"
+                    className="text-blue-500 text-md"
                   />
                   <p className="text-lg font-semibold text-gray-700">
                     info@apkatrip.com
@@ -95,7 +95,7 @@ export default function Page() {
           {/* Contact Form Section */}
 
           {/* Office Hours Section */}
-          <section className="mb-5 md:mb-12 bg-white border border-blue-200 shadow-lg rounded-lg p-6">
+          <section className="mb-5 md:mb-12 bg-white border border-blue-200 shadow-lg rounded-lg p-6 w-full">
             <h2 className="text-xl font-bold mb-6 text-gray-800">
               Office Hours
             </h2>

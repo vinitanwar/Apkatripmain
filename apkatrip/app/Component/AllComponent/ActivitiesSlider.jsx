@@ -88,12 +88,12 @@ setShow("")
             className="w-full h-[350px]"
           />
           <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center p-4 text-white bg-[#a6a4a433] bg-opacity-20"></div>
-          <h2 className="absolute left-0 right-0  flex items-center justify-center mx-auto z-10  text-white text-xl lg:text-2xl top-28 md:top-24 font-bold">
+          <h2 className="absolute left-0 right-0  flex items-center justify-center mx-auto z-10  text-white text-xl lg:text-2xl top-[6rem] md:top-24 font-bold">
             Kashmir Tour Packages
           </h2>
       </div>
 
-      <div className="absolute bottom-16 left-0 right-0 text-center pb-6">
+      <div className="absolute bottom-16 left-0 right-0 text-center pb-6 mx-4">
         <h1 className="text-white text-2xl lg:text-4xl font-bold">
           {t("experience")}
         </h1>

@@ -170,7 +170,7 @@ const page = () => {
     <div className="">
       <div className="bg-[url(/Images/cruiseNew.webp)] min-h-[80vh] py-10 relative bg-center bg-cover text-white  px-5 lg:px-20  ">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent z-0"></div>
-        <div className=" h-full  w-full flex flex-col lg:flex-row items-center lg:justify-between relative z-10">
+        <div className=" h-full  w-full flex flex-col lg:flex-row items-center gap-8 lg:justify-between relative z-10">
           <div className=" w-1/2 space-y-4 ">
             <h5 className="font-extrabold  lg:leading-tight text-2xl md:text-3xl lg:text-4xl  text-white ">
               Travel in Style Luxury Cruise for Every Explorer
@@ -188,7 +188,7 @@ const page = () => {
             </p>
           </div>
          <div>
-         <form className="text-black   max-w-md mx-auto p-4 bg-white shadow-md rounded-lg">
+         <form className="text-black   w-full mx-auto p-4 bg-white shadow-md rounded-lg">
             {/* Form Heading */}
             <h2 className="text-xl font-semibold text-center text-[#42A6EF] mb-4">
               Book Your Cruise
@@ -342,7 +342,7 @@ const page = () => {
         
       </div>
 
-      <div className="px-5 lg:px-20  space-y-16">
+      <div className="px-4 space-y-16">
         <CustomSlider />
 
       {/* <div className="Disover-your-love">
@@ -364,7 +364,7 @@ const page = () => {
                 className="flex shadow-lg hover:scale-105 text-center gap-2 border  rounded-lg  flex-col w-[350px] items-center mb-4"
               > 
                 <div>
-                  <img src={item.img} alt={item.heading} />
+                  <img src={item.imgSrc} alt={item.heading} />
                 </div>
                 <div className="mr-3 text-[#3181ED] text-3xl ">{item.icon}</div>
                 <div className="space-y-2 px-3 py-2">
@@ -441,7 +441,7 @@ const page = () => {
 
         <section className="details space-y-5 py-10 ">
           <div className="text-center">
-            <h2 className="text-2xl  font-extrabold leading-tight ">
+            <h2 className="text-2xl  font-extrabold leading-tight pb-4 ">
               Cruise Adventures for Every Explorer
             </h2>
             <p>

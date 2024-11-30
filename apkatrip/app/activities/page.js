@@ -212,16 +212,16 @@ const Page = () => {
             </Link>
           </div>
         </div>
-        <div className="flex flex-wrap justify-between gap-6 ">
-          {tours.map((tour) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mx-12 md:mx-8">
+          {tours.map((tour) => ( 
             <div
               key={tour.id}
-              className="max-w-full lg:max-w-80 rounded-lg border border-gray-200 shadow-lg overflow-hidden"
+              className="w-auto rounded-lg border border-gray-200 shadow-lg overflow-hidden"
             >
               <img
                 src={tour.image}
                 alt={tour.title}
-                className="w-full h-60 p-2 rounded-2xl object-cover"
+                className="w-full h-60 p-2 rounded-2xl object-cover "
               />
               <div className="px-4 py-2">
                 <p className="text-gray-600 mb-2 flex gap-2 items-center">

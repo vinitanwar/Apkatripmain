@@ -8,7 +8,7 @@ const Subscribe = () => {
       <section className="mb-15 py-10 px-5 lg:px-20 animate__animated animate__fadeIn custom-color">
         <div className="block md:flex   items-center justify-center gap-10">
           <div className="w-full lg:w-1/3">
-            <h2 className="text-2xl  text-white font-bold mb-5">
+            <h2 className="text-xl  text-white font-bold mb-5">
               {t("subscribe")}
             </h2>
 
@@ -27,7 +27,7 @@ const Subscribe = () => {
             </form>
           </div>
 
-          <p className="mt-auto text-2xl w-full lg:w-2/3 text-justify text-white font-semibold">
+          <p className="mt-auto text-xl w-full lg:w-2/3 text-justify text-white font-semibold">
            {t("sub2")}
           
           </p>

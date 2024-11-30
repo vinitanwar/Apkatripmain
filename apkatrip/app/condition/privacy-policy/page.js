@@ -5,7 +5,7 @@ import React from "react";
 const page = () => {
   return (
     <>
-      <section className=" bg-gray-50 py-10">
+      <section className=" bg-gray-50 py-10 px-4">
         <div className="">
           <div className="mx-auto max-w-6xl">
             <div className="text-center">
@@ -133,13 +133,13 @@ const page = () => {
       </section>
 
       <section className="section-box bg-gray-50">
-        <div className="flex flex-wrap justify-center items-center ">
-          <Image
+        <div className="flex flex-wrap justify-center items-center gap-4 p-4">
+          {/* <Image
             src="/Images/media.webp"
             alt=""
             width={200}
             height={100}
-          />
+          /> */}
           <Image
             src="/Images/media2.webp"
             alt=""
