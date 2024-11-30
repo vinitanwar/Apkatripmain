@@ -7,7 +7,6 @@ use App\Http\Controllers\TopPorts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
-
 use App\Http\Controllers\TBOController;
 
 use App\Http\Controllers\HotelRegistrationController;
@@ -85,27 +84,31 @@ Route::get('v1/cab/countries', [CountryControllerCab::class, 'getCountryList']);
 Route::prefix('v1')->group(function () {
     Route::apiResource('hotelreg', HotelRegistrationController::class);
 });
+
 use App\Http\Controllers\HotelRegesController;
 
-Route::post("v1/test",[HotelRegesController::class,"getHotelUser"]);
-Route::post("v1/hotelreq/signupHotel",[HotelRegesController::class,"sendVerify"]);
-Route::post("v1/hotelreq/otp",[HotelRegesController::class,"sendHotelOtp"]);
+Route::post("v1/test", [HotelRegesController::class, "getHotelUser"]);
+Route::post("v1/hotelreq/signupHotel", [HotelRegesController::class, "sendVerify"]);
+Route::post("v1/hotelreq/otp", [HotelRegesController::class, "sendHotelOtp"]);
 
-Route::post("v1/hotelreq/loginhotel",[HotelRegesController::class,"loginhotel"]);
+Route::post("v1/hotelreq/loginhotel", [HotelRegesController::class, "loginhotel"]);
 
 
 use  App\Http\Controllers\OtpController;
 
-Route::post("v1/user/sendotp",[OtpController::class,"sendOtp"]);
-Route::post("v1/user/verifyotp",[OtpController::class,"verifyOtp"]);
-Route::post("v1/user/forgotPassword",[OtpController::class,"forgotPasswordSendotp"]);
+Route::post("v1/user/sendotp", [OtpController::class, "sendOtp"]);
+Route::post("v1/user/verifyotp", [OtpController::class, "verifyOtp"]);
+Route::post("v1/user/forgotPassword", [OtpController::class, "forgotPasswordSendotp"]);
 
 
 
 
 use  App\Http\Controllers\SiteUser;
 
-Route::post("v1/user/signup",[SiteUser::class,"signupUser"]);
-Route::post("v1/user/login",[SiteUser::class,"loginUser"]);
+Route::post("v1/user/signup", [SiteUser::class, "signupUser"]);
+Route::post("v1/user/login", [SiteUser::class, "loginUser"]);
+
+
+
 
 
