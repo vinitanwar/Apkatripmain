@@ -62,14 +62,14 @@ const page = () => {
       <MobileHeader />
       <CustomSlider />
 
-      <div className=" block md:flex gap-3 pb-10 px-5 lg:px-20">
+      <div className="  flex flex-col lg:flex-row  gap-3 pb-10 px-5 lg:px-20 overflow-hidden">
         <img
-          className="w-full md:w-2/3 h-60 rounded-lg"
+          className="w-full lg:w-1/2 h-auto rounded-lg"
           src="/Images/banner-ballon.webp"
           alt=""
         />
 
-        <div id="deals" className="relative mt-5 lg:mt-0">
+        <div id="deals" className="relative mt-5 lg:mt-0 lg:w-1/2">
           <Swiper
             spaceBetween={10}
             slidesPerView={1}
@@ -80,7 +80,7 @@ const page = () => {
             <SwiperSlide>
               <Link className="block" href="">
                 <img
-                  className="w-[425px] h-60 rounded-lg"
+                  className="w-full h-auto rounded-lg"
                   src="/Images/1.webp"
                   alt=""
                 />
@@ -109,8 +109,8 @@ const page = () => {
       </div>
 
       <div className="bg-gray-200 py-10 px-5 lg:px-20">
-        <div className="block lg:flex gap-5 items-center justify-between">
-          <div className="flex-1 bg-white p-4 rounded-lg shadow-lg">
+        <div className=" flex flex-col xl:flex-row flex-wrap lg:flex-nowrap gap-5 items-center justify-between">
+          <div className="flex-1 w-[80rem] lg:w-auto bg-white p-4 rounded-lg shadow-lg">
             <div className="flex items-center mb-4">
               <img
                 src="/Images/download.webp"
@@ -150,9 +150,9 @@ const page = () => {
             </div>
           </div>
 
-          <div className="flex-1">
-            <div className="block md:flex gap-3">
-              {hotelData.map((hotel, index) => (
+          <div className="flex-1 ">
+            <div className="flex flex-wrap lg:flex-nowrap gap-3 overflow-x-hidden">
+              {hotelData.slice(0, 8).map((hotel, index) => (
                 <div className=" bg-white rounded-lg shadow-lg my-5 lg:my-0">
                   <div
                     key={index}
