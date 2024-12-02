@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
  import {getfarequote} from "../Component/Store/slices/farequateflight"
+ import { MdCancel } from "react-icons/md";
 
 import {
   FaArrowRight,
@@ -25,6 +26,8 @@ import { searchFlightApi } from "../Component/Store/slices/SearchFlight";
 
 import axios from "axios";
 import { searchreturnflightapi } from "../Component/Store/slices/searchreturnFlight";
+import { getfareRule } from "../Component/Store/slices/fairRuleflight";
+import { getssrFlight } from "../Component/Store/slices/ssrRuleFlight";
 
 
 const comp = ({ slug }) => {
@@ -37,7 +40,10 @@ const comp = ({ slug }) => {
 const returnstate = useSelector((state) => state.searchreturn);
   const [activePopup, setActivePopup] = useState(null);
   const info = useSelector((state) => state.searchFlightslice);
-  const [newtIp, setmineIp] = useState(null);
+const ssrFair=useSelector((state) => state.farequoteSlice);
+const [srrFairdata,setssrFair]=useState()
+
+const [newtIp, setmineIp] = useState(null);
 
 
 
@@ -76,7 +82,10 @@ const returnstate = useSelector((state) => state.searchreturn);
     getIp();
   }, []);
 
-
+useEffect(()=>{
+ 
+setssrFair(ssrFair && ssrFair.info && ssrFair.info.Response)
+},[ssrFair])
 
 
 
@@ -297,11 +306,14 @@ setstate2([filterdata])
   }
   
 }
-const togglePopup = (id, data, ofprice, ResultIndex) => {
-   dispatch(getfarequote({ResultIndex,TraceId:info.data.Response.TraceId}))
-console.log(info.data.Response.TraceId,`<br><br>${ResultIndex}`)
-  setfareData([data]);
-  setPrice(ofprice);
+const togglePopup = (id, ResultIndex) => {
+
+
+
+
+   dispatch(getfarequote({ResultIndex,TraceId:traceid}))
+  // setfareData([data]);
+  // setPrice(ofprice);
 
   if (activePopup === id) {
     setActivePopup(null);
@@ -312,10 +324,122 @@ console.log(info.data.Response.TraceId,`<br><br>${ResultIndex}`)
 
   
 };
-
+const flightData = {
+  route: "New Delhi → Toronto",
+  flights: [
+    {
+      airline: "EgyptAir",
+      departure: "Fri, 14 Feb 25 - 11:20",
+      arrival: "Fri, 14 Feb 25 - 15:15",
+      baggage: "7 Kgs Cabin Baggage + 1 Piece Check-in Baggage",
+      flexibility: [
+        "Cancellation fee starts at ₹7,055",
+        "Date Change fee starts at ₹7,600",
+      ],
+      seatsMealsAndMore: "Complimentary Meals & Seats",
+      price: 18947,
+    },
+    {
+      airline: "EgyptAir",
+      departure: "Sat, 15 Feb 25 - 02:05",
+      arrival: "Sat, 15 Feb 25 - 07:00",
+      baggage: "7 Kgs Cabin Baggage + 2 Pieces Check-in Baggage",
+      flexibility: [
+        "Lower Cancellation fee at ₹4,247 onwards",
+        "Lower Date Change fee at ₹3,397",
+      ],
+      seatsMealsAndMore: "Complimentary Meals & Seats",
+      price: 29897,
+    },
+  ],
+};
 
   return (
     <>
+
+
+ {
+ activePopup === "view-price" && srrFairdata && !ssrFair.isLoading
+
+  && (
+        
+        <div className="fixed inset-0 flex z-[9999] items-center justify-center bg-black bg-opacity-50 ">
+ <div className="p-6  bg-gray-100 max-h-screen relative">
+     <MdCancel  className="absolute top-2 right-2 text-2xl cursor-pointer" onClick={()=>setActivePopup(null)}/>
+     
+      <div className="grid gap-4 lg:grid-cols-2">
+        {srrFairdata.Results.Segments[0].map((flight, index) => (
+          <div
+            key={index}
+            className="bg-white shadow-md border border-gray-200 rounded-lg p-4"
+          >
+ <h2 className="text-xl font-bold mb-4">{flight.Destination.Airport.CityName}-{flight.Origin.Airport.CityName }</h2>
+
+
+
+            <h3 className="text-lg font-semibold">{flight.airline}</h3>
+            <p className="text-sm text-gray-600">
+              <strong>Departure:</strong> {flight.Destination.ArrTime} |{" "}
+              <strong>Arrival:</strong> {flight.Origin.DepTime} |{" "}
+            </p>
+
+
+            <div className="mt-2">
+              <p className="text-sm text-gray-800 font-medium">
+                <strong>Baggage:</strong>
+                 {flight.CabinBaggage}
+              </p>
+              <p className="text-sm text-gray-800 font-medium">
+                <strong>Refundable: </strong>
+                  {srrFairdata.Results.IsRefundable}
+              </p>
+              
+              
+              <p className="text-sm text-gray-800 font-medium mt-2">
+                <strong>Seats OR Cabin type:</strong>
+              { ["All","Economy","PremiumEconomy","Business","PremiumBusiness","First"].filter((inf,ind)=>ind+1 ==flight.CabinClass) }
+              </p>TaxBreakUp
+
+              <p className="text-sm text-gray-800 font-medium mt-2">
+                <strong>Tax:</strong>
+                <div className="grid grid-cols-3">
+             {srrFairdata.Results.FareBreakdown[0].TaxBreakUp.map((taxinfo)=>(
+              <p>
+                {taxinfo.key}:
+                {taxinfo.value}
+              </p>
+             ))}
+             </div>
+              </p>
+
+            </div>
+
+
+
+
+
+
+
+            
+            <div className="mt-4 flex items-center justify-between">
+              <p className=" font-bold text-indigo-400"> Base price: ₹{srrFairdata.Results.FareBreakdown[0].BaseFare}</p>
+              <p className="text-lg font-bold text-indigo-600"> Total price: ₹{Number(srrFairdata.Results.FareBreakdown[0].BaseFare) + srrFairdata.Results.FareBreakdown[0].TaxBreakUp.reduce((acc,arr)=>   acc + Number(arr.value || 0), 0)}</p>
+
+              <Link href="/flight/checkout" className="px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded hover:bg-blue-600" >
+                Book Now
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+        </div>
+      )} 
+
+
+
+
+
       <Header />
       <div className="block md:flex px-0 lg:px-28 items-start gap-3 my-5  ">
       
@@ -505,7 +629,7 @@ console.log(info.data.Response.TraceId,`<br><br>${ResultIndex}`)
         </div>
         <button
           onClick={() =>
-            togglePopup("view-price", info,flight.Fare.OfferedFare, flight.ResultIndex)
+            togglePopup("view-price", flight.ResultIndex, info,flight)
             // handelPrice(flight)
           }
           className="hidden sm:hidden  md:block text-sm font-semibold lg:h-8 text-blue-600 rounded-full px-4 bg-blue-200 border border-blue-600"
@@ -1009,9 +1133,10 @@ console.log(info.data.Response.TraceId,`<br><br>${ResultIndex}`)
                  onClick={() =>
                    togglePopup(
                      "view-price",
+                     flight.ResultIndex,
                      flight.Segments[0][0],
                      flight.Fare.OfferedFare,
-                     flight.ResultIndex
+                  
                    )
                   // handelPrice(flight)
                  }
@@ -2411,134 +2536,19 @@ console.log(info.data.Response.TraceId,`<br><br>${ResultIndex}`)
         )}
       </div>
 
-      {activePopup === "view-price" && (
-        <div className="fixed inset-0 flex z-[9999] items-center justify-center bg-black bg-opacity-50 ">
-          <div className="bg-white rounded-md ">
-            <div className="flex items-center justify-between p-4">
-              <p className="text-xl text-gray-900 flex items-center">
-                <strong className="text-teal-600 mr-2">FARE OPTIONS </strong>
-              </p>
-              <FaTimes
-                className="text-white p-1 text-xl bg-gray-300 rounded-full"
-                onClick={() => togglePopup("view-price")}
-              />
-            </div>
-            <div className="flex  space-x-4 p-4">
-              {faredata?.map((data, index) => (
-                <div
-                  key={index}
-                  className="w-80 h-auto bg-white border hover:border-blue-500 border-gray-200 rounded-lg shadow-md overflow-hidden"
-                >
-                  <div className="p-4 border-b border-gray-200">
-                    <div className="flex flex-col">
-                      <div className="text-lg font-bold text-black mb-1">
-                        {/* {data.Fare.OfferedFare} */}
-                        {new Intl.NumberFormat("en-US", {
-                          style: "currency",
-                          currency: "INR",
-                        }).format(mineprice)}
-                        Per Adult
-                      </div>
-                      {/* <div className="text-sm text-gray-600">{data.type}</div> */}
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <div className="mb-4">
-                      <p className="font-semibold text-gray-800 mb-2">
-                        Baggage
-                      </p>
-                      <ul className="list-disc">
-                        {/* {data.Segments[0][0].Baggage.map((item, index) => (
-                          <li key={index} className="flex items-center mb-1">
-                            {React.cloneElement(item.icon, {
-                              className: "text-green-500 w-4 h-4 mr-2 ",
-                            })}
-                            <span className="text-sm text-gray-700">
-                              {item.text}
-                            </span>
-                          </li>
-                        ))} */}
-                        <li className="flex items-center mb-1">
-                          <span className="text-sm text-gray-700">
-                            {data.CabinBaggage} Cabin Baggage
-                          </span>
-                        </li>
 
-                        <li className="flex items-center mb-1">
-                          <span className="text-sm text-gray-700">
-                            {data.Baggage} Check-in Baggage
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                    {/* <div className="mb-4">
-                      <p className="font-semibold text-gray-800 mb-2">
-                        Flexibility
-                      </p>
-                      <ul className="list-disc">
-                        {data.flexibility.map((item, index) => (
-                          <li key={index} className="flex items-center mb-1">
-                            {React.cloneElement(item.icon, {
-                              className: "text-[#ffc057] w-4 h-4 mr-2 ",
-                            })}
 
-                            <span className="text-sm text-gray-700">
-                              {item.text}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="mb-4">
-                      <p className="font-semibold text-gray-800 mb-2">
-                        Seats, Meals & More
-                      </p>
-                      <ul className="list-disc">
-                        {data.seatsMeals.map((item, index) => (
-                          <li key={index} className="flex items-center mb-1">
-                            {React.cloneElement(item.icon, {
-                              className: "text-[#ffc057] w-4 h-4 mr-2 ",
-                            })}
-                            <span className="text-sm text-gray-700">
-                              {item.text}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div> */}
-                    {/* {data.benefits && (
-                      <div className="bg-yellow-100 border border-yellow-300 rounded-lg p-4 mb-4">
-                        <p className="text-sm text-gray-800">{data.benefits}</p>
-                      </div>
-                    )}
-                    {data.offerCode && (
-                      <div className="bg-yellow-100 border border-yellow-300 rounded-lg p-4">
-                        <p className="text-sm text-gray-800">
-                          {data.offerCode}
-                        </p>
-                      </div>
-                    )} */}
-                    <div className="bg-yellow-100 border border-yellow-300 rounded-lg p-4">
-                      <p className="text-sm text-gray-800">
-                        Use code APKATRIP01 and get flat 22% instant discount on
-                        this flight
-                      </p>
-                    </div>
-                  </div>
-                  <div className="p-4 border-t border-gray-200 flex justify-between items-center">
-                    <button className="bg-gray-200 text-gray-700 px-4 py-2 font-semibold text-base rounded-lg">
-                      LOCK NOW
-                    </button>
-                    <button className="bg-blue-500 text-white px-4 py-2 font-semibold text-base rounded-lg">
-                      BOOK NOW
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+
+
+
+
+
+
+
+
+
+
+      
     </>
   );
 };

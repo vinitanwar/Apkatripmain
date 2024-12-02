@@ -3,8 +3,8 @@ import axios from "axios";
 
 import { apilink } from "../../common";
 
-export const getfarequote=createAsyncThunk("/farequote",async({TraceId,ResultIndex,EndUserIp="0.0.0.0"})=>{
-const res=await axios.post(`${apilink}/farequate`,{EndUserIp,TraceId,ResultIndex})
+export const getfareRule=createAsyncThunk("/fareRule",async({TraceId,ResultIndex,EndUserIp="0.0.0.0"})=>{
+const res=await axios.post(`${apilink}/farerule`,{EndUserIp,TraceId,ResultIndex})
 
 return res.data;
 })
@@ -12,23 +12,23 @@ return res.data;
 
  
 
-const farequoteSlice = createSlice({
-    name: "farequote",
+const fareRuleSlice = createSlice({
+    name: "fareRule",
     initialState: { info: [], isLoading: false, isError: false },
     extraReducers: (builder) => {
-      builder.addCase(getfarequote.pending, (state) => {
+      builder.addCase(getfareRule.pending, (state) => {
         state.isLoading = true;
       });
-      builder.addCase(getfarequote.fulfilled, (state, action) => {
+      builder.addCase(getfareRule.fulfilled, (state, action) => {
         state.info = action.payload;
         state.isLoading = false;
       });
-      builder.addCase(getfarequote.rejected, (state) => {
+      builder.addCase(getfareRule.rejected, (state) => {
         state.isError = true;
         state.isLoading = false;
       });
     },
   });
   
-  export default farequoteSlice.reducer;
+  export default fareRuleSlice.reducer;
   
