@@ -142,7 +142,7 @@ return (
 </section>
 <section className="px-5 md:px-16 lg:px-20 py-12 space-y-12">
 {/* Why ApkaTrip Section */}
-<div className="bg-[#F1F5F9] p-8 rounded-lg space-y-8">
+<div className=" shadow-lg p-8 rounded-lg space-y-8">
   <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center">
     Why ApkaTrip?
   </h2>
@@ -157,7 +157,7 @@ return (
 </div>
 
 {/* Travel Categories Section */}
-<div className="bg-[#F1F5F9] rounded-lg p-8  space-y-8">
+<div className=" shadow-lg rounded-lg p-8  space-y-8">
   <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center">
     Discover our Signature Travel Categories
   </h2>
@@ -170,7 +170,7 @@ return (
     </div>
   ))}
 </div>
-<div className="bg-[#F1F5F9] p-8 rounded-lg space-y-8">
+<div className=" shadow-lg p-8 rounded-lg space-y-8">
   <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center">
     How It Works: Your Journey with ApkaTrip
   </h2>
@@ -184,9 +184,9 @@ return (
   ))}
 </div>
 
-<div className="space-y-5 bg-slate-200 rounded-lg">
+<div className="space-y-5 rounded-lg">
 {communityDetails.map((section, index) => (
-  <div key={index} className="bg-[#F1F5F9] p-8 rounded-lg space-y-4">
+  <div key={index} className=" shadow-lg p-8 rounded-lg space-y-4">
     <h2 className="text-lg md:text-xl font-semibold text-gray-800">
       {section.title}
     </h2>
@@ -201,7 +201,7 @@ return (
     )}
   </div>
 ))}
-<div className="bg-[#F1F5F9] p-8 rounded-lg space-y-4">
+<div className=" shadow-lg p-8 rounded-lg space-y-4">
   <h2 className="text-xl  font-semibold text-gray-800">
     Headquarter
   </h2>
@@ -215,7 +215,7 @@ return (
     [apkatripindia@gmail.com]
   </p>
 </div>
-<div className="bg-[#F1F5F9] p-8 rounded-lg space-y-4">
+<div className=" shadow-lg p-8 rounded-lg space-y-4">
   <h2 className="text-xl  font-semibold text-gray-800">
     Follow Us on Social Media
   </h2>

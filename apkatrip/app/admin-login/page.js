@@ -8,8 +8,8 @@ export default function AuthForm() {
 
   return (
     <>
-      <div className="block md:flex bg-[#ecf5fe] gap-10  mt-5 md:mt-10 m-2 md:m-10">
-        <div className="w-full md:w-1/2 p-5 md:p-20">
+      <div className="flex flex-wrap lg:flex-nowrap bg-[#ecf5fe] gap-10  mt-5 md:mt-10 m-2 md:m-10">
+        <div className="w-full lg:w-1/2 p-5 md:p-20">
           <ul className="flex ">
             <li className="mr-1">
               <button
@@ -93,7 +93,7 @@ export default function AuthForm() {
           </div>
         </div>
         <Image
-          className="mx-auto  w-full md:w-1/2"
+          className="mx-auto  w-full lg:w-1/2"
           src="/Images/view-airplane-wing.webp"
           alt="Furniture"
           width={100}

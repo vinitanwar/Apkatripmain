@@ -111,8 +111,8 @@ const page = () => {
       <div className="relative pt-6 lg:pt-0">
         <div className="relative h-60 custom-color"></div>
 
-        <div className="absolute bottom-10 left-0 right-0 text-center pb-6">
-          <h1 className="text-white text-2xl lg:text-4xl font-bold">
+        <div className="absolute bottom-10 left-0 right-0 text-center pb-6 mx-4">
+          <h1 className="text-white text-xl lg:text-4xl font-bold">
             PNR Status
           </h1>
           <div className="flex justify-between mt-5 items-center border rounded-full  w-full md:w-[600px] bg-white mx-auto ">
@@ -160,7 +160,7 @@ const page = () => {
         </ol>
 
         <section className="">
-          <h2 className="text-2xl font-bold mb-4 text-center">
+          <h2 className="text-xl font-bold mb-4 text-center">
             Why Check PNR Status with Apka Trip?
           </h2>
 
@@ -262,49 +262,63 @@ const page = () => {
         </section>
       </div>
 
-      <div className="py-10 px-5 md:px-28">
-        <div className="block md:flex gap-10 ">
-          <div className="w-3/4">
+      <div className="py-10 mx-8 lg:mx-16 ">
+        <div className="flex justify-center gap-6 flex-wrap lg:flex-nowrap">
+          <div className="w-full lg:w-[70%]">
             <div className="info-section">
-              <h2 className="text-2xl font-semibold mb-2">Trip Overview</h2>
-              <p className="text-lg mb-4">{tripOverview.trainDetails}</p>
-              <div className="flex justify-start items-center relative mb-4">
-                {tripOverview.stations.map((station, index) => (
-                  <div key={index} className="flex-1">
-                    <div className="text-2xl font-bold text-[#00000061]">
-                      {station.name}
-                    </div>
-                    <div className="text-3xl  font-semibold my-3">
-                      {station.city}
-                    </div>
+              <h2 className="text-xl font-semibold mb-2">Trip Overview</h2>
+              <p className="text-md mb-4">{tripOverview.trainDetails}</p>
 
-                    <div className="text-lg text-[#00000061]">
-                      Expected Platform: {station.platform}
-                    </div>
-                    <div className="text-lg text-gray-600">
-                      {station.dateTime}
-                    </div>
-                  </div>
-                ))}
-                <div className="text-center absolute left-60">
-                  <FaArrowRight className="text-6xl mx-auto text-blue-600" />
+              <div className="flex  justify-between  items-center gap-4 lg:gap-20 relative mb-8  py-4">
+  {tripOverview.stations.map((station, index) => (
+    <div
+      key={index}
+      className="flex flex-row items-center justify-between w-full sm:w-5/12 lg:w-[40%]"
+    >
+      {/* Station Information */}
+      <div className="flex flex-col items-start text-left">
+        <div className="text-sm md:text-md lg:text-lg font-bold text-gray-500">
+          {station.name}
+        </div>
+        <div className="text-md md:text-lg lg:text-xl font-semibold my-2">
+          {station.city}
+        </div>
+        <div className="text-sm md:text-md lg:text-lg text-gray-500">
+          Expected Platform: {station.platform}
+        </div>
+        <div className="text-sm md:text-md lg:text-lg text-gray-600">
+          {station.dateTime}
+        </div>
+      </div>
 
-                  <span className="text-lg text-gray-400">
-                    {tripOverview.duration}
-                  </span>
-                </div>
-              </div>
+      {/* Arrow Section */}
+      {index !== tripOverview.stations.length - 1 && (
+        <div className="flex flex-col items-center justify-center mt-4 md:mt-0">
+          <FaArrowRight className="text-2xl md:text-4xl lg:text-5xl text-blue-600" />
+          <span className="text-xs md:text-sm lg:text-md text-gray-400 mt-1">
+            {tripOverview.duration}
+          </span>
+        </div>
+      )}
+    </div>
+  ))}
+</div>
+
+
               <div className="my-4  text-md font-semibold  text-gray-600">
-                <Link href={tripOverview.wifiLink} className=" flex gap-1">
+                <Link
+                  href={tripOverview.wifiLink}
+                  className=" flex gap-1 flex-wrap"
+                >
                   <FaWifi className="text-xl" />{" "}
-                  <span className="text-blue-600 uppercase"> Free WiFi</span>{" "}
+                  <span className="text-blue-600 uppercase "> Free WiFi</span>{" "}
                   available at {tripOverview.wifiStation}
                 </Link>{" "}
               </div>
             </div>
 
-            <div className="info-section mt-10 mb-8">
-              <h2 className="text-2xl font-semibold mb-4">Traveller Info</h2>
+            <div className="info-section mt-10 mb-8 overflow-scroll">
+              <h2 className="text-xl font-semibold mb-4">Traveller Info</h2>
               <table className="min-w-full text-center text-sm  border-collapse border border-gray-200">
                 <thead>
                   <tr className="bg-gray-100">
@@ -381,7 +395,7 @@ const page = () => {
             </div>
           </div>
 
-          <div className="border h-max px-3 py-5 w-3/12">
+          <div className="border h-max px-3 py-5 w-full lg:w-[30%]">
             <h2 className="text-lg font-semibold mb-2">Coach Position</h2>
             <div className="text-sm border-b pb-1">16 Coaches</div>
             <div className=" relative">

@@ -470,7 +470,7 @@ const handleClick =()=>{
             </div>
             <div className="booking">
               <button
-                className="bg-[#DA5200] text-xl text-white rounded-full w-full py-4"
+                className="bg-[#DA5200] text-xl mt-4 text-white rounded-full w-full py-4"
                 onClick={()=>{handleClick()}}
               >
                 Continue Booking

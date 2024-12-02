@@ -268,6 +268,23 @@ const page = () => {
 </div>
 
 
+<div className="FirstChild border rounded-lg shadow-lg">
+            <div className="bg-[#D5EEFE] py-3 px-4 rounded-t-lg">
+              <div className="flex items-center gap-3 ">
+                <div className="border-4 bg-white border-orange-100  h-10 w-10 flex justify-center items-center text-2xl rounded-full">
+                  <FaRupeeSign/>
+                </div>
+                <span className="text-sm md:text-xl font-medium">
+                Payment Mode
+                </span>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 p-2 gap-">
+                  {Modern_Antiqua.map}
+              </div>
+            </div>
+          </div>
+
+
          
         </div>
 

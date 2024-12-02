@@ -8,7 +8,7 @@ import Payment from "../Component/AllComponent/checkout/Payment";
 import { MdArrowForwardIos } from "react-icons/md";
 
 const page = () => {
-  const [activeTab, setActiveTab] = useState(2);
+  const [activeTab, setActiveTab] = useState(3);
   const tabs = [
     { id: 1, label: "Reviews", content: <Review setActiveTab={setActiveTab} /> },
     { id: 2, label: "Travellers", content: <Travellers setActiveTab={setActiveTab} /> },

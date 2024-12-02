@@ -27,7 +27,7 @@ const Subscribe = () => {
             </form>
           </div>
 
-          <p className="mt-auto text-xl w-full lg:w-2/3 text-justify text-white font-semibold">
+          <p className="mt-auto text-lg md:text-xl w-full lg:w-2/3 text-justify text-white font-semibold">
            {t("sub2")}
           
           </p>

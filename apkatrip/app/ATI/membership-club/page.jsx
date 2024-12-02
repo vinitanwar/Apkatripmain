@@ -129,7 +129,7 @@ const page = () => {
           <h6 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
             Welcome to ApkaTrip Membership Club
           </h6>
-          <p className="lg:w-[80%] text-base lg:text-lg tracking-tight">
+          <p className="lg:w-[80%] text-base lg:text-lg tracking-tight text-white">
             Extraordinary travel meets unparalleled exclusivity here. We think
             that travelling has not only to be a journey but also customized
             according to your desires, luxury, and adventure, and you get
@@ -192,7 +192,7 @@ const page = () => {
                     <span>Step</span>
                     <img
                       src={curElm.stepNum}
-                      alt="Step Icon"
+                      alt="Step Icon "
                       className="w-10 md:w-12"
                     />
                   </div>
