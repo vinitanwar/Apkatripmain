@@ -31,6 +31,7 @@ const Page = () => {
           ],
           ImageList: [
             "https://cdn.britannica.com/26/84526-050-45452C37/Gateway-monument-India-entrance-Mumbai-Harbour-coast.jpg",
+
           ],
           TourPlan: [
             {
@@ -56,6 +57,26 @@ const Page = () => {
             Rub shoulders with Bollywood superstars at the exclusive Juhu district...
             <strong>Exclusions:</strong> Drinks, Meals, Tickets.
           `,
+          AmenitiesDescription: `
+            Experience the charm of Juhu Beach with a range of amenities designed to make your tour enjoyable and hassle-free. This private tour includes air-conditioned transportation for a comfortable journey, a professional English-speaking guide to share fascinating insights about the destination, and convenient hotel pickup and drop-off for your ease. Stay hydrated with complimentary bottled water, and enjoy leisure time for shopping or relaxing on the beach. With a focus on guest satisfaction, the tour also ensures priority access to attractions, where applicable, to save you time. Note that meals, drinks, and personal expenses are not included in this package.
+          `,
+          IncludedData: [{
+            SpecialItem: [
+              "Tour | A special part of the Juhu Beach tour experience."
+            ],
+            AgeBands: [
+              {
+                "AgeBandIndex": 1,
+                "BandDescription": "ADULT(Age 0-999)",
+                "IsAgeRequired": true,
+                "MinAge": 0,
+                "MaxAge": 999,
+                "MaximumCount": 9,
+                "MinimumCount": 1
+              }
+            ],
+          }
+          ]
         },
       };
       setData(response);
@@ -78,6 +99,8 @@ const Page = () => {
     DurationDescription,
     TourPlan,
     TourDescription,
+    AmenitiesDescription,
+    IncludedData
   } = data.SightseeingSearchResult;
 
   const { OfferedPrice, CurrencyCode } = TourPlan[0].Price;
@@ -87,27 +110,33 @@ const Page = () => {
       title: "Sun Siyam Iru Fushi, Maldives",
       description: "Get ready to embark on the adventure of a lifetime!",
       tags: ["Waterfall", "Nature"],
-      image: "https://via.placeholder.com/300?text=Maldives",
+      image: "/Images/seesight/img2.webp",
     },
     {
       title: "Pianemo, Raja Ampat Papua",
       description: "Get ready to embark on the adventure of a lifetime!",
       tags: ["Mountain", "Adventure"],
-      image: "https://via.placeholder.com/300?text=Raja+Ampat",
+      image: "/Images/seesight/img1.webp",
     },
     {
       title: "Kelingking Beach, Nusa Dua Bali",
       description: "Get ready to embark on the adventure of a lifetime!",
       tags: ["Beach", "Sea"],
-      image: "https://via.placeholder.com/300?text=Bali",
+      image: "/Images/seesight/img3.webp",
+    },
+    {
+      title: "Kelingking Beach, Nusa Dua Bali",
+      description: "Get ready to embark on the adventure of a lifetime!",
+      tags: ["Beach", "Sea"],
+      image: "/Images/seesight/img4.webp",
     },
   ];
 
   return (
     <div className="min-h-screen max-w-[1540px] mx-auto">
-      <div className="mx-auto bg-white rounded-lg overflow-hidden w-full px-8">
-        <div className="p-6 border-b">
-          <h1 className="text-3xl font-semibold text-gray-700 mb-2">
+      <div className="mx-auto bg-white rounded-lg overflow-hidden w-full px-5 md:px-8">
+        <div className="p-4 md:p-6 border-b">
+          <h1 className="text-xl md:text-2xl font-semibold text-gray-700 mb-2">
             {SightseeingName}
           </h1>
           <p className="text-sm text-gray-600">
@@ -120,22 +149,23 @@ const Page = () => {
           <img
             src={mainImage}
             alt={SightseeingName}
-            className="w-full h-[32rem] object-cover rounded-[1.5rem]"
+            className="w-full h-full md:h-[32rem] object-cover rounded-[1.5rem]"
           />
+
+
         </div>
 
-        <div className="w-full mx-auto p-6 space-y-10 flex">
-          <div className="flex flex-col w-[65%]">
-            <div className="flex space-x-8 border-b pb-2 text-gray-600">
+        <div className="w-full flex-wrap mx-auto relative px-4 md:px-6 py-10 space-y-10 flex">
+          <div className="flex flex-col w-full lg:w-[65%]">
+            <div className="flex space-x-6 md:space-x-8 border-b text-gray-700">
               {tabs.map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`text-sm ${
-                    activeTab === tab
-                      ? "font-semibold text-black border-b-2 border-black"
-                      : "hover:text-black"
-                  }`}
+                  className={`text-sm text-nowrap ${activeTab === tab
+                    ? "font-semibold text-black border-b-2 pb-1 border-black"
+                    : "hover:text-black"
+                    }`}
                 >
                   {tab}
                 </button>
@@ -145,11 +175,11 @@ const Page = () => {
             {activeTab === "Overview" && (
               <>
                 <div>
-                  <h2 className="text-xl font-bold mb-4">
+                  <h2 className="text-base md:text-lg font-semibold mt-4 mb-2">
                     About The Destination
                   </h2>
                   <p
-                    className="text-gray-700"
+                    className="text-gray-700 text-[15px] md:text-base"
                     dangerouslySetInnerHTML={{
                       __html: isExpanded
                         ? TourDescription
@@ -165,7 +195,7 @@ const Page = () => {
                 </div>
 
                 <div>
-                  <h2 className="text-xl font-bold mb-4">Duration and Dates</h2>
+                  <h2 className="text-base md:text-lg font-semibold mt-4 mb-2">Duration and Dates</h2>
                   <ul>
                     {DurationDescription.map((item, index) => (
                       <li key={index} className="text-gray-600">
@@ -177,11 +207,37 @@ const Page = () => {
               </>
             )}
 
+            {activeTab === "Amenities" && (
+              <>
+                <div>
+                  <h2 className="text-base md:text-lg font-semibold mt-4 mb-2">
+                    Amenities for Discover Juhu Beach - Private Tour
+                  </h2>
+                  <p
+                    className="text-gray-700 text-[15px] md:text-base"
+                    dangerouslySetInnerHTML={{
+                      __html: isExpanded
+                        ? AmenitiesDescription
+                        : AmenitiesDescription.slice(0, 200) + "...",
+                    }}
+                  ></p>
+                  <span
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="text-blue-500 hover:underline cursor-pointer"
+                  >
+                    {isExpanded ? "Read Less" : "Read More"}
+                  </span>
+                </div>
+
+
+              </>
+            )}
+
             {activeTab === "Policies" && (
               <div>
-                <h2 className="text-xl font-bold mb-4">Cancellation Policy</h2>
+                <h2 className="text-base md:text-lg font-semibold mt-4 mb-2">Cancellation Policy</h2>
                 {TourPlan[0].SightseeingCancellationPolicy.map((policy, i) => (
-                  <p key={i} className="text-gray-700">
+                  <p key={i} className="text-gray-700 text-[15px] md:text-base">
                     {policy.Charge} {policy.Currency}: Cancellation from{" "}
                     {policy.FromDate ? policy.FromDate.split("T")[0] : "N/A"} to{" "}
                     {policy.ToDate ? policy.ToDate.split("T")[0] : "N/A"}.
@@ -189,10 +245,34 @@ const Page = () => {
                 ))}
               </div>
             )}
+
+            {activeTab === "What's included" && (
+              <>
+                <div className="my-4">
+                  {IncludedData.map((data, index) => (
+                    <div key={index} >
+                      {data.SpecialItem.map((item, idx) => (
+                        <p key={idx} className="text-[15px] md:text-base">{item}</p>
+                      ))}
+                     
+                    </div>
+                  ))}
+                  
+                  <span
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="text-blue-500 hover:underline cursor-pointer"
+                  >
+                    {isExpanded ? "Read Less" : "Read More"}
+                  </span>
+                </div>
+
+
+              </>
+            )}
           </div>
 
-          <div className="w-[30%] mx-auto p-6 bg-white shadow-lg rounded-md border">
-            <div className="text-2xl font-bold">
+          <div className="w-full lg:w-[30%] mx-auto p-6 bg-white shadow-lg sticky top-0 z-10 rounded-md border">
+            <div className="text-xl md:text-2xl font-bold">
               $750.00 <span className="text-sm font-normal">per night</span>
             </div>
 
@@ -243,8 +323,8 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="flex flex-col items-start p-4 w-screen">
-          <h2 className="text-3xl font-semibold mb-4">Location</h2>
+        <div className="flex flex-col items-start p-4 w-full">
+          <h2 className="text-xl md:text-2xl font-semibold mb-4">Location</h2>
           <div className="relative w-full h-64 shadow-md">
             {/* <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2118.8653849516486!2d76.78440877092395!3d30.749943072624916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed76ab9f14c1%3A0xd6362b158b8994aa!2sEiffel%20Tower%20Replica!5e0!3m2!1sen!2sin!4v1733123258040!5m2!1sen!2sin"
@@ -256,7 +336,7 @@ const Page = () => {
 
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3428.9163435459964!2d76.78284007645692!3d30.748851284851785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fed76ab9f14c1%3A0xd6362b158b8994aa!2sEiffel%20Tower%20Replica!5e0!3m2!1sen!2sin!4v1733137389275!5m2!1sen!2sin"
-              className="w-full h-full"
+              className="w-full h-full md:h-[400px]"
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
@@ -270,17 +350,17 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="text-center mb-12 mt-12">
-          <h2 className="text-4xl font-bold mb-4">
+        <div className="text-center mb-10 mt-12 md:mt-52">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 md:mb-4">
             Choose our range of expertly crafted packages
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-sm lg:text-base">
             Get ready to embark on the adventure of a lifetime! Our curated list
             of top travel destinations promises breathtaking landscapes, vibrant
             cultures.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-4 gap-6 mb-20">
           {packages.map((pkg, i) => (
             <div
               key={i}
@@ -292,7 +372,7 @@ const Page = () => {
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{pkg.title}</h3>
+                <h3 className="text-lg font-semibold mb-2">{pkg.title}</h3>
                 <p className="text-gray-600 mb-4">{pkg.description}</p>
                 <div className="flex gap-2">
                   {pkg.tags.map((tag, index) => (
