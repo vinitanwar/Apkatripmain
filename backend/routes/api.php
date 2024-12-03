@@ -79,10 +79,6 @@ Route::post('/transfer-search', [TransferSearchController::class, 'searchTransfe
 Route::get('/transfers', [TransferController::class, 'getTransferData']);
 
 Route::get('v1/cab/countries', [CountryControllerCab::class, 'getCountryList']);
-// Route::get('/search-flights-one', (Request $request) {
-//     return "<h1>Hello  nworld</h1>"
-// });
-
 
 
 Route::prefix('v1')->group(function () {
