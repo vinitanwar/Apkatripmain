@@ -77,7 +77,7 @@ const Topbar = () => {
 
   const [countryOpner, setCounrtyOpner] = useState(false);
   const countryLanguages = [
-    { name: "English (US)", image: "/images/flags/us.png" },
+    { name: "English (US)", image: "/images/flags/us.webp" },
     { name: "Spanish (Spain)", image: "/images/flags/spain.png" },
     { name: "French (France)", image: "/images/flags/france.png" },
     { name: "German (Germany)", image: "/images/flags/germany.png" },
@@ -91,19 +91,16 @@ const Topbar = () => {
     { name: "Arabic (Saudi Arabia)", image: "/images/flags/saudi-arabia.png" },
     { name: "Turkish (Turkey)", image: "/images/flags/turkey.png" },
     { name: "Thai (Thailand)", image: "/images/flags/thailand.png" },
-    { name: "Dutch (Netherlands)", image: "/images/flags/netherlands.png" },
     { name: "Swedish (Sweden)", image: "/images/flags/sweden.png" },
     { name: "Norwegian (Norway)", image: "/images/flags/norway.png" },
     { name: "Danish (Denmark)", image: "/images/flags/denmark.png" },
     { name: "Finnish (Finland)", image: "/images/flags/finland.png" },
     { name: "Polish (Poland)", image: "/images/flags/poland.png" },
-    {
-      name: "Czech (Czech Republic)",
-      image: "/images/flags/czech-republic.png",
-    },
-    { name: "Greek (Greece)", image: "/images/flags/greece.png" },
-    { name: "Vietnamese (Vietnam)", image: "/images/flags/vietnam.png" },
-    { name: "Indonesian (Indonesia)", image: "/images/flags/indonesia.png" },
+    { name: "Bengali (India)", image: "/images/flags/india.png" },
+    { name: "Tamil (India)", image: "/images/flags/india.png" },
+    { name: "Punjabi (India)", image: "/images/flags/india.png" },
+    { name: "Gujarati (India)", image: "/images/flags/india.png" },
+    { name: "Marathi (India)", image: "/images/flags/india.png" },
   ];
 
   const topAndBottomDropDown = 
