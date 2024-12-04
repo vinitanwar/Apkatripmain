@@ -2,10 +2,8 @@
 import React, { useEffect, useState } from "react";
 
 import TravellerDropDownhotels from "../TravellerDropDownhotels";
-import TravellerDropDownhotels from "../TravellerDropDownhotels";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import AutoSearchcity from "../AutoSearchcity";
 import AutoSearchcity from "../AutoSearchcity";
 import { Calendar } from "@nextui-org/react";
 import { today, getLocalTimeZone } from "@internationalized/date";
@@ -20,15 +18,10 @@ import { FaCalendarWeek, FaChevronDown, FaCalendarAlt } from "react-icons/fa";
 
 const HotelsComp = () => {
   const route = useRouter();
-  const route = useRouter();
   const localTimeZone = getLocalTimeZone();
   const [isVisible, setIsVisible] = useState("");
   const defalinfo = JSON.parse(localStorage.getItem("hotelItems"));
-  const defalinfo = JSON.parse(localStorage.getItem("hotelItems"));
 
-  const [city, setcity] = useState(
-    (defalinfo && defalinfo.place) || { Name: "delhi", Code: "130443" }
-  );
   const [city, setcity] = useState(
     (defalinfo && defalinfo.place) || { Name: "delhi", Code: "130443" }
   );
@@ -42,20 +35,8 @@ const HotelsComp = () => {
   const [adultcount, setadultcount] = useState(1);
   const [childcount, setchildcount] = useState(0);
   const [numberOfRoom, setNumberOfRoom] = useState(1);
-  const [arivitime, setarivetime] = useState(
-    new Date((defalinfo && defalinfo.checkIntime) || Date.now())
-  );
-  const [checkOut, setcheckOut] = useState(
-    new Date((defalinfo && defalinfo.checkouttime) || arivitime)
-  );
-  const [adultcount, setadultcount] = useState(1);
-  const [childcount, setchildcount] = useState(0);
-  const [numberOfRoom, setNumberOfRoom] = useState(1);
 
   const handleCitySelect = (city) => {
-    setcity(city);
-
-    setIsVisible("");
     setcity(city);
 
     setIsVisible("");
@@ -71,23 +52,13 @@ const HotelsComp = () => {
 
   const handelreturn = (newRange) => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
-  const handelreturn = (newRange) => {
-    const date = new Date(newRange.year, newRange.month - 1, newRange.day);
 
     setarivetime(date);
     setIsVisible("");
   };
   const handelreturn2 = (newRange) => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
-    setarivetime(date);
-    setIsVisible("");
-  };
-  const handelreturn2 = (newRange) => {
-    const date = new Date(newRange.year, newRange.month - 1, newRange.day);
 
-    setcheckOut(date);
-    setIsVisible("");
-  };
     setcheckOut(date);
     setIsVisible("");
   };
@@ -106,22 +77,6 @@ const HotelsComp = () => {
 
     const r_localDate = new Date(check.getTime());
     const checkindate = r_localDate.toISOString().slice(0, 10);
-  const handelhotelSearch = () => {
-    localStorage.setItem(
-      "hotelItems",
-      JSON.stringify({
-        place: { Name: city.Name, Code: city.Code },
-        checkIntime: arivitime,
-        checkouttime: checkOut,
-      })
-    );
-    const offset = 6 * 60 * 55 * 1000;
-    const check = new Date(arivitime);
-
-    const r_localDate = new Date(check.getTime());
-    const checkindate = r_localDate.toISOString().slice(0, 10);
-
-    const checko = new Date(checkOut);
 
     const checko = new Date(checkOut);
 
@@ -132,7 +87,7 @@ const HotelsComp = () => {
     );
   };
 
-
+  
 
 
 
