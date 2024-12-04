@@ -3,12 +3,10 @@
 
 use App\Http\Controllers\AirportController;
 use App\Http\Controllers\TopPorts;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TBOController;
-
 use App\Http\Controllers\HotelRegistrationController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\SightseeingController;
@@ -18,7 +16,6 @@ use App\Http\Controllers\BusControllerSearch;
 use App\Http\Controllers\HotelControllerSearchRes;
 use App\Http\Controllers\CountryControllerCab;
 use App\Http\Controllers\TransferController;
-
 use App\Http\Controllers\TransferSearchController;
 
 
@@ -107,8 +104,3 @@ use  App\Http\Controllers\SiteUser;
 
 Route::post("v1/user/signup", [SiteUser::class, "signupUser"]);
 Route::post("v1/user/login", [SiteUser::class, "loginUser"]);
-
-
-
-
-
