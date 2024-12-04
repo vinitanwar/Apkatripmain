@@ -17,7 +17,6 @@ import { RxCross2 } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaHotel } from "react-icons/fa6";
 
-
 const Topbar = () => {
   const router = useRouter();
 
@@ -33,11 +32,12 @@ const Topbar = () => {
     if (localeFromCookie) setSelectedLang(localeFromCookie);
   }, []);
 
-  const handleLanguageChange = (e) => {
-    const newLang = e.target.value;
+  const handleLanguageChange = (code) => {
+    const newLang = code;
     setSelectedLang(newLang);
     Cookies.set("locale", newLang); // Save the selected language in cookies
     // router.reload(); // Reload to apply the new locale
+    setCounrtyOpner(false);
     router.refresh();
   };
 
@@ -78,34 +78,116 @@ const Topbar = () => {
   const [countryOpner, setCounrtyOpner] = useState(false);
   const countryLanguages = [
     { name: "English (US)", image: "/images/flags/us.webp", langCode: "en" },
-    { name: "Spanish (Spain)", image: "/images/flags/spain.png", langCode: "es" },
-    { name: "French (France)", image: "/images/flags/france.png", langCode: "fr" },
-    { name: "German (Germany)", image: "/images/flags/germany.png", langCode: "de" },
-    { name: "Italian (Italy)", image: "/images/flags/italy.png", langCode: "it" },
-    { name: "Portuguese (Brazil)", image: "/images/flags/brazil.png", langCode: "pt" },
-    { name: "Russian (Russia)", image: "/images/flags/russia.png", langCode: "ru" },
-    { name: "Chinese (China)", image: "/images/flags/china.png", langCode: "zh" },
-    { name: "Japanese (Japan)", image: "/images/flags/japan.png", langCode: "ja" },
-    { name: "Korean (South Korea)", image: "/images/flags/south-korea.png", langCode: "ko" },
+    {
+      name: "Spanish (Spain)",
+      image: "/images/flags/spain.png",
+      langCode: "es",
+    },
+    {
+      name: "French (France)",
+      image: "/images/flags/france.png",
+      langCode: "fr",
+    },
+    {
+      name: "German (Germany)",
+      image: "/images/flags/germany.png",
+      langCode: "de",
+    },
+    {
+      name: "Italian (Italy)",
+      image: "/images/flags/italy.png",
+      langCode: "it",
+    },
+    {
+      name: "Portuguese (Brazil)",
+      image: "/images/flags/brazil.png",
+      langCode: "pt",
+    },
+    {
+      name: "Russian (Russia)",
+      image: "/images/flags/russia.png",
+      langCode: "ru",
+    },
+    {
+      name: "Chinese (China)",
+      image: "/images/flags/china.png",
+      langCode: "zh",
+    },
+    {
+      name: "Japanese (Japan)",
+      image: "/images/flags/japan.png",
+      langCode: "ja",
+    },
+    {
+      name: "Korean (South Korea)",
+      image: "/images/flags/south-korea.png",
+      langCode: "ko",
+    },
     { name: "Hindi (India)", image: "/images/flags/india.png", langCode: "hi" },
-    { name: "Arabic (Saudi Arabia)", image: "/images/flags/saudi-arabia.png", langCode: "ar" },
-    { name: "Turkish (Turkey)", image: "/images/flags/turkey.png", langCode: "tr" },
-    { name: "Thai (Thailand)", image: "/images/flags/thailand.png", langCode: "th" },
-    { name: "Swedish (Sweden)", image: "/images/flags/sweden.png", langCode: "sv" },
-    { name: "Norwegian (Norway)", image: "/images/flags/norway.png", langCode: "no" },
-    { name: "Danish (Denmark)", image: "/images/flags/denmark.png", langCode: "da" },
-    { name: "Finnish (Finland)", image: "/images/flags/finland.png", langCode: "fi" },
-    { name: "Polish (Poland)", image: "/images/flags/poland.png", langCode: "pl" },
-    { name: "Bengali (India)", image: "/images/flags/india.png", langCode: "bn" },
+    {
+      name: "Arabic (Saudi Arabia)",
+      image: "/images/flags/saudi-arabia.png",
+      langCode: "ar",
+    },
+    {
+      name: "Turkish (Turkey)",
+      image: "/images/flags/turkey.png",
+      langCode: "tr",
+    },
+    {
+      name: "Thai (Thailand)",
+      image: "/images/flags/thailand.png",
+      langCode: "th",
+    },
+    {
+      name: "Swedish (Sweden)",
+      image: "/images/flags/sweden.png",
+      langCode: "sv",
+    },
+    {
+      name: "Norwegian (Norway)",
+      image: "/images/flags/norway.png",
+      langCode: "no",
+    },
+    {
+      name: "Danish (Denmark)",
+      image: "/images/flags/denmark.png",
+      langCode: "da",
+    },
+    {
+      name: "Finnish (Finland)",
+      image: "/images/flags/finland.png",
+      langCode: "fi",
+    },
+    {
+      name: "Polish (Poland)",
+      image: "/images/flags/poland.png",
+      langCode: "pl",
+    },
+    {
+      name: "Bengali (India)",
+      image: "/images/flags/india.png",
+      langCode: "bn",
+    },
     { name: "Tamil (India)", image: "/images/flags/india.png", langCode: "ta" },
-    { name: "Punjabi (India)", image: "/images/flags/india.png", langCode: "pa" },
-    { name: "Gujarati (India)", image: "/images/flags/india.png", langCode: "gu" },
-    { name: "Marathi (India)", image: "/images/flags/india.png", langCode: "mr" },
+    {
+      name: "Punjabi (India)",
+      image: "/images/flags/india.png",
+      langCode: "pa",
+    },
+    {
+      name: "Gujarati (India)",
+      image: "/images/flags/india.png",
+      langCode: "gu",
+    },
+    {
+      name: "Marathi (India)",
+      image: "/images/flags/india.png",
+      langCode: "mr",
+    },
   ];
-  
 
-  const topAndBottomDropDown = 
-  {
+  const topAndBottomDropDown = {
     topFeaturestopDropDown: [
       {
         heading: "List Your Property",
@@ -227,7 +309,7 @@ const Topbar = () => {
         ],
       },
       {
-        heading: "Travek Assistance",
+        heading: "Travel Assistance",
         listData: [
           {
             link: "",
@@ -389,11 +471,7 @@ const Topbar = () => {
             <div className="w-4 h-[2px] bg-gray-800"></div>
           </div>
           <Link href="/">
-            <img
-              src="/Images/newlogo.png"
-              alt=""
-              className="h-5 md:h-[30px]"
-            />
+            <img src="/Images/newlogo.png" alt="" className="h-5 md:h-[30px]" />
           </Link>
           <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         </div>
@@ -401,18 +479,15 @@ const Topbar = () => {
         {/* <Navbar /> */}
 
         <div className="Contact-county-login-singnup flex items-center gap-4">
-
-
-        <div className=" flex justify-start lg:justify-end">
-      <Link href="/property-listing" 
-  className="flex justify-center items-center gap-3 mx-4 px-8 py-3 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 text-white font-semibold rounded-full shadow-lg transform hover:scale-105 hover:shadow-xl hover:opacity-90 transition-all duration-300 text-sm"
-  >
-  <FaHotel />
-      
-      List Your Property</Link>
-        </div>
-
-
+          <div className=" flex justify-start lg:justify-end">
+            <Link
+              href="/property-listing"
+              className="flex justify-center items-center gap-3 mx-4 px-8 py-3 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 text-white font-semibold rounded-full shadow-lg transform hover:scale-105 hover:shadow-xl hover:opacity-90 transition-all duration-300 text-sm"
+            >
+              <FaHotel />
+              List Your Property
+            </Link>
+          </div>
 
           <a href="tel:+9877579319" className="hidden">
             <div className="border border-gray-300 rounded-full  text-white px-4 text-center shadow-md cursor-pointer transition duration-300 flex items-center gap-4 relative">
@@ -619,7 +694,7 @@ const Topbar = () => {
 
               {/* counry selction  */}
               <div className="ContrySection">
-                <button
+                {/* <button
                   onClick={() => setCounrtyOpner(!countryOpner)}
                   className="flex relative z-40 items-center space-x-1"
                 >
@@ -628,7 +703,24 @@ const Topbar = () => {
                   <FaChevronDown
                     className={`${countryOpner && "rotate-180"}`}
                   />
-                </button>
+                </button> */}
+
+                {countryLanguages.map(
+                  (lang) =>
+                    lang.langCode === selectedLang && (
+                      <button
+                        onClick={() => setCounrtyOpner(!countryOpner)}
+                        className="flex relative z-40 items-center space-x-1"
+                      >
+                        <img src={lang.image}    className="w-8 h-8 rounded-full object-fill max-w-full"  alt="" />
+                        <span>{lang.name}</span>
+                        <FaChevronDown
+                          className={`${countryOpner && "rotate-180"}`}
+                        />
+                      </button>
+                    )
+                )}
+
                 {countryOpner && (
                   <div className="fixed flex justify-center items-center bg-[rgba(0,0,0,0.5)] inset-0">
                     <div className="h-auto w-[800px] rounded-lg p-3 bg-white">
@@ -643,10 +735,22 @@ const Topbar = () => {
                           </button>
                         </div>
                         <p className="text-sm font-bold">Cureent Language</p>
-                        <div className="flex items-center text-xs gap-3">
-                          <img src="/Images/flag_INR.svg" width="18" alt="" />{" "}
-                          <p>English (India)</p>
-                        </div>
+                        {countryLanguages.map(
+                          (lang) =>
+                            lang.langCode === selectedLang && (
+                              <div
+                                key={lang.langCode}
+                                className="flex items-center gap-2"
+                              >
+                                <img
+                                  src={lang.image}
+                                  className="w-8 h-8 rounded-full object-fill max-w-full"
+                                  alt={lang.name}
+                                />
+                                <p>{lang.name}</p>
+                              </div>
+                            )
+                        )}
                       </div>
                       <div className="h-[2px] mt-5 bg-gray-200"></div>
                       <div className="Languages-choose">
@@ -656,11 +760,14 @@ const Topbar = () => {
                             <div
                               key={index}
                               className="flex cursor-pointer  text-xs items-center gap-2 p-2 "
+                              onClick={() =>
+                                handleLanguageChange(lang.langCode)
+                              }
                             >
                               <img
                                 src={lang.image}
                                 alt={lang.name}
-                                className="w-6 h-6 rounded"
+                                className="w-12 h-12 rounded-full object-fill max-w-full"
                               />
                               <span>{lang.name}</span>
                             </div>
@@ -894,7 +1001,6 @@ const Topbar = () => {
           </div>
         </div>
       </div>
-    
     </div>
   );
 };

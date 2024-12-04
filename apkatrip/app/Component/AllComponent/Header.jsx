@@ -502,7 +502,7 @@ const Header = () => {
         ],
       },
       {
-        heading: "Travek Assistance",
+        heading: "Travel Assistance",
         listData: [
           {
             link: "",
