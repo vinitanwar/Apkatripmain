@@ -631,7 +631,7 @@ const Topbar = () => {
                 </button>
                 {countryOpner && (
                   <div className="fixed flex justify-center items-center bg-[rgba(0,0,0,0.5)] inset-0">
-                    <div className="h-[600px] w-[800px] rounded-lg p-3 bg-white">
+                    <div className="h-auto w-[800px] rounded-lg p-3 bg-white">
                       <div className="space-y-5 ">
                         <div className="flex justify-between">
                           <h4 className="font-extrabold text-lg">Languages</h4>
@@ -655,7 +655,7 @@ const Topbar = () => {
                           {countryLanguages.map((lang, index) => (
                             <div
                               key={index}
-                              className="flex  text-xs items-center gap-2 p-2 "
+                              className="flex cursor-pointer  text-xs items-center gap-2 p-2 "
                             >
                               <img
                                 src={lang.image}
