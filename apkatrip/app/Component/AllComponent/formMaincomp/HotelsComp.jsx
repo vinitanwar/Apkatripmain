@@ -87,6 +87,10 @@ const HotelsComp = () => {
     );
   };
 
+
+
+
+
   return (
     <div className="header    relative  md:px-5  lg:px-12 xl:px-24">
       <div className=" bg-[#002043] h-[15rem] absolute inset-0  -z-10" />
@@ -151,7 +155,7 @@ const HotelsComp = () => {
                   <RxCross2 />
                 </button>
                 <div className="flex flex-col">
-                  <span className="text-3xl  text-black font-bold  		">
+                  <span className="text-3x text-black font-bold">
                     {city.Name}
                   </span>
                 </div>
@@ -177,7 +181,7 @@ const HotelsComp = () => {
                 <div className="text-slate-400">
                   {arivitime && (
                     <>
-                      <div className="flex  items-baseline text-black">
+                      <div className="flex items-baseline text-black">
                         <span className="text-2xl py-1 pr-1 text-black font-bold">
                           {" "}
                           {arivitime.getDate()}
@@ -210,7 +214,7 @@ const HotelsComp = () => {
                     value={""}
                     onChange={handelreturn}
                     minValue={currentDate}
-                    disabledDatesClassName=" opacity-50"
+                    disabledDatesClassName="opacity-50"
                   />
                 </div>
               )}
@@ -226,7 +230,7 @@ const HotelsComp = () => {
                 <div className="text-slate-400">
                   {checkOut && (
                     <>
-                      <div className="flex  items-baseline text-black">
+                      <div className="flex items-baseline text-black">
                         <span className="text-2xl py-1 pr-1 text-black font-bold">
                           {" "}
                           {checkOut.getDate()}
@@ -363,6 +367,8 @@ const HotelsComp = () => {
          
           </div>
         </div>
+
+        
       </div>
   
   );

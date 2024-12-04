@@ -96,6 +96,7 @@ Route::post("v1/hotelreq/signupHotel", [HotelRegesController::class, "sendVerify
 Route::post("v1/hotelreq/otp", [HotelRegesController::class, "sendHotelOtp"]);
 
 Route::post("v1/hotelreq/loginhotel", [HotelRegesController::class, "loginhotel"]);
+Route::get("v1/hotel/all", [HotelRegesController::class, "getAllhotels"]);
 
 
 use  App\Http\Controllers\OtpController;

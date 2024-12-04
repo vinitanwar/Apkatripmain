@@ -153,7 +153,7 @@ const togglePopup = () => setIsOpen(!isOpen);
 
             <div className="mt-6">
               <button
-                onClick={() => router.push('/')}
+                onClick={() => router.push('/hotelcheckout')}
                 className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-500 transition-all"
               >
                 Book Now

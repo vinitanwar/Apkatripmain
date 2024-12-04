@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomSlider from "../Component/AllComponent/Slider";
 import FAQSection from "../Component/AllComponent/FAQ";
 import Link from "next/link";
@@ -7,9 +7,19 @@ import HotelChains from "../Component/AllComponent/HotelChain";
 import HotelComp from "../Component/AllComponent/formMaincomp/HotelsComp";
 import Hotelmobileheader from "../Component/AllComponent/Hotelmobilheader";
 import { FaStar } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllRegHotels } from "../Component/Store/slices/getReqHotels";
 
 const Page = () => {
   const [showAll, setShowAll] = useState(false);
+  const dispatch=useDispatch();
+  const allReghotels=useSelector(state=>state.getRegHotelsSlice)
+
+  console.log(allReghotels,"sfsdfhweriohfiowef")
+ useEffect(()=>{
+dispatch(getAllRegHotels())
+ },[ ])
+
 
   const destinations = [
     {

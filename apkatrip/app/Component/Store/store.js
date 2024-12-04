@@ -19,13 +19,13 @@ import busSeatSlice from "./slices/busSearchSlice"
 import fareRuleSlice from "./slices/fairRuleflight"
 import farequoteSlice from "./slices/farequateflight";
 import ssrFlightSlice from "./slices/ssrRuleFlight"
-
+import getRegHotelsSlice from "./slices/getReqHotels"
 
 
 export const store = configureStore({
   reducer: { searchFlightslice, Allairport, topPortsSlice, blogslice, ipslice, searchreturn,advanceSearchFlight,
     farequoteSlice,ssrFlightSlice,
-    
+    getRegHotelsSlice,
     citysearch,hotelsSlice,preBookSlice,
     sightseeingslice,sightseeingGetslice,busCityslice,gethotelslice,busslice,busSeatSlice,fareRuleSlice
   },
