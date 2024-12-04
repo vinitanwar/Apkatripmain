@@ -3,12 +3,10 @@
 
 use App\Http\Controllers\AirportController;
 use App\Http\Controllers\TopPorts;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TBOController;
-
 use App\Http\Controllers\HotelRegistrationController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\SightseeingController;
@@ -18,7 +16,6 @@ use App\Http\Controllers\BusControllerSearch;
 use App\Http\Controllers\HotelControllerSearchRes;
 use App\Http\Controllers\CountryControllerCab;
 use App\Http\Controllers\TransferController;
-
 use App\Http\Controllers\TransferSearchController;
 
 
@@ -79,10 +76,6 @@ Route::post('/transfer-search', [TransferSearchController::class, 'searchTransfe
 Route::get('/transfers', [TransferController::class, 'getTransferData']);
 
 Route::get('v1/cab/countries', [CountryControllerCab::class, 'getCountryList']);
-// Route::get('/search-flights-one', (Request $request) {
-//     return "<h1>Hello  nworld</h1>"
-// });
-
 
 
 Route::prefix('v1')->group(function () {
@@ -112,8 +105,3 @@ use  App\Http\Controllers\SiteUser;
 
 Route::post("v1/user/signup", [SiteUser::class, "signupUser"]);
 Route::post("v1/user/login", [SiteUser::class, "loginUser"]);
-
-
-
-
-
