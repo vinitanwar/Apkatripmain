@@ -90,7 +90,7 @@ Route::post("v1/hotelreq/otp", [HotelRegesController::class, "sendHotelOtp"]);
 
 Route::post("v1/hotelreq/loginhotel", [HotelRegesController::class, "loginhotel"]);
 Route::get("v1/hotel/all", [HotelRegesController::class, "getAllhotels"]);
-
+Route::get("v1/hotel/single/{slug}", [HotelRegesController::class, "getSingleHotellreq"]);
 
 use  App\Http\Controllers\OtpController;
 

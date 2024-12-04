@@ -181,13 +181,22 @@ foreach($users as $user){
  array_push($info,["hotel"=>$singlehotel,"user"=>$user]);
 
 }
+return $info;}
 
 
-return $info;
-// return "Sdfsdf";
+
+
+
+public function getSingleHotellreq(string $slug){
+
+    $user=Hotel::where("slug",$slug)->first();
+    $hotel=hoteldetails::where("hotel_id",$user["id"])->first();
+   $amenities=amenities::where("hotel_id",$user["id"])->first();
+    $rooms=roomreg::where("hotel_id",$user["id"])->get();
+$data=["user"=>$user,"hotel"=>$hotel,"amenities"=>$amenities,"rooms"=>$rooms];
+return $data;
 
 }
-
 
 
 

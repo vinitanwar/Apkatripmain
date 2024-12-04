@@ -1,16 +1,18 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { FaAudioDescription } from 'react-icons/fa'
 import { FaStar } from "react-icons/fa6";
 import { FaCheckCircle ,FaMailBulk} from "react-icons/fa";
 import { IoCallSharp } from "react-icons/io5";
+import axios from 'axios';
+import { apilink, imgurl } from '../../../Component/common';
 
 
 
 
 
 
-const page = () => {
+const Compopage = ({slug}) => {
   const hoteldata={
   
     hotelName:"Green Tree Hotel Munnar",
@@ -48,11 +50,22 @@ contect :{number1:"+91 9876543210",number2:"+91 9876543320",mail:"nmsfwe@mail.co
 returnPolicy:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
 hotelPolicy:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
 }
+const [hotelinfo,sethotelinfo]=useState()
+
+useEffect(()=>{
+const gethotel=async()=>{
+  const res=await axios.get(`${apilink}/hotel/single/${slug}`)
+  sethotelinfo(res.data)
+}
+gethotel()
+
+},[])
 
 
+console.log(hotelinfo && hotelinfo)
 
-
-
+ 
+ 
 
 
 
@@ -61,26 +74,29 @@ hotelPolicy:"Lorem Ipsum is simply dummy text of the printing and typesetting in
 const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
   return (
     <div className='   lg:px-20 xl:px-32 py-4 bg-[#dbdbdb86]'>
-
+{ hotelinfo && hotelinfo.hotel &&
 <div className='shadow w-full p-3 rounded-md bg-white'>
     <div className=''>
         <div className='flex gap-4 items-center text-sm my-1  '>
-  <p className='text-2xl text-black font-bold '>{hoteldata.hotelName}</p> <div className='flex gap-1'>{Array.from({length:hoteldata.rating}).map((star,key)=>(<FaStar key={key}/>))}</div>
+  <p className='text-2xl text-black font-bold '>{hotelinfo.hotel.property_name}</p> <div className='flex gap-1'>{Array.from({length:hotelinfo.hotel.rating}).map((star,key)=>(<FaStar key={key}/>))}</div>
   <p className='border-2 border-sky-300 px-3 text-sky-300'>Hotel</p>
   </div>
 
-        <p className='text-gray-400'>{hoteldata.Address}</p>
+        <p className='text-gray-400'>
+          <div dangerouslySetInnerHTML={{__html:hotelinfo.hotel.address}}></div>
+          
+          </p>
 
     </div>
     <div className='flex gap-3   flex-col lg:flex-row '>
 
       <div className='flex gap-1 w-full h-[20rem]'>
 <div className='w-full  h-full'>
-<img src={hoteldata.imgSrc[0]} className=' h-full w-full rounded-md'/>
+<img src={`${imgurl}/storage/${hotelinfo.hotel.hotel_img[0]}`} className=' h-full w-full rounded-md'/>
 </div>
 
-<div className='w-44 justify-around  gap-2 flex flex-col h-full'>
-{hoteldata.imgSrc.map((img,index)=>(<img src={img} key={index}  className=' rounded-md' />))}
+<div className='w-44 justify-around  gap-1 flex flex-col '>
+{hotelinfo.hotel.hotel_img.slice(0,3).map((img,index)=>(<img src={`${imgurl}/storage/${img}`} key={index}  className=' rounded-md h-[6rem]' />))}
 </div>
 
       </div>
@@ -99,12 +115,12 @@ const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
 
  
    <p className='text-2xl font-bold '>
-   ₹{hoteldata.rooms[0].price}
+   ₹{hotelinfo.hotel.price}
 
    </p>
    <p className='text-red-500 text-sm'>
     <s>
-    ₹{(hoteldata.rooms[0].price*10)/100 +hoteldata.rooms[0].price}  
+    ₹{   Number(hotelinfo.hotel.price*10)/100 +Number(hotelinfo.hotel.price)}  
     </s>
    </p>
  
@@ -118,7 +134,8 @@ const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
 <div className='my-3'>
 <p className='text-xl font-semibold my-1 '>Address:</p>
 <p>
-    {hoteldata.Address}
+<div dangerouslySetInnerHTML={{__html:hotelinfo.hotel.address}}></div>
+
 </p>
 
 </div>
@@ -132,7 +149,10 @@ const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
 
 <div className=' flex flex-wrap gap-3 '>
 
-{hoteldata.features.map((item,index)=>(<div key={index} className='flex gap-1 px-3 rounded-md bg-[#87cfeb54] items-center'>
+{hotelinfo.amenities.basic_facilities.map((item,index)=>(<div key={index} className='flex gap-1 px-3 rounded-md bg-[#87cfeb54] items-center'>
+<FaCheckCircle className='text-[#5da05d]' /> <p>{item}</p>
+</div>))}
+{hotelinfo.amenities.common_areas.map((item,index)=>(<div key={index} className='flex gap-1 px-3 rounded-md bg-[#87cfeb54] items-center'>
 <FaCheckCircle className='text-[#5da05d]' /> <p>{item}</p>
 </div>))}
 
@@ -163,6 +183,11 @@ const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
     </div>
 
 </div>
+}
+
+
+
+
 <div className='shadow w-full p-2 rounded-md my-5 flex   flex-wrap lg:gap-7 text-black md:text-lg font-semibold bg-white'>
     
     {["Roomes","About","Location","Contact","Rating"].map((item,index)=>(<p onClick={()=>sethotelinfoIndex(index)} key={index} className={` border-b-2  ${ hotelinfoIndex==index?"text-orange-500 border-b-orange-500 ":" border-b-transparent"}hover:text-orange-500 hover:border-b-orange-500   py-1 px-3 cursor-pointer`}   >{item}</p>))}
@@ -173,25 +198,29 @@ const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
 <div className='shadow w-full p-3 rounded-md bg-white'>
   
   
-  {hotelinfoIndex ==0 &&  hoteldata.rooms.map((room,index)=>{
+  {hotelinfoIndex ==0 && hotelinfo  && hotelinfo.rooms  && 
+   hotelinfo.rooms.map((room,index)=>{
     return(
     <div key={index} className='flex flex-col md:flex-row w-full border-b-2 border-gray-700' >
 <div>
-  <p className='text-2xl font-bold my-2'>{room.roomeType}</p>
-  <img   src={room.image}  className=' md:w-[20rem]'/>
+  <p className='text-2xl font-bold my-2'>{room.room_type}</p>
+  <img   src={`${imgurl}/storage/${room.image[0]}`}  className=' h-[10rem] w-[40rem]'/>
 </div>
 <div className='flex  flex-col  my-2 md:p-6 gap-10 w-full'>
-{room.other.map((hotel,inde)=>{
-  return (
-    <div key={inde} className='flex justify-between items-end  md:items-start border-b-2 border-b-[#b0e9ffb5] pb-3'>
+
+
+
+    <div  className='flex justify-between items-end  md:items-start border-b-2 border-b-[#b0e9ffb5] pb-3'>
       <div>
-        <p className='text-lg font-semibold'>{hotel.type}</p>
+        <p className='text-lg font-semibold'>{room.bed_type}</p>
         <div className='grid   md:grid-cols-2 gap-2'>
-      {hotel.services.map((feture)=><div className='flex items-center gap-2 text-green-600'><FaCheckCircle className=''/> <p>{feture}</p></div>)}
+      {room.features.map((feture)=><div className='flex items-center gap-2 text-green-600'><FaCheckCircle className=''/> <p>{feture}</p></div>)}
       </div>
+      Occupancy:
+{room.max_occupancy}
     </div>
 <div className='flex items-start gap-2'>
-  <p className='text-2xl font-bold'>₹{hotel.price}</p> <s className='text-sm text-red-700 hidden md:block'>₹{(hotel.price*15)/100 + hotel.price} </s>
+  <p className='text-2xl font-bold'>₹{room.price}</p> <s className='text-sm text-red-700 hidden md:block'>₹{((Number(room.price) * 15) / 100 + Number(room.price)).toString().split(".")[0]} </s>
 </div>
 
 <div>
@@ -202,43 +231,51 @@ const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
 
     </div>
 
-  )
-})}
+  
+
 </div>
    </div>)})}
 
+
+
+
 {
-  hotelinfoIndex==1 && <div className='p-4'>
+  hotelinfoIndex==1 &&  hotelinfo  && hotelinfo.rooms && <div className='p-4'>
 
 <p className='text-xl font-semibold my-2'>Hotel  Policy</p>
-<div 
-dangerouslySetInnerHTML={{
-  __html: hoteldata.hotelPolicy,
-}}
-></div>
+<div  dangerouslySetInnerHTML={{__html:hotelinfo.hotel.terms}}></div>
 
 
     
 <p className='text-xl font-semibold my-2'>Hotel Refund Policy</p>
 <div 
-dangerouslySetInnerHTML={{
-  __html: hoteldata.returnPolicy,
-}}
-></div>
+
+
+>
+
+
+</div>
 <p className='text-xl font-semibold my-2'>Description</p>
 <div 
 dangerouslySetInnerHTML={{
-  __html: hoteldata.description,
+  __html: hotelinfo.hotel.hotel_des,
 }}
 ></div> 
   </div>
 }
 
+
+
+
 {
-hotelinfoIndex==2 && <div >
+hotelinfoIndex==2 && hotelinfo  && hotelinfo.hotel && <div >
 
 <div><p className='text-xl font-semibold'>Address:</p>
-<p className='my-2'>{hoteldata.Address}</p>
+<p className='my-2'>
+  <div dangerouslySetInnerHTML={{__html:hotelinfo.hotel.address}}></div>
+
+  
+  </p>
 
 
 </div>
@@ -259,7 +296,7 @@ hotelinfoIndex==2 && <div >
 }
 
 
-{hotelinfoIndex==3 && <div className='flex  flex-col md:flex-row  p-2'>
+{hotelinfoIndex==3 && hotelinfo  && hotelinfo.rooms && <div className='flex  flex-col md:flex-row  p-2'>
 
   
   <div className="p-2   m-8 border-t border-gray-200 text-center  flex items-center flex-col gap-2">
@@ -363,4 +400,4 @@ hotelinfoIndex==2 && <div >
   )
 }
 
-export default page
+export default Compopage
