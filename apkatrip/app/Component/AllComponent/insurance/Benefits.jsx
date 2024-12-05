@@ -26,7 +26,7 @@ const Benefits = () => {
   return (
     <section className="bg-slate-50 p-6 lg:py-16 animate-fadeIn">
       {/* Section Title */}
-      <div className="mb-4 md:my-8 text-left px-4 lg:px-10">
+      <div className="my-4 md:my-8 text-left px-4 lg:px-10">
         <h2 className="text-slate-800 text-xl md:text-3xl font-bold mb-2 animate-slideUp">
           What are the Benefits of Travel Insurance by ApkaTrip?
         </h2>

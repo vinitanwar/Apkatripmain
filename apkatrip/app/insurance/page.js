@@ -10,7 +10,7 @@ function page() {
     <div>
       {/* Banner Section */}
       <div className="h-[60vh] bg-gradient-to-r from-[#331c29] to-[#3e3842] bg-cover bg-center flex justify-center items-center px-5 md:px-16 lg:px-20">
-        <div className="text-center lg:text-left space-y-4 lg:space-y-8 max-w-2xl">
+        <div className="text-center  space-y-4 lg:space-y-8 max-w-2xl">
           <h5 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
             Welcome to ApkaTrip - Travel Insurance
           </h5>
@@ -20,9 +20,6 @@ function page() {
             events like trip cancellations, medical emergencies, or lost luggage. 
             Explore the world with peace of mind knowing that we’ve got you covered!
           </p>
-          <button className="bg-white text-red-600 font-bold px-6 py-3 rounded-md hover:bg-gray-300 transition duration-200">
-            Get Insured Now
-          </button>
         </div>
       </div>
 
