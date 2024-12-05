@@ -5,11 +5,11 @@ import Image from "next/image";
 
 const WhyChooseUs = () => {
   return (
-    <div className="overflow-hidden flex justify-center flex-col lg:flex-row lg:space-x-6 px-4 lg:px-20 gap-10 py-8 lg:py-16">
-      <div className="lg:w-1/2 p-4 space-y-8" data-aos="fade-right">
+    <div className="overflow-hidden flex justify-center flex-col xl:flex-row xl:space-x-6 p-10 lg:px-20 gap-10 py-8 lg:py-16">
+      <div className="xl:w-1/2 p-4 space-y-8 px-4" data-aos="fade-right">
         <div className="text-justify">
-          <h2 className="text-3xl font-bold text-gray-800">
-            Why <span className="text-red-600">Choose Us</span>
+          <h2 className="text-xl md:text-3xl font-bold text-gray-800">
+            Why <span className="text-[#331c29]">Choose Us</span>
           </h2>
         </div>
         <p className="text-sm mb-6">
@@ -42,7 +42,7 @@ const WhyChooseUs = () => {
           </div>
         </div>
       </div>
-      <div className="lg:w-1/2" data-aos="fade-left">
+      <div className="xl:w-1/2" data-aos="fade-left">
         <Image
           className="w-full h-auto object-cover"
           src="/insurance/whyUs.webp"
