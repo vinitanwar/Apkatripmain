@@ -13,31 +13,26 @@ const WhyChooseUs = () => {
           </h2>
         </div>
         <p className="text-sm mb-6">
-          At ApkaTrip, our dedication to safety and comfort extends to meeting
-          our clients' needs for coverage or convenient access to help during
-          special occasions, business, or leisure activities.
-          Our affordable plans will cover everything from lost luggage to
-          medical emergencies, and our customer service representatives are
-          available 24/7 to assist you with any issues you may be having. You
-          can travel knowing that ApkaTrip will be there for you no matter what.
+          ApkaTrip is that reliable travel companion that provides with full solutions to cater for the different needs of those travelers. From low-cost travel insurance to carefully planned holiday packages, we ensure you're satisfied with every service given. Our website is easily user-friendly, and the 24/7 support lets you never be far away from a helping hand which will make your travel tension-free.
+          Holistic travel management is the best experience possible.
         </p>
         <div className="grid grid-cols-1 gap-5 lg:gap-8 font-semibold">
           <div className="flex items-center gap-2">
             <FaCheck className="text-green-500 text-xl mr-2" />
-            <span className="text-sm">Comprehensive Coverage for medical, trip cancellations, and baggage loss</span>
+            <span className="text-sm">Holistic travel management, the best experience possible.</span>
           </div>
           <div className="flex items-center gap-2">
             <FaCheck className="text-green-500 text-xl mr-2" />
-            <span className="text-sm">Tailored Plans for families, solo travelers, and business trips</span>
+            <span className="text-sm">Unwavering Support Around the Clock</span>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <FaCheck className="text-green-500 text-xl mr-2" />
-            <span className="text-sm">Easy Claims Process for fast and efficient resolutions</span>
+            <span className="text-sm">Personalized packages for each tourist</span>
           </div>
           <div className="flex items-center gap-2">
             <FaCheck className="text-green-500 text-xl mr-2" />
-            <span className="text-sm">          Affordable Pricing with extensive coverage options
+            <span className="text-sm">Affordable Price with 100% Transparency
             </span>
           </div>
         </div>

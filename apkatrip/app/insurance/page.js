@@ -15,10 +15,7 @@ function page() {
             Welcome to ApkaTrip - Travel Insurance
           </h5>
           <p className="text-sm md:text-base lg:text-lg font-medium text-gray-200">
-            Secure your journey with ApkaTrip's comprehensive travel insurance. 
-            Whether you're traveling for leisure or business, our plans cover unexpected 
-            events like trip cancellations, medical emergencies, or lost luggage. 
-            Explore the world with peace of mind knowing that we’ve got you covered!
+            You will always be safe to travel with ApkaTrip. Whether you are traveling for leisure or business, our travel insurance will help cover any unexpected events, including trip cancellations, medical emergencies, or lost luggage. Explore the world knowing we have your back!
           </p>
         </div>
       </div>

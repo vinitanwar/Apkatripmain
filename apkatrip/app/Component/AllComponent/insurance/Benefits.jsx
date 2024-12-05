@@ -6,19 +6,19 @@ const projectData = [
     image: '/insurance/benefit1.webp',
     category: "Medical Coverage",
     title: "Comprehensive Medical Insurance",
-    description: "Get complete medical coverage including consultation, global cashless hospitalization, and evacuation during medical emergencies.",
+    description: "Covers medical emergencies, hospitalization, or medical evacuation costs while traveling, especially abroad",
   },
   {
     image: '/insurance/benefit2.webp',
     category: "Travel Coverage",
     title: "Comprehensive Travel Protection",
-    description: "Stay protected from unexpected events like lost luggage, flight delays, trip cancellations, and passport loss during your travels.",
+    description: "Reimbursement for additional expenses incurred due to significant delays, such as accommodation or meals.",
   },
   {
     image: '/insurance/benefit3.webp',
     category: "On-trip Support",
     title: "24/7 Global On-trip Assistance",
-    description: "Receive 24/7 global support for any travel-related issues, including medical emergencies, hospital visits, passport replacement, and more.",
+    description: "Reimbursement for non-refundable expenses if you need to cancel or cut short your trip due to unforeseen circumstances like illness, natural disasters, or other emergencies.",
   },
 ];
 

@@ -6,24 +6,24 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 const FAQSection = () => {
   const faqs = [
     {
-      question: "What is travel insurance, and why do I need it?",
-      answer: "Travel insurance covers unexpected events like trip cancellations, medical emergencies, or lost luggage. It's essential for ensuring a stress-free journey.",
+      question: "What is travel insurance?",
+      answer: "Travel insurance is financial protection and help towards your travels. It avails advantages relating to medical emergencies, cancellation of journeys, delay of flights, loss of baggage, amongst others.",
     },
     {
-      question: "Does travel insurance cover COVID-19 expenses?",
-      answer: "Yes, most travel insurance plans now include COVID-19 coverage for medical emergencies, cancellations, or delays caused by the pandemic.",
+      question: "Why should I buy travel insurance?",
+      answer: "This secures you in case something may pop out that needs to be taken care of. You feel at peace; besides, it covers medical conditions, theft, or delays to mess up the trip you have planned.",
     },
     {
-      question: "Can I purchase travel insurance after booking my trip?",
-      answer: "Yes, you can buy travel insurance after booking your trip, but it's best to get it as soon as possible to maximize coverage benefits.",
+      question: "Can I buy travel insurance even after booking my trip?",
+      answer: "Yes, and a best practice is to purchase travel insurance at time of booking for the strongest protection possible-in this case, especially cancellation.",
     },
     {
-      question: "What does travel insurance typically exclude?",
-      answer: "Common exclusions include pre-existing medical conditions, risky activities like skydiving, and non-refundable expenses not covered by the policy.",
+      question: "Do travel insurances cover COVID-19-related problems?",
+      answer: "Many policies now have coverage in case of COVID, including medical services, quarantine costs, and cancellations due to infection. Check the wording of your policy for full details.",
     },
     {
-      question: "How do I file a claim with my travel insurance?",
-      answer: "Contact your insurer, provide necessary documents like receipts or medical reports, and fill out the claim form as instructed.",
+      question: "Is travel insurance compulsory?",
+      answer: "In some countries, you need to show proof of travel insurance to enter that country. Prior to leaving, check what is required at your destination.",
     },
   ];
 

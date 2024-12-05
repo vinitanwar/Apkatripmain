@@ -5,22 +5,22 @@ const stepsData = [
   {
     number: "01",
     description:
-      "Read the terms and conditions shared with you on email along with your policy details.",
+      "If it is a delay trip, loss, or medical emergency then promptly inform the insurance company of the problem that has arisen. ",
   },
   {
     number: "02",
     description:
-      "To initiate the claim process, reach out to Tata AIG support team on 1800-266-7780 or customersupport@tataaig.com",
+      "Collect evidence from receipts to medical reports, police records etc. to authenticate your case and make its processing hassle free.",
   },
   {
     number: "03",
     description:
-      "Complete documentation process initiated by Tata AIG. The claimed amount will be reimbursed directly to you.",
+      " Track the status of your claim and follow it up with further details when required to prevent delays.",
   },
   {
     number: "04",
     description:
-      "Once approved by insurer, Once approved by insurer the claimed amount will be reimbursed directly to you.",
+      "Fill the claim form issued by the service provider and forward all your documents. ",
   },
 ];
 
