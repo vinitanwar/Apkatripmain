@@ -22,7 +22,7 @@ const page = () => {
           <div  key={index} className="flex items-center ">
           <button
           onClick={() => {
-            console.log("switched to ", tab.id);
+          
             setActiveTab(tab.id);
           }}
           className={`text-md px-2 ${

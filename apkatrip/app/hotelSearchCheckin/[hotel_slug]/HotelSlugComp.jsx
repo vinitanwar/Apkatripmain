@@ -77,8 +77,7 @@ const handelprebooking=(BookingCode)=>{
 dispatch(gethotelPreBookingApi({BookingCode}))
 setIsOpen(true)
 }
-useEffect(()=>{
-// console.log(preBookinghotelState)
+useE
 sethotel(preBookinghotelState && preBookinghotelState.info  &&preBookinghotelState.info.HotelResult && preBookinghotelState.info.HotelResult[0])
 
 },[preBookinghotelState])

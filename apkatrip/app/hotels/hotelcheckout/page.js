@@ -43,7 +43,7 @@ const page = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+
   };
 
   const addOns = [

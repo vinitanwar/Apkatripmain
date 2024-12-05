@@ -40,7 +40,7 @@ const page = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+   
     // You can add further form submission logic here
   };
 

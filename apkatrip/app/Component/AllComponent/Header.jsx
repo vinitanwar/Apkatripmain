@@ -663,7 +663,7 @@ const Header = () => {
 
  
 
-  console.log("okkk")
+  
   return (
     <>
       <div className="header    relative  md:px-5  lg:px-12 xl:px-24">

@@ -134,9 +134,9 @@ const page = ({ setActiveTab }) => {
 
   const [showAdult, setShowAdult] = useState(false)
   const handleAdultDropdown = () => {
-    console.log(showAdult)
+ 
     setShowAdult(!showAdult)
-    console.log(showAdult)
+   
 
   }
 

@@ -117,9 +117,9 @@ const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
           const res = await axios.get(
             `https://port-api.com/airport/search/${debouncedValue}`
           );
-          console.log(pathname.includes())
+          
 
-          console.log(res)
+         
           setAirports(res.data.features); // Assuming API returns "features" array
         } catch (error) {
           console.error("Error fetching airports:", error);
@@ -140,7 +140,7 @@ const AutoSearch = ({ value, onSelect, Click, fromCity }) => {
 
 
   const handleInputChange = (e) => {
-    console.log(e.target.value)
+  
     setInputValue(e.target.value);
   };
 

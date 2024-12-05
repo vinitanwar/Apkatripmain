@@ -18,6 +18,25 @@ import { IoIosArrowDown } from "react-icons/io";
 import { FaHotel } from "react-icons/fa6";
 
 const Topbar = () => {
+
+
+  // function getCurrencySymbol (locale, currency) {
+  //   return (0).toLocaleString(
+  //     locale,
+  //     {
+  //       style: 'currency',
+  //       currency: currency,
+  //       minimumFractionDigits: 0,
+  //       maximumFractionDigits: 0
+  //     }
+  //   ).replace(/\d/g, '').trim()
+  // }
+
+
+
+
+//  console.log( getCurrencySymbol('en-US', 'India'),"sdfcsdvvwefwdfwefcwefwrcf")
+
   const router = useRouter();
 
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -594,7 +613,7 @@ const Topbar = () => {
                           <div
                             className="flex items-center cursor-pointer"
                             onClick={() =>
-                              console.log("SetCountryCode('IN','India')")
+                             
                             }
                           >
                             <img src="/Images/flag_INR.svg" width="18" alt="" />
@@ -605,7 +624,7 @@ const Topbar = () => {
                           <div
                             className="flex items-center cursor-pointer"
                             onClick={() =>
-                              console.log("SetCountryCode('AE','UAE')")
+                            
                             }
                           >
                             <img src="/Images/flag_AED.svg" width="18" alt="" />

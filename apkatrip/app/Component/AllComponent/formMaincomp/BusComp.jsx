@@ -124,7 +124,7 @@ route.push(`/buses/DateOfJourney=${newdate}&OriginId=${fromCity.CityId}&Destinat
         handleToClick(); // Add the appropriate handler for traveller
         break;
       default:
-        console.log("Unknown option:", option);
+        
     }
   };
 
@@ -145,12 +145,12 @@ route.push(`/buses/DateOfJourney=${newdate}&OriginId=${fromCity.CityId}&Destinat
 
   const handleFromClick = () => {
     // Your logic for 'From' click
-    console.log("From clicked");
+  
   };
 
   const handleToClick = () => {
     // Your logic for 'To' click
-    console.log("To clicked");
+   
   };
 const [searchparam,setsearchparam]=useState("")
  const handelBusSearch=(e)=>{

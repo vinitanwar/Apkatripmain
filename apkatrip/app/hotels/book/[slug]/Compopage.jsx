@@ -62,7 +62,6 @@ gethotel()
 },[])
 
 
-console.log(hotelinfo && hotelinfo)
 
  
  

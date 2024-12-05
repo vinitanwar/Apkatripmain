@@ -231,26 +231,26 @@ const comp = ({ slug }) => {
     //     TripIndicator:info.Segments[0][0].TripIndicator,SegmentIndicator:info.Segments[0][0].SegmentIndicator,
     //     AirlineCode:info.Segments[0][0].Airline.AirlineCode,AirlineName:info.Segments[0][0].Airline.AirlineName,FlightNumber:info.Segments[0][0].Airline.FlightNumber,FareClass:info.Segments[0][0].Airline.FareClass,OperatingCarrier:info.Segments[0][0].Airline.OperatingCarrier}))
 
-    console.log({
-      EndUserIp: newtIp,
-      TraceId: traceid,
-      AdultCount: adultCount,
-      ChildCount: childCount,
-      InfantCount: infantCount,
-      ResultIndex: info.ResultIndex,
-      Source: info.Source,
-      IsLCC: info.IsLCC,
-      IsRefundable: info.IsRefundable,
-      AirlineRemark: info.AirlineRemark,
+    // console.log({
+    //   EndUserIp: newtIp,
+    //   TraceId: traceid,
+    //   AdultCount: adultCount,
+    //   ChildCount: childCount,
+    //   InfantCount: infantCount,
+    //   ResultIndex: info.ResultIndex,
+    //   Source: info.Source,
+    //   IsLCC: info.IsLCC,
+    //   IsRefundable: info.IsRefundable,
+    //   AirlineRemark: info.AirlineRemark,
 
-      TripIndicator: info.Segments[0][0].TripIndicator,
-      SegmentIndicator: info.Segments[0][0].SegmentIndicator,
-      AirlineCode: info.Segments[0][0].Airline.AirlineCode,
-      AirlineName: info.Segments[0][0].Airline.AirlineName,
-      FlightNumber: info.Segments[0][0].Airline.FlightNumber,
-      FareClass: info.Segments[0][0].Airline.FareClass,
-      OperatingCarrier: info.Segments[0][0].Airline.OperatingCarrier,
-    });
+    //   TripIndicator: info.Segments[0][0].TripIndicator,
+    //   SegmentIndicator: info.Segments[0][0].SegmentIndicator,
+    //   AirlineCode: info.Segments[0][0].Airline.AirlineCode,
+    //   AirlineName: info.Segments[0][0].Airline.AirlineName,
+    //   FlightNumber: info.Segments[0][0].Airline.FlightNumber,
+    //   FareClass: info.Segments[0][0].Airline.FareClass,
+    //   OperatingCarrier: info.Segments[0][0].Airline.OperatingCarrier,
+    // });
   };
 
   const handelnonstop = (e) => {
