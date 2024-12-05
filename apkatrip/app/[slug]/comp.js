@@ -362,33 +362,32 @@ const comp = ({ slug }) => {
                     <p className="text-sm text-gray-800 font-medium mt-2">
                       <strong>Tax:</strong>
                       <div className="grid grid-cols-3">
-                        {srrFairdata.Results.FareBreakdown[0].TaxBreakUp.map(
-                          (taxinfo) => (
-                            <p>
-                              {taxinfo.key}:{taxinfo.value}
+                        {srrFairdata?.Results?.FareBreakdown?.[0]?.TaxBreakUp?.map(
+                          (taxinfo, index) => (
+                            <p key={index}>
+                              {taxinfo.key}: {taxinfo.value}
                             </p>
                           )
-                        )}
+                        ) || <p>No tax information available.</p>}
                       </div>
                     </p>
                   </div>
 
                   <div className="mt-4 flex items-center justify-between">
-                    <p className=" font-bold text-indigo-400">
-                      {" "}
+                    <p className="font-bold text-indigo-400">
                       Base price: ₹
-                      {srrFairdata.Results.FareBreakdown[0].BaseFare}
+                      {srrFairdata?.Results?.FareBreakdown?.[0]?.BaseFare || 0}
                     </p>
                     <p className="text-lg font-bold text-indigo-600">
-                      {" "}
                       Total price: ₹
-                      {Number(srrFairdata.Results.FareBreakdown[0].BaseFare) +
-                        srrFairdata.Results.FareBreakdown[0].TaxBreakUp.reduce(
+                      {Number(
+                        srrFairdata?.Results?.FareBreakdown?.[0]?.BaseFare || 0
+                      ) +
+                        (srrFairdata?.Results?.FareBreakdown?.[0]?.TaxBreakUp?.reduce(
                           (acc, arr) => acc + Number(arr.value || 0),
                           0
-                        )}
+                        ) || 0)}
                     </p>
-
                     <Link
                       href="/flight/checkout"
                       className="px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded hover:bg-blue-600"
