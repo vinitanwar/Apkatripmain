@@ -1,7 +1,6 @@
 "use client"
-import HotelsComp from '../../Component/AllComponent/formMaincomp/HotelsComp';
 
-import { getAllhotelsapi } from '../../Component/Store/slices/hotelsSlices';
+
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { FaShareAlt, FaStar, FaFilter, FaTimes } from "react-icons/fa";
@@ -13,6 +12,8 @@ import { BiRefresh } from "react-icons/bi";
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { getAllhotelsapi } from '../../../Component/Store/slices/hotelsSlices';
+import HotelsComp from '../../../Component/AllComponent/formMaincomp/HotelsComp';
 
 
 const Comp = ({slug}) => {
