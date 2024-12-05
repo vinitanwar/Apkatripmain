@@ -13,29 +13,32 @@ import { imgurl } from "../Component/common";
 
 const Page = () => {
   const [showAll, setShowAll] = useState(false);
-  const dispatch=useDispatch();
-  const allReghotels=useSelector(state=>state.getRegHotelsSlice)
+  const dispatch = useDispatch();
+  const allReghotels = useSelector((state) => state.getRegHotelsSlice);
 
-  console.log(allReghotels,"sfsdfhweriohfiowef")
- useEffect(()=>{
-dispatch(getAllRegHotels())
- },[ ])
 
+// console.log(allReghotels)
+
+  console.log(allReghotels, "sfsdfhweriohfiowef");
+  useEffect(() => {
+    dispatch(getAllRegHotels());
+  }, []);
 
   const destinations = [
     {
       city: "Delhi",
-      hotelName:"Green Tree Hotel Munnar",
-      Address:"GreenTrees Resort,Chithirapuram P O Dobipalam, Munnar-685 565",
-      url: "/listofhotels", 
-      imgSrc:[ "/greenhotel/imgpsh_fullsize_anim.jfif","/greenhotel/imgpsh_fullsize_anim.jfif","/greenhotel/imgpsh_fullsize_anim.jfif"],
+      hotelName: "Green Tree Hotel Munnar",
+      Address: "GreenTrees Resort,Chithirapuram P O Dobipalam, Munnar-685 565",
+      url: "/listofhotels",
+      imgSrc: [
+        "/greenhotel/imgpsh_fullsize_anim.jfif",
+        "/greenhotel/imgpsh_fullsize_anim.jfif",
+        "/greenhotel/imgpsh_fullsize_anim.jfif",
+      ],
       alt: "Delhi",
-      rating:4,
-      price:15000
+      rating: 4,
+      price: 15000,
     },
-   
-   
-  
   ];
 
   // Function to handle button click
@@ -50,20 +53,16 @@ dispatch(getAllRegHotels())
 
   return (
     <>
-    <HotelComp />
-    <Hotelmobileheader />
+      <HotelComp />
+      <Hotelmobileheader />
       <CustomSlider />
       <div className="px-0 lg:px-20">
         <h2 className="text-lg text-center lg:text-2xl font-semibold mb-5">
           Book Hotels at Popular Destinations
         </h2>
 
-
-
-
-
-
         <div className="_polrdestnbx mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<<<<<<< Updated upstream
   {allReghotels && allReghotels.info.map((dest, index) => (
     <Link
       key={index}
@@ -88,10 +87,74 @@ dispatch(getAllRegHotels())
                 alt={`Hotel Image ${imgIndex}`}
                 className="rounded-md w-14 h-14 object-cover border-2 border-white shadow-sm"
               />
+=======
+          {allReghotels &&
+            allReghotels.info.map((dest, index) => (
+              <Link
+                key={index}
+                href={`/hotels/book/${dest.user.slug}`}
+                className="card-container bg-gradient-to-r from-[#6dffe2] via-[#5c6fff] to-[#a2c2ff] border border-[#5c6fff] shadow-lg rounded-lg overflow-hidden transform  transition-transform duration-300 ease-in-out"
+              >
+                <div className="flex gap-4 p-4">
+                  <div className="w-2/3 relative">
+                    <img
+                      src={`${imgurl}/storage/${dest.hotel.hotel_img[0]}`}
+                      alt={dest.hotel.hotel_img[0]}
+                      className="rounded-md w-full h-52 object-cover"
+                    />
+                    <div className="absolute top-2 right-2 bg-white opacity-80 px-2 py-1 rounded-full text-xs font-semibold text-gray-700">
+                      {dest.hotel.rating}{" "}
+                      <FaStar className="inline text-yellow-500" />
+                    </div>
+                    <div className="flex gap-2 mt-2">
+                      {dest.hotel.hotel_img
+                        .slice(0, 3)
+                        .map((image, imgIndex) => (
+                          <img
+                            key={imgIndex}
+                            src={`${imgurl}/storage/${image}`}
+                            alt={`Hotel Image ${imgIndex}`}
+                            className="rounded-md w-14 h-14 object-cover border-2 border-white shadow-sm"
+                          />
+                        ))}
+                    </div>
+                  </div>
+
+                  <div className="w-1/3 flex flex-col justify-between">
+                    <h5 className="text-lg font-semibold mb-1 text-gray-800 truncate">
+                      {dest.hotel.property_name}
+                    </h5>
+                    <p className="text-sm text-gray-600 truncate">
+                      {dest.hotel.Address}
+                    </p>
+                    <div className="flex gap-1 text-yellow-500">
+                      {Array.from({ length: dest.hotel.rating }).map(
+                        (_, starIndex) => (
+                          <FaStar key={starIndex} className="text-lg" />
+                        )
+                      )}
+                    </div>
+
+                    <div className="flex flex-col items-end mt-4">
+                      <div className="text-lg font-semibold text-black">
+                        ₹{dest.hotel.price}
+                        <span className="text-sm text-gray-500"> / night</span>
+                      </div>
+                      <div className="text-sm text-gray-500 line-through">
+                        {/* ₹{(dest.hotel.price + (dest.hotel.price * 6) / 100).toFixed(0)} */}
+                      </div>
+                      <button className="mt-3 bg-[#5c6fff] text-white py-2 px-6 rounded-lg hover:bg-[#4a5ccd] transition duration-200">
+                        Book Now
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+>>>>>>> Stashed changes
             ))}
-          </div>
         </div>
 
+<<<<<<< Updated upstream
         <div className="w-1/3 flex flex-col justify-between">
           <h5 className="text-lg font-semibold mb-1 text-gray-800 truncate">{dest.hotel.property_name}</h5>
           <p className="text-sm text-gray-600 truncate">
@@ -134,6 +197,8 @@ dispatch(getAllRegHotels())
 
 
 
+=======
+>>>>>>> Stashed changes
         <div className="mt-4 text-center">
           <button
             onClick={handleViewAll}
@@ -149,9 +214,11 @@ dispatch(getAllRegHotels())
 
       <section className="px-0 lg:px-20">
         <div className="container mx-auto px-4 py-8 block lg:flex  items-center">
-          
           <div className="hidden lg:block flex-shrink-0 w-full md:w-1/2 lg:w-1/3 mb-4 md:mb-0">
-            <div className="relative mx-auto lg:mx-0" style={{margin:"0 auto"}}>
+            <div
+              className="relative mx-auto lg:mx-0"
+              style={{ margin: "0 auto" }}
+            >
               <span className="spanone"></span>
               <img
                 src="/Images/images.webp"
@@ -246,24 +313,16 @@ dispatch(getAllRegHotels())
               <p className="text-md">For Hassle-Free Hotel Booking</p>
               <div className="mt-4 gap-5 flex justify-center">
                 <div>
-                  <Link
-                    href=""
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <Link href="" target="_blank" rel="noopener noreferrer">
                     <img
                       src="/Images/google-play.webp"
                       alt="Google Play"
                       className="w-40 mb-3"
                     />
                   </Link>
-                  <Link
-                    href=""
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <Link href="" target="_blank" rel="noopener noreferrer">
                     <img
-                        src="/Images/app-store.webp"
+                      src="/Images/app-store.webp"
                       alt="App Store"
                       className="w-40"
                     />
@@ -285,7 +344,7 @@ dispatch(getAllRegHotels())
       <div className="pb-3">
         <FAQSection />
       </div>
-       </>
+    </>
   );
 };
 
