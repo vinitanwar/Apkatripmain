@@ -998,7 +998,7 @@ const Header = () => {
 
                     <button
                       onClick={handelSearch}
-                      className="bg-[#FF4600] font-bold  text-xl rounded-md  text-white "
+                      className="bg-[#0A5EB0] font-bold  text-xl rounded-md  text-white "
                     >
                       Search Flights
                     </button>
@@ -1175,7 +1175,7 @@ const Header = () => {
                 <div className="flex justify-center items-center">
                 <button
                   onClick={handelSearch}
-                  className="bg-[#FF4600] w-full md:w-fit  py-3 px-3  font-semibold  text-lg rounded-md  text-white "
+                  className="bg-[#0A5EB0] w-full md:w-fit  py-3 px-3  font-semibold  text-lg rounded-md  text-white "
                 >
                   Search Flights
                 </button>

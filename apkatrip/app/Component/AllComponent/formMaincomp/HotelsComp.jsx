@@ -357,7 +357,7 @@ const HotelsComp = () => {
             <div className="flex justify-center items-center">
               <button
                  onClick={()=>handelhotelSearch()}
-                className="bg-[#FF4600] w-full md:w-fit  py-3 px-3  font-semibold  text-lg rounded-md  text-white "
+                className="bg-[#0A5EB0] w-full md:w-fit  py-3 px-3  font-semibold  text-lg rounded-md  text-white "
               >
                 Search Hotels
               </button>
