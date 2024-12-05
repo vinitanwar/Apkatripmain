@@ -6,18 +6,18 @@ import { GiAirplaneDeparture } from "react-icons/gi";
 import { IoAirplaneSharp } from "react-icons/io5";
 import { IoIosThumbsUp } from "react-icons/io";
 import { MdOutlineSecurity } from "react-icons/md";
-import { FaRupeeSign } from "react-icons/fa";
+import { FaEdit, FaRupeeSign } from "react-icons/fa";
 import { RiHospitalLine } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaCheck } from "react-icons/fa6";
-
+import PaymentMode from '../../AllComponent/checkout/PaymentMode'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 
 import "swiper/css";
 import Link from "next/link";
 
-const page = () => {
+const page = ({setActiveTab}) => {
   // const [inuranceShowMOre,setInuranceShowMOre]=useState(false)
   const [insuranceHide, setInsurance] = useState(false);
 
@@ -74,26 +74,41 @@ const page = () => {
       <div className="md:grid md:grid-cols-6 gap-5 mt-3">
         <div className=" col-span-4 leftSide space-y-6">
           <div className="FirstChild border rounded-lg shadow-lg">
-            <div className="bg-[#D5EEFE] py-3 px-4 rounded-t-lg">
-              <div className="flex items-center gap-3 ">
-                <div className="border-4 bg-white border-orange-100  h-10 w-10 flex justify-center items-center text-2xl rounded-full">
+            <div className="bg-[#D5EEFE] py-3 px-2 rounded-t-lg">
+            <div className="bg-[#D5EEFE]  rounded-t-lg relative">
+              <div className="flex items-center gap-3">
+                <div className="border-4 bg-white border-orange-100 h-10 w-10 flex justify-center items-center text-2xl rounded-full">
                   <GiAirplaneDeparture />
                 </div>
-                <span className="text-sm md:text-xl font-medium">
-                  Flight Detail
+                <span className="text-md md:text-xl font-medium">
+                  Booking Details
                 </span>
               </div>
+
+              {/* Edit Ribbon */}
+              <div
+                onClick={()=>setActiveTab(1)}
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center bg-blue-500 text-white px-6 py-2 font-semibold rounded-l-lg"
+                style={{
+                  clipPath:
+                    "polygon(20% 0%, 100% 0%, 100% 100%, 20% 100%, 0% 50%)",
+                }}
+              >
+                <span className="mr-2">Edit</span>
+                <FaEdit className="h-3 w-3 text-current" />
+              </div>
+            </div>
             </div>
             <div className=" ">
-              <div className=" rounded-sm border  px-3 py-4 relative space-y-5">
-                <h3 className="bg-gray-600 text-white text-xs w-fit px-3 font-bold rounded-br-xl absolute top-0 left-0">
+              <div className=" rounded-md border  px-3 py-4 relative space-y-5">
+                <h3 className="bg-gray-600 text-white text-sm w-fit px-3 font-bold rounded-br-xl absolute top-0 left-0">
                   Depart
                 </h3>
                 <div className="flex items-center gap-3 text-md md:text-xl">
                   <IoAirplaneSharp className=" font-bold -rotate-45" />
                   <div className="flex items-center gap-1">
                     <h4 className="">Delhi -Mumabi</h4>
-                    <p className="border-s-2 border-black px-2  text-sm">
+                    <p className="border-s-2 border-black px-2  text-md">
                       Fri-20Sept2024
                     </p>
                   </div>
@@ -106,9 +121,9 @@ const page = () => {
                       className="h-10 w-10 rounded-lg"
                     />
                     <div>
-                      <p className="text-sm md:text-lg">Indigo</p>
-                      <p className="text-xs">6E-6022</p>
-                      <p className="text-xs">ECONOMY</p>
+                      <p className="text-md md:text-lg">Indigo</p>
+                      <p className="text-sm">6E-6022</p>
+                      <p className="text-sm">ECONOMY</p>
                     </div>
                   </div>
 
@@ -117,7 +132,7 @@ const page = () => {
                       <h4 className="font-extrabold text-md md:text-xl">
                         15:10
                       </h4>
-                      <div className="flex flex-col text-xs ">
+                      <div className="flex flex-col text-sm ">
                         <span className="font-bold text-nowrap">
                           Delhi (DEL)
                         </span>
@@ -127,7 +142,7 @@ const page = () => {
                     </div>
 
                     <div className="flex  flex-col gap-4 items-center">
-                      <p className="text-xs">02h 10m</p>
+                      <p className="text-sm">02h 10m</p>
                       <div className="border-t-2 border-black border-dotted w-full flex justify-center relative">
                         <div className="absolute -top-3 bg-white text-lg rounded-full">
                           <GiAirplaneDeparture />
@@ -139,10 +154,10 @@ const page = () => {
                     </div>
 
                     <div className="flex flex-col gap-1 items-start">
-                      <h4 className="font-extrabold text-sm md:text-xl">
+                      <h4 className="font-extrabold text-md md:text-xl">
                         17:40
                       </h4>
-                      <div className="flex flex-col text-xs ">
+                      <div className="flex flex-col text-sm ">
                         <span className="text-nowrap font-bold">
                           Mumbai (BOM)
                         </span>
@@ -153,15 +168,15 @@ const page = () => {
                   </div>
                 </div>
                 <div className="flex flex-col md:flex-row items-start gap-5">
-                  <h3 className="bg-gray-200  font-bold w-fit text-gray-800 rounded-full px-5 text-xs py-1">
+                  <h3 className="bg-gray-200  font-bold w-fit text-gray-800 rounded-full px-5 text-sm py-1">
                     saver
                   </h3>
-                  <p className="text-xs text-gray-400">Fare Rules Baggage</p>
+                  <p className="text-sm text-gray-400">Fare Rules Baggage</p>
                 </div>
                 {/* payment page part */}
                 <div className="border-2 ">
                   <div className="p-2 bg-gray-50">
-                  <div className="flex justify-between items-center mx-20  text-sm font-semibold">
+                  <div className="flex justify-between items-center mx-20  text-md font-semibold">
                     <p className="text-gray-400">Airline</p>
                     <p className="text-gray-400">Check-in-Baggage</p>
                     <p className="text-gray-400">Cabin Baggage</p>
@@ -177,14 +192,14 @@ const page = () => {
                         />
                       </div>
                       <div className="">
-                        <h6 className=" text-black text-sm font-semibold capitalize">
+                        <h6 className=" text-black text-md font-semibold capitalize">
                           Indigo
                         </h6>
                         <p className="text-gray-500 text-[12px] font-semibold">6E-2766</p>
                       </div>
                     </div>
-                    <div className="text-black text-sm font-semibold capitalize  w-[28%]">15 kgs</div>
-                    <div className="text-black text-sm font-semibold capitalize w-[20%]">7 kgs</div>
+                    <div className="text-black text-md font-semibold capitalize  w-[28%]">15 kgs</div>
+                    <div className="text-black text-md font-semibold capitalize w-[20%]">7 kgs</div>
                   </div>
                 </div>
                 {/* payment page part */}
@@ -201,18 +216,33 @@ const page = () => {
 
 
         <div className="FirstChild border rounded-lg shadow-lg">
-            <div className="bg-[#D5EEFE] py-3 px-4 rounded-t-lg">
-              <div className="flex items-center gap-3 ">
-                <div className="border-4 bg-white border-orange-100  h-10 w-10 flex justify-center items-center text-2xl rounded-full">
+        <div className="bg-[#D5EEFE] py-3 px-2 rounded-t-lg">
+            <div className="bg-[#D5EEFE]  rounded-t-lg relative">
+              <div className="flex items-center gap-3">
+                <div className="border-4 bg-white border-orange-100 h-10 w-10 flex justify-center items-center text-2xl rounded-full">
                   <GiAirplaneDeparture />
                 </div>
-                <span className="text-sm md:text-xl font-medium">
-                Traveller Details
+                <span className="text-md md:text-xl font-medium">
+                  Travelleres Details
                 </span>
               </div>
+
+              {/* Edit Ribbon */}
+              <div
+                onClick={()=>setActiveTab(2)}
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center bg-blue-500 text-white px-6 py-2 font-semibold rounded-l-lg"
+                style={{
+                  clipPath:
+                    "polygon(20% 0%, 100% 0%, 100% 100%, 20% 100%, 0% 50%)",
+                }}
+              >
+                <span className="mr-2">Edit</span>
+                <FaEdit className="h-3 w-3 text-current" />
+              </div>
+            </div>
             </div>
             <div>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 text-sm font-normal p-4">
+            <ul className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4 xl:grid-cols-5 gap-4 text-md font-normal p-4">
   <li>
     <h3 className="font-medium">E-mail</h3>
     <p className="text-gray-600 pt-2 break-words">guptakhushi182@gmail.com</p>
@@ -254,18 +284,36 @@ const page = () => {
         alt="wallet"
         className="h-6 w-6 md:h-8 md:w-8 object-cover"
       />
-      <span className="text-sm sm:text-base lg:text-lg font-medium">
+      <span className="text-md md:text-base lg:text-lg font-medium">
         You have to login to use your <strong>wallet amount</strong>
       </span>
     </div>
     <Link
-      className="bg-blue-500 text-white font-bold text-sm sm:text-base md:text-lg rounded-xl px-2 md:px-4 py-2 text-center"
+      className="bg-blue-500 text-white font-bold text-md md:text-base md:text-lg rounded-xl px-2 md:px-4 py-2 text-center"
       href="/"
     >
       Log In
     </Link>
   </div>
 </div>
+
+
+<div className="FirstChild border rounded-lg shadow-lg">
+            <div className="bg-[#D5EEFE] py-3 px-4 rounded-t-lg">
+              <div className="flex items-center gap-3 ">
+                <div className="border-4 bg-white border-orange-100  h-10 w-10 flex justify-center items-center text-2xl rounded-full">
+                  <FaRupeeSign/>
+                </div>
+                <span className="text-md md:text-xl font-medium">
+                Payment Mode
+                </span>
+              </div>
+              
+            </div>
+            <div >
+                  <PaymentMode/>
+              </div>
+          </div>
 
 
          
@@ -277,14 +325,14 @@ const page = () => {
               <div className="border rounded-t flex items-center px-3 py-2 bg-[#D1EAFF]">
                 <h3>Price Summary</h3>
               </div>
-              <div className="flex justify-between px-3 py-3 text-sm border-b">
+              <div className="flex justify-between px-3 py-3 text-md border-b">
                 <p>Adult x 1</p>
-                <p className="flex  items-center font-bold text-xs">
+                <p className="flex  items-center font-bold text-sm">
                   <FaRupeeSign />
                   4516
                 </p>
               </div>
-              <div className="flex justify-between px-3 py-3 text-xs border-b">
+              <div className="flex justify-between px-3 py-3 text-sm border-b">
                 <p>Total Taxes +</p>
                 <p className="flex  items-center font-bold">
                   <FaRupeeSign />
@@ -293,7 +341,7 @@ const page = () => {
               </div>
               <div className="flex justify-between px-3 py-3 t border-b">
                 <p>Medical Refund Policy </p>
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-2 text-sm">
                   <p className="flex  items-center font-bold line-through">
                     <FaRupeeSign />
                     4516
@@ -301,58 +349,16 @@ const page = () => {
                   <span className="font-bold text-green-500">Free</span>
                 </div>
               </div>
-              <div className="flex justify-between items-center px-3 py-3 font-bold text-lg text-red-600">
-                <p>Grand Total</p>
-                <p className="flex items-center">
-                  <FaRupeeSign />
+              <div className="flex justify-between items-center px-3 py-3 font-extrabold text-lg ">
+                <p className="text-red-800">Grand Total</p>
+                <p className="flex items-center text-red-800">
+                  <FaRupeeSign className="text-red-800"/>
                   5,235
                 </p>
               </div>
             </div>
-            <div className="offersAndPromoCode border rounded shadow-lg">
-              <div className="bg-[#2196F3] px-3 py-2 text-white ">
-                Offers and Promo Codes
-              </div>
-              <div className="border-b py-3 px-3 flex justify-center lg:justify-beween flex-wrap gap-2 lg:gap-0">
-                <input
-                  type="text"
-                  placeholder="ENTER COUPON CODE"
-                  className="border-b outline-none text-gray-600 uppercase font-semibold text-sm w-fit"
-                />
-                <div>
-                  <button className="bg-[#2196F3] px-16 lg:px-8 py-3 lg:py-1 rounded-full text-sm font-bold text-white">
-                    apply
-                  </button>
-                </div>
-              </div>
-
-              <div className="applyOffers  max-h-[300px] overflow-hidden overflow-y-scroll ">
-                {offers.map((offer) => (
-                  <div
-                    key={offer.id}
-                    className="flex items-start gap-2 border-b py-4 px-3"
-                  >
-                    <div className="rounded-full w-[22px] flex items-center justify-center h-[18px] border hover:bg-gray-700">
-                      <FaCheck className="text-xs text-white" />
-                    </div>
-                    <div>
-                      <h6 className="font-bold text-xs">{offer.title}</h6>
-                      <p className="text-xs">{offer.description}</p>
-                      <p className="text-[10px] font-bold uppercase text-[#2196F3]">
-                        {offer.terms}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="booking">
-              <button className="bg-[#DA5200] text-xl text-white rounded-full w-full py-4"
             
-              >
-                Continue Booking
-              </button>
-            </div>
+            
           </div>
         </div>
       </div>

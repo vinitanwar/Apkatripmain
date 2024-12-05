@@ -351,7 +351,7 @@ const page = () => {
         </div>
       </div>
 
-      <div className="px-5 lg:px-20  space-y-16">
+      <div className="px-4 space-y-16">
         <CustomSlider />
 
         <div className="space-y-10">
@@ -459,7 +459,7 @@ const page = () => {
 
         <section className="details space-y-5 py-10 ">
           <div className="text-center">
-            <h2 className="text-2xl  font-extrabold leading-tight ">
+            <h2 className="text-2xl  font-extrabold leading-tight pb-4 ">
               Cruise Adventures for Every Explorer
             </h2>
             <p>

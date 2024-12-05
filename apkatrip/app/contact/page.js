@@ -24,66 +24,66 @@ export default function Page() {
        
       </section>
       <div className="mx-auto pt-10 px-5  lg:px-24 ">
-          <p className="text-lg text-justify ">
+          <p className="text-md   text-justify font-medium">
             We are passionate about delivering exceptional value and creating
             memorable experiences.
           </p>
         
         </div>
-      <div className="gap-5 m-0 md:mx-20 block lg:flex px-4 pt-8" id="contact">
-        <div className="w-full md:w-1/2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:mx-16 px-4 pt-8" id="contact">
+        <div className="w-full ">
           <section className="mb-5 md:mb-12 bg-white border border-blue-200 shadow-lg rounded-lg p-6">
             <h2 className="text-xl font-bold mb-6 text-gray-800">
               Contact Information
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
+            <div className="grid grid-cols-1 xl:grid-cols-2 ">
+              <div >
                 {" "}
-                <div className="flex items-center mb-5 space-x-3">
+                <div className="flex items-center  space-x-3 mb-2">
                   <FontAwesomeIcon
                     icon={faPhone}
-                    className="text-blue-500 text-xl"
+                    className="text-blue-500 text-md"
                   />
-                  <Link href="tel:9877579319" className="text-lg font-semibold text-gray-700">
+                  <Link href="tel:9877579319" className="text-md   font-semibold text-gray-700">
                     +(91) 9877579319
                   </Link>
                 </div>
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <FontAwesomeIcon
                     icon={faMapMarkerAlt}
-                    className="text-blue-500 text-xl"
+                    className="text-blue-500 text-md"
                   />
-                  <p className="text-lg font-semibold text-gray-700">
+                  <p className="text-md   font-semibold text-gray-700">
                     Sector 48, Chandigarh, India
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-2 gap-2 ">
                 <div className="flex items-center space-x-3">
                   <FontAwesomeIcon
                     icon={faEnvelope}
-                    className="text-blue-500 text-xl"
+                    className="text-blue-500 text-md"
                   />
-                  <p className="text-lg font-semibold text-gray-700">
+                  <p className="text-md   font-semibold text-gray-700">
                     tr@apkatrip.com
                   </p>
                 </div>
                 <div className="flex items-center space-x-3">
                   <FontAwesomeIcon
                     icon={faEnvelope}
-                    className="text-blue-500 text-xl"
+                    className="text-blue-500 text-md"
                   />
-                  <p className="text-lg font-semibold text-gray-700">
+                  <p className="text-md   font-semibold text-gray-700">
                     apkatripindia@gmail.com
                   </p>
                 </div>
                 <div className="flex items-center space-x-3">
                   <FontAwesomeIcon
                     icon={faEnvelope}
-                    className="text-blue-500 text-xl"
+                    className="text-blue-500 text-md"
                   />
-                  <p className="text-lg font-semibold text-gray-700">
+                  <p className="text-md   font-semibold text-gray-700">
                     info@apkatrip.com
                   </p>
                 </div>
@@ -95,7 +95,7 @@ export default function Page() {
           {/* Contact Form Section */}
 
           {/* Office Hours Section */}
-          <section className="mb-5 md:mb-12 bg-white border border-blue-200 shadow-lg rounded-lg p-6">
+          <section className="mb-5 md:mb-12 bg-white border border-blue-200 shadow-lg rounded-lg p-6 w-full">
             <h2 className="text-xl font-bold mb-6 text-gray-800">
               Office Hours
             </h2>
@@ -105,7 +105,7 @@ export default function Page() {
                   icon={faClock}
                   className="text-blue-500 text-xl"
                 />
-                <p className="text-lg font-semibold text-gray-700">
+                <p className="text-md   font-semibold text-gray-700">
                   Monday – Friday: 9:00 AM - 6:00 PM
                 </p>
               </div>
@@ -114,7 +114,7 @@ export default function Page() {
                   icon={faClock}
                   className="text-blue-500 text-xl"
                 />
-                <p className="text-lg font-semibold text-gray-700">
+                <p className="text-md   font-semibold text-gray-700">
                   Saturday: 10:00 AM - 4:00 PM
                 </p>
               </div>
@@ -123,7 +123,7 @@ export default function Page() {
                   icon={faClock}
                   className="text-blue-500 text-xl"
                 />
-                <p className="text-lg font-semibold text-gray-700">
+                <p className="text-md   font-semibold text-gray-700">
                   Sunday: Closed
                 </p>
               </div>
@@ -172,13 +172,13 @@ export default function Page() {
           </section>
         </div>
 
-        <section className="mb-5 md:mb-12 w-full md:w-1/2 bg-white border border-blue-200 shadow-lg rounded-lg p-6">
+        <section className="mb-5 md:mb-12 w-full  bg-white border border-blue-200 shadow-lg rounded-lg p-6">
           <h2 className="text-xl font-bold mb-6 text-gray-800">Contact Form</h2>
           <form className="space-y-6">
             <div>
               <label
                 htmlFor="name"
-                className="block text-lg font-semibold text-gray-700 mb-2"
+                className="block text-md   font-semibold text-gray-700 mb-2"
               >
                 Name
               </label>
@@ -191,7 +191,7 @@ export default function Page() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-lg font-semibold text-gray-700 mb-2"
+                className="block text-md   font-semibold text-gray-700 mb-2"
               >
                 Email
               </label>
@@ -204,7 +204,7 @@ export default function Page() {
             <div>
               <label
                 htmlFor="phone"
-                className="block text-lg font-semibold text-gray-700 mb-2"
+                className="block text-md   font-semibold text-gray-700 mb-2"
               >
                 Phone
               </label>
@@ -217,7 +217,7 @@ export default function Page() {
             <div>
               <label
                 htmlFor="message"
-                className="block text-lg font-semibold text-gray-700 mb-2"
+                className="block text-md   font-semibold text-gray-700 mb-2"
               >
                 Message
               </label>
@@ -236,8 +236,8 @@ export default function Page() {
           </form>
         </section>
       </div>
-      <div className="px-5 md:px-20 py-5 md:py-2 ">
-        <p className="">
+      <div className="px-5 lg:px-20 py-5 md:pb-12 ">
+        <p className="font-medium">
           Visit us at our office location. Use the map below to find directions.
         </p>
         <iframe

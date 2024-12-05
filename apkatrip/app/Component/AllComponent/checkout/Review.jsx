@@ -6,7 +6,7 @@ import { GiAirplaneDeparture } from "react-icons/gi";
 import { IoAirplaneSharp } from "react-icons/io5";
 import { IoIosThumbsUp } from "react-icons/io";
 import { MdOutlineSecurity } from "react-icons/md";
-import { FaRupeeSign } from "react-icons/fa";
+import { FaEdit, FaRupeeSign } from "react-icons/fa";
 import { RiHospitalLine } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaCheck } from "react-icons/fa6";
@@ -68,43 +68,53 @@ const page = ({ setActiveTab }) => {
   ];
   const [ email, setEmail] = useState('')
   const [showError, setShowError] = useState(false);
+  const [isselected, setIsSelected ] = useState(null)
 const handleClick =()=>{
     if(email.trim() ===""){
         setShowError(true)
+        console.log("error1")
 
     }else if (!/\S+@\S+\.\S+/.test(email)) {
         setShowError(true);
+
+        console.log("erroriu1")
+
     }else{
         setShowError(false)
         setActiveTab(2)
+        console.log("errojiouhygr1")
+
 
     }
+    // setActiveTab(2)
 }
   return (
     <div className="">
-      <div className="md:grid md:grid-cols-6 gap-5 mt-3">
+      <div className="md:grid md:grid-cols-6 gap-6  mt-3">
         <div className=" col-span-4 leftSide space-y-6">
           <div className="FirstChild border rounded-lg shadow-lg">
-            <div className="bg-[#D5EEFE] py-3 px-4 rounded-t-lg">
-              <div className="flex items-center gap-3 ">
-                <div className="border-4 bg-white border-orange-100  h-10 w-10 flex justify-center items-center text-2xl rounded-full">
+          <div className="bg-[#D5EEFE] py-3 px-4 rounded-t-lg relative">
+              <div className="flex items-center gap-3">
+                <div className="border-4 bg-white border-orange-100 h-10 w-10 flex justify-center items-center text-2xl rounded-full">
                   <GiAirplaneDeparture />
                 </div>
-                <span className="text-sm md:text-xl font-medium">
-                  Flight Detail
+                <span className="text-md md:text-xl font-medium">
+                  Booking Details
                 </span>
               </div>
+
+             
             </div>
             <div className=" ">
-              <div className=" rounded-sm border  px-3 py-4 relative space-y-5">
-                <h3 className="bg-gray-600 text-white text-xs w-fit px-3 font-bold rounded-br-xl absolute top-0 left-0">
+              <div className=" rounded-md border  px-3 py-4 relative space-y-5">
+                <h3 className="bg-gray-600 text-white text-sm w-fit px-3 font-bold rounded-br-xl absolute top-0 left-0">
                   Depart
                 </h3>
                 <div className="flex items-center gap-3 text-md md:text-xl">
                   <IoAirplaneSharp className=" font-bold -rotate-45" />
                   <div className="flex items-center gap-1">
                     <h4 className="">Delhi -Mumabi</h4>
-                    <p className="border-s-2 border-black px-2  text-sm">
+                    <p className="border-s-2 border-black px-2  text-md">
                       Fri-20Sept2024
                     </p>
                   </div>
@@ -117,9 +127,9 @@ const handleClick =()=>{
                       className="h-10 w-10 rounded-lg"
                     />
                     <div>
-                      <p className="text-sm md:text-lg">Indigo</p>
-                      <p className="text-xs">6E-6022</p>
-                      <p className="text-xs">ECONOMY</p>
+                      <p className="text-md md:text-lg">Indigo</p>
+                      <p className="text-sm">6E-6022</p>
+                      <p className="text-sm">ECONOMY</p>
                     </div>
                   </div>
 
@@ -128,7 +138,7 @@ const handleClick =()=>{
                       <h4 className="font-extrabold text-md md:text-xl">
                         15:10
                       </h4>
-                      <div className="flex flex-col text-xs ">
+                      <div className="flex flex-col text-sm ">
                         <span className="font-bold text-nowrap">
                           Delhi (DEL)
                         </span>
@@ -138,7 +148,7 @@ const handleClick =()=>{
                     </div>
 
                     <div className="flex  flex-col gap-4 items-center">
-                      <p className="text-xs">02h 10m</p>
+                      <p className="text-sm">02h 10m</p>
                       <div className="border-t-2 border-black border-dotted w-full flex justify-center relative">
                         <div className="absolute -top-3 bg-white text-lg rounded-full">
                           <GiAirplaneDeparture />
@@ -150,10 +160,10 @@ const handleClick =()=>{
                     </div>
 
                     <div className="flex flex-col gap-1 items-start">
-                      <h4 className="font-extrabold text-sm md:text-xl">
+                      <h4 className="font-extrabold text-md md:text-xl">
                         17:40
                       </h4>
-                      <div className="flex flex-col text-xs ">
+                      <div className="flex flex-col text-sm ">
                         <span className="text-nowrap font-bold">
                           Mumbai (BOM)
                         </span>
@@ -164,10 +174,10 @@ const handleClick =()=>{
                   </div>
                 </div>
                 <div className="flex flex-col md:flex-row items-start gap-5">
-                  <h3 className="bg-gray-200  font-bold w-fit text-gray-800 rounded-full px-5 text-xs py-1">
+                  <h3 className="bg-gray-200  font-bold w-fit text-gray-800 rounded-full px-5 text-sm py-1">
                     saver
                   </h3>
-                  <p className="text-xs text-gray-400">Fare Rules Baggage</p>
+                  <p className="text-sm text-gray-400">Fare Rules Baggage</p>
                 </div>
               </div>
             </div>
@@ -181,22 +191,22 @@ const handleClick =()=>{
                 className="h-8 w-8 rounded-lg"
               />
               <div>
-                <h6 className="md:text-blue-400 text-black text-sm font-bold capitalize">
+                <h6 className="md:text-blue-400 text-black text-md font-bold capitalize">
                   Free Medical Refund policy
                 </h6>
               </div>
             </div>
-            <p className="text-sm  ps-5">
+            <p className="text-md  ps-5">
               Get full airline refund, if you cancel tickets due to illness or
               sickness. This service is provided at sickness. This service is
               provided at{" "}
-              <span className="font-bold text-xs">
+              <span className="font-bold text-sm">
                 ZERO additional charges.
               </span>
             </p>
-            <div className="inputVlaues text-xs md:text-sm ps-2 md:ps-5 space-y-2 py-3 md:py-0">
+            <div className="inputVlaues text-sm md:text-md ps-2 md:ps-5 space-y-2 py-3 md:py-0">
               <div className="flex gap-4  ">
-                <input type="radio" id="yes" name="refund" />
+                <input type="radio" id="yes" name="refund" defaultChecked/>
                 <label htmlFor="yes">
                   {" "}
                   Yes, I want to add Medical Refund Policy (FREE) to the Flight
@@ -219,11 +229,11 @@ const handleClick =()=>{
                 <IoIosThumbsUp className="text-green-500 text-xl" />
               </div>
               <div className="flex flex-col ">
-                <h4 className="font-bold text-sm">Good to know</h4>
+                <h4 className="font-bold text-md">Good to know</h4>
                 <p className="text-[0.7rem]">Information you should Know</p>
               </div>
             </div>
-            <ul className="list-disc px-8 text-sm py-3 space-y-4 md:space-y-1">
+            <ul className="list-disc px-8 text-md py-3 space-y-4 md:space-y-1">
               <li>
                 15 Kgs per passenger Check-in Baggage included for your selected
                 flight on the sector Delhi to Mumbai
@@ -244,7 +254,7 @@ const handleClick =()=>{
                     <MdOutlineSecurity className="text-purple-800 text-4xl" />
                   </div>
                   <div className="flex flex-col ">
-                    <h4 className="font-bold text-sm flex items-center gap-2">
+                    <h4 className="font-bold text-md flex items-center gap-2">
                       Add Travel Insurance and Secure your Trip with ACKO View/
                       print your booking{" "}
                       <span className="font-bold flex items-center">
@@ -317,7 +327,10 @@ const handleClick =()=>{
                 </div>
               </div>
             </div>
-            <div className="sub3 radioSection ps-3 text-xs pt-5">
+
+
+
+            <div className="sub3 radioSection ps-3 text-sm pt-5">
               <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
                   <input type="radio" id="insurance" name="insurance" />
@@ -325,34 +338,38 @@ const handleClick =()=>{
                     Yes i want to secure my trip with insurance
                   </label>
                 </div>
-                <p className="text-gray-800 bg-[#DCFBD0] text-sm w-fit py-1 px-5 rounded">
+                <p className="text-gray-800 bg-[#DCFBD0] text-md w-fit py-1 px-5 rounded">
                   More than 306% of our customer choose to secure their trip
                 </p>
               </div>
               <div className="flex flex-col gap-2 py-4">
                 <div className="flex items-center gap-2">
-                  <input type="radio" id="insurance" name="insurance" />
+                  <input type="radio" id="insurance" name="insurance" defaultChecked />
                   <label htmlFor="insurance">
                     No i do not want to secure my trip{" "}
                   </label>
                 </div>
-                <p className=" text-sm w-fit py-1 px-5 rounded bg-[#FFF3CD] text-amber-900">
+                <p className=" text-md w-fit py-1 px-5 rounded bg-[#FFF3CD] text-amber-900">
                   <span className="font-bold">Mr. USER</span> got Rs 2000 for
                   the dealy in trip since insurance was done for the trip
                 </p>
               </div>
             </div>
+            
+            
+
+      
           </div>
 
-          <div>
-            <div className="flex items-center gap-2 ">
+          <div className="pb-6">
+            <div className="flex items-center gap-2 flex-wrap ">
               <h3 className="text-lg ">Contact Information</h3>
               <p className="text-[12px] text-gray-500 mt-1">
                 Your ticket will be sent to this email address
               </p>
             </div>
             {showError && (
-                 <p className="text-sm p-4 my-2 w-fit bg-[#ab2515] text-white font-medium ">
+                 <p className="text-md p-4 my-2 w-fit bg-[#ab2515] text-white font-medium ">
                  Please enter a valid email address *
                    </p>
             )}
@@ -384,7 +401,7 @@ const handleClick =()=>{
                 }}
               />
             </div>
-            <p className="text-sm text-red-600 ">
+            <p className="text-md text-red-600 ">
             Please enter your email address *
               </p>
           </div>
@@ -396,14 +413,14 @@ const handleClick =()=>{
               <div className="border rounded-t flex items-center px-3 py-2 bg-[#D1EAFF]">
                 <h3>Price Summary</h3>
               </div>
-              <div className="flex justify-between px-3 py-3 text-sm border-b">
+              <div className="flex justify-between px-3 py-3 text-md border-b">
                 <p>Adult x 1</p>
-                <p className="flex  items-center font-bold text-xs">
+                <p className="flex  items-center font-bold text-sm">
                   <FaRupeeSign />
                   4516
                 </p>
               </div>
-              <div className="flex justify-between px-3 py-3 text-xs border-b">
+              <div className="flex justify-between px-3 py-3 text-sm border-b">
                 <p>Total Taxes +</p>
                 <p className="flex  items-center font-bold">
                   <FaRupeeSign />
@@ -412,7 +429,7 @@ const handleClick =()=>{
               </div>
               <div className="flex justify-between px-3 py-3 t border-b">
                 <p>Medical Refund Policy </p>
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-2 text-sm">
                   <p className="flex  items-center font-bold line-through">
                     <FaRupeeSign />
                     4516
@@ -436,10 +453,10 @@ const handleClick =()=>{
                 <input
                   type="text"
                   placeholder="ENTER COUPON CODE"
-                  className="border-b outline-none text-gray-600 uppercase font-semibold text-sm w-fit"
+                  className="border-b outline-none text-gray-600 uppercase font-semibold text-md w-fit"
                 />
                 <div>
-                  <button className="bg-[#2196F3] px-16 lg:px-8 py-3 lg:py-1 rounded-full text-sm font-bold text-white">
+                  <button className="bg-[#2196F3] px-16 lg:px-8 py-3 lg:py-1 rounded-full text-md font-bold text-white">
                     apply
                   </button>
                 </div>
@@ -455,11 +472,11 @@ const handleClick =()=>{
                     className="flex items-start gap-2 border-b py-4 px-3"
                   >
                     <div className="rounded-full w-[22px] flex items-center justify-center h-[18px] border hover:bg-gray-700">
-                      <FaCheck className="text-xs text-white" />
+                      <FaCheck className="text-sm text-white" />
                     </div>
                     <div>
-                      <h6 className="font-bold text-xs">{offer.title}</h6>
-                      <p className="text-xs">{offer.description}</p>
+                      <h6 className="font-bold text-sm">{offer.title}</h6>
+                      <p className="text-sm">{offer.description}</p>
                       <p className="text-[10px] font-bold uppercase text-[#2196F3]">
                         {offer.terms}
                       </p>
@@ -470,7 +487,7 @@ const handleClick =()=>{
             </div>
             <div className="booking">
               <button
-                className="bg-[#DA5200] text-xl text-white rounded-full w-full py-4"
+                className="bg-[#DA5200] text-xl mt-4 text-white rounded-lg w-full py-4 "
                 onClick={()=>{handleClick()}}
               >
                 Continue Booking

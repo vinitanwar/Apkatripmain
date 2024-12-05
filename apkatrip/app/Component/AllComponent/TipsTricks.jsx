@@ -20,7 +20,7 @@ const BlogSection = () => {
                 <h2>
                 {t("travelblogdes1")}
                 </h2>
-                <Link href="/blogView/aboutblog">
+                <Link  href="/blogView/aboutblog">
                 
                   <span>{t("travelblogtitle1")}</span>
                 </Link>
@@ -41,7 +41,7 @@ const BlogSection = () => {
                 <h2>
                 {t("travelblogdes3")}
                 </h2>
-                <Link href="/blogView/aboutblog">       <span>{t("travelblogtitle3")}</span> </Link>
+                <Link  href="/blogView/aboutblog">       <span>{t("travelblogtitle3")}</span> </Link>
               </div>
             </div>
             <div className="event-box">
@@ -51,7 +51,7 @@ const BlogSection = () => {
                   {" "}
                   {t("travelblogdes4")}
                 </h2>
-                <Link href="/blogView/aboutblog"> <span>{t("travelblogtitle4")}</span></Link> 
+                <Link  href="/blogView/aboutblog"> <span>{t("travelblogtitle4")}</span></Link> 
               </div>
             </div>
           </div>

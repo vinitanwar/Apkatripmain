@@ -12,7 +12,7 @@ const page = () => {
   const tabs = [
     { id: 1, label: "Reviews", content: <Review setActiveTab={setActiveTab} /> },
     { id: 2, label: "Travellers", content: <Travellers setActiveTab={setActiveTab} /> },
-    { id: 3, label: "Payment", content: <Payment  /> },
+    { id: 3, label: "Payment", content: <Payment  setActiveTab={setActiveTab}/> },
   ];
   return (
     <div className="px-2 sm:px-5 py-10 xl:px-40  xl:py-20">
@@ -23,6 +23,8 @@ const page = () => {
           <button
           onClick={() => {
             console.log("switched to ", tab.id);
+            console.log("switched to key", index);
+
             setActiveTab(tab.id);
           }}
           className={`text-md px-2 ${

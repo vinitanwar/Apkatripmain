@@ -63,9 +63,9 @@ return (
 </div>
 </div>
 
-<div className=' space-y-5 px-5 md:px-16 lg:px-20 mt-20 '>
+<div className=' space-y-5 px-5 md:px-16 lg:px-20 my-20 '>
    
-<div className="bg-[#F1F5F9] p-8 rounded-lg space-y-8">
+<div className="shadow-lg p-8 rounded-lg space-y-8">
   <h2 className="text-2xl font-semibold text-gray-800">Why Partner with ApkaTrip?</h2>
   {reasonsToPartner.map((reason, index) => (
     <div key={index} className="space-y-4">
@@ -74,7 +74,7 @@ return (
     </div>
   ))}
 </div>
-<div className="bg-[#F1F5F9] p-8 rounded-lg space-y-8">
+<div className="shadow-lg p-8 rounded-lg space-y-8">
   <h2 className="text-2xl font-semibold text-gray-800">How It Works</h2>
   {steps.map((step, index) => (
     <div key={index} className="space-y-4">
@@ -84,7 +84,7 @@ return (
   ))}
 </div>
 
-<div className="bg-[#F1F5F9] p-8 rounded-lg space-y-8">
+<div className="shadow-lg p-8 rounded-lg space-y-8">
   {/* Commitment Section */}
   <div>
     <h2 className="text-xl font-semibold text-gray-800">Our Commitment to Excellence</h2>

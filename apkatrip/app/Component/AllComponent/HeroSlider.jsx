@@ -88,7 +88,7 @@ const HeroSlider = () => {
         <h1 className="text-white text-2xl lg:text-4xl font-bold">
           Where Every Experience Counts!
         </h1>
-        <div className="flex justify-between mt-5 items-center border rounded-full   w-full md:w-[600px] bg-white mx-auto ">
+        <div className="flex justify-between mt-5 items-center border rounded-full   w-full md:w-[600px] bg-white mx-auto  ">
           <div className="relative w-full flex p-2 px-4 items-center">
             <img
               src="/Images/search.svg"
@@ -113,7 +113,7 @@ const HeroSlider = () => {
         </div>
       </div>
 
-      <div className="hidden md:flex justify-center">
+      <div className="hidden md:flex justify-center ">
         <div className="bg-white  absolute -bottom-7 shadow-md  border border-[#98D1FF] rounded-full text-center py-2 flex ">
           <div className="flex  gap-6 mx-auto px-4">
             <div>

@@ -148,12 +148,12 @@ const page = () => {
           <p className="text-black text-sm lg:text-lg font-bold">
             To {deal.destination}
           </p>
-          <p className="text-gray-500 text-sm lg:text-lg">
+          <p className="text-gray-500 text-sm md:text-md">
             {deal.date} | {deal.airline}
           </p>
         </div>
         <div className="flex-1">
-          <p className="text-gray-700 text-xs lg:text-lg ">
+          <p className="text-gray-700 text-sm md:text-md ">
             One way as low as{" "}
             <strong className="text-orange-600  text-center font-bold">{`₹${deal.price}`}</strong>
           </p>

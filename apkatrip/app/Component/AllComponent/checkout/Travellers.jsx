@@ -4,9 +4,18 @@ import React, { useState } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { GiAirplaneDeparture } from "react-icons/gi";
 import { IoAirplaneSharp } from "react-icons/io5";
+import Baggage from './Baggage'
+import FareRules from './FareRules'
 import { IoIosThumbsUp } from "react-icons/io";
 import { MdOutlineSecurity } from "react-icons/md";
-import { FaArrowDown, FaRupeeSign } from "react-icons/fa";
+import {
+  FaArrowDown,
+  FaArrowRight,
+  FaEdit,
+  FaPhone,
+  FaPhoneAlt,
+  FaRupeeSign,
+} from "react-icons/fa";
 import { RiArrowDropDownLine, RiHospitalLine } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaArrowDown19, FaCheck } from "react-icons/fa6";
@@ -151,26 +160,42 @@ const page = ({ setActiveTab }) => {
       <div className="md:grid md:grid-cols-6 gap-5 mt-3">
         <div className=" col-span-4 leftSide space-y-6">
           <div className="FirstChild border rounded-lg shadow-lg">
-            <div className="bg-[#D5EEFE] py-3 px-4 rounded-t-lg">
-              <div className="flex items-center gap-3 ">
-                <div className="border-4 bg-white border-orange-100  h-10 w-10 flex justify-center items-center text-2xl rounded-full">
+            <div className="bg-[#D5EEFE] py-3 px-4 rounded-t-lg relative">
+              <div className="flex items-center gap-3">
+                <div className="border-4 bg-white border-orange-100 h-10 w-10 flex justify-center items-center text-2xl rounded-full">
                   <GiAirplaneDeparture />
                 </div>
-                <span className="text-sm md:text-xl font-medium">
-                  Flight Detail
+                <span className="text-md md:text-xl font-medium">
+                  Booking Details
                 </span>
               </div>
+
+              {/* Edit Ribbon */}
+              <div
+                onClick={() => {
+                  setActiveTab(1);
+                }}
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center bg-blue-500 text-white px-6 py-2 font-semibold rounded-l-lg"
+                style={{
+                  clipPath:
+                    "polygon(20% 0%, 100% 0%, 100% 100%, 20% 100%, 0% 50%)",
+                }}
+              >
+                <span className="mr-2">Edit</span>
+                <FaEdit className="h-3 w-3 text-current" />
+              </div>
             </div>
+
             <div className=" ">
-              <div className=" rounded-sm border  px-3 py-4 relative space-y-5">
-                <h3 className="bg-gray-600 text-white text-xs w-fit px-3 font-bold rounded-br-xl absolute top-0 left-0">
+              <div className=" rounded-md border  px-3 py-4 relative space-y-5">
+                <h3 className="bg-gray-600 text-white text-md w-fit px-3 font-bold rounded-br-xl absolute top-0 left-0">
                   Depart
                 </h3>
                 <div className="flex items-center gap-3 text-md md:text-xl">
                   <IoAirplaneSharp className=" font-bold -rotate-45" />
                   <div className="flex items-center gap-1">
                     <h4 className="">Delhi -Mumabi</h4>
-                    <p className="border-s-2 border-black px-2  text-sm">
+                    <p className="border-s-2 border-black px-2  text-md">
                       Fri-20Sept2024
                     </p>
                   </div>
@@ -183,9 +208,9 @@ const page = ({ setActiveTab }) => {
                       className="h-10 w-10 rounded-lg"
                     />
                     <div>
-                      <p className="text-sm md:text-lg">Indigo</p>
-                      <p className="text-xs">6E-6022</p>
-                      <p className="text-xs">ECONOMY</p>
+                      <p className="text-md md:text-lg">Indigo</p>
+                      <p className="text-md">6E-6022</p>
+                      <p className="text-md">ECONOMY</p>
                     </div>
                   </div>
 
@@ -194,7 +219,7 @@ const page = ({ setActiveTab }) => {
                       <h4 className="font-extrabold text-md md:text-xl">
                         15:10
                       </h4>
-                      <div className="flex flex-col text-xs ">
+                      <div className="flex flex-col text-md ">
                         <span className="font-bold text-nowrap">
                           Delhi (DEL)
                         </span>
@@ -204,7 +229,7 @@ const page = ({ setActiveTab }) => {
                     </div>
 
                     <div className="flex  flex-col gap-4 items-center">
-                      <p className="text-xs">02h 10m</p>
+                      <p className="text-md">02h 10m</p>
                       <div className="border-t-2 border-black border-dotted w-full flex justify-center relative">
                         <div className="absolute -top-3 bg-white text-lg rounded-full">
                           <GiAirplaneDeparture />
@@ -216,12 +241,12 @@ const page = ({ setActiveTab }) => {
                     </div>
 
                     <div className="flex flex-col gap-1 items-start">
-                      <h4 className="font-extrabold text-sm md:text-xl">
+                      <h4 className="font-extrabold text-md md:text-xl">
                         17:40
                       </h4>
-                      <div className="flex flex-col text-xs ">
+                      <div className="flex flex-col text-md ">
                         <span className="text-nowrap font-bold">
-                          Mumbai (BOM)
+                           Mumbai (BOM)
                         </span>
                         <span>Fri-20 Sep 2024</span>
                         <span>Terminal -2</span>
@@ -229,61 +254,47 @@ const page = ({ setActiveTab }) => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col md:flex-row items-start gap-5">
-                  <h3 className="bg-gray-200  font-bold w-fit text-gray-800 rounded-full px-5 text-xs py-1">
+                <div className="flex flex-col  items-start gap-5">
+                  <h3 className="bg-gray-200  font-bold w-fit text-gray-800 rounded-full px-5 text-md py-1">
                     saver
                   </h3>
-                  <p className="text-xs text-gray-400">Fare Rules Baggage</p>
-                </div>
-                {/* payment page part */}
-                <div className="border-2 ">
-                  <div className="p-2 bg-gray-50">
-                    <div className="flex justify-between items-center mx-20  text-sm font-semibold">
-                      <p className="text-gray-400">Airline</p>
-                      <p className="text-gray-400">Check-in-Baggage</p>
-                      <p className="text-gray-400">Cabin Baggage</p>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-start p-2">
-                    <div className="flex justify-start items-center w-[35%] gap-6">
-                      <div className="flex  items-center   md:bg-transparent px-3 rounded-t-lg md:rounded-t-none py-4 md:py-0">
-                        <img
-                          src="/Images/checkout/Indigo.webp"
-                          alt="refund policy"
-                          className="h-7 w-h-7 rounded-lg"
-                        />
-                      </div>
-                      <div className="">
-                        <h6 className=" text-black text-sm font-semibold capitalize">
-                          Indigo
-                        </h6>
-                        <p className="text-gray-500 text-[12px] font-semibold">
-                          6E-2766
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-black text-sm font-semibold capitalize  w-[28%]">
-                      15 kgs
-                    </div>
-                    <div className="text-black text-sm font-semibold capitalize w-[20%]">
-                      7 kgs
-                    </div>
+                  <div className="flex gap-4 ">
+                  <button onClick={()=>{setActive(1)}} className={`text-base font-bold pb-1 ${active===1?'text-blue-600 border-b-2 border-blue-600 ': 'text-gray-500'}`}>Fare Rules</button>
+                  <button onClick={()=>{setActive(2)}} className={`text-base font-bold pb-1 ${active===2?'text-blue-600 border-b-2 border-blue-600 ': 'text-gray-500'}`}>Baggage</button>
+
                   </div>
                 </div>
-                {/* payment page part */}
+
+                {
+                  active===2 &&(
+              <Baggage/>
+
+                  )
+                }
+                {active ===1 &&(
+                  <FareRules/>
+                )}
+
+
+
+
               </div>
             </div>
           </div>
 
           <div className="FirstChild border rounded-lg shadow-lg">
             <div className="bg-[#D5EEFE] py-3 px-4 rounded-t-lg">
-              <div className="flex items-center gap-3 ">
-                <div className="border-4 bg-white border-orange-100  h-10 w-10 flex justify-center items-center text-2xl rounded-full">
-                  <GiAirplaneDeparture />
+              <div className="flex justify-between items-center  ">
+                
+                <div className="flex items-center gap-2">
+                  <div className="border-4 bg-white border-orange-100  h-10 w-10 flex justify-center items-center text-2xl rounded-full">
+                    <GiAirplaneDeparture />
+                  </div>
+                  <span className="text-md md:text-xl font-medium">
+                    Travellers Details
+                  </span>
                 </div>
-                <span className="text-sm md:text-xl font-medium">
-                  Travellers Details
-                </span>
+                <p className="text-md ">Name should be same as in Government ID proof</p>
               </div>
             </div>
             <div className="p-4">
@@ -432,7 +443,6 @@ const page = ({ setActiveTab }) => {
                     <p className="text-xs text-gray-600 font-medium ">Adds-On (Optional)</p>
                     <p className="text-xs text-gray-600 font-medium ">Pre-booked meals, Seats and Baggage are 30% cheaper than on-board price.</p>
                   </div>
-
                 </div>
               </div>
               <h3 className="text-blue-600 text-md font-semibold ">+ Add Adult</h3>
@@ -594,6 +604,25 @@ const page = ({ setActiveTab }) => {
 
             </div>
           </div>
+
+          <div className="flex items-start gap-2 mt-3">
+            <input type="checkbox" className="mt-1" defaultChecked />
+            <p className="text-md text-gray-500">
+              I understand and agree to the rules,{" "}
+              <a href="#" className="text-blue-500 underline">
+                Privacy Policy
+              </a>
+              ,{" "}
+              <a href="#" className="text-blue-500 underline">
+                User Agreement
+              </a>{" "}
+              and{" "}
+              <a href="#" className="text-blue-500 underline">
+                Terms & Conditions
+              </a>{" "}
+              of EaseMyTrip
+            </p>
+          </div>
         </div>
 
         <div className=" w-full md:col-span-2 rightSide space-y-4 md:px-4  ">
@@ -602,14 +631,14 @@ const page = ({ setActiveTab }) => {
               <div className="border rounded-t flex items-center px-3 py-2 bg-[#D1EAFF]">
                 <h3>Price Summary</h3>
               </div>
-              <div className="flex justify-between px-3 py-3 text-sm border-b">
+              <div className="flex justify-between px-3 py-3 text-md border-b">
                 <p>Adult x 1</p>
-                <p className="flex  items-center font-bold text-xs">
+                <p className="flex  items-center font-bold text-md">
                   <FaRupeeSign />
                   4516
                 </p>
               </div>
-              <div className="flex justify-between px-3 py-3 text-xs border-b">
+              <div className="flex justify-between px-3 py-3 text-md border-b">
                 <p>Total Taxes +</p>
                 <p className="flex  items-center font-bold">
                   <FaRupeeSign />
@@ -618,7 +647,7 @@ const page = ({ setActiveTab }) => {
               </div>
               <div className="flex justify-between px-3 py-3 t border-b">
                 <p>Medical Refund Policy </p>
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-2 text-md">
                   <p className="flex  items-center font-bold line-through">
                     <FaRupeeSign />
                     4516
@@ -642,10 +671,10 @@ const page = ({ setActiveTab }) => {
                 <input
                   type="text"
                   placeholder="ENTER COUPON CODE"
-                  className="border-b outline-none text-gray-600 uppercase font-semibold text-sm w-fit"
+                  className="border-b outline-none text-gray-600 uppercase font-semibold text-md w-fit"
                 />
                 <div>
-                  <button className="bg-[#2196F3] px-16 lg:px-8 py-3 lg:py-1 rounded-full text-sm font-bold text-white">
+                  <button className="bg-[#2196F3] px-16 lg:px-8 py-3 lg:py-1 rounded-full text-md font-bold text-white">
                     apply
                   </button>
                 </div>
@@ -658,11 +687,11 @@ const page = ({ setActiveTab }) => {
                     className="flex items-start gap-2 border-b py-4 px-3"
                   >
                     <div className="rounded-full w-[22px] flex items-center justify-center h-[18px] border hover:bg-gray-700">
-                      <FaCheck className="text-xs text-white" />
+                      <FaCheck className="text-md text-white" />
                     </div>
                     <div>
-                      <h6 className="font-bold text-xs">{offer.title}</h6>
-                      <p className="text-xs">{offer.description}</p>
+                      <h6 className="font-bold text-md">{offer.title}</h6>
+                      <p className="text-md">{offer.description}</p>
                       <p className="text-[10px] font-bold uppercase text-[#2196F3]">
                         {offer.terms}
                       </p>
@@ -675,7 +704,7 @@ const page = ({ setActiveTab }) => {
               <button
                 className="bg-[#DA5200] text-sm lg:text-lg tracking-normal text-white rounded-full w-1/2 md:w-[80%] py-2"
                 onClick={() => {
-                  setActiveTab(3);
+                  handleClick();
                 }}
               >
                 Continue Booking
