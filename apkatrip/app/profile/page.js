@@ -87,7 +87,7 @@ const page = () => {
   return (
     <>
       <div className="px-5 py-5 md:py-10 md:px-20 flex gap-10 flex-col md:flex-row">
-        <div className="w-full md:w-1/4 h-full sticky top-24">
+        <div className="w-full md:w-1/4 h-full lg:sticky lg:top-24">
           <div className="bg-white px-5 rounded-xl pb-5 myshadow">
             <Image
               src="/Images/user-profile.webp"
@@ -159,17 +159,17 @@ const page = () => {
             <p className=" mt-4">
               Get the best out of Apka Trip by adding the remaining details!
             </p>
-            <ul className="flex justify-between items-center bg-[#ecf5fe] mt-4 px-10 py-4 rounded-lg">
-              <li className="flex gap-3 font-semibold items-center text-blue-600 cursor-pointer">
-                <FaCheckCircle className="text-2xl" />
+            <ul className="flex justify-between items-center flex-wrap bg-[#ecf5fe] gap-2 mt-4 md:px-10 p-4 rounded-lg">
+              <li className="flex gap-3 font-medium items-center text-blue-600 cursor-pointer">
+                <FaCheckCircle className="text-xl md:text-2xl" />
                 Verified mobile Number
               </li>
-              <li className="flex gap-3 font-semibold items-center text-blue-600 cursor-pointer">
-                <FaCheckCircle className="text-2xl" />
+              <li className="flex gap-3 font-medium items-center text-blue-600 cursor-pointer">
+                <FaCheckCircle className="text-xl md:text-2xl" />
                 Verified Email ID
               </li>
-              <li className="flex gap-3 font-semibold items-center text-blue-600 cursor-pointer">
-                <FaPlus className="text-2xl" />
+              <li className="flex gap-3 font-medium items-center text-blue-600 cursor-pointer">
+                <FaPlus className="text-xl md:text-2xl" />
                 Complete Basic Info
               </li>
             </ul>

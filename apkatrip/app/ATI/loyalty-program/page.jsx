@@ -180,7 +180,7 @@ const page = () => {
 
       <div className="space-y-8 lg:space-y-12 mt-10">
         <section className="px-5 md:px-16 lg:px-20  ">
-          <div className="bg-[#F1F5F9] px-5 py-6 rounded-lg md:px-10 md:py-12 space-y-6">
+          <div className=" shadow-lg px-5 py-6 rounded-lg md:px-10 md:py-12 space-y-6">
             <h6 className="text-lg md:text-2xl font-semibold text-gray-700">
               Why Join the ApkaTrip Loyalty Program?
             </h6>
@@ -196,7 +196,7 @@ const page = () => {
         </section>
 
         <section className="px-5 md:px-16 lg:px-20  ">
-          <div className="bg-[#F1F5F9] px-5 py-6 md:px-10 md:py-12 space-y-6 rounded-lg">
+          <div className=" shadow-lg px-5 py-6 md:px-10 md:py-12 space-y-6 rounded-lg">
             <h6 className="text-lg md:text-2xl font-semibold text-gray-700">
               How It Works: Simple, Transparent, and Rewarding
             </h6>
@@ -212,7 +212,7 @@ const page = () => {
         </section>
 
         <section className="px-5 md:px-16 lg:px-20  ">
-          <div className="bg-[#F1F5F9] px-5 py-6 md:px-10 md:py-12 space-y-6 rounded-lg">
+          <div className=" shadow-lg px-5 py-6 md:px-10 md:py-12 space-y-6 rounded-lg">
             <h6 className="text-lg md:text-2xl font-semibold text-gray-700">
               Exclusive Loyalty Program Benefits
             </h6>
@@ -229,7 +229,7 @@ const page = () => {
 
 
         <section className="px-5 md:px-16 lg:px-20 ">
-  <div className="bg-[#F1F5F9] px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
+  <div className=" shadow-lg px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
     <h6 className="text-lg md:text-2xl font-semibold text-gray-700">Levels of Membership: The More You Travel, the More You Benefit</h6>
     
     {membershipLevels.map((level, index) => (
@@ -248,7 +248,7 @@ const page = () => {
 
 
 <section className="px-5 md:px-16 lg:px-20 py-10">
-  <div className="bg-[#F1F5F9] px-5 py-6 md:px-10 md:py-12 space-y-8 rounded-lg">
+  <div className=" shadow-lg px-5 py-6 md:px-10 md:py-12 space-y-8 rounded-lg">
     {/* Loyalty Program CTA */}
     <div className="space-y-4">
       <h6 className="text-lg md:text-2xl font-semibold">{apkaTripInfo.loyaltyProgramCTA}</h6>

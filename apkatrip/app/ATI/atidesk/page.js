@@ -169,7 +169,7 @@ const Page = () => {
 return (
 <div className='space-y-10'>
 <section className="px-5 md:px-16 lg:px-20">
-<div className="bg-gradient-to-bl from-slate-500 to-slate-300 px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
+<div className="bg-gradient-to-r from-[#655860] to-[#a6c1ee] px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
 {corporateTravelInfo.map((info, index) => (
   <div key={index} className="flex flex-col items-center text-center space-y-5">
     <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
@@ -193,7 +193,7 @@ return (
 </section>
 
 <section className="px-5 md:px-16 lg:px-20">
-<div className="bg-[#F1F5F9] px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
+<div className="shadow-lg px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
 {apkaTripInfo.map((info, index) => (
   <div key={index} className="space-y-5">
     <h6 className="text- lg:text-2xl font-semibold text-gray-700">
@@ -229,7 +229,7 @@ return (
 
 
 <section className="px-5 md:px-16 lg:px-20">
-<div className="bg-[#F1F5F9] px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
+<div className="shadow-lg px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
 <h6 className="text-lg md:text-2xl font-semibold text-gray-700">
   ApkaTrip's Main Activities
 </h6>
@@ -247,7 +247,7 @@ return (
 </section>
 
 <section className="px-5 md:px-16 lg:px-20">
-<div className="bg-[#F1F5F9] px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
+<div className="shadow-lg px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
 <h6 className="text-lg md:text-2xl font-semibold text-gray-700">
   ApkaTrip's Corporate Travel Solutions
 </h6>
@@ -270,7 +270,7 @@ return (
 </section>
 
 <section className="px-5 md:px-16 lg:px-20">
-<div className="bg-[#F1F5F9] px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
+<div className="shadow-lg px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
 <h6 className="text-lg md:text-2xl font-semibold text-gray-700">
   Why Book Corporate Travel with ApkaTrip?
 </h6>
@@ -289,7 +289,7 @@ return (
 
 <section className="px-5 md:px-16 lg:px-20 space-y-10">
 {/* Technology Features Section */}
-<div className="bg-[#F1F5F9] px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
+<div className="shadow-lg px-5 py-8 md:px-10 md:py-12 space-y-6 rounded-lg">
 <h6 className="text-lg md:text-2xl font-semibold text-gray-700">ApkaTrip Technology: The Future of Business Travel</h6>
 {technologyFeatures.map((feature, index) => (
   <div key={index} className="space-y-4">
@@ -314,7 +314,7 @@ return (
 </div>
 
 {/* Contact Information */}
-<div className="bg-[#F1F5F9] px-5 py-8 md:px-10 md:py-12 rounded-lg">
+<div className="shadow-lg px-5 py-8 md:px-10 md:py-12 rounded-lg">
 <h6 className="text-lg md:text-2xl font-semibold text-gray-700">Contact Us</h6>
 <p className="text-base text-gray-600">For more information or questions, please don’t hesitate to contact us.</p>
 <p className="text-base text-gray-600">Telephone: {contactInfo.phone}</p>

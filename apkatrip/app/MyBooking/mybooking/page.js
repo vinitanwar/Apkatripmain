@@ -412,7 +412,7 @@ const page = () => {
           )}
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 text-center bg-white w-max mx-20 md:mx-0 lg:ml-20  absolute my-12 md:my-0 md:top-10 p-2 rounded-md gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 text-center bg-white w-max mx-20 md:mx-0 lg:ml-20 md:left-4  absolute my-12 md:my-0 md:top-10 p-2 rounded-md gap-4">
           <div
             className={`tabs cursor-pointer px-3 py-2 rounded-md ${
               tab === "flight" ? "bg-[#3286ed] text-white" : "bg-white"

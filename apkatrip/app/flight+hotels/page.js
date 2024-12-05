@@ -163,7 +163,7 @@ const page = () => {
             <div className="text-base text-center font-bold mb-4">
               Save Big on Your First Booking
             </div>
-            <div className="bg-gray-100 p-4 rounded-lg mb-4">
+            <div className="bg-gray-100 p-2 rounded-lg mb-4">
               <div className="bg-blue-500 text-white p-4 rounded-lg">
                 <div className="flex items-center">
                   <img
@@ -176,7 +176,7 @@ const page = () => {
                     <div className="text-lg font-bold">Up to INR 1,100 Off</div>
                   </div>
                 </div>
-                <div className=" flex items-center justify-center my-4">
+                <div className=" flex items-center justify-center my-2">
                   <div className="bg-white flex-1 h-[1px]"></div>
                   <div className="text-center text-sm mx-2 font-semibold">
                     Limited-time Offer
@@ -193,7 +193,7 @@ const page = () => {
           <div className="flex-1 w-screen lg:w-full">
             <div className="flex flex-wrap items-center justify-center lg:flex-nowrap gap-3 overflow-auto lg:overflow-x-scroll">
               {hotelData.slice(0, 8).map((hotel, index) => (
-                <div className=" bg-white rounded-lg shadow-lg my-5 lg:my-0">
+                <div className=" bg-white rounded-lg shadow-lg my-3 lg:my-0">
                   <div
                     key={index}
                     className="w-full md:w-64 rounded-tr-lg rounded-tl-lg  overflow-hidden"

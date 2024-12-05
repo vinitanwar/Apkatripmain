@@ -143,7 +143,7 @@ const filteredData2=["/Images/flight-slide2.png","/Images/flight-slide1.png","/I
         
 
         {/* Swiper Component */}
-        <div className=" flex  flex-col lg:flex-row px-4 lg:px-36 justify-end gap-4 w-full ">
+        <div className=" flex  flex-col lg:flex-row px-4 lg:px-20 justify-end gap-4 w-full ">
         <Swiper
             className=" w-full  lg:w-3/6 h-[200px] lg:h-[300px] "
       
