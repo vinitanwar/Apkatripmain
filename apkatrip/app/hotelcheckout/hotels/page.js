@@ -73,15 +73,15 @@ dispatch(getAllRegHotels())
       <div className="flex gap-4 p-4">
         <div className="w-2/3 relative">
           <img
-            src={`${imgurl}/storage/${dest.hotel.hotel_img[0]}`}
-            alt={dest.hotel.hotel_img[0]}
+            src={`${imgurl}/storage/${dest?.hotel?.hotel_img[0]}`}
+            alt={dest?.hotel?.hotel_img[0]}
             className="rounded-md w-full h-52 object-cover"
           />
           <div className="absolute top-2 right-2 bg-white opacity-80 px-2 py-1 rounded-full text-xs font-semibold text-gray-700">
             {dest.hotel.rating} <FaStar className="inline text-yellow-500" />
           </div>
           <div className="flex gap-2 mt-2">
-            {dest.hotel.hotel_img.slice(0, 3).map((image, imgIndex) => (
+            {dest?.hotel?.hotel_img.slice(0, 3).map((image, imgIndex) => (
               <img
                 key={imgIndex}
                 src={`${imgurl}/storage/${image}`}
@@ -93,9 +93,9 @@ dispatch(getAllRegHotels())
         </div>
 
         <div className="w-1/3 flex flex-col justify-between">
-          <h5 className="text-lg font-semibold mb-1 text-gray-800 truncate">{dest.hotel.property_name}</h5>
+          <h5 className="text-lg font-semibold mb-1 text-gray-800 truncate">{dest?.hotel?.property_name}</h5>
           <p className="text-sm text-gray-600 truncate">
-            <div dangerouslySetInnerHTML={{__html:dest.hotel.address}} >
+            <div dangerouslySetInnerHTML={{__html:dest?.hotel?.address}} >
 
             </div>
             </p>
@@ -114,7 +114,7 @@ dispatch(getAllRegHotels())
               ₹{(Number(dest.hotel.price) + (Number(dest.hotel.price) * 6) / 100)}
             </div>
             <button className="mt-3 bg-[#5c6fff] text-white py-2 px-6 rounded-lg hover:bg-[#4a5ccd] transition duration-200">
-            View
+               View
             </button>
           </div>
         </div>
