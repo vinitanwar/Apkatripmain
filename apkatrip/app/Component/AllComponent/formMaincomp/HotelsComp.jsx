@@ -95,40 +95,6 @@ const HotelsComp = () => {
     <div className="header    relative  md:px-5  lg:px-12 xl:px-24">
       <div className=" bg-[#002043] h-[15rem] absolute inset-0  -z-10" />
       <div className=" flex justify-start lg:justify-end">
-        {/* <ul className="featuresListTopDropDown hidden  bg-white w-full md:w-fit shadow-lg lg:flex  gap-3 md:px-3 rounded-b  ">
-        {topAndBottomDropDown.topFeaturestopDropDown.map((item, index) => (
-          <li
-            key={index}
-            className="relative w-full  "
-            onMouseEnter={() => setTopDropdown(index)}
-            // onMouseLeave={onMouseLeaveHandler}
-          >
-            <button className="flex text-nowrap hover:text-blue-500  gap-1 items-center gap- text-xs md:text-sm cursor-pointer py-1">
-              {item.heading}
-              <IoIosArrowDown
-                className={`${topDropdown === index ? "rotate-180" : ""}`}
-              />
-            </button>
-
-            
-            {topDropdown === index && (
-              <ul
-                onMouseLeave={() => setTopDropdown(null)}
-                className="absolute mt-1 left-0  bg-white shadow-lg rounded-lg w-max z-40 py-2"
-              >
-                {item.list?.map((listItem, idx) => (
-                  <li
-                    key={idx}
-                    className="px-4 py-2 text-sm hover:bg-gray-100 hover:text-blue-500 cursor-pointer"
-                  >
-                    {listItem.listName}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ul> */}
       </div>
 
       <h5 className="text-white font-bold text-xl lg:text-2xl py-3 px-2 text-center md:text-start mt-16">

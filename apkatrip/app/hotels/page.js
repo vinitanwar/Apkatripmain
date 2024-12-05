@@ -16,7 +16,7 @@ const Page = () => {
   const dispatch=useDispatch();
   const allReghotels=useSelector(state=>state.getRegHotelsSlice)
 
-  console.log(allReghotels,"sfsdfhweriohfiowef")
+  
  useEffect(()=>{
 dispatch(getAllRegHotels())
  },[ ])
