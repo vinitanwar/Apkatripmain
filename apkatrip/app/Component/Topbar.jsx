@@ -35,8 +35,8 @@ const Topbar = () => {
   const handleLanguageChange = (code) => {
     const newLang = code;
     setSelectedLang(newLang);
-    Cookies.set("locale", newLang); // Save the selected language in cookies
-    // router.reload(); // Reload to apply the new locale
+    Cookies.set("locale", newLang);
+
     setCounrtyOpner(false);
     router.refresh();
   };

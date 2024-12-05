@@ -204,7 +204,9 @@ const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
     <div key={index} className='flex flex-col md:flex-row w-full border-b-2 border-gray-700' >
 <div>
   <p className='text-2xl font-bold my-2'>{room.room_type}</p>
-  <img   src={`${imgurl}/storage/${room.image[0]}`}  className=' h-[10rem] w-[40rem]'/>
+         
+       <img src={`${imgurl}/storage/${room.image[0]}`}  className=' h-[10rem] w-[40rem]'/>
+            
 </div>
 <div className='flex  flex-col  my-2 md:p-6 gap-10 w-full'>
 
