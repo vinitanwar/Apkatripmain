@@ -22,7 +22,7 @@ const LayoutCompo =({children}) => {
       <>  <Topbar />
 
 <div className="block md:hidden">
-  <Navbar />
+  {/* <Navbar /> */}
 </div> </>
 {children}
 
