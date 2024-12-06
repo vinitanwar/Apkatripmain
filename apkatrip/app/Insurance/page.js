@@ -1,5 +1,17 @@
 "use client"
 import React, { useState } from 'react'
+import { FaRegSmileBeam } from "react-icons/fa";
+import { GiClick } from "react-icons/gi";
+import { RiCustomerService2Fill } from "react-icons/ri";
+import { IoReload } from "react-icons/io5";
+
+
+
+
+
+
+
+
 
 const page = () => {
 const [TravelStartDate,setTravelStartDate]=useState( new Date(Date.now()))
@@ -94,10 +106,63 @@ console.log(TravelStartDate)
 
   </div>
 
+
+
+
              </div>
 </div>
 
 
+
+{/* insurance main  */}
+
+<div className='bg-[#000000ad] text-white pt-20 pb-14'>
+
+
+<div className='flex justify-around '>
+
+  <div className='text-xl flex flex-col items-center'>
+<i className='text-3xl'> <FaRegSmileBeam /> </i>
+<p className='text-white'>5500+ Clients Trust Us</p>
+
+  </div>
+
+
+
+  <div className='text-xl flex flex-col items-center'>
+<i className='text-3xl'> <GiClick /> </i>
+<p className='text-white'>Exentsive Documentation
+Clean Code</p>
+
+  </div>
+  <div className='text-xl flex flex-col items-center'>
+<i className='text-3xl'> <RiCustomerService2Fill /> </i>
+<p className='text-white'>Free Lifetime
+Updates</p>
+
+  </div>
+  <div className='text-xl flex flex-col items-center'>
+<i className='text-3xl'> <IoReload /> </i>
+<p className='text-white'>Get Professional
+Support</p>
+
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+</div>
 
 
 
