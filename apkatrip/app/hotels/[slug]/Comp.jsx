@@ -89,7 +89,7 @@ useEffect(()=>{sethotalbackup(allhoteldata)
 },[allhoteldata])
 
 
-console.log(allhotel,"kkiiin")
+
 
 
   return (
@@ -301,6 +301,7 @@ console.log(allhotel,"kkiiin")
         </div>
        
        {    hotel.searchResults.Status.Code==200 ? hotel.searchResults.HotelResult[0].Rooms.map((items_price)=>{
+       
   return(
     <>
      <div className="flex items-end justify-between">
@@ -311,7 +312,7 @@ console.log(allhotel,"kkiiin")
           </p>
           <p className="text-sm text-gray-500 mt-2">Per Night</p>
         </div>
-        <Link href={`/hotelSearchCheckin/cityName=${cityName}&checkin=${checkIn}&checkout=${checkOut}&adult=${adults}&child=${children}&roomes=${roomes}&hotelcode=${hotel.HotelCode}`} className="bg-orange-600 text-white rounded-full w-28 h-8 flex items-center justify-center">
+        <Link href={`/hotelSearchCheckin/cityName=${cityName}&checkin=${checkIn}&checkout=${checkOut}&adult=${adults}&child=${children}&roomes=${roomes}&hotelcode=${hotel.searchResults.HotelResult[0].HotelCode}`} className="bg-orange-600 text-white rounded-full w-28 h-8 flex items-center justify-center">
                 <span className="text-xs flex items-center gap-2">
                   View Room
                 </span>
