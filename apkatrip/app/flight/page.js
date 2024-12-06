@@ -177,7 +177,7 @@ const page = () => {
   return (
     <>
       <Header />
-      <MobileHeader />
+    
       <CustomSlider />
 
       <div className="">

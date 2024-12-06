@@ -51,7 +51,6 @@ dispatch(getAllRegHotels())
   return (
     <>
     <HotelComp />
-    <Hotelmobileheader />
       <CustomSlider />
       <div className="px-0 lg:px-20">
         <h2 className="text-lg text-center lg:text-2xl font-semibold mb-5">

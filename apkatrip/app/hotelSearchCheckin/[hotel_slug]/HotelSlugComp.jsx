@@ -6,9 +6,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import Image from "next/image";
 import Link from "next/link";
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+
+
 
 import { MdDinnerDining, MdRoomService,MdOutlineBreakfastDining,MdOutlineLocalLaundryService  ,MdPool ,MdFitnessCenter 
-  ,MdOutlineHealthAndSafety
+  ,MdOutlineHealthAndSafety,MdCancel
  } from "react-icons/md";
 import { TbAirConditioning } from "react-icons/tb";
 import { GiElevator,GiCoffeeCup  } from "react-icons/gi";
@@ -24,7 +33,7 @@ import {
     FaTimes,
     FaWifi 
   } from "react-icons/fa";
-  import { FaBath ,FaCarSide } from "react-icons/fa6";
+  import { FaBath ,FaCarSide,FaMapLocationDot } from "react-icons/fa6";
 
   import { IoWifiOutline } from "react-icons/io5";
   import { RiWheelchairFill } from "react-icons/ri";
@@ -56,7 +65,7 @@ const HotelCode=params.get("hotelcode")
 const dispatch=useDispatch()
 const state=useSelector(state=>state.gethotelslice)
 const preBookinghotelState=useSelector(state=>state.preBookSlice)
-
+const [imgToggle,setimgToggle]=useState(false)
 
 const [hotelinfo,sethotelinfo]=useState()
 const [isOpenSecond,setisopen]=useState(false)
@@ -230,8 +239,31 @@ const togglePopup = () => setIsOpen(!isOpen);
               <h1 className="text-2xl font-bold flex items-center gap-4">
               {hotelinfo.info.hoteldetail1[0].HotelName}
                 <span className="flex text-base gap-1">
-               
+             {  imgToggle &&
+        <div className=' fixed  top-[20px] left-0 h-screen w-screen flex justify-center items-center p-10 z-50 bg-[#000000bc]'>
+          <div className='absolute top-[10%] right-6 z-[999]'>
+<MdCancel className='cursor-pointer text-4xl text-[#c1c1c1]  ' onClick={()=>setimgToggle(false)} />
+          </div>
+        <Swiper
+        cssMode={true}
+        navigation={true}
+        pagination={true}
+        mousewheel={true}
+        keyboard={true}
+        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+        className="mySwiper "
+      >
+
+        {hotelinfo.info.hoteldetail1[0].Images.map((img)=> <SwiperSlide><img src={img} alt="" className='h-full w-full z-40' /> </SwiperSlide>)}
+       
       
+      </Swiper>
+
+
+
+
+
+        </div>}
                   {Array.from({ length: hotelinfo.info.hoteldetail1[0].HotelRating }, (_, index) => (
         <FaStar key={index} />
       ))}
@@ -242,8 +274,8 @@ const togglePopup = () => setIsOpen(!isOpen);
               <div >
             
                 <div
-                  className="relative w-full lg:w-[520px] h-[200px] lg:h-[340px] mb-4"
-                  onClick={() => openPopup(0)}
+                  className="relative w-full lg:w-[600px] h-[200px] lg:h-[340px] mb-4"
+                  // onClick={() => openPopup(0)}
                 >
                   <Image
                     src={hotelinfo.info.hoteldetail1[0].Images[0]} // Show the first image thumbnail
@@ -253,7 +285,7 @@ const togglePopup = () => setIsOpen(!isOpen);
                     className="rounded-lg  "
                 
                   />
-                  <div className="absolute bottom-0 left-0 w-full p-2 rounded-b-lg bg-opacity-75 bg-gray-800 text-white text-center">
+                  <div onClick={()=>setimgToggle(true)} className="cursor-pointer absolute bottom-0 left-0 w-full p-2 rounded-b-lg bg-opacity-75 bg-gray-800 text-white text-center">
                     +{hotelinfo.info.hoteldetail1[0].Images.length} property photos
                   </div>
                 </div>
@@ -311,7 +343,7 @@ const togglePopup = () => setIsOpen(!isOpen);
             <div className="mb-5">
               <p>
               <div
-                                 className={` ${description? "h-full":"h-[4.9rem]"} overflow-hidden`}   
+                                 className={` ${description? "h-full":"h-[9.1rem]"} overflow-hidden w-5/6`}   
                                     dangerouslySetInnerHTML={{
                                       __html: hotelinfo.info.hoteldetail1[0].Description,
                                     }}
@@ -497,8 +529,8 @@ Rooms[0].TotalFare}</p>
               <p className="text-lg font-semibold">
                  Address: 
                   </p>
-                  <p className="text-sm mt-1">
-                  {hotelinfo.info.hoteldetail1[0].Address}
+                  <p className="text-sm mt-1 flex justify-center items-center  gap-2">
+                     <FaMapLocationDot className='text-xl text-[#000000c9]' />          {hotelinfo.info.hoteldetail1[0].Address}
                   </p>
               </div>
               </div>
@@ -956,7 +988,7 @@ Rooms[0].TotalFare}</p>
   allowFullScreen=""
    loading="lazy"
  referrerPolicy="no-referrer-when-downgrade"
-   className="w-full h-96 lg:w-3/4 md:h-[475px]"
+   className="w-full h-96 lg:w-full md:h-[475px]"
   
   src={`http://maps.google.com/maps?q=${hotelinfo.info.hoteldetail1[0].Map.split("|")[0]},${hotelinfo.info.hoteldetail1[0].Map.split("|")[1]}&z=15&output=embed`}
  >

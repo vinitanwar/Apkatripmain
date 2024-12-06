@@ -494,13 +494,12 @@ const Topbar = () => {
           <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         </div>
 
-        {/* <Navbar /> */}
 
         <div className="Contact-county-login-singnup flex items-center gap-4">
           <div className=" flex justify-start lg:justify-end">
             <Link
               href="/property-listing"
-              className="flex justify-center items-center gap-3 mx-4 px-8 py-3 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 text-white font-semibold rounded-full shadow-lg transform hover:scale-105 hover:shadow-xl hover:opacity-90 transition-all duration-300 text-sm"
+              className="  hidden  md:flex justify-center items-center gap-3 mx-4 px-8 py-3 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 text-white font-semibold rounded-full shadow-lg transform hover:scale-105 hover:shadow-xl hover:opacity-90 transition-all duration-300 text-sm"
             >
               <FaHotel />
               List Your Property

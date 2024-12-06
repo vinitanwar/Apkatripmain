@@ -670,7 +670,7 @@ const Header = () => {
         <div className=" bg-[#002043] h-[15rem] absolute inset-0  -z-10" />
         <div className="w-full   flex justify-end	">
         <div className="         ">
-            <ul className="text-black lastNavigation bg-gray-100  px-5 w-full  mx-end   md:px-5  text-sm py-2 gap-3 grid grid-cols-2  md:flex  lg:w-fit items-center shadow-md">
+            <ul className="text-black lastNavigation hidden bg-gray-100  px-5 w-full  mx-end   md:px-5  text-sm py-2 gap-3   md:flex  lg:w-fit items-center shadow-md">
               {topAndBottomDropDown.HomeBookTravelBuinessBottomDropDown.map(
                 (elm, index) => (
                   <li
@@ -716,10 +716,6 @@ const Header = () => {
           <div className="bg-gray-200 rounded-sm shadow ">
             <Navbar />
           </div>
-
-
-
-
 
           <div className=" px-4 border-b-2 shadow-sm     space-y-1 py-1 ">
             <div className="tabs 1stTab text-sm text-nowrap  md:text-sm  flex  md:gap-2 font-bold text-black  ">
@@ -1014,7 +1010,7 @@ const Header = () => {
             <div className="tabs FromDateDeapt grid grid-cols-1 gap-5 xl:grid-cols-2 xl:gap-3">
               <div className="grid relative gap-5 md:grid-cols-2">
 
-<div className="relative">
+<div className="relative ">
 
                 <div onClick={()=>{setSelectedOption("from"),setIsVisible(true)}} className="1stInput relative rounded gap-3 h-[4rem]  flex items-center px-3  border border-slate-400 text-black">
                   <IoLocationSharp className="text-xl" />
@@ -1051,7 +1047,7 @@ const Header = () => {
                 </div>
                 <div
                   onClick={() => settoogleBtnn(!toogleBtnn)}
-                  className={`absolute z-10 right-[45%] top-11 md:left-[48%] lg:left-[47%] md:top-3 lg:top-4 border border-gray-800 bg-white h-10 w-10 lg:h-10 lg:w-10 rounded-full flex justify-center items-center flex-col text-black transition-transform duration-300 ${
+                  className={`  hidden   absolute z-10 right-[45%] top-11 md:left-[48%] lg:left-[47%] md:top-3 lg:top-4 border border-gray-800 bg-white h-10 w-10 lg:h-10 lg:w-10 rounded-full md:flex justify-center items-center flex-col text-black transition-transform duration-300 ${
                     toogleBtnn
                       ? "rotate-180 md:rotate-180"
                       : "rotate-90 md:rotate-0"

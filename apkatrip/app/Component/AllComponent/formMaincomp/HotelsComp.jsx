@@ -106,11 +106,11 @@ const HotelsComp = () => {
         </div>
 
         <div className=" px-4 border-b-2 shadow-sm     space-y-1 py-1 ">
-          <div className="tabs FromDateDeapt grid lg:grid-cols-5 gap-4z">
+          <div className="tabs FromDateDeapt grid lg:grid-cols-5 gap-4">
             <div className="relative">
               <div
                 onClick={() => handleClick("city")}
-                className="1stInput relative rounded 	 gap-3 h-full  flex items-center px-2 w-full truncate  border border-slate-400 text-black"
+                className="1stInput relative rounded 	 gap-3 h-full min-h-[4rem]  flex items-center px-2 w-full truncate  border border-slate-400 text-black"
               >
                 <IoLocationSharp className="text-xl" />
 
@@ -190,7 +190,7 @@ const HotelsComp = () => {
               <div
                 onClick={() => handleClick("checkout")}
                 className="flex items-center  gap-2 px-3 py-2 border-2 text-black border-slate-200  rounded-md"
-                onMouseLeave={() => setIsVisible("")}
+              
               >
                 <FaCalendarAlt className="" />
                 <div className="text-slate-400">
