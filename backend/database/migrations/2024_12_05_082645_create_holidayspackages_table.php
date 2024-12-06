@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name'); // Package Name
             $table->string('location'); // Location of the package (e.g., Bali, Indonesia)
             $table->string('duration'); // Duration of the trip (e.g., "5 Nights / 6 Days")
-            $table->json('price'); // Price structure (withFlight, withoutFlight)
+            $table->json('traveloptions'); // Price structure (withFlight, withoutFlight)
             $table->json('highlights'); // Highlights of the package
             $table->json('inclusions'); // Inclusions in the package
             $table->json('exclusions'); // Exclusions in the package

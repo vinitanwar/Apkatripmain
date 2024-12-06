@@ -17,7 +17,7 @@ class Holidayspackage extends Model
         'name',
         'location',
         'duration',
-        'price',
+        'traveloptions',
         'highlights',
         'inclusions',
         'exclusions',

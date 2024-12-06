@@ -39,7 +39,7 @@ class HolidayspackageResource extends Resource
                 TextInput::make('duration')
                     ->required()
                     ->label('Duration'),
-                Repeater::make('travelOptions')
+                Repeater::make('traveloptions')
                     ->label('Travel Options')
                     ->schema([
                         Select::make('type')
