@@ -1,15 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import CustomSlider from "../Component/AllComponent/Slider";
-import FAQSection from "../Component/AllComponent/FAQ";
 import Link from "next/link";
-import HotelChains from "../Component/AllComponent/HotelChain";
-import HotelComp from "../Component/AllComponent/formMaincomp/HotelsComp";
-import Hotelmobileheader from "../Component/AllComponent/Hotelmobilheader";
 import { FaStar } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllRegHotels } from "../Component/Store/slices/getReqHotels";
-import { imgurl } from "../Component/common";
+
+import CustomSlider from "../../Component/AllComponent/Slider";
+import FAQSection from "../../Component/AllComponent/FAQ";
+import HotelChains from "../../Component/AllComponent/HotelChain";
+import Hotelmobileheader from "../../Component/AllComponent/Hotelmobilheader";
+import { imgurl } from "../../Component/common";
+import { getAllRegHotels } from "../../Component/Store/slices/getReqHotels";
+import HotelsComp from "../../Component/AllComponent/formMaincomp/HotelsComp";
 
 const Page = () => {
   const [showAll, setShowAll] = useState(false);
@@ -50,7 +51,7 @@ dispatch(getAllRegHotels())
 
   return (
     <>
-    <HotelComp />
+    <HotelsComp />
     <Hotelmobileheader />
       <CustomSlider />
       <div className="px-0 lg:px-20">

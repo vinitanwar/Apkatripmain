@@ -20,22 +20,21 @@ import { FaHotel } from "react-icons/fa6";
 const Topbar = () => {
 
 
-  // function getCurrencySymbol (locale, currency) {
-  //   return (0).toLocaleString(
-  //     locale,
-  //     {
-  //       style: 'currency',
-  //       currency: currency,
-  //       minimumFractionDigits: 0,
-  //       maximumFractionDigits: 0
-  //     }
-  //   ).replace(/\d/g, '').trim()
-  // }
+  function getCurrencySymbol (locale, currency) {
+    return (0).toLocaleString(
+      locale,
+      {
+        style: 'currency',
+        currency: currency,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }
+    ).replace(/\d/g, '').trim()
+  }
 
 
 
-
-//  console.log( getCurrencySymbol('en-US', 'India'),"sdfcsdvvwefwdfwefcwefwrcf")
+ console.log( getCurrencySymbol('en-US', 'inr'),"sdfcsdvvwefwdfwefcwefwrcf")
 
   const router = useRouter();
 

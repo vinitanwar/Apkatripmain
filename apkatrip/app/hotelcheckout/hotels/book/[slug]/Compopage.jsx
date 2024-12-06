@@ -5,11 +5,7 @@ import { FaStar } from "react-icons/fa6";
 import { FaCheckCircle ,FaMailBulk} from "react-icons/fa";
 import { IoCallSharp } from "react-icons/io5";
 import axios from 'axios';
-import { apilink, imgurl } from '../../../Component/common';
-
-
-
-
+import { apilink ,imgurl} from '../../../../Component/common';
 
 
 const Compopage = ({slug}) => {
