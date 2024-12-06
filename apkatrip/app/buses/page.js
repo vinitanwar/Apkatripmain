@@ -5,6 +5,7 @@ import CustomSlider from "../Component/AllComponent/Slider";
 import FAQSection from "../Component/AllComponent/FAQ";
 import Link from "next/link";
 import MobileHeader from "../Component/AllComponent/MobileHeader";
+import BusMobileheader from "../Component/AllComponent/BusMobileheader"
 import BusComp from "../Component/AllComponent/formMaincomp/BusComp";
 
 const Page = () => {
@@ -39,7 +40,8 @@ const Page = () => {
   return (
     <>
       <BusComp />
-      <MobileHeader />
+      <BusMobileheader />
+      
       <CustomSlider />
 
       <div className="flex flex-col">

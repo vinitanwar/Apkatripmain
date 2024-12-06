@@ -95,13 +95,13 @@ export default function page() {
 
               <div className="bg-white bg-opacity-90 text-gray-800 rounded-xl shadow-lg p-8 md:p-12 transform transition duration-500 hover:scale-[1.01]">
                 {activeTab === "vision" && (
-                  <div className="block md:flex md:items-center gap-10">
+                  <div className=" flex items-center gap-10 flex-wrap-reverse">
                     <div>
                       <h1 className="text-lg flex justify-center gap-3 items-center md:text-4xl font-bold text-center mb-4 tracking-wide">
                         Our Vision <FaCheckCircle className="text-green-500" />
                       </h1>
 
-                      <p className="text-gray-700 text-lg text-center mb-8">
+                      <p className="text-gray-700 text-md md:text-lg text-center mb-8">
                         "To be the trusted travel companion that empowers every
                         traveler, fostering global connections while ensuring
                         peace of mind and a sense of responsibility in every
@@ -110,7 +110,7 @@ export default function page() {
                       <h2 className="text-3xl font-bold text-center mb-6">
                         दृष्टिकोण
                       </h2>
-                      <p className="text-gray-700 text-lg text-center">
+                      <p className="text-gray-700 text-md md:text-lg text-center">
                         "हर यात्री का भरोसेमंद साथी बनना, जो हर यात्रा को सशक्त
                         बनाते हुए वैश्विक जुड़ाव और जिम्मेदारी सुनिश्चित करे।"
                       </p>
@@ -123,7 +123,7 @@ export default function page() {
                   </div>
                 )}
                 {activeTab === "mission" && (
-                  <div className="block md:flex md:items-center gap-10">
+                  <div className="flex items-center gap-10 flex-wrap-reverse">
                     <img
                       src="/Images/mission1.webp"
                       alt="Vision"
@@ -134,7 +134,7 @@ export default function page() {
                         Our Mission <FaCheckCircle className="text-green-500" />
                       </h1>
 
-                      <p className="text-gray-700 text-lg text-center mb-8">
+                      <p className="text-gray-700 text-md md:text-lg text-center mb-8">
                         "To take care of every traveler's journey with the
                         utmost responsibility and integrity. Apkatrip.com is
                         committed to providing reliable, personalized travel
@@ -145,7 +145,7 @@ export default function page() {
                       <h2 className="text-3xl font-bold text-center mb-6">
                         उद्देश्य
                       </h2>
-                      <p className="text-gray-700 text-lg text-center">
+                      <p className="text-gray-700 text-md md:text-lg text-center">
                         "हर यात्री की यात्रा का पूरी ज़िम्मेदारी और ईमानदारी के
                         साथ ख्याल रखना। Apkatrip.com का संकल्प है कि वह
                         सुरक्षित, विश्वसनीय और व्यक्तिगत यात्रा समाधान प्रदान

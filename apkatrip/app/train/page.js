@@ -20,31 +20,31 @@ const page = () => {
       title: "UK Trains",
     },
     {
-     href: "/trainSearch",
+      href: "/trainSearch",
       imgSrc: "/Images/1ny6u12000djzth5m52EE.webp",
       alt: "Europe Trains",
       title: "Europe Trains",
     },
     {
-     href: "/trainSearch",
+      href: "/trainSearch",
       imgSrc: "/Images/1ny7412000djztnftC466.webp",
       alt: "Italy Trains",
       title: "Italy Trains",
     },
     {
-     href: "/trainSearch",
+      href: "/trainSearch",
       imgSrc: "/Images/1ny1a12000djzrp2n9533.webp",
       alt: "Spain Trains",
       title: "Spain Trains",
     },
     {
-     href: "/trainSearch",
+      href: "/trainSearch",
       imgSrc: "/Images/1ny4r12000djzsdm4E7EC.webp",
       alt: "China Trains",
       title: "China Trains",
     },
     {
-     href: "/trainSearch",
+      href: "/trainSearch",
       imgSrc: "/Images/1ny1j12000djzt1tu1655.webp",
       alt: "South Korea Trains",
       title: "South Korea Trains",
@@ -169,7 +169,181 @@ const page = () => {
   ];
   return (
     <>
-      <TrainComp />
+      {/* <TrainComp /> */}
+
+      <div className="bg-[url(/Images/trainBanner.webp)] min-h-[80vh] py-10 flex items-center relative bg-center bg-cover text-white  px-5 lg:px-20  ">
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent z-0"></div>
+        <div className=" h-full  w-full flex flex-col bg-red400 gap-10 lg:flex-row items-center lg:justify-between relative z-10">
+          <div className=" lg:w-1/2 space-y-4 ">
+            <h5 className="font-extrabold  lg:leading-tight text-2xl md:text-3xl lg:text-4xl  text-white ">
+              Travel in Style: Luxury Train for Every Explorer
+            </h5>
+            <p className="text-white">
+              Embark on a journey of a lifetime aboard a luxury train, where
+              every moment is crafted to captivate your senses and leave you
+              with unforgettable memories. Perfect for adventurers who seek the
+              ideal balance of style, comfort, and excitement, this expedition
+              offers more than just travel — it’s an experience like no other.
+              From lavish accommodations and gourmet dining to thrilling
+              excursions and scenic landscapes, every detail is designed to
+              create an extraordinary escape. Whether you’re traversing lush
+              valleys or discovering iconic destinations, this journey promises
+              a world of wonder.
+            </p>
+          </div>
+          <div className="w-full md-1/2 lg:w-fit">
+            <form className="text-black   p-4 bg-white shadow-md rounded-lg">
+              {/* Form Heading */}
+              <h2 className="text-xl font-semibold text-center text-[#42A6EF] mb-4">
+                Book Your Train
+              </h2>
+
+              {/* Name Field */}
+              <div className="mb-3">
+                <label
+                  className="block text-gray-700 text-sm font-medium mb-1"
+                  htmlFor="name"
+                >
+                  Name
+                </label>
+                <input
+                  className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  type="text"
+                  id="name"
+                  placeholder="Enter your full name"
+                  aria-label="Name"
+                  required
+                />
+                <p className="text-xs text-red-500 mt-1 hidden">
+                  Please enter your name
+                </p>
+              </div>
+
+              {/* Email Field */}
+              <div className="mb-3">
+                <label
+                  className="block text-gray-700 text-sm font-medium mb-1"
+                  htmlFor="email"
+                >
+                  Email
+                </label>
+                <input
+                  className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email address"
+                  aria-label="Email"
+                  required
+                />
+                <p className="text-xs text-red-500 mt-1 hidden">
+                  Please enter a valid email
+                </p>
+              </div>
+
+              {/* Pickup and Drop Fields */}
+              <div className="grid md:grid-cols-2 gap-3">
+                <div className="mb-3">
+                  <label
+                    className="block text-gray-700 text-sm font-medium mb-1"
+                    htmlFor="pickup"
+                  >
+                    Pickup Destination
+                  </label>
+                  <input
+                    className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    type="text"
+                    id="pickup"
+                    placeholder="E.g., New York, NY"
+                    aria-label="Pickup Destination"
+                    required
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label
+                    className="block text-gray-700 text-sm font-medium mb-1"
+                    htmlFor="drop"
+                  >
+                    Drop Destination
+                  </label>
+                  <input
+                    className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    type="text"
+                    id="drop"
+                    placeholder="E.g., Boston, MA"
+                    aria-label="Drop Destination"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Booking Date and Time */}
+              <div className="grid md:grid-cols-2 gap-3 mb-3">
+                <div>
+                  <label
+                    className="block text-gray-700 text-sm font-medium mb-1"
+                    htmlFor="booking-date"
+                  >
+                    Booking Date
+                  </label>
+                  <input
+                    className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    type="date"
+                    id="booking-date"
+                    aria-label="Booking Date"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className="block text-gray-700 text-sm font-medium mb-1"
+                    htmlFor="booking-time"
+                  >
+                    Booking Time
+                  </label>
+                  <input
+                    className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    type="time"
+                    id="booking-time"
+                    aria-label="Booking Time"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Additional Notes */}
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-medium mb-1"
+                  htmlFor="message"
+                >
+                  Additional Notes
+                </label>
+                <textarea
+                  className="w-full px-3 py-1.5 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  id="message"
+                  rows="3"
+                  placeholder="Let us know any specific requests or preferences"
+                  aria-label="Additional Notes"
+                ></textarea>
+              </div>
+
+              {/* Submit Button */}
+              <div className="text-center">
+                <button
+                  type="submit"
+                  className="w-full bg-[#42A6EF] hover:bg-[#398cc8] text-white font-medium py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                  aria-label="Submit Inquiry"
+                >
+                  Submit Inquiry
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
       <MobileHeader />
       <CustomSlider />
 
@@ -183,7 +357,7 @@ const page = () => {
               <img
                 src="/Images/1ny5512000dkon9p3A3E5.png_.webp"
                 alt="Cheap Trains in Europe and Asia"
-                width={100} 
+                width={100}
                 height={100}
                 className="w-10 h-10  mx-auto object-cover"
               />

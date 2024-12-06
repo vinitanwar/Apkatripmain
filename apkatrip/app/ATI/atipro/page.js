@@ -86,7 +86,7 @@ World where great service and ultimate indulgence blend with rare experience- th
   </div>
 </div>
 
-<section className="px-6 md:px-16 lg:px-20 space-y-10 mt-10">
+<section className="px-6 md:px-16 lg:px-20 space-y-10 my-10">
 {/* Key Benefits Section */}
 <div className="space-y-6">
 <h2 className="text-2xl md:text-3xl font-semibold text-gray-800">Why Choose ApkaTrip for Your Luxury Escape?</h2>
@@ -140,9 +140,9 @@ World where great service and ultimate indulgence blend with rare experience- th
 <h3 className="text-2xl font-semibold text-gray-800">Find Your Favorite Luxury Getaway</h3>
 <p className="text-base text-gray-600">Ready to embark on your elite adventure? Whether planning a romantic escape, family holiday, or grand celebration, ApkaTrip will surpass every expectation.</p>
 <p className="text-base text-gray-600">Contact our luxury travel specialists today and let us tailor your dream trip.</p>
-<div className="mt-4 space-y-2">
-  <button className="bg-blue-600 text-white px-6 py-2 rounded">Contact Us</button>
-  <button className="bg-gray-600 text-white px-6 py-2 rounded">Start Planning Your Trip</button>
+<div className="mt-4 flex flex-wrap gap-2">
+  <button className="bg-blue-600 text-white px-6 py-2 rounded ">Contact Us</button>
+  <button className="bg-gray-600 text-white px-6 py-2 rounded  ">Start Planning Your Trip</button>
 </div>
 </div>
 
