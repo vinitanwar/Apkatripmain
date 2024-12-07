@@ -31,7 +31,7 @@ class Holidayspackage extends Model
 
 
     protected $casts = [
-        'price' => 'array',
+        'traveloptions' => 'array',
         'highlights' => 'array',
         'inclusions' => 'array',
         'exclusions' => 'array',
