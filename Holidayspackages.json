@@ -1,0 +1,286 @@
+[
+    {
+        "id": 1,
+        "name": "Romantic Bali Getaway",
+        "duration": "5 Nights / 6 Days",
+        "price": {
+            "withFlight": 64999,
+            "withoutFlight": 49999,
+        },
+        "location": "Bali, Indonesia",
+        "highlights": [
+            "Private Pool Villa",
+            "Couple Spa Session",
+            "Sunset Dinner Cruise",
+            "Beachside Candlelight Dinner",
+        ],
+        "inclusions": [
+            "Round-trip Flights (optional)",
+            "5-Star Accommodation",
+            "Daily Breakfast",
+            "Private Transfers",
+            "Sightseeing Tours",
+        ],
+        "exclusions": [
+            "Travel Insurance",
+            "Visa Fees",
+            "Personal Expenses",
+            "Meals not mentioned in inclusions",
+        ],
+        "rating": 4.8,
+        "reviews": [
+            {
+                "user": "Amit Sharma",
+                "rating": 5,
+                "comment": "Loved every moment! The private pool villa is stunning.",
+                "date": "2023-11-10",
+            },
+            {
+                "user": "Sara Khan",
+                "rating": 4.5,
+                "comment": "Great experience overall. The dinner cruise could be improved.",
+                "date": "2023-10-22",
+            },
+        ],
+        "images": [
+            "https://example.com/images/bali-main1.jpg",
+            "https://example.com/images/bali-main2.jpg",
+            "https://example.com/images/bali-main3.jpg",
+        ],
+        "cancellationPolicy": {
+            "freeCancellation": true,
+            "refundPercentage": 90,
+            "cancellationFee": 5000,
+        },
+        "itinerary": [
+            {
+                "day": 1,
+                "description": "Arrival in Bali, transfer to your private pool villa.",
+                "activities": [
+                    "Check-in",
+                    "Welcome drinks",
+                    "Relax in the villa"
+                ],
+                "images": [
+                    "https://example.com/images/itinerary-bali-day1-1.jpg",
+                    "https://example.com/images/itinerary-bali-day1-2.jpg",
+                ],
+            },
+            {
+                "day": 2,
+                "description": "Explore Ubud and Kintamani Volcano.",
+                "activities": [
+                    "Visit Ubud Market",
+                    "Kintamani Volcano tour",
+                    "Coffee Plantation tour"
+                ],
+                "images": [
+                    "https://example.com/images/itinerary-bali-day2-1.jpg",
+                    "https://example.com/images/itinerary-bali-day2-2.jpg",
+                ],
+            },
+            {
+                "day": 3,
+                "description": "Water sports and beach leisure.",
+                "activities": [
+                    "Snorkeling",
+                    "Jet Skiing",
+                    "Relax at the beach"
+                ],
+                "images": [
+                    "https://example.com/images/itinerary-bali-day3-1.jpg",
+                    "https://example.com/images/itinerary-bali-day3-2.jpg",
+                ],
+            },
+            {
+                "day": 4,
+                "description": "Couple spa session and cultural night tour.",
+                "activities": [
+                    "2-hour spa session",
+                    "Visit Tanah Lot Temple",
+                    "Dinner at Jimbaran Bay"
+                ],
+                "images": [
+                    "https://example.com/images/itinerary-bali-day4-1.jpg",
+                    "https://example.com/images/itinerary-bali-day4-2.jpg",
+                ],
+            },
+            {
+                "day": 5,
+                "description": "Sunset dinner cruise with live entertainment.",
+                "activities": [
+                    "Cruise around Bali",
+                    "Live music",
+                    "Buffet dinner"
+                ],
+                "images": [
+                    "https://example.com/images/itinerary-bali-day5-1.jpg",
+                    "https://example.com/images/itinerary-bali-day5-2.jpg",
+                ],
+            },
+            {
+                "day": 6,
+                "description": "Checkout and departure.",
+                "activities": [
+                    "Breakfast",
+                    "Checkout",
+                    "Airport transfer"
+                ],
+                "images": [
+                    "https://example.com/images/itinerary-bali-day6-1.jpg",
+                ],
+            },
+        ],
+        "additionalInfo": {
+            "visaRequired": true,
+            "covidGuidelines": "Vaccination certificate required.",
+            "bestSeason": "April to October",
+        },
+    },
+    {
+        "id": 2,
+        "name": "Shimla & Manali Delight",
+        "duration": "6 Nights / 7 Days",
+        "price": {
+            "withVolvo": 31999,
+            "withoutVolvo": 29999,
+        },
+        "location": "Himachal Pradesh, India",
+        "highlights": [
+            "Snow Adventure",
+            "Mall Road Shopping",
+            "Rohtang Pass Visit"
+        ],
+        "inclusions": [
+            "Hotel Stay",
+            "Breakfast & Dinner",
+            "Sightseeing Tours",
+            "Volvo Transfers (optional)",
+        ],
+        "exclusions": [
+            "Lunch",
+            "Personal Expenses",
+            "Entry fees at monuments",
+        ],
+        "rating": 4.5,
+        "reviews": [
+            {
+                "user": "Rahul Verma",
+                "rating": 4,
+                "comment": "Rohtang Pass was breathtaking! The trip was well-organized.",
+                "date": "2023-09-15",
+            },
+            {
+                "user": "Priya Kapoor",
+                "rating": 4.7,
+                "comment": "The snow adventure activities were unforgettable!",
+                "date": "2023-08-30",
+            },
+        ],
+        "images": [
+            "https://example.com/images/shimla-manali-main1.jpg",
+            "https://example.com/images/shimla-manali-main2.jpg",
+            "https://example.com/images/shimla-manali-main3.jpg",
+        ],
+        "variants": [
+            "With Volvo",
+            "Without Volvo"
+        ],
+        "cancellationPolicy": {
+            "freeCancellation": false,
+            "refundPercentage": 75,
+            "cancellationFee": 2000,
+        },
+        "itinerary": [
+            {
+                "day": 1,
+                "description": "Arrival in Shimla, check-in to the hotel.",
+                "activities": [
+                    "Relax at the hotel",
+                    "Leisure walk around Mall Road"
+                ],
+                "images": [
+                    "https://example.com/images/itinerary-shimla-day1-1.jpg",
+                    "https://example.com/images/itinerary-shimla-day1-2.jpg",
+                ],
+            },
+            {
+                "day": 2,
+                "description": "Shimla sightseeing, including Kufri.",
+                "activities": [
+                    "Kufri Adventure Park",
+                    "Jakhoo Temple visit",
+                    "Mall Road shopping"
+                ],
+                "images": [
+                    "https://example.com/images/itinerary-shimla-day2-1.jpg",
+                    "https://example.com/images/itinerary-shimla-day2-2.jpg",
+                ],
+            },
+            {
+                "day": 3,
+                "description": "Transfer to Manali via scenic routes.",
+                "activities": [
+                    "Visit Sundernagar Lake on the way",
+                    "Check-in to Manali hotel"
+                ],
+                "images": [
+                    "https://example.com/images/itinerary-shimla-manali-day3-1.jpg",
+                ],
+            },
+            {
+                "day": 4,
+                "description": "Explore Manali attractions.",
+                "activities": [
+                    "Hadimba Temple",
+                    "Vashisht Hot Springs",
+                    "Club House visit"
+                ],
+                "images": [
+                    "https://example.com/images/itinerary-manali-day4-1.jpg",
+                ],
+            },
+            {
+                "day": 5,
+                "description": "Day trip to Rohtang Pass and Solang Valley.",
+                "activities": [
+                    "Snow adventure",
+                    "Paragliding",
+                    "Photography"
+                ],
+                "images": [
+                    "https://example.com/images/itinerary-manali-day5-1.jpg",
+                    "https://example.com/images/itinerary-manali-day5-2.jpg",
+                ],
+            },
+            {
+                "day": 6,
+                "description": "Local shopping and leisure in Manali.",
+                "activities": [
+                    "Explore Old Manali",
+                    "Buy souvenirs"
+                ],
+                "images": [
+                    "https://example.com/images/itinerary-manali-day6-1.jpg",
+                ],
+            },
+            {
+                "day": 7,
+                "description": "Checkout and return journey to Delhi.",
+                "activities": [
+                    "Breakfast",
+                    "Checkout",
+                    "Volvo transfer"
+                ],
+                "images": [
+                    "https://example.com/images/itinerary-manali-day7-1.jpg",
+                ],
+            },
+        ],
+        "additionalInfo": {
+            "visaRequired": false,
+            "covidGuidelines": "Negative RT-PCR test required if unvaccinated.",
+            "bestSeason": "October to February",
+        },
+    },
+]

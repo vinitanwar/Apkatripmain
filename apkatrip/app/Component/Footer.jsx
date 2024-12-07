@@ -7,73 +7,156 @@ import { useTranslations } from "next-intl";
 const Footer = () => {
   const t = useTranslations("footer");
   const [activeTab, setActiveTab] = useState(1);
-  const tabsContent={
-  bestCheapFlight: [
-  { name: "Ryanair", link: "https://www.ryanair.com" },
-  { name: "easyJet", link: "https://www.easyjet.com" },
-  { name: "Southwest Airlines", link: "https://www.southwest.com" },
-  { name: "AirAsia", link: "https://www.airasia.com" },
-  { name: "JetBlue Airways", link: "https://www.jetblue.com" },
-  { name: "Spirit Airlines", link: "https://www.spirit.com" },
-  { name: "IndiGo", link: "https://www.goindigo.in" },
-  { name: "Wizz Air", link: "https://www.wizzair.com" },
-  { name: "Norwegian Air Shuttle", link: "https://www.norwegian.com" },
-  { name: "Frontier Airlines", link: "https://www.flyfrontier.com" },
-  { name: "Scoot", link: "https://www.flyscoot.com" },
-  { name: "Vueling", link: "https://www.vueling.com" },
-  { name: "Allegiant Air", link: "https://www.allegiantair.com" },
-  { name: "Tigerair", link: "https://www.tigerair.com" },
-  { name: "Peach Aviation", link: "https://www.flypeach.com" },
-  { name: "VivaAerobus", link: "https://www.vivaaerobus.com" },
-  { name: "Flynas", link: "https://www.flynas.com" },
-  { name: "Azul Brazilian Airlines", link: "https://www.voeazul.com.br" },
-  { name: "Cebu Pacific", link: "https://www.cebupacificair.com" },
-  { name: "Gol Linhas Aéreas", link: "https://www.voegol.com.br" },
-  { name: "Air Arabia", link: "https://www.airarabia.com" },
-  { name: "Jeju Air", link: "https://www.jejuair.net" },
-  { name: "Flydubai", link: "https://www.flydubai.com" },
-  { name: "Blue Air", link: "https://www.flyblueair.com" },
-  { name: "HK Express", link: "https://www.hkexpress.com" },
-  { name: "Sun Country Airlines", link: "https://www.suncountry.com" },
-  { name: "Transavia", link: "https://www.transavia.com" },
-  { name: "AirBaltic", link: "https://www.airbaltic.com" },
-  { name: "Eurowings", link: "https://www.eurowings.com" },
-  { name: "Volotea", link: "https://www.volotea.com" }
-],
-FavouriteAirlineAndAirports : [
-  { type: "Airline", name: "Ryanair", link: "https://www.ryanair.com" },
-  { type: "Airline", name: "easyJet", link: "https://www.easyjet.com" },
-  { type: "Airline", name: "Southwest Airlines", link: "https://www.southwest.com" },
-  { type: "Airline", name: "AirAsia", link: "https://www.airasia.com" },
-  { type: "Airline", name: "JetBlue Airways", link: "https://www.jetblue.com" },
-  { type: "Airline", name: "Spirit Airlines", link: "https://www.spirit.com" },
-  { type: "Airline", name: "IndiGo", link: "https://www.goindigo.in" },
-  { type: "Airline", name: "Wizz Air", link: "https://www.wizzair.com" },
-  { type: "Airline", name: "Norwegian Air Shuttle", link: "https://www.norwegian.com" },
-  { type: "Airline", name: "Frontier Airlines", link: "https://www.flyfrontier.com" },
-  { type: "Airport", name: "Heathrow Airport", link: "https://www.heathrow.com" },
-  { type: "Airport", name: "Changi Airport", link: "https://www.changiairport.com" },
-  { type: "Airport", name: "Los Angeles International Airport (LAX)", link: "https://www.flylax.com" },
-  { type: "Airport", name: "Dubai International Airport (DXB)", link: "https://www.dubaiairports.ae" },
-  { type: "Airport", name: "Tokyo Narita Airport", link: "https://www.narita-airport.jp" },
-  { type: "Airline", name: "Scoot", link: "https://www.flyscoot.com" },
-  { type: "Airline", name: "Vueling", link: "https://www.vueling.com" },
-  { type: "Airport", name: "Singapore Changi Airport", link: "https://www.changiairport.com" },
-  { type: "Airline", name: "Allegiant Air", link: "https://www.allegiantair.com" },
-  { type: "Airline", name: "Tigerair", link: "https://www.tigerair.com" },
-  { type: "Airport", name: "San Francisco International Airport (SFO)", link: "https://www.flysfo.com" },
-  { type: "Airline", name: "Peach Aviation", link: "https://www.flypeach.com" },
-  { type: "Airline", name: "VivaAerobus", link: "https://www.vivaaerobus.com" },
-  { type: "Airline", name: "Flynas", link: "https://www.flynas.com" },
-  { type: "Airport", name: "Sydney Kingsford Smith Airport", link: "https://www.sydneyairport.com.au" },
-  { type: "Airline", name: "Azul Brazilian Airlines", link: "https://www.voeazul.com.br" },
-  { type: "Airline", name: "Cebu Pacific", link: "https://www.cebupacificair.com" },
-  { type: "Airport", name: "Hartsfield-Jackson Atlanta International Airport", link: "https://www.atl.com" },
-  { type: "Airline", name: "Gol Linhas Aéreas", link: "https://www.voegol.com.br" },
-  { type: "Airport", name: "Frankfurt Airport", link: "https://www.frankfurt-airport.com" }
-]
-
-  }
+  const tabsContent = {
+    bestCheapFlight: [
+      { name: "Ryanair", link: "https://www.ryanair.com" },
+      { name: "easyJet", link: "https://www.easyjet.com" },
+      { name: "Southwest Airlines", link: "https://www.southwest.com" },
+      { name: "AirAsia", link: "https://www.airasia.com" },
+      { name: "JetBlue Airways", link: "https://www.jetblue.com" },
+      { name: "Spirit Airlines", link: "https://www.spirit.com" },
+      { name: "IndiGo", link: "https://www.goindigo.in" },
+      { name: "Wizz Air", link: "https://www.wizzair.com" },
+      { name: "Norwegian Air Shuttle", link: "https://www.norwegian.com" },
+      { name: "Frontier Airlines", link: "https://www.flyfrontier.com" },
+      { name: "Scoot", link: "https://www.flyscoot.com" },
+      { name: "Vueling", link: "https://www.vueling.com" },
+      { name: "Allegiant Air", link: "https://www.allegiantair.com" },
+      { name: "Tigerair", link: "https://www.tigerair.com" },
+      { name: "Peach Aviation", link: "https://www.flypeach.com" },
+      { name: "VivaAerobus", link: "https://www.vivaaerobus.com" },
+      { name: "Flynas", link: "https://www.flynas.com" },
+      { name: "Azul Brazilian Airlines", link: "https://www.voeazul.com.br" },
+      { name: "Cebu Pacific", link: "https://www.cebupacificair.com" },
+      { name: "Gol Linhas Aéreas", link: "https://www.voegol.com.br" },
+      { name: "Air Arabia", link: "https://www.airarabia.com" },
+      { name: "Jeju Air", link: "https://www.jejuair.net" },
+      { name: "Flydubai", link: "https://www.flydubai.com" },
+      { name: "Blue Air", link: "https://www.flyblueair.com" },
+      { name: "HK Express", link: "https://www.hkexpress.com" },
+      { name: "Sun Country Airlines", link: "https://www.suncountry.com" },
+      { name: "Transavia", link: "https://www.transavia.com" },
+      { name: "AirBaltic", link: "https://www.airbaltic.com" },
+      { name: "Eurowings", link: "https://www.eurowings.com" },
+      { name: "Volotea", link: "https://www.volotea.com" },
+    ],
+    FavouriteAirlineAndAirports: [
+      { type: "Airline", name: "Ryanair", link: "https://www.ryanair.com" },
+      { type: "Airline", name: "easyJet", link: "https://www.easyjet.com" },
+      {
+        type: "Airline",
+        name: "Southwest Airlines",
+        link: "https://www.southwest.com",
+      },
+      { type: "Airline", name: "AirAsia", link: "https://www.airasia.com" },
+      {
+        type: "Airline",
+        name: "JetBlue Airways",
+        link: "https://www.jetblue.com",
+      },
+      {
+        type: "Airline",
+        name: "Spirit Airlines",
+        link: "https://www.spirit.com",
+      },
+      { type: "Airline", name: "IndiGo", link: "https://www.goindigo.in" },
+      { type: "Airline", name: "Wizz Air", link: "https://www.wizzair.com" },
+      {
+        type: "Airline",
+        name: "Norwegian Air Shuttle",
+        link: "https://www.norwegian.com",
+      },
+      {
+        type: "Airline",
+        name: "Frontier Airlines",
+        link: "https://www.flyfrontier.com",
+      },
+      {
+        type: "Airport",
+        name: "Heathrow Airport",
+        link: "https://www.heathrow.com",
+      },
+      {
+        type: "Airport",
+        name: "Changi Airport",
+        link: "https://www.changiairport.com",
+      },
+      {
+        type: "Airport",
+        name: "Los Angeles International Airport (LAX)",
+        link: "https://www.flylax.com",
+      },
+      {
+        type: "Airport",
+        name: "Dubai International Airport (DXB)",
+        link: "https://www.dubaiairports.ae",
+      },
+      {
+        type: "Airport",
+        name: "Tokyo Narita Airport",
+        link: "https://www.narita-airport.jp",
+      },
+      { type: "Airline", name: "Scoot", link: "https://www.flyscoot.com" },
+      { type: "Airline", name: "Vueling", link: "https://www.vueling.com" },
+      {
+        type: "Airport",
+        name: "Singapore Changi Airport",
+        link: "https://www.changiairport.com",
+      },
+      {
+        type: "Airline",
+        name: "Allegiant Air",
+        link: "https://www.allegiantair.com",
+      },
+      { type: "Airline", name: "Tigerair", link: "https://www.tigerair.com" },
+      {
+        type: "Airport",
+        name: "San Francisco International Airport (SFO)",
+        link: "https://www.flysfo.com",
+      },
+      {
+        type: "Airline",
+        name: "Peach Aviation",
+        link: "https://www.flypeach.com",
+      },
+      {
+        type: "Airline",
+        name: "VivaAerobus",
+        link: "https://www.vivaaerobus.com",
+      },
+      { type: "Airline", name: "Flynas", link: "https://www.flynas.com" },
+      {
+        type: "Airport",
+        name: "Sydney Kingsford Smith Airport",
+        link: "https://www.sydneyairport.com.au",
+      },
+      {
+        type: "Airline",
+        name: "Azul Brazilian Airlines",
+        link: "https://www.voeazul.com.br",
+      },
+      {
+        type: "Airline",
+        name: "Cebu Pacific",
+        link: "https://www.cebupacificair.com",
+      },
+      {
+        type: "Airport",
+        name: "Hartsfield-Jackson Atlanta International Airport",
+        link: "https://www.atl.com",
+      },
+      {
+        type: "Airline",
+        name: "Gol Linhas Aéreas",
+        link: "https://www.voegol.com.br",
+      },
+      {
+        type: "Airport",
+        name: "Frankfurt Airport",
+        link: "https://www.frankfurt-airport.com",
+      },
+    ],
+  };
   return (
     <>
       <Subscribe />
@@ -88,47 +171,52 @@ FavouriteAirlineAndAirports : [
               Recommended by <span class="text-blue-500">ApkaTrip.com</span>
             </p>
 
-          <div className="tabSection">
-          <div class="flex items-center  gap-3 ">
-              <button
-                onClick={() => setActiveTab(1)}
-                class={`${
-                  activeTab == 1
-                    ? "bg-slate-700 text-white"
-                    : "bg-slate-100 hover:text-blue-500"
-                } py-2 px-4   text-sm font-medium text-gray-600 border-b-2 border-transparent  focus:outline-none rounded-sm`}
-              >
-                Best Cheap Flights
-              </button>
-              <button
-                onClick={() => setActiveTab(2)}
-                class={`${
-                  activeTab == 2
-                    ? "bg-slate-700 text-white"
-                    : "bg-slate-100 hover:text-blue-500"
-                }  py-2 px-4   text-sm font-medium  text-gray-600 border-b-2 border-transparent  focus:outline-none rounded-sm`}
-              >
-                Favourite Airline & Airports
-              </button>
+            <div className="tabSection">
+              <div class="flex items-center  gap-3 ">
+                <button
+                  onClick={() => setActiveTab(1)}
+                  class={`${
+                    activeTab == 1
+                      ? "bg-slate-700 text-white"
+                      : "bg-slate-100 hover:text-blue-500"
+                  } py-2 px-4   text-sm font-medium text-gray-600 border-b-2 border-transparent  focus:outline-none rounded-sm`}
+                >
+                  Best Cheap Flights
+                </button>
+                <button
+                  onClick={() => setActiveTab(2)}
+                  class={`${
+                    activeTab == 2
+                      ? "bg-slate-700 text-white"
+                      : "bg-slate-100 hover:text-blue-500"
+                  }  py-2 px-4   text-sm font-medium  text-gray-600 border-b-2 border-transparent  focus:outline-none rounded-sm`}
+                >
+                  Favourite Airline & Airports
+                </button>
+              </div>
+              {activeTab == 1 ? (
+                <ul className="tab-content px-3 text-xs grid grid-cols-4 gap-4 rounded-md py-8">
+                  {tabsContent.bestCheapFlight.map((elm, index) => (
+                    <li key={index} className="ml-20">
+                      <h5>{elm.name}</h5>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <ul className="tab-content text-xs   grid grid-cols-4 gap-4  px-5 py-8 rounded-md">
+                  {tabsContent.FavouriteAirlineAndAirports.map(
+                    (item, index) => (
+                      <li key={index} className="ml-20">
+                        <h3>
+                          {item.name} ({item.type})
+                        </h3>
+                        {/* <a href={item.link} target="_blank" rel="noopener noreferrer">Visit</a> */}
+                      </li>
+                    )
+                  )}
+                </ul>
+              )}
             </div>
-            {activeTab==1?  <ul className="tab-content px-3 text-xs grid grid-cols-4 gap-4  py-3 rounded-md shadow-lg">
-              {tabsContent.bestCheapFlight.map((elm,index)=>(
-                <li key={index}>
-                  <h5>{elm.name}</h5>
-                </li>
-              ))}
-            </ul>: <ul className="tab-content text-xs   grid grid-cols-4 gap-4  px-5 py-3 rounded-md shadow-lg">
-              {tabsContent.FavouriteAirlineAndAirports.map((item,index)=>(
-                <li key={index}>
-    <h3>{item.name} ({item.type})</h3>
-    {/* <a href={item.link} target="_blank" rel="noopener noreferrer">Visit</a> */}
-  </li>
-              ))}
-            </ul>}
-          
-           
-
-          </div>
           </div>
 
           <div className="my-10 xl:grid xl:grid-cols-3 xl:gap-8">
