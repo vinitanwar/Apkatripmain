@@ -195,7 +195,7 @@ const Footer = () => {
                 </button>
               </div>
               {activeTab == 1 ? (
-                <ul className="tab-content px-3 text-xs grid grid-cols-4 gap-4 rounded-md py-8">
+                <ul className=" w-full overflow-x-auto tab-content px-3 text-xs grid grid-cols-4 gap-4 rounded-md py-8">
                   {tabsContent.bestCheapFlight.map((elm, index) => (
                     <li key={index} className="ml-20">
                       <h5>{elm.name}</h5>
@@ -203,7 +203,7 @@ const Footer = () => {
                   ))}
                 </ul>
               ) : (
-                <ul className="tab-content text-xs   grid grid-cols-4 gap-4  px-5 py-8 rounded-md">
+                <ul className="tab-content text-xs w-full overflow-x-auto   grid grid-cols-4 gap-4  px-5 py-8 rounded-md">
                   {tabsContent.FavouriteAirlineAndAirports.map(
                     (item, index) => (
                       <li key={index} className="ml-20">

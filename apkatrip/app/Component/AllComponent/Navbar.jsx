@@ -48,12 +48,12 @@ const Navbar = () => {
       class: "hotel-icon",
       link: "/hotels",
     },
-    {
-      name: t("flightHotel"),
-      className: "meuicowidth fphmenuico",
-      class: "fph-icon",
-      link: "/flight+hotels",
-    },
+    // {
+    //   name: t("flightHotel"),
+    //   className: "meuicowidth fphmenuico",
+    //   class: "fph-icon",
+    //   link: "/flight+hotels",
+    // },
     {
       name: t("trains"),
       className: "meuicowidth trainmenuico",
@@ -73,10 +73,10 @@ const Navbar = () => {
       link: "/holidayspackage",
     },
     {
-      name: t("Insurance"),
+      name: t("cabs"),
       className: "meuicowidth cabmenuico",
       class: "cab-icon",
-      link: "/Insurance",
+      link: "/cabs",
     },
     {
       name: t("activities"),
@@ -84,9 +84,20 @@ const Navbar = () => {
       class: "activity-icon",
       link: "/activities",
     },
+    {
+      name: "Cruise",
+      className: "meuicowidth Cruisemenuico",
+      class: "Cruise-icon",
+      link: "/cruise",
+    },
+    {
+      name: "Insurance",
+      className: "meuicowidth Insurancenuico",
+      class: "Inurance-icon",
+      link: "/Insurance",
+    }
   ];
   
-
   return (
     <>
       {" "}

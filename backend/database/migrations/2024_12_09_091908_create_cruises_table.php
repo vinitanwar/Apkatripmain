@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string("name");
             $table->string("email");
             $table->string("request_date");
-
             $table->string("pickup_des");
             $table->string("drop_des");
             $table->string("booking_date");
