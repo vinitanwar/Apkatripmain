@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class cruise extends Model
 {
     use HasFactory;
+    protected $fillable=[
+"name",
+"email",
+"request_date",
+"pickup_des",
+"drop_des",
+"booking_date",
+"additional_notes",
+
+
+    ];
+
+
+
+
+    
 }
