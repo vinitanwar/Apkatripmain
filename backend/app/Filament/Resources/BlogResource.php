@@ -36,7 +36,9 @@ class BlogResource extends Resource
                     ->description('Add Content')
                     ->collapsible()
                     ->schema([
-                        FileUpload::make('blog_image'),
+                        FileUpload::make('blog_image')
+                        ->disk('s3')
+                        ->directory('blog-image'),
                         // Select::make('blog_type')
                         // ->options([
                         //     "travel"=>"travel",
@@ -79,7 +81,8 @@ class BlogResource extends Resource
         return $table
             ->columns([
                 //
-                ImageColumn::make('blog_image'),
+                ImageColumn::make('blog_image')
+                ->disk('s3'),
 
                 TextColumn::make('blog_title'),
                 TextColumn::make('blog_text'),

@@ -18,7 +18,9 @@ use App\Http\Controllers\CountryControllerCab;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\TransferSearchController;
 
+use App\Http\Controllers\ImageController;
 
+use App\Http\Controllers\HotelRegesController;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
@@ -56,7 +58,7 @@ Route::post('v1/hotels/prebooking', [HotelControllerSearchRes::class, 'preBookin
 
 
 
-
+Route::post('/upload-image', [ImageController::class, 'store']);
 
 Route::post('v1/hotelslist', [HotelController::class, 'getHotelDetails']);
 Route::post('v1/sightseeing/search', [SightseeingController::class, 'search']);
@@ -78,11 +80,11 @@ Route::get('/transfers', [TransferController::class, 'getTransferData']);
 Route::get('v1/cab/countries', [CountryControllerCab::class, 'getCountryList']);
 
 
-Route::prefix('v1')->group(function () {
-    Route::apiResource('hotelreg', HotelRegistrationController::class);
-});
+// Route::prefix('v1')->group(function () {
+//     Route::apiResource('hotelreg', HotelRegistrationController::class);
+// });
 
-use App\Http\Controllers\HotelRegesController;
+
 
 Route::post("v1/test", [HotelRegesController::class, "getHotelUser"]);
 Route::post("v1/hotelreq/signupHotel", [HotelRegesController::class, "sendVerify"]);
