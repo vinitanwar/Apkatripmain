@@ -464,6 +464,7 @@ const Header = () => {
           },
         ],
       },
+      
       {
         heading: "Book",
         listData: [
@@ -522,27 +523,7 @@ const Header = () => {
           },
         ],
       },
-      {
-        heading: "Business Assistance",
-        listData: [
-          {
-            link: "",
-            list: "Extranet Login",
-          },
-          {
-            link: "",
-            list: "List Your Property",
-          },
-          {
-            link: "",
-            list: "Become an Affiliate",
-          },
-          {
-            link: "",
-            list: "Business Associates Support",
-          },
-        ],
-      },
+      
       {
         heading: "Services",
         listData: [
@@ -620,6 +601,7 @@ const Header = () => {
           },
         ],
       },
+      
       {
         heading: "Blogs",
         listData: [
@@ -641,6 +623,28 @@ const Header = () => {
           },
         ],
       },
+      {
+        heading: "Business Assistance",
+        listData: [
+          {
+            link: "",
+            list: "Extranet Login",
+          },
+          {
+            link: "",
+            list: "List Your Property",
+          },
+          {
+            link: "",
+            list: "Become an Affiliate",
+          },
+          {
+            link: "",
+            list: "Business Associates Support",
+          },
+        ],
+      },
+     
     ],
   };
 
@@ -658,11 +662,11 @@ const Header = () => {
   
   return (
     <>
-      <div className="header    relative  md:px-5  lg:px-12 xl:px-24">
+      <div className="header relative  md:px-5  lg:px-12 xl:px-24">
         <div className=" bg-[#002043] h-[15rem] absolute inset-0  -z-10" />
-        <div className="w-full   flex justify-end	">
+        <div className="w-full flex md:justify-end	">
         <div className="         ">
-            <ul className="text-black lastNavigation bg-gray-100  px-5 w-full  mx-end   md:px-5  text-sm py-2 gap-3 grid grid-cols-2  md:flex  lg:w-fit items-center shadow-md">
+            <ul className="text-black lastNavigation bg-gray-100  px-6 w-full  mx-end   md:px-5  text-sm py-2 gap-3 grid grid-cols-3  md:flex  lg:w-full items-center shadow-md">
               {topAndBottomDropDown.HomeBookTravelBuinessBottomDropDown.map(
                 (elm, index) => (
                   <li
@@ -716,7 +720,7 @@ const Header = () => {
 
 
 
-          <div className=" px-4 border-b-2 shadow-sm     space-y-1 py-1 ">
+          <div className=" px-4 border-b-2 shadow-sm  space-y-2 py-3 ">
             <div className="tabs 1stTab text-sm text-nowrap  md:text-sm  flex  md:gap-2 font-bold text-black  ">
               <button
                 className={`md:px-4 py-1  font-bold rounded-3xl ${
@@ -1007,22 +1011,22 @@ const Header = () => {
             </div> */}
 
             <div className="tabs FromDateDeapt grid grid-cols-1 gap-5 xl:grid-cols-2 xl:gap-3">
-              <div className="grid relative gap-5 md:grid-cols-2">
+              <div className="grid relative gap-3 md:grid-cols-2">
 
 <div className="relative">
 
-                <div onClick={()=>{setSelectedOption("from"),setIsVisible(true)}} className="1stInput relative rounded gap-3 h-[4rem]  flex items-center px-3  border border-slate-400 text-black">
+                <div onClick={()=>{setSelectedOption("from"),setIsVisible(true)}} className="1stInput relative rounded gap-1 h-[4rem]  flex items-center px-3  border border-slate-400 text-black">
                   <IoLocationSharp className="text-xl" />
 
                   <button
-                    className="absolute rounded-full text-white  bg-gray-400 right-0 -top-1 bg"
+                    className="absolute rounded-full text-white  bg-gray-400 right-0 -top-[2px] bg"
                     onClick={() => setfromcity(false)}
                   >
                     {" "}
                     <RxCross2 />
                   </button>
                   <div className="flex flex-col">
-                  <span className="text-3xl  text-black font-bold">
+                  <span className="text-[22px] lg:text-2xl  text-black font-bold">
                           {fromCity.municipality}
                         </span>
                         <p className="text-black text-xs truncate">
@@ -1046,25 +1050,25 @@ const Header = () => {
                 </div>
                 <div
                   onClick={() => settoogleBtnn(!toogleBtnn)}
-                  className={`absolute z-10 right-[45%] top-11 md:left-[48%] lg:left-[47%] md:top-3 lg:top-4 border border-gray-800 bg-white h-10 w-10 lg:h-10 lg:w-10 rounded-full flex justify-center items-center flex-col text-black transition-transform duration-300 ${
+                  className={`absolute z-10 right-[45%] top-14 md:left-[48%] lg:left-[47%] md:top-4 border py-[2px] border-gray-800 bg-white h-8 w-8 lg:h-[34px] lg:w-[34px] rounded-full flex justify-center items-center flex-col text-black transition-transform duration-300 ${
                     toogleBtnn
                       ? "rotate-180 md:rotate-180"
                       : "rotate-90 md:rotate-0"
                   }`}
                 >
-                  <FaArrowRightLong />
-                  <FaArrowRightLong className="rotate-180" />
+                  <FaArrowRightLong className="text-lg "/>
+                  <FaArrowRightLong className="rotate-180 text-lg" />
                 </div>
 
 
 
                 <div className="relative"> 
                 <div onClick={()=>{setSelectedOption("to"),setIsVisible(true)}} 
-                className="2ndtInput relative  rounded gap-3 h-[4rem] flex items-center px-3  border border-slate-400 text-black">
+                className="2ndtInput relative  rounded gap-1 h-[4rem] flex items-center px-3  border border-slate-400 text-black">
                   <IoLocationSharp className="text-xl" />
 
                   <button
-                    className="absolute rounded-full text-white  bg-gray-400 right-0 -top-1 bg"
+                    className="absolute rounded-full text-white  bg-gray-400 right-0 -top-[2px] bg"
                     onClick={() => setAnyWhere(false)}
                   >
                     {" "}
@@ -1073,7 +1077,7 @@ const Header = () => {
 
                   
                   <div className="flex flex-col">
-                  <span className="text-3xl  text-black font-bold">
+                  <span className="text-[22px] lg:text-2xl  text-black font-bold">
                           {toCity.municipality}
                         </span>
                         <p className="text-black text-xs truncate">
@@ -1103,8 +1107,8 @@ const Header = () => {
               <div className="grid grid-cols-1 gap-2 md:grid-cols-4">
 
                 <div className="relative">
-                <div onClick={()=>{setSelectedOption("date"),setIsVisible(true)}}   className="flex items-center h-[4rem] gap-2 px-3 py-2 border-2 text-black border-slate-200  rounded-md">
-                  <FaCalendarAlt className="" />
+                <div onClick={()=>{setSelectedOption("date"),setIsVisible(true)}}   className="flex items-center h-[4rem] gap-2 px-4 py-1 border-2 text-black border-slate-200  rounded-md">
+                  {/* <FaCalendarAlt className="" /> */}
                   <div className="text-slate-400">
                   {selected && (
                           <>
@@ -1125,7 +1129,7 @@ const Header = () => {
                               </span>
                               <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
                             </div>
-                            <p className="text-black text-xs">
+                            <p className="text-black text-xs pb-2">
                               {selected.toLocaleDateString()}
                             </p>
                           </>
@@ -1149,8 +1153,8 @@ const Header = () => {
 
 
 
-                <div className="flex items-centerh-[4rem] gap-2 px-3 py-2 border-2 text-black border-slate-200  rounded-md">
-                  <FaCalendarAlt className="" />
+                <div className="flex items-start gap-2 px-3 py-2 border-2 text-black border-slate-200  rounded-md">
+                  <FaCalendarAlt className="text-lg mt-1" />
                   <div className="text-slate-400">
                     <h5>Return</h5>
                     <p className="text-slate-400 text-xs">Date</p>
@@ -1160,17 +1164,17 @@ const Header = () => {
 
 
                 
-                <div className="flex items-centerh-[4rem] gap-2 px-3 py-2 border-2 text-black border-slate-200  rounded-md">
-                  <FaUserLarge className="" />
+                <div className="flex items-start gap-2 px-3 py-2 border-2 text-black border-slate-200  rounded-md">
+                  <FaUserLarge className="text-lg mt-1" />
                   <div className="text-slate-400">
                     <h5 className="font-bold text-lg text-black">1</h5>
-                    <p className="text-slate-400 text-xs">Travller</p>
+                    <p className="text-slate-400 text-xs">Traveller</p>
                   </div>
                 </div>
                 <div className="flex justify-center items-center">
                 <button
                   onClick={handelSearch}
-                  className="bg-[#0A5EB0] w-full md:w-fit  py-3 px-3  font-semibold  text-lg rounded-md  text-white "
+                  className="bg-[#0A5EB0] w-full md:w-fit  py-2 px-3  font-semibold  text-lg rounded-md  text-white "
                 >
                   Search Flights
                 </button>
@@ -1569,7 +1573,7 @@ const Header = () => {
                     <div className="relative " ref={dropCoachandCheap}>
                       <button
                         onClick={() => handleDropdownToggle("cheapFlight")}
-                        className="flex items-center w-full  h-full px-3 py-2  md:p-0    justify-center gap-2 text-sm font-medium bg-blue-500 hover:bg-blue-600 text-white md:px-4 md:py-3 lg:py-[3px] rounded-md shadow-md transition-all duration-300"
+                        className="flex items-center w-full  h-full px-3 py-2  md:p-0   justify-center gap-2 text-sm font-medium bg-blue-500 hover:bg-blue-600 text-white md:px-4 md:py-3 lg:py-[3px] rounded-md shadow-md transition-all duration-300"
                        
                         aria-expanded={
                           dropdowns.cheapFlight.isOpen ? "true" : "false"
@@ -1625,7 +1629,7 @@ const Header = () => {
               <Link
                 href="/web-check"
                 rel="noopener noreferrer"
-                className="hidden lg:flex  w-fit bg-green-500 items-center space-x-2 px-3 py-2 border border-white bg-[blue-500] text-white rounded hover:bg-[#49b2f0] transition"
+                className="hidden lg:flex  w-fit bg-green-500 items-center space-x-2 px-3 py-2 border border-white bg-[blue-500] text-white rounded-md hover:bg-[#49b2f0] transition"
               >
                 <img
                   src="/Images/Routes/web-checkin-icon-v1.svg"
