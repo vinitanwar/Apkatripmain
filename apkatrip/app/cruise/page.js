@@ -1,4 +1,5 @@
-import React from "react";
+ "use client"
+ import React, { useState } from "react";
 import CustomSlider from "../Component/AllComponent/Slider";
 import Link from "next/link";
 import {
@@ -13,8 +14,15 @@ import {
 } from "react-icons/fa";
 import { IoMdArrowDropright } from "react-icons/io";
 import { FaRupeeSign } from "react-icons/fa";
+import { useStatStyles } from "@chakra-ui/react";
+import axios from "axios";
+import { apilink } from "../Component/common";
+import { toast } from "react-toastify";
 
 const page = () => {
+
+
+
   const topDestination = [
     {
       imgSrc: "/Images/cruiseNew.webp",
@@ -177,6 +185,29 @@ const page = () => {
     },
   ];
 
+const [alldata,setalldata]=useState({})
+
+
+ const handelcruiseMessage = async(e)=>{
+  e.preventDefault();
+  const res=await axios.post(`${apilink}/cruise`,{...alldata,request_date:new Date(Date.now())})
+if(res.data.success){
+  toast.success(res.data.message, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+    });
+}
+ }
+
+
+
   return (
     <div className="">
       <div className="bg-[url(/Images/cruiseNew.webp)] min-h-[80vh] py-10 relative flex items-center bg-center bg-cover text-white  px-5 md:px-16 xl:px-32  ">
@@ -219,6 +250,8 @@ const page = () => {
                   id="name"
                   placeholder="Enter your full name"
                   aria-label="Name"
+                  value={alldata.name}
+                  onChange={(e)=>setalldata({...alldata,name:e.target.value})}
                   required
                 />
                 <p className="text-xs text-red-500 mt-1 hidden">
@@ -240,6 +273,8 @@ const page = () => {
                   id="email"
                   placeholder="Enter your email address"
                   aria-label="Email"
+                  value={alldata.email}
+                  onChange={(e)=>setalldata({...alldata,email:e.target.value})}
                   required
                 />
                 <p className="text-xs text-red-500 mt-1 hidden">
@@ -262,6 +297,8 @@ const page = () => {
                     id="pickup"
                     placeholder="E.g., New York, NY"
                     aria-label="Pickup Destination"
+                    value={alldata.pickup_des}
+                    onChange={(e)=>setalldata({...alldata,pickup_des:e.target.value})}
                     required
                   />
                 </div>
@@ -279,6 +316,8 @@ const page = () => {
                     id="drop"
                     placeholder="E.g., Boston, MA"
                     aria-label="Drop Destination"
+                    value={alldata.drop_des}
+                    onChange={(e)=>setalldata({...alldata,drop_des:e.target.value})}
                     required
                   />
                 </div>
@@ -298,6 +337,8 @@ const page = () => {
                     type="date"
                     id="booking-date"
                     aria-label="Booking Date"
+                    // value={alldata.date}
+                    onChange={(e)=>setalldata({...alldata,booking_date: new Date(e.target.value)})}
                     required
                   />
                 </div>
@@ -333,12 +374,15 @@ const page = () => {
                   rows="3"
                   placeholder="Let us know any specific requests or preferences"
                   aria-label="Additional Notes"
+                  value={alldata.additional_notes}
+                  onChange={(e)=>setalldata({...alldata,additional_notes:e.target.value})}
                 ></textarea>
               </div>
 
               {/* Submit Button */}
               <div className="text-center">
                 <button
+                onClick={handelcruiseMessage}
                   type="submit"
                   className="w-full bg-[#42A6EF] hover:bg-[#398cc8] text-white font-medium py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
                   aria-label="Submit Inquiry"
