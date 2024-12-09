@@ -74,6 +74,15 @@ a.text-sm {
 .actvitymenuico {
   background: url(../public/Images/activities.webp);
 }
+
+.Cruisemenuico{
+  background: url(../public/Images/cruiseIcon.webp);
+
+}
+.Insurancenuico{
+  background: url(../public/Images/insuranceImg.webp);
+
+}
 .visa-roicon2 {
   background: url(../public/Images/more.webp);
 }
@@ -484,6 +493,9 @@ input#a_FromSector_show:focus-visible {
   background-position: center;
   align-items: center;
   justify-content: center;
+}
+.Cruise-icon{
+  
 }
 .cab-icon {
   width: 40px;

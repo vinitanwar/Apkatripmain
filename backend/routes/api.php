@@ -107,3 +107,8 @@ use  App\Http\Controllers\SiteUser;
 
 Route::post("v1/user/signup", [SiteUser::class, "signupUser"]);
 Route::post("v1/user/login", [SiteUser::class, "loginUser"]);
+
+
+use App\Http\Controllers\InsuranceController;
+
+Route::post("v1/insurance",[InsuranceController::class,"GetInsurance"]);
