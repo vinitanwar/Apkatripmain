@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Typewriter } from 'react-simple-typewriter';
+import React, { useState, useEffect } from "react";
+import { Typewriter, Cursor } from "react-simple-typewriter";
 
 const TypeWriterHeaderEffect = () => {
   const [isAffordableComplete, setAffordableComplete] = useState(false);
 
   useEffect(() => {
     // Simulate the completion of the first typewriter after it finishes typing
-    const typingDuration = 50 * 'Book affordable'.length; // typeSpeed * number of characters
+    const typingDuration = 50 * "Book Affordable".length; // typeSpeed * number of characters
     const delayAfterTyping = 500; // Add a slight delay after typing
 
     const timer = setTimeout(() => {
@@ -21,10 +21,10 @@ const TypeWriterHeaderEffect = () => {
       {/* First Typewriter for "Book affordable" */}
       <h2>
         <Typewriter
-          words={['Book affordable']}
-          loop={1} // Runs only once
-          typeSpeed={50} // Adjust the typing speed
-          deleteSpeed={0} // Disable delete effect
+          words={["Dream Explore Book Affordable "]}
+          loop={1}
+          typeSpeed={50}
+          deleteSpeed={0}
         />
       </h2>
 
@@ -32,13 +32,15 @@ const TypeWriterHeaderEffect = () => {
       <h2>
         {isAffordableComplete && (
           <Typewriter
-            words={['flights!', 'hotels!', 'cruises!', 'cabs!', 'buses!']}
-            loop={Infinity} // Loops continuously
-            typeSpeed={50} // Adjust typing speed
-            deleteSpeed={50} // Delete effect speed
-            delaySpeed={1000} // Delay between word cycles
+            words={["Flights!", "Hotels!", "Cruises!", "Buses!"]}
+            loop={Infinity}
+            typeSpeed={50}
+            deleteSpeed={50}
+            delaySpeed={1000}
           />
         )}
+
+        <Cursor cursorColor="white" />
       </h2>
     </div>
   );

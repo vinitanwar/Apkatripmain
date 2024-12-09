@@ -9,36 +9,16 @@ export default function InsurancePage() {
       description: 'Comprehensive coverage for medical expenses, including doctor visits, hospital stays, and prescriptions.',
       icon: '🩺',
     },
-    {
-      title: 'Life Insurance',
-      description: 'Protect your loved ones financially with life insurance plans tailored to your needs.',
-      icon: '🏡',
-    },
-    {
-      title: 'Vehicle Insurance',
-      description: 'Coverage for cars, bikes, and other vehicles against accidents, theft, and damage.',
-      icon: '🚗',
-    },
-    {
-      title: 'Home Insurance',
-      description: 'Protect your home from damage due to fire, theft, natural disasters, and other unexpected events.',
-      icon: '🏠',
-    },
+   
+    
+   
     {
       title: 'Travel Insurance',
       description: 'Comprehensive travel protection covering trip cancellations, medical emergencies, and lost baggage.',
       icon: '✈️',
     },
-    {
-      title: 'Disability Insurance',
-      description: 'Income protection in case you become unable to work due to illness or injury.',
-      icon: '🦽',
-    },
-    {
-      title: 'Pet Insurance',
-      description: 'Affordable coverage for your pet’s health, including vet visits, surgeries, and emergency care.',
-      icon: '🐾',
-    },
+
+    
   ];
   
 

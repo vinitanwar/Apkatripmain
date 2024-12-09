@@ -197,7 +197,7 @@ const Footer = () => {
               {activeTab == 1 ? (
                 <ul className=" w-full overflow-x-auto tab-content px-3 text-xs grid grid-cols-4 gap-4 rounded-md py-8">
                   {tabsContent.bestCheapFlight.map((elm, index) => (
-                    <li key={index} className="ml-20">
+                    <li key={index} className="ml-0 lg:ml-20">
                       <h5>{elm.name}</h5>
                     </li>
                   ))}
@@ -206,9 +206,9 @@ const Footer = () => {
                 <ul className="tab-content text-xs w-full overflow-x-auto   grid grid-cols-4 gap-4  px-5 py-8 rounded-md">
                   {tabsContent.FavouriteAirlineAndAirports.map(
                     (item, index) => (
-                      <li key={index} className="ml-20">
+                      <li key={index} className="ml-0 lg:ml-20">
                         <h3>
-                          {item.name} ({item.type})
+                          {item.name} 
                         </h3>
                         {/* <a href={item.link} target="_blank" rel="noopener noreferrer">Visit</a> */}
                       </li>
