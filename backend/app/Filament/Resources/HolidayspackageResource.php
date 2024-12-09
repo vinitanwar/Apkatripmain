@@ -24,7 +24,7 @@ class HolidayspackageResource extends Resource
 {
     protected static ?string $model = Holidayspackage::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-m-magnifying-glass';
 
     public static function form(Forms\Form $form): Forms\Form
     {
@@ -92,40 +92,42 @@ class HolidayspackageResource extends Resource
                     ->label('Exclusions')
                     ->placeholder('Enter exclusions separated by commas'),
 
+                RichEditor::make('cancellationPolicy')
+                    ->label('Cancellation Policy')
+                    ->placeholder('Enter Cancellation Policy separated by commas'),
 
-                // Card::make([
-                // TextInput::make('rating')
-                //     ->label('Rating')
-                //     ->numeric()
-                //     ->step(0.1)
-                //     ->placeholder('Enter rating out of 5'),
+                RichEditor::make('additionalInfo')
+                    ->label('Additional Info')
+                    ->placeholder('Enter Additional Info separated by commas'),
 
-                Repeater::make('reviews')
-                    ->label('Reviews')
-                    ->schema([
-                        TextInput::make('user')->label('User Name'),
-                        TextInput::make('rating')->label('Rating')->numeric(),
-                        Textarea::make('comment')->label('Comment'),
-                        TextInput::make('date')->label('Date')->type('date'),
-                        FileUpload::make('image')
-                            ->label('Review Image')
-                            ->image()
-                            ->required(false)
-                            ->maxSize(1.5 * 1024)
-                            ->helperText('Allowed file types: JPG, PNG, GIF')
-                    ])
-                    ->columns(2)
-                    ->collapsed(),
-                // ])
-                // ->label('Package Rating & Reviews'),
+                Card::make([
+                    TextInput::make('rating')
+                        ->label('Rating')
+                        ->numeric()
+                        ->step(0.1)
+                        ->placeholder('Enter rating out of 5'),
 
-                // Repeater::make('images')
-                //     ->label('Images')
-                //     ->schema([
-                //         TextInput::make('url')->label('Image URL'),
-                //     ])
-                //     ->columns(1),
-                FileUpload::make('image')
+                    Repeater::make('reviews')
+                        ->label('Reviews')
+                        ->schema([
+                            TextInput::make('user')->label('User Name'),
+                            TextInput::make('rating')->label('Rating')->numeric(),
+                            Textarea::make('comment')->label('Comment'),
+                            TextInput::make('date')->label('Date')->type('date'),
+                            FileUpload::make('image')
+                                ->label('Review Image')
+                                ->image()
+                                ->required(false)
+                                ->maxSize(1.5 * 1024)
+                                ->helperText('Allowed file types: JPG, PNG, GIF')
+                        ])
+                        ->columns(2)
+                        ->collapsed(),
+                ])
+                    ->label('Package Rating & Reviews'),
+
+
+                FileUpload::make('images')
                     ->label('Package Image')
                     ->image()
                     ->required(false)
