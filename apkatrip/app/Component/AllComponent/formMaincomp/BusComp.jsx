@@ -11,48 +11,49 @@ import { getbuses } from "../../Store/slices/busslices";
 import { useRouter } from "next/navigation";
 import Navbar from "../Navbar";
 import { MdOutlineMeetingRoom } from "react-icons/md";
-import { FaCalendarWeek, FaChevronDown, FaCalendarAlt,FaUserLarge } from "react-icons/fa";
+import { FaCalendarWeek, FaChevronDown, FaCalendarAlt, FaUserLarge } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
+import TypeWriterHeaderEffect from "../TypeWriterHeaderEffect";
 
 
 
 
 
 const BusComp = () => {
-  const [selected,setselected]=useState("")
-  const defaultstore =    JSON.parse(localStorage.getItem("busSearch"))
-  
-  const [fromCity, setFromCity] = useState( (defaultstore && defaultstore.fromCity) || {
-  CityId: 1354,
+  const [selected, setselected] = useState("")
+  const defaultstore = JSON.parse(localStorage.getItem("busSearch"))
+
+  const [fromCity, setFromCity] = useState((defaultstore && defaultstore.fromCity) || {
+    CityId: 1354,
     CityName: "Delhi",
-    
+
   });
-  const [toCity, setToCity] = useState ( ( defaultstore && defaultstore.toCity) || {
-      CityId:3534,
-      CityName: "Mumbai",
- 
+  const [toCity, setToCity] = useState((defaultstore && defaultstore.toCity) || {
+    CityId: 3534,
+    CityName: "Mumbai",
+
   });
   const localTimeZone = getLocalTimeZone();
   const currentDate = today(localTimeZone);
 
-  const [pickupdate,setpickdate]=useState( (defaultstore && new Date(defaultstore.pickupdate)) || new Date(Date.now()))
+  const [pickupdate, setpickdate] = useState((defaultstore && new Date(defaultstore.pickupdate)) || new Date(Date.now()))
 
-  const route=useRouter()
+  const route = useRouter()
 
-const handleRangeChange = (newRange) => {
-  const date = new Date(newRange.year, newRange.month - 1, newRange.day+1);
-  1
-  setpickdate(date);
-  setselected("");
-};
+  const handleRangeChange = (newRange) => {
+    const date = new Date(newRange.year, newRange.month - 1, newRange.day + 1);
+    1
+    setpickdate(date);
+    setselected("");
+  };
 
-const handelSearch=()=>{
-  localStorage.setItem("busSearch",JSON.stringify({fromCity,toCity,pickupdate}))
- const newdate=  pickupdate.toISOString().split('T')[0];
-route.push(`/buses/DateOfJourney=${newdate}&OriginId=${fromCity.CityId}&DestinationId=${toCity.CityId}`)
- 
-}
+  const handelSearch = () => {
+    localStorage.setItem("busSearch", JSON.stringify({ fromCity, toCity, pickupdate }))
+    const newdate = pickupdate.toISOString().split('T')[0];
+    route.push(`/buses/DateOfJourney=${newdate}&OriginId=${fromCity.CityId}&DestinationId=${toCity.CityId}`)
+
+  }
 
 
 
@@ -95,17 +96,17 @@ route.push(`/buses/DateOfJourney=${newdate}&OriginId=${fromCity.CityId}&Destinat
     "Saturday",
   ];
 
- 
-  
+
+
   const futureDate = new Date();
 
 
- 
+
   const [isVisible, setIsVisible] = useState(false);
 
   const [selectedOption, setSelectedOption] = useState("");
-  const dispatch=useDispatch();
- const state=useSelector(state=>state.busCityslice)
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.busCityslice)
 
 
   const handleClick = (option) => {
@@ -123,7 +124,7 @@ route.push(`/buses/DateOfJourney=${newdate}&OriginId=${fromCity.CityId}&Destinat
         handleToClick(); // Add the appropriate handler for traveller
         break;
       default:
-        
+
     }
   };
 
@@ -144,27 +145,27 @@ route.push(`/buses/DateOfJourney=${newdate}&OriginId=${fromCity.CityId}&Destinat
 
   const handleFromClick = () => {
     // Your logic for 'From' click
-  
+
   };
 
   const handleToClick = () => {
     // Your logic for 'To' click
-   
+
   };
-const [searchparam,setsearchparam]=useState("")
- const handelBusSearch=(e)=>{
- 
-  setsearchparam(e.target.value)
- }
- useEffect(()=>{
- const intervels= setTimeout(() => {
-  dispatch(getBuscityapi(searchparam))
-}, 500);
-return ()=>clearTimeout(intervels)
- },[searchparam])
+  const [searchparam, setsearchparam] = useState("")
+  const handelBusSearch = (e) => {
+
+    setsearchparam(e.target.value)
+  }
+  useEffect(() => {
+    const intervels = setTimeout(() => {
+      dispatch(getBuscityapi(searchparam))
+    }, 500);
+    return () => clearTimeout(intervels)
+  }, [searchparam])
 
 
-return (
+  return (
     <>
       {/* <div className="flex flex-col  lg:block custom-color text-white md:px-10 lg:px-52  py-10">
     
@@ -272,92 +273,96 @@ return (
                   </button>
                 </div>
                 </div> */}
-         
-       
 
 
 
-         <div className="header    relative  md:px-5  lg:px-12 xl:px-24  pt-32">
-      <div className=" bg-[#002043] h-[15rem] absolute inset-0  -z-10" />
-    
 
-     
-      <div className="flex flex-col r  bg-white lg:block rounded-lg  text-white   ">
-        <div className="bg-gray-200 rounded-sm shadow ">
-          <Navbar />
-          
-        </div>
 
-        <div className=" px-4 border-b-2 shadow-sm     space-y-1 py-1 ">
-          <div className="tabs FromDateDeapt grid lg:grid-cols-5 gap-4z">
-            <div className="relative">
-              <div
-               onClick={() => setselected("from")}
-                className="1stInput relative rounded 	 gap-3 h-full  flex items-center px-2 w-full truncate  border border-slate-400 text-black"
-              >
-                <IoLocationSharp className="text-xl" />
+      <div className="header    relative  md:px-5  lg:px-12 xl:px-24  pt-10 md:pt-14">
+        <div className=" bg-[#002043] h-[12rem] absolute inset-0  -z-10" />
 
-                <button
-                  className="absolute rounded-full text-white  bg-gray-400 right-0 -top-1 bg"
+        <TypeWriterHeaderEffect />
+
+        <div className="flex flex-col bg-white lg:block rounded-lg  text-white   ">
+          <div className="bg-gray-200 rounded-sm shadow ">
+            <Navbar/>
+
+          </div>
+
+          <div className=" px-4 border-b-2 shadow-sm  space-y-1 py-3 ">
+            <div className="tabs FromDateDeapt grid lg:grid-cols-5 gap-4 lg:pl-[200px]">
+              <div className="relative">
+                <div
+                  onClick={() => setselected("from")}
+                  className="1stInput relative rounded gap-3 h-full py-1 lg:py-0 flex items-center px-2 w-full truncate  border border-slate-400 text-black"
                 >
-                  {" "}
-                  <RxCross2 />
-                </button>
-                <div className="flex flex-col">
-                  <span className="text-3x text-black font-bold">
-                    {fromCity.CityName}
-                  </span>
+                  <IoLocationSharp className="text-xl" />
+
+                  <button
+                    className="absolute rounded-full text-white  bg-gray-400 right-0 top-0 bg"
+                  >
+                    {" "}
+                    <RxCross2 />
+                  </button>
+                  <div className="flex flex-col">
+                    <span className="text-[22px] md:text-2xl text-black font-bold">
+                      {fromCity.CityName}
+                    </span>
+                  </div>
                 </div>
+                {selected == "from" &&
+                  <div className="absolute top-full bg-white w-full z-30">
+                    <input type="text" value={searchparam} className="w-full text-black" placeholder="Search city..." onChange={(e) => handelBusSearch(e)} />
+                    <div className="h-32 overflow-hidden overflow-y-scroll">
+                      {state && !state.isLoading && state.info && state.info.BusCities && state.info.BusCities.map((item) => {
+                        return (
+                          <p className=" border-b-2 p-1 cursor-pointer" onClick={() => {
+                            setFromCity({
+                              CityId: item.CityId,
+                              CityName: item.CityName,
+                            }), setselected("to"), setsearchparam("")
+                          }}>{item.CityName}</p>
+                        )
+                      })}</div>
+                  </div>}
               </div>
-              { selected=="from" && 
-   <div className="absolute top-full bg-white w-full z-30">
-<input type="text" value={searchparam} className="w-full text-black" placeholder="Search city..." onChange={(e)=>handelBusSearch(e)}  />
-<div className="h-32 overflow-hidden overflow-y-scroll">
-{state && !state.isLoading && state.info && state.info.BusCities &&state.info.BusCities.map((item)=>{
-  return(
-    <p className=" border-b-2 p-1 cursor-pointer" onClick={()=>{setFromCity({
-      CityId: item.CityId,
-      CityName: item.CityName,
-    }),setselected("to"),setsearchparam("")}}>{item.CityName}</p>
-  )
-})}</div>
-     </div>}
-            </div>
 
 
-            <div className="relative">
-              <div
-                onClick={() => setselected("to")}
-                className="1stInput relative rounded 	 gap-3 h-full  flex items-center px-2 w-full truncate  border border-slate-400 text-black"
-              >
-                <IoLocationSharp className="text-xl" />
-
-                <button
-                  className="absolute rounded-full text-white  bg-gray-400 right-0 -top-1 bg"
+              <div className="relative">
+                <div
+                  onClick={() => setselected("to")}
+                  className="1stInput relative rounded 	 gap-3 h-full  flex items-center py-1 lg:py-0 px-2 w-full truncate  border border-slate-400 text-black"
                 >
-                  {" "}
-                  <RxCross2 />
-                </button>
-                <div className="flex flex-col">
-                  <span className="text-3x text-black font-bold">
-                    {toCity.CityName}
-                  </span>
+                  <IoLocationSharp className="text-xl" />
+
+                  <button
+                    className="absolute rounded-full text-white  bg-gray-400 right-0 top-0 bg"
+                  >
+                    {" "}
+                    <RxCross2 />
+                  </button>
+                  <div className="flex flex-col">
+                    <span className="text-[22px] md:text-2xl text-black font-bold">
+                      {toCity.CityName}
+                    </span>
+                  </div>
                 </div>
+                {selected == "to" &&
+                  <div className="absolute top-full bg-white w-full z-30">
+                    <input type="text" value={searchparam} className="w-full text-black" placeholder="Search city..." onChange={(e) => handelBusSearch(e)} />
+                    <div className="h-32 overflow-hidden overflow-y-scroll">
+                      {state && !state.isLoading && state.info && state.info.BusCities && state.info.BusCities.map((item) => {
+                        return (
+                          <p className=" border-b-2 p-1 cursor-pointer" onClick={() => {
+                            setToCity({
+                              CityId: item.CityId,
+                              CityName: item.CityName,
+                            }), setselected("date"), setsearchparam("")
+                          }}>{item.CityName}</p>
+                        )
+                      })}</div>
+                  </div>}
               </div>
-              { selected=="to" && 
-   <div className="absolute top-full bg-white w-full z-30">
-<input type="text" value={searchparam} className="w-full text-black" placeholder="Search city..." onChange={(e)=>handelBusSearch(e)}  />
-<div className="h-32 overflow-hidden overflow-y-scroll">
-{state && !state.isLoading && state.info && state.info.BusCities &&state.info.BusCities.map((item)=>{
-  return(
-    <p className=" border-b-2 p-1 cursor-pointer" onClick={()=>{setToCity({
-      CityId:item.CityId,
-      CityName:item.CityName,
-    }),setselected("date") ,setsearchparam("")   }}>{item.CityName}</p>
-  )
-})}</div>
-     </div>}
-            </div>
 
 
 
@@ -365,17 +370,17 @@ return (
 
 
 
-            <div className="relative">
-              <div
-                onClick={() => setselected("date")}
-                className="flex items-center  gap-2 px-3 py-2 border-2 text-black border-slate-200  rounded-md"
-              >
-                <FaCalendarAlt className="" />
-                <div className="text-slate-400">
-                <div className="flex items-baseline text-black">
+              <div className="relative">
+                <div
+                  onClick={() => setselected("date")}
+                  className="flex items-center  gap-2 px-3 py-1 border-2 text-black border-slate-200  rounded-md"
+                >
+                  <FaCalendarAlt className="" />
+                  <div className="text-slate-400">
+                    <div className="flex items-baseline text-black">
                       <span className="text-3xl py-1 pr-1 text-black font-bold">
                         {" "}
-                        {pickupdate.getDate()-1}
+                        {pickupdate.getDate() - 1}
                       </span>
                       <span className="text-sm font-semibold">
                         {pickupdate.toLocaleString('en-US', { month: 'short' })}'
@@ -384,42 +389,42 @@ return (
                         {" "}
                         {pickupdate.getFullYear()}
                       </span>
-                      <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                      {/* <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" /> */}
                     </div>
+                  </div>
                 </div>
+
+                {selected === "date" && (
+                  <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
+                    <Calendar
+                      aria-label="Select a date"
+                      value={""}
+                      onChange={handleRangeChange}
+                      minValue={currentDate}
+
+                    />
+                  </div>
+                )}
               </div>
 
-              { selected === "date" && (
-                      <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
-                        <Calendar
-                          aria-label="Select a date"
-                          value={""}
-                          onChange={handleRangeChange}
-                          minValue={currentDate}
-                          
-                        />
-                      </div>
-                    )}
+
+
+
+              <div className="flex justify-center items-center">
+                <button
+                  onClick={handelSearch}
+                  className="bg-[#0A5EB0] w-full md:w-fit  py-2 px-3  font-semibold  text-lg rounded-md  text-white "
+                >
+                  Search Bus
+                </button>
+              </div>
             </div>
 
-          
-         
 
-            <div className="flex justify-center items-center">
-              <button
-                onClick={handelSearch}
-                className="bg-[#0A5EB0] w-full md:w-fit  py-3 px-3  font-semibold  text-lg rounded-md  text-white "
-              >
-                Search Bus
-              </button>
-            </div>
-          </div>
-
-         
           </div>
         </div>
 
-        
+
       </div>
 
 
@@ -430,7 +435,7 @@ return (
 
 
 
-           </>
+    </>
   );
 };
 

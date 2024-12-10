@@ -15,6 +15,7 @@ import { IoLocationSharp } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { FaArrowRightLong, FaUserLarge } from "react-icons/fa6";
 import { FaCalendarWeek, FaChevronDown, FaCalendarAlt } from "react-icons/fa";
+import TypeWriterHeaderEffect from "../TypeWriterHeaderEffect";
 
 const HotelsComp = () => {
   const route = useRouter();
@@ -93,35 +94,38 @@ const HotelsComp = () => {
 
   return (
     <div className="header    relative  md:px-5  lg:px-12 xl:px-24">
-      <div className=" bg-[#002043] h-[15rem] absolute inset-0  -z-10" />
+      <div className=" bg-[#002043] h-[12rem] absolute inset-0  -z-10" />
+     
       <div className=" flex justify-start lg:justify-end">
-      </div>
 
-      <h5 className="text-white font-bold text-xl lg:text-2xl py-3 px-2 text-center md:text-start mt-16">
+      </div>
+      
+      <h5 className="text-white font-bold text-xl lg:text-2xl py-2 px-2 text-center md:text-start mt-4 lg:mt-6">
         {/* {headings[currentHeadingIndex]} */}
       </h5>
-      <div className="flex flex-col r  bg-white lg:block rounded-lg  text-white   ">
+      <TypeWriterHeaderEffect/>
+      <div className="flex flex-col bg-white lg:block rounded-lg  text-white   ">
         <div className="bg-gray-200 rounded-sm shadow ">
           <Navbar />
         </div>
 
-        <div className=" px-4 border-b-2 shadow-sm     space-y-1 py-1 ">
+        <div className=" px-4 border-b-2 shadow-sm     space-y-1 py-3 ">
           <div className="tabs FromDateDeapt grid lg:grid-cols-5 gap-4">
             <div className="relative">
               <div
                 onClick={() => handleClick("city")}
-                className="1stInput relative rounded 	 gap-3 h-full min-h-[4rem]  flex items-center px-2 w-full truncate  border border-slate-400 text-black"
+                className="1stInput relative rounded 	 gap-3 h-full lg:h-[97%] min-h-[3rem]  flex items-center px-2 w-full truncate  border border-slate-400 text-black"
               >
                 <IoLocationSharp className="text-xl" />
 
                 <button
-                  className="absolute rounded-full text-white  bg-gray-400 right-0 -top-1 bg"
+                  className="absolute rounded-full text-white  bg-gray-400 right-0 -top-[2px] bg"
                 >
                   {" "}
                   <RxCross2 />
                 </button>
                 <div className="flex flex-col">
-                  <span className="text-3x text-black font-bold">
+                  <span className="text-2xl text-black font-bold capitalize">
                     {city.Name}
                   </span>
                 </div>
@@ -141,14 +145,14 @@ const HotelsComp = () => {
             <div className="relative">
               <div
                 onClick={() => handleClick("date")}
-                className="flex items-center  gap-2 px-3 py-2 border-2 text-black border-slate-200  rounded-md"
+                className="flex items-center  gap-2 px-3 py-1 border-2 text-black border-slate-200  rounded-md"
               >
                 <FaCalendarAlt className="" />
                 <div className="text-slate-400">
                   {arivitime && (
                     <>
                       <div className="flex items-baseline text-black">
-                        <span className="text-2xl py-1 pr-1 text-black font-bold">
+                        <span className="text-2xl pr-1 py-[1px] text-black font-bold">
                           {" "}
                           {arivitime.getDate()}
                         </span>
@@ -162,7 +166,7 @@ const HotelsComp = () => {
                           {" "}
                           {arivitime.getFullYear()}
                         </span>
-                        <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                        {/* <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" /> */}
                       </div>
                       <p className="text-black text-xs">Check In</p>
                     </>
@@ -189,7 +193,7 @@ const HotelsComp = () => {
             <div className="relative">
               <div
                 onClick={() => handleClick("checkout")}
-                className="flex items-center  gap-2 px-3 py-2 border-2 text-black border-slate-200  rounded-md"
+                className="flex items-center  gap-2 px-3 py-1 border-2 text-black border-slate-200  rounded-md"
               
               >
                 <FaCalendarAlt className="" />
@@ -197,7 +201,7 @@ const HotelsComp = () => {
                   {checkOut && (
                     <>
                       <div className="flex items-baseline text-black">
-                        <span className="text-2xl py-1 pr-1 text-black font-bold">
+                        <span className="text-2xl py-[1px] pr-1 text-black font-bold">
                           {" "}
                           {checkOut.getDate()}
                         </span>
@@ -211,7 +215,7 @@ const HotelsComp = () => {
                           {" "}
                           {checkOut.getFullYear()}
                         </span>
-                        <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                        {/* <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" /> */}
                       </div>
                       <p className="text-black text-xs">Check Out</p>
                     </>
@@ -233,7 +237,7 @@ const HotelsComp = () => {
             
             </div>
             <div className="relative">
-              <div  onClick={()=>setIsVisible("roomcheck")} className="flex items-center gap-2 px-3 py-2 border-2 text-black border-slate-200 h-full  rounded-md" >
+              <div  onClick={()=>setIsVisible("roomcheck")} className="flex items-center gap-2 px-3 py-1 border-2 text-black border-slate-200 h-full  rounded-md" >
                
                <div className="flex items-center gap-2">
                 <FaUserLarge className="" />
@@ -241,16 +245,16 @@ const HotelsComp = () => {
                   
                   <h5 className="font-bold text-lg text-black">{adultcount+childcount}</h5>
 
-                  <p className="text-slate-400 text-xs">Travller</p>
+                  <p className="text-slate-400 text-xs">Traveller</p>
                 </div>
                 </div>
-                <div className="flex items-center gap-2">
-                <MdOutlineMeetingRoom className="" />
+                <div className="flex items-center pl-2">
+                <MdOutlineMeetingRoom className="text-xl" />
                 <div className="text-slate-400">
                   
                   <h5 className="font-bold text-lg text-black">{numberOfRoom}</h5>
 
-                  <p className="text-slate-400 text-xs">Roome</p>
+                  <p className="text-slate-400 text-xs">Room</p>
                 </div>
                 </div>
               </div>
@@ -323,7 +327,7 @@ const HotelsComp = () => {
             <div className="flex justify-center items-center">
               <button
                  onClick={()=>handelhotelSearch()}
-                className="bg-[#0A5EB0] w-full md:w-fit  py-3 px-3  font-semibold  text-lg rounded-md  text-white "
+                className="bg-[#0A5EB0] w-full md:w-fit  py-2 px-4  font-semibold  text-lg rounded-md  text-white "
               >
                 Search Hotels
               </button>
