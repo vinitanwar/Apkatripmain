@@ -48,12 +48,12 @@ const Navbar = () => {
       class: "hotel-icon",
       link: "/hotels",
     },
-    {
-      name: t("flightHotel"),
-      className: "meuicowidth fphmenuico",
-      class: "fph-icon",
-      link: "/flight+hotels",
-    },
+    // {
+    //   name: t("flightHotel"),
+    //   className: "meuicowidth fphmenuico",
+    //   class: "fph-icon",
+    //   link: "/flight+hotels",
+    // },
     {
       name: t("trains"),
       className: "meuicowidth trainmenuico",
@@ -73,10 +73,10 @@ const Navbar = () => {
       link: "/holidayspackage",
     },
     {
-      name: t("Insurance"),
+      name: t("cabs"),
       className: "meuicowidth cabmenuico",
       class: "cab-icon",
-      link: "/Insurance",
+      link: "/cabs",
     },
     {
       name: t("activities"),
@@ -84,9 +84,20 @@ const Navbar = () => {
       class: "activity-icon",
       link: "/activities",
     },
+    {
+      name: "Cruise",
+      className: "meuicowidth Cruisemenuico",
+      class: "Cruise-icon",
+      link: "/cruise",
+    },
+    {
+      name: "Insurance",
+      className: "meuicowidth Insurancenuico",
+      class: "Inurance-icon",
+      link: "/Insurance",
+    }
   ];
   
-
   return (
     <>
       {" "}
@@ -121,7 +132,7 @@ const Navbar = () => {
 
 
 
-      <nav className="bg-white  py-1 px-0 md:px-5    flex justify-between gap-2 transition-all duration-100 mb-3 md:mb-0">
+      <nav className="bg-white py-1 px-0 md:px-5 flex justify-between gap-2 transition-all duration-100 mb-3 md:mb-0">
         {isMobile ? (
           <>
             <div
@@ -174,14 +185,14 @@ const Navbar = () => {
         ) : (
           <>
             <div
-              className={`container relative  custom-nav  flex  transition-all duration-100 items-center `}
+              className={`container relative custom-nav flex gap-6 lg:gap-0 transition-all duration-100 items-center `}
             >
               {icons.map((item, index) => (
                 <Link
                   href={item.link}
                   key={index}
                   onClick={() => setActiveLink(item.link)}
-                  className={`block md:flex justify-center flex-wrap min-lg:flex-col lg:flex-row md:flex-col   items-center gap-1 py-2 px-0 text-center lg:px-3 rounded-md hover:bg-[#ECF5FE] hover:text-white transition-colors duration-300 ${
+                  className={`block md:flex justify-center flex-wrap min-lg:flex-col lg:flex-row md:flex-col items-center gap-1 py-2 px-0 text-center lg:px-3 rounded-md hover:bg-[#ECF5FE] hover:text-white transition-colors duration-300 ${
                     activeLink === item.link
                       ? "bg-[#ECF5FE] text-white"
                       : "hover:bg-[#ECF5FE] hover:text-white"

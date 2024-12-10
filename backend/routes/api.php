@@ -110,9 +110,14 @@ Route::post("v1/user/signup", [SiteUser::class, "signupUser"]);
 Route::post("v1/user/login", [SiteUser::class, "loginUser"]);
 
 
+use App\Http\Controllers\InsuranceController;
+
+Route::post("v1/insurance",[InsuranceController::class,"GetInsurance"]);
+
+
+use App\Http\Controllers\CruiseController;
+
+Route::post("v1/cruise",[CruiseController::class,"sendCruiseMessage"]);
 
 
 
-
-
-Route::resource('v1/hotels/checkins', CheckinsController::class);

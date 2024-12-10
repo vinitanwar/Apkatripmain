@@ -10,6 +10,7 @@ import { FaStar } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllRegHotels } from "../Component/Store/slices/getReqHotels";
 import { imgurl } from "../Component/common";
+import TypeWriterHeaderEffect from "../Component/AllComponent/TypeWriterHeaderEffect";
 
 const Page = () => {
   const [showAll, setShowAll] = useState(false);
@@ -50,6 +51,7 @@ dispatch(getAllRegHotels())
 
   return (
     <>
+   
     <HotelComp />
       <CustomSlider />
       <div className="px-0 lg:px-20">
