@@ -3,20 +3,16 @@
 namespace App\Filament\Hotelreg\Resources;
 
 use App\Filament\Hotelreg\Resources\RoomregResource\Pages;
-use App\Filament\Hotelreg\Resources\RoomregResource\RelationManagers;
 use App\Models\Roomreg;
+use App\Models\HotelDetails;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\ImageColumn;
-
-
-
+use Illuminate\Database\Eloquent\Builder;
 
 class RoomregResource extends Resource
 {
@@ -26,13 +22,25 @@ class RoomregResource extends Resource
 
     public static function query(): Builder
     {
-        return Roomreg::query()->where('hotel_id', auth()->user()->hotel_id);
+        return Roomreg::query()
+            ->with('hotelDetails')
+            ->where('hotel_details_id', auth()->hotel_details_id);
     }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('hotel_details_id')
+                    ->label('Hotel')
+                    ->options(
+                        HotelDetails::query()
+                            ->pluck('property_name', 'id')
+                            ->toArray()
+                    )
+                    ->required()
+                    ->searchable()
+                    ->placeholder('Select a Hotel'),
                 Forms\Components\TextInput::make('room_type')
                     ->required()
                     ->label('Room Type'),
@@ -92,31 +100,28 @@ class RoomregResource extends Resource
             ]);
     }
 
-
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                ImageColumn::make('image'),
-                TextColumn::make('room_type'),
-                TextColumn::make('size'),
-                TextColumn::make('bed_type'),
-                TextColumn::make('price'),
-                TextColumn::make('max_occupancy'),
-                TextColumn::make('room_ava'),
-                TextColumn::make('features'),
-
-                TextColumn::make('room_des'),
-                TextColumn::make('additional_serv'),
+                ImageColumn::make('image')->label('Room Images'),
+                TextColumn::make('room_type')->label('Room Type'),
+                TextColumn::make('size')->label('Size'),
+                TextColumn::make('bed_type')->label('Bed Type'),
+                TextColumn::make('price')->label('Price'),
+                TextColumn::make('max_occupancy')->label('Max Occupancy'),
+                TextColumn::make('room_ava')->label('Availability'),
+                TextColumn::make('features')->label('Features'),
+                TextColumn::make('room_des')->label('Description'),
+                TextColumn::make('additional_serv')->label('Additional Services'),
+                TextColumn::make('hotelDetails.property_name')->label('Hotel'),
             ])
             ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
 

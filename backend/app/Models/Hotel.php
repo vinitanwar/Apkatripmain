@@ -18,8 +18,8 @@ class Hotel extends Authenticatable
         'name',
         'email',
         'password',
-         "slug",
-        'phone', 
+        "slug",
+        'phone',
         'useractive',
     ];
 
@@ -38,22 +38,6 @@ class Hotel extends Authenticatable
      */
     public function hotelDetails()
     {
-        return $this->hasOne(hoteldetails::class, 'hotel_id');
-    }
-
-    /**
-     * Relationship with RoomReg model.
-     */
-    public function roomRegs()
-    {
-        return $this->hasMany(roomreg::class, 'hotel_id');
-    }
-
-    /**
-     * Relationship with Amenities model.
-     */
-    public function amenities()
-    {
-        return $this->hasOne(amenities::class, 'hotel_id');
+        return $this->hasMany(HotelDetails::class, 'hotel_id');
     }
 }

@@ -12,7 +12,7 @@ class CreateRoomreg extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data['hotel_id'] = auth()->user()->id;
+        $data['hotel_details_id'] = auth()->user()->id;
         return $data;
     }
 }

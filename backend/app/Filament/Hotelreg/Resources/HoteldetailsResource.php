@@ -47,8 +47,6 @@ class HoteldetailsResource extends Resource
                 ->label('Hotel Images')
                 ->multiple()
                 ->required(),
-
-
             Select::make('rating')
                 ->options([
                     1 => '1 Star',
@@ -82,7 +80,6 @@ class HoteldetailsResource extends Resource
     {
         return $table
             ->columns([
-                //
                 ImageColumn::make('hotel_img'),
                 TextColumn::make('property_name'),
                 TextColumn::make('rating'),

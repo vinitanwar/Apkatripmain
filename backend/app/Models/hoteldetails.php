@@ -53,6 +53,14 @@ class hoteldetails extends Model
         return $this->belongsTo(Hotel::class, 'hotel_id');
     }
 
+    /**
+     * Relationship with RoomRegs.
+     */
+    public function roomRegs()
+    {
+        return $this->hasMany(RoomReg::class, 'hotel_details_id');
+    }
+
     protected static function booted()
     {
         static::addGlobalScope('hotel', function (Builder $builder) {

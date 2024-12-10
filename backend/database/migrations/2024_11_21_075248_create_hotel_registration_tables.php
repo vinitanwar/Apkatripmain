@@ -9,16 +9,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('hotels', function (Blueprint $table) {
-            $table->id(); 
-            $table->string('name'); 
-            $table->string('email')->unique(); 
-            $table->string('password'); 
-            $table->string('address')->nullable(); 
-            $table->string('phone')->nullable(); 
-            $table->boolean('useractive')->default(true); 
-            $table->timestamp('email_verified_at')->nullable(); 
-            $table->string('remember_token', 100)->nullable(); 
-            $table->timestamps(); 
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->boolean('useractive')->default(true);
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('remember_token', 100)->nullable();
+            $table->timestamps();
         });
 
         Schema::create('hotel_details', function (Blueprint $table) {
@@ -29,12 +29,12 @@ return new class extends Migration
             $table->smallInteger('rating');
             $table->date('built_year');
             $table->date('accepting_since');
-            $table->string('email');
-            $table->string('number');
-            $table->string('land_line');
+            $table->string('email')->unique();
+            $table->string('number', 15)->nullable();
+            $table->string('land_line', 15)->nullable();
             $table->string('address');
-            $table->decimal('lat', 10, 6)->nullable();
-            $table->decimal('longitude', 10, 6)->nullable();  // Changed 'lang' to 'longitude'
+            $table->decimal('lat', 10, 8)->nullable();
+            $table->decimal('longitude', 11, 8)->nullable();
             $table->string('house_no');
             $table->json('social_media')->nullable();
             $table->string('locality');
@@ -42,9 +42,8 @@ return new class extends Migration
             $table->string('country');
             $table->string('state');
             $table->string('city');
-            
             $table->text('terms');
-            $table->unsignedBigInteger('hotel_id');  // Removed nullable, assuming it's mandatory
+            $table->unsignedBigInteger('hotel_id')->nullable();
             $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
             $table->timestamps();
         });
@@ -67,8 +66,8 @@ return new class extends Migration
             $table->json('indoor_activities');
             $table->json('family_kids');
             $table->json('pets_essentials');
-            $table->unsignedBigInteger('hotel_id');  // Removed nullable, assuming it's mandatory
-            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
+            $table->unsignedBigInteger('hotel_details_id')->nullable();
+            $table->foreign('hotel_details_id')->references('id')->on('hotel_details')->onDelete('cascade');
             $table->timestamps();
         });
 
@@ -77,15 +76,15 @@ return new class extends Migration
             $table->string('room_type');
             $table->string('size');
             $table->string('bed_type');
-            $table->decimal('price', 8, 2);  // Changed to decimal for price
+            $table->decimal('price', 8, 2);
             $table->string('max_occupancy');
             $table->integer('room_ava');
             $table->json('features');
             $table->json('image');
             $table->text('room_des');
             $table->json('additional_serv');
-            $table->unsignedBigInteger('hotel_id');  // Removed nullable, assuming it's mandatory
-            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
+            $table->unsignedBigInteger('hotel_details_id')->nullable();
+            $table->foreign('hotel_details_id')->references('id')->on('hotel_details')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -95,7 +94,6 @@ return new class extends Migration
         Schema::dropIfExists('room_regs');
         Schema::dropIfExists('amenities');
         Schema::dropIfExists('hotel_details');
-        Schema::dropIfExists('hotels');
         Schema::dropIfExists('hotels');
     }
 };

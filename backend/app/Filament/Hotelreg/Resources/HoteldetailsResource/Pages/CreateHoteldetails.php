@@ -14,5 +14,6 @@ class CreateHoteldetails extends CreateRecord
     {
         $data['hotel_id'] = auth()->user()->id;
         return $data;
+        
     }
 }

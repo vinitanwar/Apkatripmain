@@ -30,7 +30,7 @@ class amenities extends Model
         'indoor_activities',
         'family_kids',
         'pets_essentials',
-        'hotel_id',
+        'hotel_details_id',
     ];
 
     protected $casts = [
@@ -57,14 +57,14 @@ class amenities extends Model
      */
     public function hotel()
     {
-        return $this->belongsTo(Hotel::class, 'hotel_id');
+        return $this->belongsTo(Hotel::class, 'hotel_details_id');
     }
 
     protected static function booted()
     {
         static::addGlobalScope('hotel', function (Builder $builder) {
             if (auth()->check()) {
-                $builder->where('hotel_id', auth()->user()->id);
+                $builder->where('hotel_details_id', auth()->user()->id);
             }
         });
     }

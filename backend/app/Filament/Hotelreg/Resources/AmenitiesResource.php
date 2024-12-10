@@ -8,10 +8,12 @@ use App\Models\Amenities;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use App\Models\HotelDetails; // Import your HotelDetails model
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\Card;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -25,15 +27,28 @@ class AmenitiesResource extends Resource
 
     public static function query(): Builder
     {
-        return Amenities::query()->where('hotel_id', auth()->user()->hotel_id);
+        return Amenities::query()->where('hotel_details_id', auth()->user()->hotel_details_id);
     }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                // Forms\Components\Fieldset::make('Mandatory')
-                //     ->schema([
+                Card::make([
+                Forms\Components\Select::make('hotel_details_id')
+                    ->label('Hotel')
+                    ->options(
+                        HotelDetails::query()
+                            ->pluck('property_name', 'id') // Fetch hotel names using `property_name` and ID
+                            ->toArray()
+                    )
+                    ->required()
+                    ->searchable()
+                    ->placeholder('Select a Hotel')
+                    ->columns(2)
+                    ])
+                    ->label('Package Rating & Reviews'),
+
                 Tabs::make('Services')
                     ->tabs([
                         Tab::make('Mandatory')
@@ -329,7 +344,7 @@ class AmenitiesResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('hotel.property_name')->label('Hotel'),
                 TextColumn::make('mandatory'),
                 TextColumn::make('basic_facilities'),
                 TextColumn::make('general_services'),

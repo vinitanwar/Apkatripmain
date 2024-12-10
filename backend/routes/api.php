@@ -13,6 +13,7 @@ use App\Http\Controllers\SightseeingController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\BusControllerSearch;
+use App\Http\Controllers\CheckinsController;
 use App\Http\Controllers\HotelControllerSearchRes;
 use App\Http\Controllers\CountryControllerCab;
 use App\Http\Controllers\TransferController;
@@ -107,3 +108,11 @@ use  App\Http\Controllers\SiteUser;
 
 Route::post("v1/user/signup", [SiteUser::class, "signupUser"]);
 Route::post("v1/user/login", [SiteUser::class, "loginUser"]);
+
+
+
+
+
+
+
+Route::resource('v1/hotels/checkins', CheckinsController::class);

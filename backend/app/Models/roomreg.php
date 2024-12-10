@@ -13,6 +13,7 @@ class roomreg extends Model
     protected $table = 'room_regs';
 
     protected $fillable = [
+        'hotel_details_id',
         'room_type',
         'size',
         'bed_type',
@@ -20,10 +21,9 @@ class roomreg extends Model
         'max_occupancy',
         'room_ava',
         'features',
-        'image',
         'room_des',
         'additional_serv',
-        'hotel_id',
+        'image',
     ];
 
     protected $casts = [
@@ -33,18 +33,22 @@ class roomreg extends Model
     ];
 
     /**
-     * Relationship with Hotel model.
+     * Relationship with HotelDetails.
      */
-    public function hotel()
+    public function hotelDetails()
     {
-        return $this->belongsTo(Hotel::class, 'hotel_id');
+        return $this->belongsTo(HotelDetails::class, 'hotel_details_id');
     }
+
+
+
     
     protected static function booted()
     {
         static::addGlobalScope('hotel', function (Builder $builder) {
             if (auth()->check()) {
-                $builder->where('hotel_id', auth()->user()->id);
+
+                $builder->where('hotel_details_id', auth()->user()->hotel_details_id);
             }
         });
     }
