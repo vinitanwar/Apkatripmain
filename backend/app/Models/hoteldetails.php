@@ -61,12 +61,12 @@ class hoteldetails extends Model
         return $this->hasMany(RoomReg::class, 'hotel_details_id');
     }
 
-    protected static function booted()
-    {
-        static::addGlobalScope('hotel', function (Builder $builder) {
-            if (auth()->check()) {
-                $builder->where('hotel_id', auth()->user()->id);
-            }
-        });
-    }
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope('hotel', function (Builder $builder) {
+    //         if (auth()->check()) {
+    //             $builder->where('hotel_id', auth()->user()->id);
+    //         }
+    //     });
+    // }
 }

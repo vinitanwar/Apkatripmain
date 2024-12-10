@@ -43,13 +43,13 @@ class roomreg extends Model
 
 
     
-    protected static function booted()
-    {
-        static::addGlobalScope('hotel', function (Builder $builder) {
-            if (auth()->check()) {
+    // protected static function booted()
+    // {
+    //     static::addGlobalScope('hotel', function (Builder $builder) {
+    //         if (auth()->check()) {
 
-                $builder->where('hotel_details_id', auth()->user()->hotel_details_id);
-            }
-        });
-    }
+    //             $builder->where('hotel_details_id', auth()->user()->hotel_details_id);
+    //         }
+    //     });
+    // }
 }

@@ -20,12 +20,12 @@ class RoomregResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function query(): Builder
-    {
-        return Roomreg::query()
-            ->with('hotelDetails')
-            ->where('hotel_details_id', auth()->hotel_details_id);
-    }
+    // public static function query(): Builder
+    // {
+    //     return Roomreg::query()
+    //         ->with('hotelDetails')
+    //         ->where('hotel_details_id', auth()->hotel_details_id);
+    // }
 
     public static function form(Form $form): Form
     {
@@ -34,7 +34,7 @@ class RoomregResource extends Resource
                 Forms\Components\Select::make('hotel_details_id')
                     ->label('Hotel')
                     ->options(
-                        HotelDetails::query()
+                        HotelDetails::All()
                             ->pluck('property_name', 'id')
                             ->toArray()
                     )
