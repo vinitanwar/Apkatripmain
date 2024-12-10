@@ -606,8 +606,7 @@ const comp = ({ slug }) => {
                                               togglePopup(
                                                 "view-price",
                                                 flight.ResultIndex,
-                                                info,
-                                                flight
+                                              
                                               )
                                             // handelPrice(flight)
                                           }
@@ -1190,8 +1189,7 @@ const comp = ({ slug }) => {
                                         togglePopup(
                                           "view-price",
                                           flight.ResultIndex,
-                                          flight.Segments[0][0],
-                                          flight.Fare.OfferedFare
+                                          
                                         )
                                       // handelPrice(flight)
                                     }

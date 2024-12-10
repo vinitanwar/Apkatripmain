@@ -17,7 +17,7 @@ import { FaRupeeSign } from "react-icons/fa";
 import { useStatStyles } from "@chakra-ui/react";
 import axios from "axios";
 import { apilink } from "../Component/common";
-import { toast } from "react-toastify";
+import { toast,Bounce } from "react-toastify";
 
 const page = () => {
 
@@ -203,6 +203,7 @@ if(res.data.success){
     theme: "light",
     transition: Bounce,
     });
+    setalldata({})
 }
  }
 
