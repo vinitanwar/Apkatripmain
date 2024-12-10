@@ -121,3 +121,7 @@ Route::post("v1/cruise",[CruiseController::class,"sendCruiseMessage"]);
 
 
 
+
+
+
+Route::resource('v1/hotels/checkins', CheckinsController::class);
