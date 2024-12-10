@@ -20,8 +20,7 @@ class CruiseController extends Controller
     'booking_date' => 'required|date',            
     'additional_notes' => 'nullable|string|max:1000'
  ]);
-
-   $msg=cruise::create($validate);
+$msg=cruise::create($validate);
 
 
 return response()->json(["success"=>true,"message"=>"Your Request Send Successfully our team Contact your soon"]);
