@@ -10,9 +10,16 @@ class CreateRoomreg extends CreateRecord
 {
     protected static string $resource = RoomregResource::class;
 
+    /**
+     * Mutate form data before creating the record.
+     *
+     * @param array $data
+     * @return array
+     */
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data['hotel_details_id'] = auth()->user()->id;
+        // Ensure that `hotel_details_id` is properly assigned to the authenticated user's hotel.
+        $data['hotel_details_id'] = auth()->user()->hotel_details_id; // Change `id` to `hotel_details_id` for accuracy.
         return $data;
     }
 }

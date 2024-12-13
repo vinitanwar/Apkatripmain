@@ -34,13 +34,14 @@ class RoomregResource extends Resource
                 Forms\Components\Select::make('hotel_details_id')
                     ->label('Hotel')
                     ->options(
-                        HotelDetails::All()
-                            ->pluck('property_name', 'id')
+                        HotelDetails::query()
+                            ->pluck('id', 'id')
                             ->toArray()
                     )
                     ->required()
                     ->searchable()
-                    ->placeholder('Select a Hotel'),
+                    ->placeholder('Select a Hotel')
+                    ->default(2),
                 Forms\Components\TextInput::make('room_type')
                     ->required()
                     ->label('Room Type'),
