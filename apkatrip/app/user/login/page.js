@@ -9,6 +9,8 @@ import { toast, Bounce } from "react-toastify";
 
 const page = () => {
   const route = useRouter();
+  const [otpSend,setOtpsend]=useState(false)
+  const [otp,setotp]=useState();
   const [showpassword, setshowpassword] = useState({
     login: false,
     signup: false,
@@ -24,12 +26,16 @@ const page = () => {
     }
   }, []);
 
-  const handelSignup = async () => {
-    const res = await axios.post(`${apilink}/user/signup`, {
-      name: `${sighupinfo.fname} ${sighupinfo.lname}`,
+
+  const handelVerify=async()=>{
+
+
+    const res = await axios.post(`${apilink}/user/verifyotp`, {
+  
       email: sighupinfo.semail,
-      password: sighupinfo.spassword,
+      otp
     });
+ 
     if (res.data.success) {
       localStorage.setItem("apkatripUser", JSON.stringify(res.data.info.id));
       toast.success(res.data.message, {
@@ -38,7 +44,38 @@ const page = () => {
 
         transition: Bounce,
       });
+      setOtpsend(true)
       route.push("/");
+    } else {
+    
+      toast.error(res.data.message, {
+        position: "top-right",
+        autoClose: 5000,
+
+        transition: Bounce,
+      });
+    }
+
+  }
+
+
+  const handelSignup = async () => {
+    const res = await axios.post(`${apilink}/user/signup`, {
+      name: `${sighupinfo.fname} ${sighupinfo.lname}`,
+      email: sighupinfo.semail,
+      password: sighupinfo.spassword,
+    });
+
+    if (res.data.success) {
+      // localStorage.setItem("apkatripUser", JSON.stringify(res.data.info.id));
+      toast.success(res.data.message, {
+        position: "top-right",
+        autoClose: 5000,
+
+        transition: Bounce,
+      });
+      setOtpsend(true)
+      // route.push("/");
     } else {
       setsighupinfo({ ...sighupinfo, semail: "", spassword: "" });
       toast.error(res.data.message, {
@@ -48,13 +85,22 @@ const page = () => {
         transition: Bounce,
       });
     }
+
+
+
   };
+
+
+
+
+
 
   const handelLogin = async () => {
     const res = await axios.post(`${apilink}/user/login`, {
       email: logininfo.email,
       password: logininfo.password,
     });
+
     if (res.data.success) {
       localStorage.setItem("apkatripUser", JSON.stringify(res.data.info.id));
       toast.success(res.data.message, {
@@ -232,16 +278,40 @@ const page = () => {
               </div>
             </div>
           </div>
-
-          <div className="text-blue-700 text-end w-full">Forgot password?</div>
+          {otpSend &&
+          <div className="md:w-full flex flex-col gap-1">
+            <label htmlFor="otp">Otp</label>
+            <input
+              type="number"
+              id="otp"
+              value={otp}
+              placeholder="Enter Otp"
+              maxLength="6"
+              onChange={(e) =>
+              setotp(e.target.value)
+              
+              }
+              className="border p-1 px-2 rounded-md"
+            />
+          </div>
+          }
           <div className="text-center">
+            {!otpSend &&
             <button
               className="text-white bg-blue-600 px-4 py-1 rounded-lg font-semibold text-xl"
               onClick={handelSignup}
             >
               Signup
             </button>
-          </div>
+}
+{otpSend &&
+            <button
+              className="text-white bg-green-600 px-4 py-1 rounded-lg font-semibold text-xl"
+              onClick={handelVerify}
+            >
+              Verify Otp
+            </button>
+}    </div>
 
           <div
             className="cursor-pointer text-center"

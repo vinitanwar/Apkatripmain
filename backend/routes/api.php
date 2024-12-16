@@ -107,7 +107,10 @@ Route::post("v1/user/forgotPassword", [OtpController::class, "forgotPasswordSend
 use  App\Http\Controllers\SiteUser;
 
 Route::post("v1/user/signup", [SiteUser::class, "signupUser"]);
+Route::post("v1/user/verifyotp", [SiteUser::class, "verifyOtp"]);
+
 Route::post("v1/user/login", [SiteUser::class, "loginUser"]);
+Route::get("v1/user/{id}", [SiteUser::class, "getSingleuser"]);
 
 
 use App\Http\Controllers\InsuranceController;
@@ -119,7 +122,8 @@ use App\Http\Controllers\CruiseController;
 
 Route::post("v1/cruise",[CruiseController::class,"sendCruiseMessage"]);
 
-
+use App\Http\Controllers\CharterController;
+Route::post("v1/charter",[CharterController::class,"sendCharterMessage"]);
 
 
 

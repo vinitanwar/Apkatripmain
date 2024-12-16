@@ -1,11 +1,13 @@
 "use client"
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect, useRef } from 'react'
 import { FaAudioDescription } from 'react-icons/fa'
 import { FaStar } from "react-icons/fa6";
 import { FaCheckCircle ,FaMailBulk} from "react-icons/fa";
 import { IoCallSharp } from "react-icons/io5";
 import axios from 'axios';
 import { apilink, imgurl } from '../../../Component/common';
+import { FaPaypal, FaCcVisa, FaCcMastercard, FaCcAmex, FaCcDiscover } from 'react-icons/fa';
+import { MdCancel } from "react-icons/md";
 
 
 
@@ -62,8 +64,27 @@ gethotel()
 },[])
 
 
-console.log(hotelinfo && hotelinfo)
 
+const [formData, setFormData] = useState({
+  name: '',
+  phoneNumber: '',
+  checkInDate: '',
+  checkOutDate: '',
+  paymentMethod: 'creditCard',
+});
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setFormData({
+    ...formData,
+    [name]: value,
+  });
+};
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  alert('Form submitted!');
+  // Add logic for handling the form submission, e.g., saving data
+};
  
  
 
@@ -72,8 +93,158 @@ console.log(hotelinfo && hotelinfo)
 
 
 const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
+
+const booknowrooom=useRef()
+const handelRefChange=(e)=>{
+booknowrooom["current"]={...booknowrooom.current,[e.target.name]:e.target.value}
+}
+
+
+const [showbooknow,setshowbooknow]=useState(true)
+const handelBookNow=(roomid,price)=>{
+  booknowrooom["current"]={hotelid:hotelinfo.hotel.id,roomid,price}
+  setshowbooknow(true)
+  console.log(booknowrooom)
+}
+
+const handelpaynow=()=>{
+  
+}
   return (
     <div className='   lg:px-20 xl:px-32 py-4 bg-[#dbdbdb86]'>
+
+      <div  className={`fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-[#00000096] z-[99]  ${showbooknow?"scale-100":"scale-0" } duration-300 ` }>
+
+
+      <div className="bg-white p-6 rounded-lg shadow-md relative ">
+        <MdCancel className='absolute top-5 right-4 text-3xl cursor-pointer'  onClick={()=>setshowbooknow(false)}/>
+        <h1 className="text-2xl font-bold mb-4">Account Information</h1>
+        <div className='flex flex-col md:flex-row'>
+        <form>
+        <div>
+              <label className="block text-gray-700">Username *</label>
+              <input type="text"  name='user_name' onChange={(e)=>handelRefChange(e)} className="w-full border border-gray-300 rounded-md p-2" placeholder="Enter username" required />
+            </div>
+        
+            <div>
+              <label className="block text-gray-700"> Contact Number *</label>
+              <input type="text" name='' onChange={(e)=>handelRefChange(e)} className="w-full border border-gray-300 rounded-md p-2" placeholder="Enter Contact Number" required />
+            </div>
+        
+            <div>
+              <label className="block text-gray-700">CheckInDate *</label>
+              <input type="date" className="w-full border border-gray-300 rounded-md p-2" placeholder="Enter username" required />
+            </div>
+
+            <div>
+              <label className="block text-gray-700">CheckOutDate *</label>
+              <input type="date" className="w-full border border-gray-300 rounded-md p-2" placeholder="Enter username" required />
+            </div>
+
+        
+        
+      
+
+          
+          {/* Terms and Conditions */}
+          <div className="mb-4">
+            <input type="checkbox" id="terms" className="mr-2" required />
+            <label htmlFor="terms" className="text-gray-700">
+              I have read and agree to the website <a href="#" className="text-blue-500 underline">terms and conditions</a> *
+            </label>
+          </div>
+
+         
+         
+        </form>
+
+        <div>
+        <div className="  bg-white rounded-lg shadow-md p-6">
+ 
+
+        {/* Payment Methods */}
+        <div className="mb-6">
+        
+          <div className="grid grid-cols-2 gap-4">
+            <button className="flex flex-col items-center justify-center border border-gray-300 rounded-md p-2 hover:bg-gray-100">
+              <FaCcVisa className="text-3xl text-blue-600 mb-2" />
+              Visa
+            </button>
+            <button className="flex flex-col items-center justify-center border border-gray-300 rounded-md p-2 hover:bg-gray-100">
+              <FaCcMastercard className="text-3xl text-red-600 mb-2" />
+              Mastercard
+            </button>
+            <button className="flex flex-col items-center justify-center border border-gray-300 rounded-md p-2 hover:bg-gray-100">
+              <FaCcAmex className="text-3xl text-blue-500 mb-2" />
+              Amex
+            </button>
+            <button className="flex flex-col items-center justify-center border border-gray-300 rounded-md p-2 hover:bg-gray-100">
+              <FaPaypal className="text-3xl text-blue-700 mb-2" />
+              PayPal
+            </button>
+          </div>
+        </div>
+
+        {/* Card Details */}
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold mb-2">Payment :{booknowrooom.current &&  booknowrooom.current.price && booknowrooom.current.price}</h2>
+          <form>
+            <div className="mb-4">
+              <label className="block text-gray-700">Card Number</label>
+              <input
+                type="text"
+                className="w-full border border-gray-300 rounded-md p-2"
+                placeholder="1234 5678 9012 3456"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label className="block text-gray-700">Expiry Date</label>
+                <input
+                  type="text"
+                  className="w-full border border-gray-300 rounded-md p-2"
+                  placeholder="MM/YY"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700">CVV</label>
+                <input
+                  type="text"
+                  className="w-full border border-gray-300 rounded-md p-2"
+                  placeholder="123"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+
+        {/* Submit Button */}
+        <button
+        onClick={()=>handelpaynow()}
+          className="w-full bg-yellow-500 text-white font-bold py-2 px-4 rounded-md hover:bg-yellow-600 transition"
+        >
+          Pay Now
+        </button>
+      </div>  
+        </div>
+        </div>
+      </div>
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 { hotelinfo && hotelinfo.hotel &&
 <div className='shadow w-full p-3 rounded-md bg-white'>
     <div className=''>
@@ -226,7 +397,7 @@ const [hotelinfoIndex,sethotelinfoIndex]=useState(0)
 </div>
 
 <div>
-  <button className='bg-orange-500 text-white font-semibold p-1 px-4 rounded-md '>
+  <button onClick={()=>handelBookNow(room.id,room.price)} className='bg-orange-500 text-white font-semibold p-1 px-4 rounded-md '>
     Book Now
   </button>
 </div>
