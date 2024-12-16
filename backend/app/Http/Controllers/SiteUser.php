@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendOtp;
 use Illuminate\Http\Request;
 use App\Models\apkatripuser;
+use App\Models\userotp;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Mail;
 
 class SiteUser extends Controller
 {
@@ -14,33 +16,58 @@ class SiteUser extends Controller
     public function signupUser(Request $request)
     {
 
-        $validate = $request->validate([
-            "name" => "required",
-            "number" => "null",
-            "password" => "required|min:6"
+        $validate =$request->validate([
+"name"=>"required|min:3",
+"email"=>"required|email",
+"password"=>"required|min:6"
         ]);
 
-        $allreadyuser = apkatripuser::where("number", $validate["number"])->first();
+        $allreadyuser = apkatripuser::where("email", $validate["email"])->first();
 
-        if ($allreadyuser) {
-            return response()->json(["message" => "Number allready exist", "success" => false]);
+        if ($allreadyuser && $allreadyuser->statue) {
+            return response()->json(["message" => "email allready exist", "success" => false]);
         }
 
-        // return $allreadyuser;
+       
+        
 
+        $otpCode = rand(100000, 999999); // Generate a random OTP
 
-        $addUser = apkatripuser::create([
-            "name" => $validate["name"],
-            "number" => $validate["number"],
-            "password" => $validate["password"],
-        ]);
+        // Send the OTP via email
+        Mail::to($validate["email"])->send(new SendOtp($validate["email"], $otpCode));
+        
+        // Retrieve the existing OTP record or create a new one
+        $userOtp = userotp::where("email", $validate["email"])->first();
+        
+        if ($userOtp) {
+            // Update the existing OTP
+            $userOtp->update(["otp" => $otpCode]);
+        } else {
+           
+            userOtp::create(["email" => $validate["email"], "otp" => $otpCode]);
+        }
+        
+      
+        $verifuser = apkatripuser::where("email", $validate["email"])->first();
+        
+        if($verifuser) {
+            // Update the user if they already exist
+            $verifuser->update([
+                "name" => $validate["name"],
+                "password" => $validate["password"],
+            ]);
+            $addUser = $verifuser;
+        } else {
+            // Create a new user if they do not exist
+            $addUser = apkatripuser::create([
+                "name" => $validate["name"],
+                "email" => $validate["email"],
+                "password" => $validate["password"],
+            ]);
+        }
+       
 
-
-
-
-
-
-        return response()->json([
+ return response()->json([
             'message' => 'User registered successfully',
             'success' => true,
             'info' => $addUser,
@@ -48,30 +75,86 @@ class SiteUser extends Controller
     }
 
 
+public function verifyOtp(Request $request){
 
+$validate=$request->validate([
+    "email"=>"required",
+    "otp"=>"required|digits:6"
+]);
+
+$allreadyuser = apkatripuser::where("email", $validate["email"])->first();
+if ($allreadyuser && $allreadyuser->statue) {
+    return response()->json(["message" => "email allready exist", "success" => false]);
+};
+
+
+$findotp=userotp::where("email", $validate["email"])->first();
+if($validate["otp"] != $findotp["otp"]){
+
+return response()->json(["message" => "incorrect otp", "success" => false]);
+} 
+
+$findotp->delete();
+$allreadyuser->update(["statue"=>true]);
+return response()->json(["success"=>true,"message"=>"signup successfully","info"=>$allreadyuser]);
+
+
+
+
+
+}
 
 
 
     public function loginUser(Request $request)
     {
-        $validate = $request->validate([
-            "number" => "required",
-            "password" => "required|min:6",
+
+
+      
+        $validatedData = $request->validate([
+            "email" => "required|email", // Ensure email is a valid email address
+            "password" => "required|min:6", // Minimum password length
         ]);
-
-        $verifyemail = apkatripuser::where("number", $validate["number"])->first();
-
-
-
-        if (!$verifyemail) {
-            return response()->json(["message" => "Enter valide data", "success" => false]);
+        
+   
+        
+        $user = ApkatripUser::where("email",$validatedData["email"])->first();
+      
+        if (!$user) {
+            return response()->json([
+                "message" => "Enter valid data 1", // Fixed typo in message
+                "success" => false,
+            ]);
         }
-
-        $verifypass = Hash::check($validate["password"], $verifyemail->password);
-        if (!$verifypass) {
-            return response()->json(["message" => "Enter valide data", "success" => false]);
+    
+        // Verify the password
+        if (!Hash::check($validatedData["password"], $user->password)) {
+            return response()->json([
+                "message" => "Enter valid data", // Same consistent error message
+                "success" => false,
+            ]);
         }
-
-        return response()->json(["message" => "User register", "success" => true, "info" => $verifyemail]);
+    
+        // If all checks pass, return success response
+        return response()->json([
+            "message" => "User logged in successfully", // Updated success message
+            "success" => true,
+            "info" => $user, // Include user data in the response
+        ]);  
+    
     }
+
+public function getSingleuser(string $id){
+$user =apkatripuser::find($id);
+ if(!$user->statue){
+    return response()->json(["success"=>false,"message"=>"user not found"]);
+
+ }
+return response()->json(["success"=>true,"user"=>$user]);
+
 }
+
+
+
+}
+

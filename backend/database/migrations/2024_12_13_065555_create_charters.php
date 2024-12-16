@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('otps', function (Blueprint $table) {
+        Schema::create('charters', function (Blueprint $table) {
             $table->id();
-            $table->string("otp");
-            $table->string("number");
+            $table->string("name");
+            $table->string("email");
+            $table->string("request_date");
+            $table->string("pickup_des");
+            $table->string("drop_des");
+            $table->string("booking_date");
+            $table->text("additional_notes");
             $table->timestamps();
         });
     }
@@ -24,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('otps');
+        Schema::dropIfExists('charters');
     }
 };

@@ -16,6 +16,7 @@ import { IoMdCall } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaHotel } from "react-icons/fa6";
+import { FaUserCircle } from "react-icons/fa";
 
 const Topbar = () => {
 
@@ -40,7 +41,7 @@ const Topbar = () => {
 
   const [openDropdown, setOpenDropdown] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+const [userlogin,setUserLogine]=useState(null);
   const [selectedLang, setSelectedLang] = useState("en");
   const [topDropdown, setTopDropdown] = useState(null);
 
@@ -48,6 +49,11 @@ const Topbar = () => {
     // Set the initial state from cookies (if available)
     const localeFromCookie = Cookies.get("locale");
     if (localeFromCookie) setSelectedLang(localeFromCookie);
+
+    const allreadyuser= JSON.parse(localStorage.getItem("apkatripUser"));
+    setUserLogine(allreadyuser)
+
+
   }, []);
 
   const handleLanguageChange = (code) => {
@@ -842,14 +848,16 @@ const Topbar = () => {
 
             {/* login and singup  */}
             <div className=" md:flex items-center justify-center space-x-4 mt-1  hidden ">
-              <div
+{userlogin &&  <Link href={"/user"}><FaUserCircle className="text-3xl mb-2 " /></Link>  }
+              {!userlogin &&
+              <Link
                 className="relative"
-                onMouseEnter={() => handleMouseEnter("signUp")}
+               href={"user/login"}
               >
                 <div className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white px-6 py-2 font-semibold rounded-full text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-300 cursor-pointer">
                   Login or Signup
                 </div>
-
+{/* 
                 {openDropdown === "signUp" && (
                   <div
                     className="absolute w-72 z-[999] top-full right-0 mt-2 bg-white text-black rounded-lg shadow-two"
@@ -1012,8 +1020,10 @@ const Topbar = () => {
                   </div>
                 ) : (
                   ""
-                )}
-              </div>
+                )} */}
+              </Link>
+
+}
             </div>
           </div>
         </div>

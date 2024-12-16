@@ -73,7 +73,7 @@ const Navbar = () => {
       link: "/holidayspackage",
     },
     {
-      name: t("cabs"),
+      name: "cabs",
       className: "meuicowidth cabmenuico",
       class: "cab-icon",
       link: "/cabs",
@@ -89,6 +89,12 @@ const Navbar = () => {
       className: "meuicowidth Cruisemenuico",
       class: "Cruise-icon",
       link: "/cruise",
+    },
+    {
+      name: "Charter",
+      className: "meuicowidth flightmenuico",
+      class: "flight-icon",
+      link: "/charter",
     },
     {
       name: "Insurance",
