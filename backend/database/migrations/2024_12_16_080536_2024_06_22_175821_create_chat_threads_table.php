@@ -11,11 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::table('hotels', function (Blueprint $table) {
-            $table->string("slug");
+        Schema::create('chat_threads', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('assistant_id');
+            $table->string('thread_id');
+
+            $table->string('name');
+
+            $table->foreignIdFor(\App\Models\User::class);
+
+            $table->timestamps();
         });
-        
     }
 
     /**
@@ -23,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('chat_threads');
     }
 };

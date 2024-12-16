@@ -60,6 +60,9 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->plugins([
+                \Ercogx\FilamentOpenaiAssistant\OpenaiAssistantPlugin::make()
+            ])
             ->authMiddleware([
                 Authenticate::class,
             ]);

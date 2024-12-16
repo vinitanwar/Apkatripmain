@@ -13,6 +13,7 @@
         "ercogx/filament-openai-assistant": "^1.0",
         "filament/filament": "^3.2",
         "guzzlehttp/guzzle": "^7.9",
+        "ibrahim-bougaoua/filaprogress": "^0.1.0",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
@@ -73,13 +74,8 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
+    "prefer-stable": true
 
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://filament-plugin-ai-writer.composer.sh"
-        }
-    ]
+  
    
 }
