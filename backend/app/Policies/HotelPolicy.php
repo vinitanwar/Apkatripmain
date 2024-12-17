@@ -13,7 +13,7 @@ class HotelPolicy
     {
 
 
-        return $user->is_admin;
+        return $user->isAdmin() || $user->hasPermission('view_hotels');
     }
 
     public function view(User $user, Hotel $hotel): bool
