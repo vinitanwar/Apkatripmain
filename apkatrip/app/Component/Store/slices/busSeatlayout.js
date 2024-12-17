@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { apilink } from "../../common";
 
-export const getBusSeatLayout=createAsyncThunk("/busSeat",async({TraceId,ResultIndex,EndUserIp="223.178.208.151"})=>{
+export const getBusSeatLayout=createAsyncThunk("/busSeat",async({TraceId,ResultIndex,EndUserIp="192.168.5.37"})=>{
 const res=await axios.post(`${apilink}/bus/seatlayout`,{TraceId,ResultIndex,EndUserIp})
 
 return res.data;

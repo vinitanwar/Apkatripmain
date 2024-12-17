@@ -77,17 +77,22 @@ class BusControllerSearch extends Controller
             "TokenId" => $token,  // Use the token from the service
         ];
 
-        $response = Http::timeout(100)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Bus/Busservice.svc/rest/GetBusSeatLayOut', $searchPayload);
+        $buslayout = Http::timeout(100)->withHeaders([])->post('https://BusBE.tektravels.com/Busservice.svc/rest/GetBusSeatLayOut', $searchPayload);
+        $busBOARDING = Http::timeout(100)->withHeaders([])->post('https://BusBE.tektravels.com/Busservice.svc/rest/GetBoardingPointDetails', $searchPayload);
 
-        if ($response->json('Response.Error.ErrorCode') === 6) {
+        
+        if ($buslayout->json('Response.Error.ErrorCode') === 6) {
             // Re-authenticate to get a new token
             $token = $this->apiService->authenticate();
             $searchPayload['TokenId'] = $token;
 
             // Retry the API request with the new token
-            $response = Http::timeout(90)->withHeaders([])->post('http://api.tektravels.com/BookingEngineService_Bus/Busservice.svc/rest/GetBusSeatLayOut', $searchPayload);
+            $buslayout = Http::timeout(90)->withHeaders([])->post('https://BusBE.tektravels.com/Busservice.svc/rest/GetBusSeatLayOut', $searchPayload);
+            $busBOARDING = Http::timeout(100)->withHeaders([])->post('https://BusBE.tektravels.com/Busservice.svc/rest/GetBoardingPointDetails', $searchPayload);
+
         }
-        return $response->json();
+        // return $searchPayload;
+        return   response()->json(["buslayout"=>json_decode($buslayout),"busbording"=>json_decode($busBOARDING)]);
 
 
     }
