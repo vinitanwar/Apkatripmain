@@ -62,7 +62,7 @@ setBusBoarding(state?.info?.busbording?.GetBusRouteDetailResult)
               <div
             key={index}
             className={`flex flex-col items-center p-4 w-[18rem] border rounded-lg shadow-md transition-all duration-300 ${
-              seat.SeatStatus
+              !seat.SeatStatus
                 ? "bg-red-100 border-red-400" // Booked seats
                 : "bg-green-100 border-green-400" // Available seats
             }`}
@@ -70,7 +70,7 @@ setBusBoarding(state?.info?.busbording?.GetBusRouteDetailResult)
             
             <FaChair
               className={`text-4xl ${
-                seat.SeatStatus ? "text-red-600" : "text-green-600"
+                !seat.SeatStatus ? "text-red-600" : "text-green-600"
               }`}
             />
 
@@ -85,10 +85,10 @@ setBusBoarding(state?.info?.busbording?.GetBusRouteDetailResult)
           
             <span
               className={`text-xs mt-1 uppercase font-bold ${
-                seat.SeatStatus ? "text-red-500" : "text-green-500"
+                !seat.SeatStatus ? "text-red-500" : "text-green-500"
               }`}
             >
-              {seat.SeatStatus ? "Booked" : "Available"}
+              {!seat.SeatStatus ? "Booked" : "Available"}
             </span>
           </div>
             )
