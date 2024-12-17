@@ -15,7 +15,7 @@ import busCityslice from "./slices/busSearchSlice"
 import gethotelslice from './slices/getHotelSlice';
 import preBookSlice from "./slices/hotelpreBookslice";
 import busslice from "./slices/busslices"
-import busSeatSlice from "./slices/busSearchSlice"
+import busSeatSlice from "./slices/busSeatlayout"
 import fareRuleSlice from "./slices/fairRuleflight"
 import farequoteSlice from "./slices/farequateflight";
 import ssrFlightSlice from "./slices/ssrRuleFlight"

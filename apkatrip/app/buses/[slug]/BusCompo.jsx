@@ -9,6 +9,7 @@ import BusComp from '../../Component/AllComponent/formMaincomp/BusComp'
 import BusFilter from "../../Component/Filter/BusFilter";
 import Slider from "react-slick";
 import { FaChevronDown, FaFilter, FaTimes } from "react-icons/fa";
+import Link from 'next/link'
 
 
 const BusCompo = ({slug}) => {
@@ -235,9 +236,9 @@ dispatch(getBusSeatLayout({TraceId:state.info.BusSearchResult.TraceId,ResultInde
                       </span>
                     </li>
                   </ul>
-                  <div onClick={()=>handelGetSeat(bus.ResultIndex)} className="selectSeats text-center cursor-pointer bg-blue-100 border border-blue-600 rounded px-3 py-1 text-blue-600 font-semibold">
+                  <Link href={`/buses/selectseat/index=${state.info.BusSearchResult.TraceId}&resultindex=${bus.ResultIndex}`} className="selectSeats text-center cursor-pointer bg-blue-100 border border-blue-600 rounded px-3 py-1 text-blue-600 font-semibold">
                     Select Seats
-                  </div>
+                  </Link>
                 </div>
               </div>
             ))}
