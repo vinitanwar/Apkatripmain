@@ -897,7 +897,7 @@ background-image: url(../public/Images/blog.webp);
   /* background: red; */
   width: 20px;
   cursor: pointer;
-  height: 20px;
+  height: 10px;
   
 } 
   .bseat{
@@ -910,7 +910,9 @@ background-image: url(../public/Images/blog.webp);
   background:red;
 }
 
-
+.topfull{
+  top: calc(100% + 6px);
+}
 
 
 
