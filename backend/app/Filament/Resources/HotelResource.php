@@ -12,12 +12,18 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\BooleanColumn;
+
+use Filament\Tables\Columns\ToggleColumn;
 
 class HotelResource extends Resource
 {
     protected static ?string $model = Hotel::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationLabel = 'Hotel User';
+    protected static ?string $navigationIcon = 'heroicon-o-user-circle';
+    protected static ?string $navigationGroup = 'Hotel Management';
 
     public static function form(Form $form): Form
     {
@@ -31,7 +37,23 @@ class HotelResource extends Resource
     {
         return $table
             ->columns([
-                //
+                ToggleColumn::make('is_active')
+                ->label('Active Status')
+                ->onIcon('heroicon-o-check-circle')
+                ->offIcon('heroicon-o-x-circle')
+                ->sortable(),
+                TextColumn::make('name')
+                ->label('User Name')
+                ->searchable(),
+            
+            TextColumn::make('email')
+                ->label('Email')
+                ->searchable(),
+
+            TextColumn::make('phone')
+                ->label('Phone'),
+
+           
             ])
             ->filters([
                 //
