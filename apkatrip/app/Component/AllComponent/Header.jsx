@@ -131,6 +131,7 @@ const Header = () => {
     });
   }, []);
 
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const getedate = localStorage.getItem("defaultflight");
@@ -176,6 +177,8 @@ const Header = () => {
     }
   }, []);
 
+
+
   const handleCitySelect = (city) => {
     if (selectedOption === "from") {
       setFromCity(city.properties);
@@ -185,9 +188,13 @@ const Header = () => {
     setIsVisible(false);
   };
 
+
+
   const handleVisibilityChange = (value) => {
     setIsVisible(value);
   };
+
+
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -196,10 +203,14 @@ const Header = () => {
     };
   }, []);
 
+
+
   useEffect(() => {
     dispatch(getTopAirPorts());
     dispatch(getip());
   }, []);
+
+
 
   const handleClick = (option) => {
     setSelectedOption(option);
@@ -220,7 +231,11 @@ const Header = () => {
     // }
   };
 
+
+
   const dropdownRef = useRef(null);
+
+
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -228,12 +243,16 @@ const Header = () => {
     }
   };
 
+
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  
 
   const handelSearch = () => {
     localStorage.setItem(
@@ -281,12 +300,16 @@ const Header = () => {
     route.push(searchUrl);
   };
 
+
+
   const handleRangeChange = (newRange) => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
 
     setSelected(date);
     handleClick("");
   };
+
+
 
   const handelreturn = (newRange) => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
@@ -297,7 +320,6 @@ const Header = () => {
   };
   const t = useTranslations("Navbar2");
 
-  // shubham dev 27-11-2024
 
   const [dropdowns, setDropdowns] = useState({
     coach: {
@@ -473,7 +495,7 @@ const Header = () => {
             list: "Holiday Packages",
           },
           {
-            link: "",
+            link: "/activities",
             list: "Group Tours",
           },
           {
@@ -481,7 +503,7 @@ const Header = () => {
             list: "Car Rental",
           },
           {
-            link: "",
+            link: "/buses",
             list: "Bus Tickets",
           },
         ],
@@ -498,7 +520,7 @@ const Header = () => {
             list: "Check Booking Status",
           },
           {
-            link: "",
+            link: "/web-check",
             list: "Web Check-in",
           },
           {
@@ -564,7 +586,7 @@ const Header = () => {
             list: "Charter Services",
           },
           {
-            link: "",
+            link: "/holidayspackage",
             list: "Holiday Packages",
           },
           {
@@ -580,7 +602,7 @@ const Header = () => {
             list: "Forex Currency Exchange",
           },
           {
-            link: "",
+            link: "/train",
             list: "Train Services",
           },
           {
@@ -619,7 +641,7 @@ const Header = () => {
         heading: "Business Assistance",
         listData: [
           {
-            link: "",
+            link: "/user",
             list: "Extranet Login",
           },
           {
@@ -639,6 +661,7 @@ const Header = () => {
      
     ],
   };
+
 
   const [topDropdown, setTopDropdown] = useState(null);
   const [bottomDropdown, setBottomDropdown] = useState(null);

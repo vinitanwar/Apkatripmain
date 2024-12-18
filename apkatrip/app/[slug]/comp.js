@@ -529,13 +529,9 @@ const comp = ({ slug }) => {
 
                                     <div className="text-center">
                                       <p className="mb-1 text-sm md:text-lg font-semibold">
-                                        {new Date(
-                                          info.Origin.DepTime
-                                        ).toLocaleTimeString([], {
-                                          hour: "2-digit",
-                                          minute: "2-digit",
-                                          hour12: true,
-                                        })}
+                                        {
+                                          info.Origin.DepTime.split("T")[1].slice(0,5)
+                                       }
                                       </p>
                                       <p className="text-black text-xs">
                                         {info.Destination.Airport.CityName}
@@ -566,13 +562,9 @@ const comp = ({ slug }) => {
 
                                     <div className="text-center">
                                       <p className="mb-1 text-sm md:text-lg font-semibold">
-                                        {new Date(
-                                          info.Destination.ArrTime
-                                        ).toLocaleTimeString([], {
-                                          hour: "2-digit",
-                                          minute: "2-digit",
-                                          hour12: true,
-                                        })}
+                                        {
+                                          info.Destination.ArrTime.split("T")[1].slice(0,5)
+                                       }
                                       </p>
                                       <p className="text-black text-xs">
                                         {info.Origin.Airport.CityName}{" "}
@@ -1108,13 +1100,9 @@ const comp = ({ slug }) => {
 
                                 <div className="text-center">
                                   <p className="mb-1 text-sm md:text-lg font-semibold">
-                                    {new Date(
-                                      flight.Segments[0][0].Origin.DepTime
-                                    ).toLocaleTimeString([], {
-                                      hour: "2-digit",
-                                      minute: "2-digit",
-                                      hour12: true,
-                                    })}
+                                    {
+                                      flight.Segments[0][0].Origin.DepTime.split("T")[1].slice(0,5)
+                                    }
                                   </p>
                                   <p className="text-black text-xs">
                                     {
@@ -1148,13 +1136,9 @@ const comp = ({ slug }) => {
                                 {/* Arrival Time and City */}
                                 <div className="text-center">
                                   <p className="mb-1 text-sm md:text-lg font-semibold">
-                                    {new Date(
-                                      flight.Segments[0][0].Destination.ArrTime
-                                    ).toLocaleTimeString([], {
-                                      hour: "2-digit",
-                                      minute: "2-digit",
-                                      hour12: true,
-                                    })}
+                                    {
+                                      flight.Segments[0][0].Destination.ArrTime.split("T")[1].slice(0,5)
+                                   }
                                   </p>
 
                                   <p className="text-black text-xs">
@@ -1364,22 +1348,14 @@ const comp = ({ slug }) => {
 
                                               <div className="">
                                                 <p className="text-lg font-bold">
-                                                  {new Date(
+                                                  {
                                                     flight.Segments[0][0].Destination.ArrTime
-                                                  ).toLocaleTimeString([], {
-                                                    hour: "2-digit",
-                                                    minute: "2-digit",
-                                                    hour12: true,
-                                                  })}
+                                                  }
                                                 </p>
                                                 <p className="text-sm font-bold mb-2">
-                                                  {new Date(
+                                                  {
                                                     flight.Segments[0][0].Destination.ArrTime
-                                                  ).toLocaleTimeString([], {
-                                                    year: "numeric",
-                                                    month: "long",
-                                                    day: "numeric",
-                                                  })}
+                                                  }
                                                 </p>
                                                 <p className="text-gray-600">
                                                   Terminal T2
@@ -1667,13 +1643,9 @@ const comp = ({ slug }) => {
 
              <div className="text-center">
                <p className="mb-1 text-sm md:text-lg font-semibold">
-                 {new Date(
-                   info.Origin.DepTime
-                 ).toLocaleTimeString([], {
-                   hour: "2-digit",
-                   minute: "2-digit",
-                   hour12: true,
-                 })}
+                 {
+                   info.Origin.DepTime.split("T")[1].slice(0,5)
+                 }
                </p>
                <p className="text-black text-xs">
                  {info.Destination.Airport.CityName }
@@ -1702,13 +1674,8 @@ const comp = ({ slug }) => {
 
              <div className="text-center">
                <p className="mb-1 text-sm md:text-lg font-semibold">
-                 {new Date(
-                   info.Destination.ArrTime
-                 ).toLocaleTimeString([], {
-                   hour: "2-digit",
-                   minute: "2-digit",
-                   hour12: true,
-                 })}
+                 {
+                   info.Destination.ArrTime.split("T")[1].slice(0,5)}
                </p>
                <p className="text-black text-xs">
                  {info.Origin.Airport.CityName}{" "}

@@ -26,7 +26,7 @@ class HotelControllerSearchRes extends Controller
 
 
 
-        try {
+      
             $client = new \GuzzleHttp\Client();
 
             // 1st API request: Get hotel codes by city
@@ -37,15 +37,17 @@ class HotelControllerSearchRes extends Controller
                     "IsDetailedResponse" => false,
                 ]
             ]);
+            
 
             $hotelData = json_decode($response1->getBody()->getContents(), true);
             $hotelCodes = array_column($hotelData['Hotels'], 'HotelCode'); // Extract hotel codes
 
             // Paginate hotel codes
-            $pageSize = 100;
+            $pageSize = 10;
             $start = ($validated['page'] - 1) * $pageSize;
             $limitedHotelCodes = array_slice($hotelCodes, $start, $pageSize);
-            // $hotelCodesString = implode(',', $limitedHotelCodes); // Convert to string
+            
+//             // $hotelCodesString = implode(',', $limitedHotelCodes); // Convert to string
      
 $hotelresult=[];
 
@@ -81,17 +83,26 @@ foreach($limitedHotelCodes as $limitedHotelCode){
                 ]);
                 $searchResults = json_decode($response3->getBody()->getContents(), true);
 
-                if($searchResults['Status']['Code'] == 200){
-                    $response2 = $client->post('http://api.tbotechnology.in/TBOHolidays_HotelAPI/Hoteldetails', [
-                        'auth' => ['TBOStaticAPITest', 'Tbo@11530818'],
-                        'json' => [
-                            "Hotelcodes" => $limitedHotelCode,
-                            "Language" => "EN",
-                        ]]);
-                        $hotelDetails = json_decode($response2->getBody()->getContents(), true);
-
+            $response2 = $client->post('http://api.tbotechnology.in/TBOHolidays_HotelAPI/Hoteldetails', [
+                                        'auth' => ['TBOStaticAPITest', 'Tbo@11530818'],
+                                        'json' => [
+                                            "Hotelcodes" => $limitedHotelCode,
+                                            "Language" => "EN",
+                                        ]]);
+                                        $hotelDetails = json_decode($response2->getBody()->getContents(), true);
                         $hotelresult[] =["hotelDetails"=> $hotelDetails,"searchResults"=>$searchResults];
-                }
+
+//                 if($searchResults['Status']['Code'] == 200){
+//                     $response2 = $client->post('http://api.tbotechnology.in/TBOHolidays_HotelAPI/Hoteldetails', [
+//                         'auth' => ['TBOStaticAPITest', 'Tbo@11530818'],
+//                         'json' => [
+//                             "Hotelcodes" => $limitedHotelCode,
+//                             "Language" => "EN",
+//                         ]]);
+//                         $hotelDetails = json_decode($response2->getBody()->getContents(), true);
+
+//                         $hotelresult[] =["hotelDetails"=> $hotelDetails,"searchResults"=>$searchResults];
+//                 }
            
 }
 
@@ -157,10 +168,8 @@ foreach($limitedHotelCodes as $limitedHotelCode){
 
 
 
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
     }
+    
 
     function singleHotelget(Request $request)
     {

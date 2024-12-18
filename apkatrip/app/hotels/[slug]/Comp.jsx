@@ -219,7 +219,7 @@ useEffect(()=>{sethotalbackup(allhoteldata)
   {allhotel &&!allhoteldata.isLoading&&  !allhotel.length && <div className='text-center text-4xl p-10 '>
       Hotels not <span className='text-red-800'>Found !</span>
     </div>}
-{allhotel && !allhoteldata.isLoading && allhotel.map((hotel,index_num)=>{
+{allhotel && !allhoteldata.isLoading && allhotel?.map((hotel,index_num)=>{
   
   return(
   <div
@@ -229,7 +229,7 @@ useEffect(()=>{sethotalbackup(allhoteldata)
     {showimg==index_num &&
       <div className='fixed top-16  left-0 z-40 w-full  h-[90vh] border-8 border-white bg-white overflow-scroll grid grid-cols-3 gap-2'>
 <MdOutlineCancel onClick={()=>setshowImg(null)} className='fixed top-24 cursor-pointer right-10 text-orange-500 text-5xl' />
-{hotel.hotelDetails.HotelDetails[0].Images.map((imgs)=>{
+{hotel?.hotelDetails?.HotelDetails[0]?.Images?.map((imgs)=>{
   return(
 <img src={imgs}  className='h-[25rem] w-full'/>
   )
