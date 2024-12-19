@@ -121,7 +121,7 @@ const page = () => {
   };
 
   return (
-    <div className="min-h-[70vh] bg-[#d4d4d485] flex justify-center items-center">
+    <div className="min-h-[70vh] bg-[#d4d4d485] flex justify-center items-center px-10">
       <div className="relative">
         <div
           className={`absolute md:w-full max-h-full top-0 left-0 bg-white p-5 rounded-md shadow-md flex flex-col items-center gap-3  ${
