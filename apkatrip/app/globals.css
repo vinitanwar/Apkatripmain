@@ -944,21 +944,22 @@ background-image: url(../public/Images/blog.webp);
   /* background: red; */
   width: 20px;
   cursor: pointer;
-  
-height: 20px;
+  height: 10px;
   
 } 
   .bseat{
-  background: #22fe6f;
+  background:#ffc6c6 ;
 }
 .nseat{
-  background:#ffc6c6;
+  background: #22fe6f;
 }
 .hseat{
   background:red;
 }
 
-
+.topfull{
+  top: calc(100% + 6px);
+}
 
 
 

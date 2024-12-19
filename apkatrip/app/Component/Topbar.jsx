@@ -745,7 +745,7 @@ const [userlogin,setUserLogine]=useState(null);
                 )}
 
                 {countryOpner && (
-                  <div className="fixed flex justify-center items-center bg-[rgba(0,0,0,0.5)] inset-0">
+                  <div className="fixed flex justify-center items-center bg-[rgba(0,0,0,0.5)] inset-0" onClick={()=>setCounrtyOpner(false)}>
                     <div className="h-[40rem] w-[800px] rounded-lg p-3 bg-white overflow-y-scroll">
                       <div className="space-y-5 ">
                         <div className="flex justify-between">

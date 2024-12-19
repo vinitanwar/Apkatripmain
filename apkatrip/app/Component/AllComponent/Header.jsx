@@ -22,14 +22,6 @@ import { FaArrowRightLong,FaUserLarge } from "react-icons/fa6";
 import TypeWriterHeaderEffect from "../AllComponent/TypeWriterHeaderEffect"
 
 const Header = () => {
- 
-// type writer effect 
-
-
-
-// type writer effect end 
-
-
 
 
 
@@ -431,7 +423,7 @@ const Header = () => {
         heading: "Home",
         listData: [
           {
-            link: "",
+            link: "/",
             list: " ApkaTrip.com",
           },
           {
@@ -443,7 +435,7 @@ const Header = () => {
             list: " Responsibe Tourism",
           },
           {
-            link: "",
+            link: "/ATI/loyalty-program/",
             list: "Membership & Loyalty Program",
           },
           {
@@ -455,11 +447,11 @@ const Header = () => {
             list: "Careers",
           },
           {
-            link: "",
+            link: "/condition/privacy-policy",
             list: "Privacy Policy",
           },
           {
-            link: "",
+            link: "/condition/terms-condition",
             list: "Terms & Conditions",
           },
         ],
@@ -469,15 +461,15 @@ const Header = () => {
         heading: "Book",
         listData: [
           {
-            link: "",
+            link: "/flight",
             list: " Book Flight",
           },
           {
-            link: "",
+            link: "/hotels",
             list: " Book Hotels",
           },
           {
-            link: "",
+            link: "/holidayspackage",
             list: "Holiday Packages",
           },
           {
@@ -528,11 +520,11 @@ const Header = () => {
         heading: "Services",
         listData: [
           {
-            link: "",
+            link: "/flight",
             list: "Flights",
           },
           {
-            link: "",
+            link: "/hotels",
             list: "Hotels",
           },
           {
@@ -560,11 +552,11 @@ const Header = () => {
           },
 
           {
-            link: "",
+            link: "/buses",
             list: "Bus Tickets",
           },
           {
-            link: "",
+            link: "/cruise",
             list: "Cruises",
           },
           {
@@ -576,7 +568,7 @@ const Header = () => {
             list: "Holiday Packages",
           },
           {
-            link: "",
+            link: "/atl/atipro",
             list: "Elite Lucuary",
           },
           {
@@ -631,7 +623,7 @@ const Header = () => {
             list: "Extranet Login",
           },
           {
-            link: "",
+            link: "/property-listing",
             list: "List Your Property",
           },
           {
@@ -656,7 +648,11 @@ const Header = () => {
   const [fromcity, setfromcity] = useState("FromCity");
   const [AnyWhere, setAnyWhere] = useState("anyWhere");
   
-
+const handelSwap=()=>{
+  setFromCity(toCity);
+    setToCity(fromCity);
+    settoogleBtnn(!toogleBtnn)
+}
  
 
   
@@ -665,12 +661,15 @@ const Header = () => {
       <div className="header relative  md:px-5  lg:px-12 xl:px-24">
         <div className=" bg-[#002043] h-[15rem] absolute inset-0  -z-10" />
         <div className="w-full flex md:justify-end	">
-        <div className="         ">
-            <ul className="text-black lastNavigation bg-gray-100  px-6 w-full  mx-end   md:px-5  text-sm py-2 gap-3 grid grid-cols-3  md:flex  lg:w-full items-center shadow-md">
+        <div className="">
+            <ul className="text-black lastNavigation bg-gray-100  px-6 w-full  mx-end   md:px-5  text-sm py-2 gap-3 grid grid-cols-3  md:flex  lg:w-full items-center shadow-md"
+             onMouseLeave={() => setBottomDropdown(null)}>
               {topAndBottomDropDown.HomeBookTravelBuinessBottomDropDown.map(
                 (elm, index) => (
                   <li
                     onMouseEnter={() => setBottomDropdown(index)}
+                   
+
                     key={index}
                     className="relative group"
                   >
@@ -686,14 +685,15 @@ const Header = () => {
                       {bottomDropdown === index && (
                         <ul
                           onMouseLeave={() => setBottomDropdown(null)}
-                          className="absolute top-10 z-40 left-0 bg-white border border-gray-300 rounded-lg shadow-md w-max py-2"
+                          className="   absolute topfull z-40 left-0 bg-white border border-gray-300 rounded-lg shadow-md w-max py-2"
                         >
                           {elm.listData?.map((item, idx) => (
                             <li
                               key={idx}
                               className="px-4 py-2 text-sm hover:bg-gray-100 hover:text-blue-500 cursor-pointer"
                             >
-                              {item.list}
+                              <Link href={item.link}>{item.list}</Link>
+                              
                             </li>
                           ))}
                         </ul>
@@ -1049,7 +1049,7 @@ const Header = () => {
                       )}
                 </div>
                 <div
-                  onClick={() => settoogleBtnn(!toogleBtnn)}
+                  onClick={handelSwap}
                   className={`absolute z-10 right-[45%] top-14 md:left-[48%] lg:left-[47%] md:top-4 border py-[2px] border-gray-800 bg-white h-8 w-8 lg:h-[34px] lg:w-[34px] rounded-full flex justify-center items-center flex-col text-black transition-transform duration-300 ${
                     toogleBtnn
                       ? "rotate-180 md:rotate-180"
