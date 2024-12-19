@@ -41,7 +41,7 @@ Route::post('v1/farequate', [FlightController::class, 'farequate']);
 // generateTicket
 Route::post('v1/flight-book', [FlightController::class, 'bookFlight']);
 Route::post('v1/genrate-ticket', [FlightController::class, 'generateTicket']);
-
+Route::post('v1/get-calendar-fare', [FlightController::class, 'getCalendarFare']);
 // generateTicket
 
 

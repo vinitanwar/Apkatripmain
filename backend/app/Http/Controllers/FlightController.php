@@ -120,6 +120,70 @@ class FlightController extends Controller
         return $response;
     }
 
+    public function getCalendarFare(Request $request)
+    {
+        $token = $this->apiService->getToken();
+        try {
+           
+            $validated = $request->validate([
+                'JourneyType' => 'integer',
+                'EndUserIp' => 'ip',
+               
+                'Segments' => 'required|array',
+                'Segments.*.Origin' => 'string|max:3',
+                'Segments.*.Destination' => 'required|string|max:3',
+                'Segments.*.FlightCabinClass' => 'required|integer',
+                'Segments.*.PreferredDepartureTime' => 'required|date',
+            ]);
+
+
+            $apiUrl = "http://api.tektravels.com/BookingEngineService_Air/AirService.svc/rest/GetCalendarFare";
+
+
+            $response = Http::post($apiUrl, [
+                "JourneyType" => $validated['JourneyType'],
+                "EndUserIp" => $validated['EndUserIp'],
+                "TokenId" => $token,
+                "PreferredAirlines" => $request->input('PreferredAirlines', null),
+                "Segments" => $validated['Segments'],
+                "Sources" => $request->input('Sources', null),
+            ]);
+
+            // Check if the response is successful
+            if ($response->successful()) {
+                return response()->json($response->json());
+            }
+
+            // Log error for unsuccessful responses
+            Log::error('API returned an error', [
+                'status' => $response->status(),
+                'body' => $response->body(),
+            ]);
+
+            return response()->json([
+                'error' => 'Unable to fetch data from external API',
+                'details' => $response->json(),
+            ], $response->status());
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Handle validation errors
+            return response()->json([
+                'error' => 'Validation failed',
+                'details' => $e->errors(),
+            ], 422);
+        } catch (\Exception $e) {
+            // Catch any other exceptions
+            Log::error('An error occurred', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return response()->json([
+                'error' => 'An unexpected error occurred',
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function generateTicket(Request $request)
 {
     $token = $this->apiService->getToken();

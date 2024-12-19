@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { FaCalendarWeek, FaChevronDown ,FaCalendarAlt} from "react-icons/fa";
+import { FaCalendarWeek, FaChevronDown, FaCalendarAlt } from "react-icons/fa";
 import AutoSearch from "./AutoSearch";
 import TravellerDropdown from "./TravellerDropdown";
 import Link from "next/link";
@@ -8,22 +8,26 @@ import "react-day-picker/style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getTopAirPorts } from "../Store/slices/topPortsSlice";
 import { useRouter } from "next/navigation";
-import { Calendar, toggle } from "@nextui-org/react";
+// import { Calendar, toggle } from "@nextui-org/react";
 import { today, getLocalTimeZone } from "@internationalized/date";
 import { getip } from "../Store/slices/ipslice";
 import { toast, Bounce } from "react-toastify";
 import { useTranslations } from "next-intl";
 import Navbar from "./Navbar";
-import { IoIosArrowDown,IoIosCheckmark } from "react-icons/io";
+import { IoIosArrowDown, IoIosCheckmark } from "react-icons/io";
+
+import { getCalendarFare } from "../Store/slices/calenderData";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 import { IoLocationSharp } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
-import { FaArrowRightLong,FaUserLarge } from "react-icons/fa6";
-import TypeWriterHeaderEffect from "../AllComponent/TypeWriterHeaderEffect"
+import { FaArrowRightLong, FaUserLarge } from "react-icons/fa6";
+import TypeWriterHeaderEffect from "../AllComponent/TypeWriterHeaderEffect";
 
 const Header = () => {
-
-
+  const dispatch = useDispatch();
+  // const { fares, isLoading, isError } = useSelector((state) => state.calendar);
 
   const localTimeZone = getLocalTimeZone();
   const [currentDateComponents, setCurrentDateComponents] = useState({});
@@ -47,6 +51,39 @@ const Header = () => {
     "December",
   ];
 
+  const getCurrentDateTime = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = `0${today.getMonth() + 1}`.slice(-2); // Add leading zero if month is single digit
+    const day = `0${today.getDate()}`.slice(-2); // Add leading zero if day is single digit
+
+    // Set the time to "00:00:00"
+    return `${year}-${month}-${day}T00:00:00`; // "YYYY-MM-DDT00:00:00"
+  };
+
+  const [dateOfJourney, setDateOfJourney] = useState(getCurrentDateTime());
+
+  const datePrices = {
+    "2024-12-20": "$50",
+    "2024-12-21": "$60",
+    "2024-12-22": "$40",
+  };
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    console.log("Selected date:", date);
+  };
+
+  const tileContent = ({ date, view }) => {
+    if (view === "month") {
+      const dateKey = date.toISOString().split("T")[0];
+      return datePrices[dateKey] ? (
+        <div className="price">{datePrices[dateKey]}</div>
+      ) : null;
+    }
+  };
+
   const [selectedReturn, setSelectedReturn] = useState();
   const [adultCount, setAdultCount] = useState(1);
   const [childCount, setChildCount] = useState(0);
@@ -54,7 +91,7 @@ const Header = () => {
   const [isGroup, setIsGroup] = useState(false);
   const [selectedClass, setSelectedClass] = useState(1);
   const [activeTab, setActiveTab] = useState(1);
-  const dispatch = useDispatch();
+
   const ipstate = useSelector((state) => state.ipslice);
   const route = useRouter();
   const defaultFromCity = {
@@ -363,8 +400,7 @@ const Header = () => {
     { id: 4, label: "Doctors & Nurses" },
   ];
 
-  const topAndBottomDropDown = 
-  {
+  const topAndBottomDropDown = {
     topFeaturestopDropDown: [
       {
         heading: "List Your Property",
@@ -456,7 +492,7 @@ const Header = () => {
           },
         ],
       },
-      
+
       {
         heading: "Book",
         listData: [
@@ -515,7 +551,7 @@ const Header = () => {
           },
         ],
       },
-      
+
       {
         heading: "Services",
         listData: [
@@ -593,7 +629,7 @@ const Header = () => {
           },
         ],
       },
-      
+
       {
         heading: "Blogs",
         listData: [
@@ -636,7 +672,6 @@ const Header = () => {
           },
         ],
       },
-     
     ],
   };
 
@@ -647,29 +682,56 @@ const Header = () => {
 
   const [fromcity, setfromcity] = useState("FromCity");
   const [AnyWhere, setAnyWhere] = useState("anyWhere");
-  
-const handelSwap=()=>{
-  setFromCity(toCity);
-    setToCity(fromCity);
-    settoogleBtnn(!toogleBtnn)
-}
- 
+  const  getCal = useSelector((state) => state.calendar);
 
-  
+
+  const [calData, setcalData] = useState({
+    JourneyType: 1,
+    EndUserIp: '223.178.208.151',
+    Segments: [
+      {
+        Origin: fromCity.iata,
+        Destination: toCity.iata,
+        PreferredDepartureTime: dateOfJourney,
+      },
+    ],
+
+
+  });
+
+
+
+  useEffect(() => {
+
+    console.log(`'cwrfrwfrfrr3f43rd43r4 ${dateOfJourney} , ${ fromCity.iata} , ${toCity.iata}`)
+
+
+    dispatch(
+      getCalendarFare(calData)
+    );
+    console.log("dateOfJourney", getCal);
+  }, [dispatch, dateOfJourney, fromCity.iata, toCity.iata]);
+
+  const handelSwap = () => {
+    setFromCity(toCity);
+    setToCity(fromCity);
+    settoogleBtnn(!toogleBtnn);
+  };
+
   return (
     <>
       <div className="header relative  md:px-5  lg:px-12 xl:px-24">
         <div className=" bg-[#002043] h-[15rem] absolute inset-0  -z-10" />
         <div className="w-full flex md:justify-end	">
-        <div className="">
-            <ul className="text-black lastNavigation bg-gray-100  px-6 w-full  mx-end   md:px-5  text-sm py-2 gap-3 grid grid-cols-3  md:flex  lg:w-full items-center shadow-md"
-             onMouseLeave={() => setBottomDropdown(null)}>
+          <div className="">
+            <ul
+              className="text-black lastNavigation bg-gray-100  px-6 w-full  mx-end   md:px-5  text-sm py-2 gap-3 grid grid-cols-3  md:flex  lg:w-full items-center shadow-md"
+              onMouseLeave={() => setBottomDropdown(null)}
+            >
               {topAndBottomDropDown.HomeBookTravelBuinessBottomDropDown.map(
                 (elm, index) => (
                   <li
                     onMouseEnter={() => setBottomDropdown(index)}
-                   
-
                     key={index}
                     className="relative group"
                   >
@@ -693,7 +755,6 @@ const handelSwap=()=>{
                               className="px-4 py-2 text-sm hover:bg-gray-100 hover:text-blue-500 cursor-pointer"
                             >
                               <Link href={item.link}>{item.list}</Link>
-                              
                             </li>
                           ))}
                         </ul>
@@ -704,21 +765,14 @@ const handelSwap=()=>{
               )}
             </ul>
           </div>
-          </div>
-       
-          <TypeWriterHeaderEffect/>
+        </div>
 
-       
-
+        <TypeWriterHeaderEffect />
 
         <div className="flex flex-col   bg-white lg:block rounded-lg  text-white   ">
           <div className="bg-gray-200 rounded-sm shadow ">
             <Navbar />
           </div>
-
-
-
-
 
           <div className=" px-4 border-b-2 shadow-sm  space-y-2 py-3 ">
             <div className="tabs 1stTab text-sm text-nowrap  md:text-sm  flex  md:gap-2 font-bold text-black  ">
@@ -1012,41 +1066,41 @@ const handelSwap=()=>{
 
             <div className="tabs FromDateDeapt grid grid-cols-1 gap-5 xl:grid-cols-2 xl:gap-3">
               <div className="grid relative gap-3 md:grid-cols-2">
-
-<div className="relative">
-
-                <div onClick={()=>{setSelectedOption("from"),setIsVisible(true)}} className="1stInput relative rounded gap-1 h-[4rem]  flex items-center px-3  border border-slate-400 text-black">
-                  <IoLocationSharp className="text-xl" />
-
-                  <button
-                    className="absolute rounded-full text-white  bg-gray-400 right-0 -top-[2px] bg"
-                    onClick={() => setfromcity(false)}
+                <div className="relative">
+                  <div
+                    onClick={() => {
+                      setSelectedOption("from"), setIsVisible(true);
+                    }}
+                    className="1stInput relative rounded gap-1 h-[4rem]  flex items-center px-3  border border-slate-400 text-black"
                   >
-                    {" "}
-                    <RxCross2 />
-                  </button>
-                  <div className="flex flex-col">
-                  <span className="text-[22px] lg:text-2xl  text-black font-bold">
-                          {fromCity.municipality}
-                        </span>
-                        <p className="text-black text-xs truncate">
-                          [{fromCity.name}] {fromCity.iata}
-                        </p>
-                        </div>
-                 
+                    <IoLocationSharp className="text-xl" />
 
-
-                </div>
-                {isVisible && selectedOption === "from" && (
-                        <div>
-                          <AutoSearch
-                            value="From"
-                            Click={setIsVisible}
-                            handleClosed={handleVisibilityChange}
-                            onSelect={handleCitySelect}
-                          />
-                        </div>
-                      )}
+                    <button
+                      className="absolute rounded-full text-white  bg-gray-400 right-0 -top-[2px] bg"
+                      onClick={() => setfromcity(false)}
+                    >
+                      {" "}
+                      <RxCross2 />
+                    </button>
+                    <div className="flex flex-col">
+                      <span className="text-[22px] lg:text-2xl  text-black font-bold">
+                        {fromCity.municipality}
+                      </span>
+                      <p className="text-black text-xs truncate">
+                        [{fromCity.name}] {fromCity.iata}
+                      </p>
+                    </div>
+                  </div>
+                  {isVisible && selectedOption === "from" && (
+                    <div>
+                      <AutoSearch
+                        value="From"
+                        Click={setIsVisible}
+                        handleClosed={handleVisibilityChange}
+                        onSelect={handleCitySelect}
+                      />
+                    </div>
+                  )}
                 </div>
                 <div
                   onClick={handelSwap}
@@ -1056,102 +1110,105 @@ const handelSwap=()=>{
                       : "rotate-90 md:rotate-0"
                   }`}
                 >
-                  <FaArrowRightLong className="text-lg "/>
+                  <FaArrowRightLong className="text-lg " />
                   <FaArrowRightLong className="rotate-180 text-lg" />
                 </div>
 
-
-
-                <div className="relative"> 
-                <div onClick={()=>{setSelectedOption("to"),setIsVisible(true)}} 
-                className="2ndtInput relative  rounded gap-1 h-[4rem] flex items-center px-3  border border-slate-400 text-black">
-                  <IoLocationSharp className="text-xl" />
-
-                  <button
-                    className="absolute rounded-full text-white  bg-gray-400 right-0 -top-[2px] bg"
-                    onClick={() => setAnyWhere(false)}
+                <div className="relative">
+                  <div
+                    onClick={() => {
+                      setSelectedOption("to"), setIsVisible(true);
+                    }}
+                    className="2ndtInput relative  rounded gap-1 h-[4rem] flex items-center px-3  border border-slate-400 text-black"
                   >
-                    {" "}
-                    <RxCross2 />
-                  </button>
+                    <IoLocationSharp className="text-xl" />
 
-                  
-                  <div className="flex flex-col">
-                  <span className="text-[22px] lg:text-2xl  text-black font-bold">
-                          {toCity.municipality}
-                        </span>
-                        <p className="text-black text-xs truncate">
-                          [{toCity.name}] {toCity.iata}
-                        </p>
-                        </div>
+                    <button
+                      className="absolute rounded-full text-white  bg-gray-400 right-0 -top-[2px] bg"
+                      onClick={() => setAnyWhere(false)}
+                    >
+                      {" "}
+                      <RxCross2 />
+                    </button>
+
+                    <div className="flex flex-col">
+                      <span className="text-[22px] lg:text-2xl  text-black font-bold">
+                        {toCity.municipality}
+                      </span>
+                      <p className="text-black text-xs truncate">
+                        [{toCity.name}] {toCity.iata}
+                      </p>
+                    </div>
+                  </div>
+                  {isVisible && selectedOption === "to" && (
+                    <div>
+                      <AutoSearch
+                        value="To"
+                        fromCity={fromCity}
+                        Click={setIsVisible}
+                        handleClosed={handleVisibilityChange}
+                        onSelect={handleCitySelect}
+                      />
+                    </div>
+                  )}
                 </div>
-                {isVisible && selectedOption === "to" && (
-                        <div>
-                          <AutoSearch
-                            value="To"
-                            fromCity={fromCity}
-                            Click={setIsVisible}
-                            handleClosed={handleVisibilityChange}
-                            onSelect={handleCitySelect}
-                          />
-                        </div>
-                      )}
               </div>
 
-             
-                     </div>
-
-
-
-
               <div className="grid grid-cols-1 gap-2 md:grid-cols-4">
-
                 <div className="relative">
-                <div onClick={()=>{setSelectedOption("date"),setIsVisible(true)}}   className="flex items-center h-[4rem] gap-2 px-4 py-1 border-2 text-black border-slate-200  rounded-md">
-                  {/* <FaCalendarAlt className="" /> */}
-                  <div className="text-slate-400">
-                  {selected && (
-                          <>
-                            <div className="flex  items-baseline text-black">
-                              <span className="text-3xl py-1 pr-1 text-black font-bold">
-                                {" "}
-                                {selected.getDate()}
-                              </span>
-                              <span className="text-sm font-semibold">
-                                {selected.toLocaleString("default", {
-                                  month: "short",
-                                })}
-                                '
-                              </span>
-                              <span className="text-sm font-semibold">
-                                {" "}
-                                {selected.getFullYear()}
-                              </span>
-                              <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
-                            </div>
-                            <p className="text-black text-xs pb-2">
-                              {selected.toLocaleDateString()}
-                            </p>
-                          </>
-                        )}
+                  <div
+                    onClick={() => {
+                      setSelectedOption("date"), setIsVisible(true);
+                    }}
+                    className="flex items-center h-[4rem] gap-2 px-4 py-1 border-2 text-black border-slate-200  rounded-md"
+                  >
+                    {/* <FaCalendarAlt className="" /> */}
+                    <div className="text-slate-400">
+                      {selected && (
+                        <>
+                          <div className="flex  items-baseline text-black">
+                            <span className="text-3xl py-1 pr-1 text-black font-bold">
+                              {" "}
+                              {selected.getDate()}
+                            </span>
+                            <span className="text-sm font-semibold">
+                              {selected.toLocaleString("default", {
+                                month: "short",
+                              })}
+                              '
+                            </span>
+                            <span className="text-sm font-semibold">
+                              {" "}
+                              {selected.getFullYear()}
+                            </span>
+                            <FaCalendarWeek className="text-[#d3cfcf] ml-5 text-xl" />
+                          </div>
+                          <p className="text-black text-xs pb-2">
+                            {selected.toLocaleDateString()}
+                          </p>
+                        </>
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                {isVisible && selectedOption === "date" && (
-                        <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
-                          <Calendar
+                  {isVisible && selectedOption === "date" && (
+                    <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
+                      <Calendar
                             aria-label="Select a date"
                             value={""}
                             onChange={handleRangeChange}
                             minValue={currentDate}
                           />
-                        </div>
-                      )}
+
+                      {/* <Calendar
+                        onChange={handleDateChange}
+                        value={selectedDate}
+                        minDate={new Date()}
+                        tileContent={tileContent}
+                      /> */}
+                    </div>
+                  )}
                 </div>
-
-
-
-
 
                 <div className="flex items-start gap-2 px-3 py-2 border-2 text-black border-slate-200  rounded-md">
                   <FaCalendarAlt className="text-lg mt-1" />
@@ -1161,9 +1218,6 @@ const handelSwap=()=>{
                   </div>
                 </div>
 
-
-
-                
                 <div className="flex items-start gap-2 px-3 py-2 border-2 text-black border-slate-200  rounded-md">
                   <FaUserLarge className="text-lg mt-1" />
                   <div className="text-slate-400">
@@ -1172,12 +1226,12 @@ const handelSwap=()=>{
                   </div>
                 </div>
                 <div className="flex justify-center items-center">
-                <button
-                  onClick={handelSearch}
-                  className="bg-[#0A5EB0] w-full md:w-fit  py-2 px-3  font-semibold  text-lg rounded-md  text-white "
-                >
-                  Search Flights
-                </button>
+                  <button
+                    onClick={handelSearch}
+                    className="bg-[#0A5EB0] w-full md:w-fit  py-2 px-3  font-semibold  text-lg rounded-md  text-white "
+                  >
+                    Search Flights
+                  </button>
                 </div>
               </div>
             </div>
@@ -1574,7 +1628,6 @@ const handelSwap=()=>{
                       <button
                         onClick={() => handleDropdownToggle("cheapFlight")}
                         className="flex items-center w-full  h-full px-3 py-2  md:p-0   justify-center gap-2 text-sm font-medium bg-blue-500 hover:bg-blue-600 text-white md:px-4 md:py-3 lg:py-[3px] rounded-md shadow-md transition-all duration-300"
-                       
                         aria-expanded={
                           dropdowns.cheapFlight.isOpen ? "true" : "false"
                         }
@@ -1640,16 +1693,6 @@ const handelSwap=()=>{
               </Link>
             </div>
           </div>
-
-
-
-
-
-
-
-
-
-          
         </div>
       </div>
     </>
