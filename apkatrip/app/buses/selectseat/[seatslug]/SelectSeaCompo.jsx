@@ -233,7 +233,7 @@ const handelseetbook=(seat)=>{
             return(
               <div
             key={index}
-            className={`flex flex-col items-center p-4 w-[18rem] border rounded-lg shadow-md relative transition-all duration-300 ${
+            className={`flex flex-col items-center p-4  border rounded-lg shadow-md relative transition-all duration-300 ${
               !seat.SeatStatus
                 ? "bg-red-100 border-red-400" // Booked seats
                 : "bg-green-100 border-green-400" // Available seats
@@ -246,7 +246,7 @@ const handelseetbook=(seat)=>{
             <TiTick   className='absolute top-1 text-2xl right-2' />
             }
             <FaChair
-              className={`text-4xl ${
+              className={`text-2xl ${
                 !seat.SeatStatus ? "text-red-600" : "text-green-600"
               }`}
             />

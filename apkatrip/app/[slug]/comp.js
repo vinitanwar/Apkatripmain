@@ -54,6 +54,9 @@ const comp = ({ slug }) => {
   const selectedClass = params.get("selectedClass");
   const r_localFormattedDate = params.get("returndate");
   const date = new Date(selectedMinDate);
+const currencylist=useSelector(state=>state.currencySlice);
+const defaultcurrency= JSON.parse(localStorage.getItem("usercurrency")) || {symble:"₹",code:"INR",country:"India",}
+const cuntryprice=currencylist?.info?.rates?.[`${defaultcurrency.code}`]
 
   const offset = 6 * 60 * 55 * 1000;
 
@@ -130,8 +133,7 @@ const comp = ({ slug }) => {
   const [state2, setstate2] = useState();
 
   const [airlines, setairlines] = useState([]);
-  const [mineprice, setPrice] = useState();
-
+ 
   useEffect(() => {
     setstate(info);
 
@@ -187,21 +189,7 @@ const comp = ({ slug }) => {
     );
   }, [returnstate]);
 
-  const settings = {
-    infinite: true,
-    slidesToShow: 8,
-    slidesToScroll: 1,
-
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+ 
 
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -314,8 +302,8 @@ const comp = ({ slug }) => {
   return (
     <>
       {activePopup === "view-price" && srrFairdata && !ssrFair.isLoading && (
-        <div className="fixed inset-0 flex z-[9999] items-center justify-center bg-black bg-opacity-50 ">
-          <div className="p-6  bg-gray-100 max-h-screen relative">
+        <div className="fixed p-4 inset-0 flex  z-[9999] items-center justify-center bg-black bg-opacity-50  overflow-y-auto">
+          <div className="p-6  bg-gray-100  h-full md:max-h-screen relative">
             <MdCancel
               className="absolute top-2 right-2 text-2xl cursor-pointer"
               onClick={() => setActivePopup(null)}
@@ -362,7 +350,7 @@ const comp = ({ slug }) => {
                     <p className="text-sm text-gray-800 font-medium mt-2">
                       <strong>Tax:</strong>
                       <div className="grid grid-cols-3">
-                        {srrFairdata?.Results?.FareBreakdown?.[0]?.TaxBreakUp?.map(
+                          {srrFairdata?.Results?.FareBreakdown?.[0]?.TaxBreakUp?.map(
                           (taxinfo, index) => (
                             <p key={index}>
                               {taxinfo.key}: {taxinfo.value}
@@ -373,24 +361,46 @@ const comp = ({ slug }) => {
                     </p>
                   </div>
 
-                  <div className="mt-4 flex items-center justify-between">
-                    <p className="font-bold text-indigo-400">
-                      Base price: ₹
-                      {srrFairdata?.Results?.FareBreakdown?.[0]?.BaseFare || 0}
-                    </p>
-                    <p className="text-lg font-bold text-indigo-600">
-                      Total price: ₹
-                      {Number(
-                        srrFairdata?.Results?.FareBreakdown?.[0]?.BaseFare || 0
-                      ) +
-                        (srrFairdata?.Results?.FareBreakdown?.[0]?.TaxBreakUp?.reduce(
-                          (acc, arr) => acc + Number(arr.value || 0),
-                          0
-                        ) || 0)}
+                  <div className="mt-4  flex items-center justify-between">
+                    <p className=" text-[13px] md:text-lg font-bold text-indigo-400">
+                     <span  className="block md:inline">Base price: {defaultcurrency.symble}</span> 
+                     {
+    (() => {
+      const baseFare = srrFairdata?.Results?.FareBreakdown?.[0]?.BaseFare || 0;
+      const price = baseFare * cuntryprice; // Calculate the price
+      const priceString = price.toFixed(2); // Format the price to 2 decimal places
+      const [integerPart, decimalPart] = priceString.split("."); // Split into integer and decimal parts
+
+      // Ensure the decimal part has exactly 2 digits
+      return `${integerPart},${(decimalPart || "00").slice(0, 2)}`;
+    })()
+  }                    </p>
+                    <p className="  text-[13px] md:text-lg font-bold text-indigo-600">
+                     <span className="block md:inline">Total price: {defaultcurrency.symble}</span> 
+                     {(() => {
+    // Calculate BaseFare and TaxBreakUp
+    const baseFare = Number(srrFairdata?.Results?.FareBreakdown?.[0]?.BaseFare || 0);
+    const taxBreakUpTotal = srrFairdata?.Results?.FareBreakdown?.[0]?.TaxBreakUp?.reduce(
+      (acc, arr) => acc + Number(arr.value || 0),
+      0
+    ) || 0;
+
+    // Total price calculation
+    const totalPrice = (baseFare + taxBreakUpTotal) * cuntryprice;
+
+    // Format the price to two decimal places
+    const priceString = totalPrice.toFixed(2);
+
+    // Split into integer and decimal parts
+    const [integerPart, decimalPart] = priceString.split(".");
+
+    // Ensure the decimal part has exactly two digits
+    return `${integerPart},${(decimalPart || "00").slice(0, 2)}`;
+  })()}
                     </p>
                     <Link
                       href="/flight/checkout"
-                      className="px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded hover:bg-blue-600"
+                      className="px-4 py-2 bg-blue-500 text-white  text-[13px] text-nowrap md:text-sm font-medium rounded hover:bg-blue-600"
                     >
                       Book Now
                     </Link>
@@ -504,7 +514,7 @@ const comp = ({ slug }) => {
                             >
                               <div className="flex flex-col-reverse">
                                 {flight.Segments[0].map((info, index2) => (
-                                  <div className="flex items-center justify-between my-5">
+                                  <div className="flex items-center justify-between my-5" key={index2}>
                                     <div className="flex gap-3">
                                       <img
                                         className="w-[50px]"
@@ -576,16 +586,16 @@ const comp = ({ slug }) => {
                                         <div className="text-right flex-1">
                                           <div className="text-black text-lg font-bold whitespace-nowrap ">
                                             <span className="text-sm md:text-lg font-bold">
-                                              {
-                                                flight.Fare.OfferedFare.toLocaleString(
-                                                  "en-US",
-                                                  {
-                                                    style: "currency",
-                                                    currency:
-                                                      flight.Fare.Currency,
-                                                  }
-                                                ).split(".")[0]
-                                              }
+                                            {defaultcurrency.symble}
+                                            {(() => {
+    // Get the OfferedFare and multiply by cuntryprice
+    const offeredFare = flight.Fare?.OfferedFare || 0;
+    const price = offeredFare * cuntryprice; // Calculate the price
+    const priceString = price.toFixed(2); // Format the price to 2 decimal places
+    const [integerPart, decimalPart] = priceString.split("."); // Split into integer and decimal parts
+    // Ensure the decimal part has exactly 2 digits and format it with a comma
+    return `${integerPart}.${(decimalPart || "00").slice(0, 2)}`;
+  })()}
                                             </span>
                                             <p className="text-sm text-gray-700 font-light leading-tight">
                                               Total Price
@@ -593,34 +603,35 @@ const comp = ({ slug }) => {
                                           </div>
                                         </div>
                                         <button
-                                          onClick={
-                                            () =>
-                                              togglePopup(
-                                                "view-price",
-                                                flight.ResultIndex,
-                                              
-                                              )
-                                            // handelPrice(flight)
-                                          }
-                                          className="hidden sm:hidden  md:block text-sm font-semibold lg:h-8 text-blue-600 rounded-full px-4 bg-blue-200 border border-blue-600"
-                                        >
-                                          VIEW PRICES
-                                        </button>
+                                    onClick={
+                                      () =>
+                                        togglePopup(
+                                          "view-price",
+                                          flight.ResultIndex,
+                                          
+                                        )
+                                      // handelPrice(flight)
+                                    }
+                                    className="block text-[11.5px]  md:text-sm font-semibold md:h-8 text-blue-600 rounded-full p-1 px-2 md:px-4 bg-blue-200 border border-blue-600"
+                                  >
+                                    <span className="hidden md:inline">VIEW</span> PRICES
+                                  </button>
                                       </div>
                                     ) : (
                                       <div className="flex items-center gap-x-3 opacity-0">
                                         <div className="text-right flex-1">
                                           <div className="text-black text-lg font-bold whitespace-nowrap ">
                                             <span className="text-sm md:text-lg font-bold">
-                                              {flight.Fare.OfferedFare.toLocaleString(
-                                                "en-US",
-                                                {
-                                                  style: "currency",
-                                                  currency:
-                                                    flight.Fare.Currency,
-                                                }
-                                              )}
-                                            </span>
+                                            {defaultcurrency.symble}
+                                            {(() => {
+    // Get the OfferedFare and multiply by cuntryprice
+    const offeredFare = flight.Fare?.OfferedFare || 0;
+    const price = offeredFare * cuntryprice; // Calculate the price
+    const priceString = price.toFixed(2); // Format the price to 2 decimal places
+    const [integerPart, decimalPart] = priceString.split("."); // Split into integer and decimal parts
+    // Ensure the decimal part has exactly 2 digits and format it with a comma
+    return `${integerPart}.${(decimalPart || "00").slice(0, 2)}`;
+  })()}                                            </span>
                                             <p className="text-sm text-gray-700 font-light leading-tight">
                                               Total Price
                                             </p>
@@ -915,8 +926,23 @@ const comp = ({ slug }) => {
                                                     TOTAL
                                                   </th>
                                                   <th className="border border-gray-300 px-4 text-sm py-2 text-left">
-                                                    ₹{" "}
-                                                    {flight.Fare.PublishedFare}
+                                                  {defaultcurrency.symble}{" "}
+                                                  {(() => {
+    // Calculate the PublishedFare
+    const publishedFare = Number(flight.Fare?.PublishedFare || 0);
+
+    // Total price calculation
+    const totalPrice = publishedFare * cuntryprice;
+
+    // Format the price to two decimal places
+    const priceString = totalPrice.toFixed(2);
+
+    // Split into integer and decimal parts
+    const [integerPart, decimalPart] = priceString.split(".");
+
+    // Ensure the decimal part has exactly two digits
+    return `${integerPart},${(decimalPart || "00").slice(0, 2)}`;
+  })()}
                                                   </th>
                                                 </tr>
                                               </thead>
@@ -927,7 +953,14 @@ const comp = ({ slug }) => {
                                                     Base Fare
                                                   </td>
                                                   <td className="border border-gray-300 px-4 py-2 text-sm ">
-                                                    ₹ {flight.Fare.BaseFare}
+                                                    {defaultcurrency.symble} {(() => {
+    const baseFare = Number(flight.Fare?.BaseFare || 0);
+    const totalPrice = baseFare * cuntryprice;
+    const priceString = totalPrice.toFixed(2);
+
+    const [integerPart, decimalPart] = priceString.split(".");
+    return `${integerPart},${(decimalPart || "00").slice(0, 2)}`;
+  })()}
                                                   </td>
                                                 </tr>
                                                 <tr className="">
@@ -935,7 +968,22 @@ const comp = ({ slug }) => {
                                                     Tax
                                                   </td>
                                                   <td className="border border-gray-300 px-4 py-2 text-sm ">
-                                                    ₹ {flight.Fare.Tax}
+                                           {defaultcurrency.symble}  {(() => {
+    // Get the Tax and multiply by cuntryprice
+    const tax = Number(flight.Fare?.Tax || 0);
+
+    // Calculate the total tax price
+    const totalTaxPrice = tax * cuntryprice;
+
+    // Format the price to two decimal places
+    const priceString = totalTaxPrice.toFixed(2);
+
+    // Split into integer and decimal parts
+    const [integerPart, decimalPart] = priceString.split(".");
+
+    // Ensure the decimal part has exactly two digits and return the formatted price
+    return `${integerPart},${(decimalPart || "00").slice(0, 2)}`;
+  })()}
                                                   </td>
                                                 </tr>
                                               </tbody>
@@ -1154,14 +1202,16 @@ const comp = ({ slug }) => {
                                   <div className="text-right flex-1">
                                     <div className="text-black text-lg font-bold whitespace-nowrap">
                                       <span className="text-sm md:text-lg font-bold">
-                                        {flight.Fare.OfferedFare.toLocaleString(
-                                          "en-US",
-                                          {
-                                            style: "currency",
-                                            currency: flight.Fare.Currency,
-                                          }
-                                        )}
-                                      </span>
+                                        {defaultcurrency.symble} 
+                                        {(() => {
+    // Get the OfferedFare and multiply by cuntryprice
+    const offeredFare = flight.Fare?.OfferedFare || 0;
+    const price = offeredFare * cuntryprice; // Calculate the price
+    const priceString = price.toFixed(2); // Format the price to 2 decimal places
+    const [integerPart, decimalPart] = priceString.split("."); // Split into integer and decimal parts
+    // Ensure the decimal part has exactly 2 digits and format it with a comma
+    return `${integerPart}.${(decimalPart || "00").slice(0, 2)}`;
+  })()}                                      </span>
                                       <p className="text-sm text-gray-700 font-light leading-tight">
                                         Total Price
                                       </p>
@@ -1177,9 +1227,9 @@ const comp = ({ slug }) => {
                                         )
                                       // handelPrice(flight)
                                     }
-                                    className="hidden sm:hidden md:block text-sm font-semibold h-8 text-blue-600 rounded-full px-4 bg-blue-200 border border-blue-600"
+                                    className="block text-[11.5px]  md:text-sm font-semibold md:h-8 text-blue-600 rounded-full p-1 px-2 md:px-4 bg-blue-200 border border-blue-600"
                                   >
-                                    VIEW PRICES
+                                    <span className="hidden md:inline">VIEW</span> PRICES
                                   </button>
                                 </div>
                               </div>
@@ -1450,7 +1500,22 @@ const comp = ({ slug }) => {
                                                   TOTAL
                                                 </th>
                                                 <th className="border border-gray-300 px-4 text-sm py-2 text-left">
-                                                  ₹ {flight.Fare.PublishedFare}
+                                                  {defaultcurrency.symble}  {(() => {
+    // Get the PublishedFare and multiply by cuntryprice
+    const publishedFare = Number(flight.Fare?.PublishedFare || 0);
+
+    // Calculate the total price
+    const totalPrice = publishedFare * cuntryprice;
+
+    // Format the total price to two decimal places
+    const priceString = totalPrice.toFixed(2);
+
+    // Split into integer and decimal parts
+    const [integerPart, decimalPart] = priceString.split(".");
+
+    // Ensure the decimal part has exactly two digits and return the formatted price
+    return `${integerPart},${(decimalPart || "00").slice(0, 2)}`;
+  })()}
                                                 </th>
                                               </tr>
                                             </thead>
@@ -1461,7 +1526,22 @@ const comp = ({ slug }) => {
                                                   Base Fare
                                                 </td>
                                                 <td className="border border-gray-300 px-4 py-2 text-sm ">
-                                                  ₹ {flight.Fare.BaseFare}
+                                                  {defaultcurrency.symble}  {(() => {
+    // Get the BaseFare and multiply by cuntryprice
+    const baseFare = Number(flight.Fare?.BaseFare || 0);
+
+    // Calculate the total price
+    const totalPrice = baseFare * cuntryprice;
+
+    // Format the total price to two decimal places
+    const priceString = totalPrice.toFixed(2);
+
+    // Split into integer and decimal parts
+    const [integerPart, decimalPart] = priceString.split(".");
+
+    // Ensure the decimal part has exactly two digits and return the formatted price
+    return `${integerPart},${(decimalPart || "00").slice(0, 2)}`;
+  })()}
                                                 </td>
                                               </tr>
                                               <tr className="">
@@ -1469,7 +1549,22 @@ const comp = ({ slug }) => {
                                                   Tax
                                                 </td>
                                                 <td className="border border-gray-300 px-4 py-2 text-sm ">
-                                                  ₹ {flight.Fare.Tax}
+                                                {defaultcurrency.symble}  {(() => {
+    // Get the Tax and multiply by cuntryprice
+    const tax = Number(flight.Fare?.Tax || 0);
+
+    // Calculate the total tax price
+    const totalTaxPrice = tax * cuntryprice;
+
+    // Format the price to two decimal places
+    const priceString = totalTaxPrice.toFixed(2);
+
+    // Split into integer and decimal parts
+    const [integerPart, decimalPart] = priceString.split(".");
+
+    // Ensure the decimal part has exactly two digits and return the formatted price
+    return `${integerPart},${(decimalPart || "00").slice(0, 2)}`;
+  })()}
                                                 </td>
                                               </tr>
                                             </tbody>
@@ -2588,6 +2683,7 @@ const comp = ({ slug }) => {
             </div>
           </div>
         )}
+        
       </div>
     </>
   );

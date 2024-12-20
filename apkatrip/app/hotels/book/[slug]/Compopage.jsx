@@ -8,6 +8,8 @@ import axios from 'axios';
 import { apilink, imgurl } from '../../../Component/common';
 import { FaPaypal, FaCcVisa, FaCcMastercard, FaCcAmex, FaCcDiscover } from 'react-icons/fa';
 import { MdCancel } from "react-icons/md";
+import { toast,Bounce } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -53,18 +55,21 @@ returnPolicy:"Lorem Ipsum is simply dummy text of the printing and typesetting i
 hotelPolicy:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
 }
 const [hotelinfo,sethotelinfo]=useState()
+const userLogind=JSON.parse(localStorage.getItem("apkatripUser"));
 
 useEffect(()=>{
 const gethotel=async()=>{
   const res=await axios.get(`${apilink}/hotel/single/${slug}`)
   sethotelinfo(res.data)
+   
+
 }
 gethotel()
 
 },[])
 
 
-
+const route=useRouter()
 const [formData, setFormData] = useState({
   name: '',
   phoneNumber: '',
@@ -100,16 +105,54 @@ booknowrooom["current"]={...booknowrooom.current,[e.target.name]:e.target.value}
 }
 
 
-const [showbooknow,setshowbooknow]=useState(true)
-const handelBookNow=(roomid,price)=>{
-  booknowrooom["current"]={hotelid:hotelinfo.hotel.id,roomid,price}
+const [showbooknow,setshowbooknow]=useState(false)
+
+
+const handelBookNow=(room_type,price)=>{
+booknowrooom["current"]={user_id:userLogind,hotel_id:hotelinfo.hotel.id,room_type,price,hotel_name:hotelinfo.hotel.property_name,address:`${hotelinfo.hotel.address}`}
   setshowbooknow(true)
-  console.log(booknowrooom)
 }
 
-const handelpaynow=()=>{
+const handelpaynow=async()=>{
+  if(!userLogind){
+    toast.info("login your Account", {
+      position: "top-right",
+      autoClose: 5000,
   
+      transition: Bounce,
+    });
+    route.push("/user/login")
+  }
+  const res= await axios.post(`${apilink}/hotelreg/booked`,{...booknowrooom["current"],date_of_booking:new Date(Date.now())})
+
+if(res.data.success){
+
+  toast.success(res.data.message, {
+    position: "top-right",
+    autoClose: 5000,
+
+    transition: Bounce,
+  });
+  setshowbooknow(false)
 }
+else{
+  toast.error(res.data.message, {
+    position: "top-right",
+    autoClose: 5000,
+
+    transition: Bounce,
+  });
+}
+
+
+
+  }
+
+
+
+
+
+
   return (
     <div className='   lg:px-20 xl:px-32 py-4 bg-[#dbdbdb86]'>
 
@@ -128,17 +171,17 @@ const handelpaynow=()=>{
         
             <div>
               <label className="block text-gray-700"> Contact Number *</label>
-              <input type="text" name='' onChange={(e)=>handelRefChange(e)} className="w-full border border-gray-300 rounded-md p-2" placeholder="Enter Contact Number" required />
+              <input type="text" name='user_number' onChange={(e)=>handelRefChange(e)} className="w-full border border-gray-300 rounded-md p-2" placeholder="Enter Contact Number" required />
             </div>
         
             <div>
               <label className="block text-gray-700">CheckInDate *</label>
-              <input type="date" className="w-full border border-gray-300 rounded-md p-2" placeholder="Enter username" required />
+              <input type="date" name="check_in_date" onChange={(e)=>handelRefChange(e)} className="w-full border border-gray-300 rounded-md p-2" placeholder="Enter username" required />
             </div>
 
             <div>
               <label className="block text-gray-700">CheckOutDate *</label>
-              <input type="date" className="w-full border border-gray-300 rounded-md p-2" placeholder="Enter username" required />
+              <input type="date" name="check_out_date"  onChange={(e)=>handelRefChange(e)} className="w-full border  border-gray-300 rounded-md p-2" placeholder="Enter username" required />
             </div>
 
         
@@ -397,7 +440,7 @@ const handelpaynow=()=>{
 </div>
 
 <div>
-  <button onClick={()=>handelBookNow(room.id,room.price)} className='bg-orange-500 text-white font-semibold p-1 px-4 rounded-md '>
+  <button onClick={()=>handelBookNow(room.bed_type,room.price)} className='bg-orange-500 text-white font-semibold p-1 px-4 rounded-md '>
     Book Now
   </button>
 </div>

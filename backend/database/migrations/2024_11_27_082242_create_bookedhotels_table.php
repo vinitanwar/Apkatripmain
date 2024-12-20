@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('check_out_date');
             $table->string('room_type');
             $table->decimal('price', 8, 2);
-            $table->dateTime('date_of_booking');
+            
             $table->text('initial_response')->nullable();
             $table->boolean('refund')->default(false);
             $table->text('response')->nullable();

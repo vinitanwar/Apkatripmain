@@ -684,8 +684,8 @@ const handelSwap=()=>{
       <div className="header relative  md:px-5  lg:px-12 xl:px-24">
         <div className=" bg-[#002043] h-[15rem] absolute inset-0  -z-10" />
         <div className="w-full flex md:justify-end	">
-        <div className="">
-            <ul className="text-black lastNavigation bg-gray-100  px-6 w-full  mx-end   md:px-5  text-sm py-2 gap-3 grid grid-cols-3  md:flex  lg:w-full items-center shadow-md"
+        <div className="w-full md:w-fit">
+            <ul className="text-black lastNavigation bg-gray-100   px-2 w-full  md:mx-end   md:px-5   text-sm py-2  gap-0 md:gap-3 grid grid-cols-3  md:flex  lg:w-full items-center justify-between shadow-md"
              onMouseLeave={() => setBottomDropdown(null)}>
               {topAndBottomDropDown.HomeBookTravelBuinessBottomDropDown.map(
                 (elm, index) => (
@@ -697,7 +697,7 @@ const handelSwap=()=>{
                     className="relative group"
                   >
                     <div>
-                      <button className="flex text-nowrap items-center gap-1 hover:text-blue-500">
+                      <button className="flex text-[11.5px] md:text-sm text-nowrap items-center md:gap-1 hover:text-blue-500">
                         {elm.heading}
                         <IoIosArrowDown
                           className={`${
@@ -708,7 +708,7 @@ const handelSwap=()=>{
                       {bottomDropdown === index && (
                         <ul
                           onMouseLeave={() => setBottomDropdown(null)}
-                          className="   absolute topfull z-40 left-0 bg-white border border-gray-300 rounded-lg shadow-md w-max py-2"
+                          className={`  absolute  z-40  bg-white border border-gray-300 rounded-lg shadow-md w-max py-2 ${index==0 || index==3?"left-0":" right-0"}  `}
                         >
                           {elm.listData?.map((item, idx) => (
                             <li

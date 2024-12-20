@@ -17,28 +17,19 @@ import { RxCross2 } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaHotel } from "react-icons/fa6";
 import { FaUserCircle } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { getCurrencyDef } from "./Store/slices/currencySlice";
 
 const Topbar = () => {
 
 
-  function getCurrencySymbol (locale, currency) {
-    return (0).toLocaleString(
-      locale,
-      {
-        style: 'currency',
-        currency: currency,
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0
-      }
-    ).replace(/\d/g, '').trim()
-  }
+  
 
 
 
- console.log( getCurrencySymbol('en-US', 'inr'),"sdfcsdvvwefwdfwefcwefwrcf")
 
   const router = useRouter();
-
+const dispatch =useDispatch()
   const [openDropdown, setOpenDropdown] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 const [userlogin,setUserLogine]=useState(null);
@@ -98,7 +89,8 @@ const [userlogin,setUserLogine]=useState(null);
     }
   };
   const [activeTab, setActiveTab] = useState("signup");
-
+const [currencyappled,setcurrencyappled]=useState(false)
+const [defaultcurrency,setdefaultcurrency]=useState( JSON.parse(localStorage.getItem("usercurrency")) ||{symble:"₹",code:"INR",country:"India",})
   const [countryOpner, setCounrtyOpner] = useState(false);
   const countryLanguages = [
     { name: "English (US)", image: "/images/flags/us.webp", langCode: "en" },
@@ -211,277 +203,130 @@ const [userlogin,setUserLogine]=useState(null);
     },
   ];
 
-  const topAndBottomDropDown = {
-    topFeaturestopDropDown: [
-      {
-        heading: "List Your Property",
-        list: [
-          {
-            link: "",
-            listName: "Benefits of Booking Directly",
-          },
-          {
-            link: "",
-            listName: "Custom Travel Guidance with Experts",
-          },
-          {
-            link: "",
-            listName: "24-Hour Cancellation",
-          },
-        ],
-      },
-      {
-        heading: "Business Associates",
-        list: [
-          {
-            link: "",
-            listName: "Benefits of Booking Directly",
-          },
-          {
-            link: "",
-            listName: "Custom Travel Guidance with Experts",
-          },
-          {
-            link: "",
-            listName: "24-Hour Cancellation",
-          },
-        ],
-      },
-      {
-        heading: "Corporate Travel Desc",
-        list: [
-          {
-            link: "",
-            listName: "Benefits of Booking Directly",
-          },
-          {
-            link: "",
-            listName: "Custom Travel Guidance with Experts",
-          },
-          {
-            link: "",
-            listName: "24-Hour Cancellation",
-          },
-        ],
-      },
-    ],
-    HomeBookTravelBuinessBottomDropDown: [
-      {
-        heading: "Home",
-        listData: [
-          {
-            link: "",
-            list: " ApkaTrip.com",
-          },
-          {
-            link: "",
-            list: " Our Approach",
-          },
-          {
-            link: "",
-            list: " Responsibe Tourism",
-          },
-          {
-            link: "",
-            list: "Membership & Loyalty Program",
-          },
-          {
-            link: "",
-            list: "News & Updates",
-          },
-          {
-            link: "",
-            list: "Careers",
-          },
-          {
-            link: "",
-            list: "Privacy Policy",
-          },
-          {
-            link: "",
-            list: "Terms & Conditions",
-          },
-        ],
-      },
-      {
-        heading: "Book",
-        listData: [
-          {
-            link: "",
-            list: " Book Flight",
-          },
-          {
-            link: "",
-            list: " Book Hotels",
-          },
-          {
-            link: "",
-            list: "Holiday Packages",
-          },
-          {
-            link: "",
-            list: "Group Tours",
-          },
-          {
-            link: "",
-            list: "Car Rental",
-          },
-          {
-            link: "",
-            list: "Bus Tickets",
-          },
-        ],
-      },
-      {
-        heading: "Travel Assistance",
-        listData: [
-          {
-            link: "",
-            list: "Customer Support",
-          },
-          {
-            link: "",
-            list: "Check Booking Status",
-          },
-          {
-            link: "",
-            list: "Web Check-in",
-          },
-          {
-            link: "",
-            list: "Flight Status",
-          },
-          {
-            link: "",
-            list: "PNE Status Check",
-          },
-          {
-            link: "",
-            list: "Local Guides",
-          },
-        ],
-      },
-      {
-        heading: "Business Assistance",
-        listData: [
-          {
-            link: "",
-            list: "Extranet Login",
-          },
-          {
-            link: "",
-            list: "List Your Property",
-          },
-          {
-            link: "",
-            list: "Become an Affiliate",
-          },
-          {
-            link: "",
-            list: "Business Associates Support",
-          },
-        ],
-      },
-      {
-        heading: "Services",
-        listData: [
-          {
-            link: "",
-            list: "Flights",
-          },
-          {
-            link: "",
-            list: "Hotels",
-          },
-          {
-            link: "",
-            list: "Apartments",
-          },
-          {
-            link: "",
-            list: "Resorts",
-          },
+  const currency=[
+{
+  symble:"₹",
+  code:"INR",
+  country:"India",
+},
+{country:"America",
+  symble:"$",
+  code:"USD"
+},
+{country:"Europen",
+  symble:"€",
+  code:"EUR"
+},
+{country:"China",
+  symble:"¥",
+  code:"CNY"
+},
+{country:"Russia",
+  symble:"₽",
+  code:"RUB"
+},
+{country:"Japan",
+  symble:"¥",
+  code:"JPY"
+},
+{country:"Australia",
+  symble:"$",
+  code:"AUD"
+},
+{
+  country:"Canada",
+  symble:"$",
+  code:"CAD"
+},
+{country:"India",
+  symble:"د.إ",
+  code:"AED"
+},
+{country:"India",
+  symble:"؋",
+  code:"AFN"
+},
+{country:"India",
+  symble:"L",
+  code:"ALL"
+},
+{country:"India",
+  symble:"฿",
+  code:"THB"
+},
+{country:"India",
+  symble:"Rp",
+  code:"IDR"
+},
+{country:"India",
+  symble:"د.ع",
+  code:"IQD"
+},{country:"India",
+  symble:"د.ك",
+  code:"KWD"
+},
+{country:"India",
+  symble:"$",
+  code:"USD"
+},
+{country:"India",
+  symble:"$",
+  code:"USD"
+},
+{country:"India",
+  symble:"$",
+  code:"USD"
+},
+{country:"India",
+  symble:"$",
+  code:"USD"
+},
+{country:"India",
+  symble:"$",
+  code:"USD"
+},
+{country:"India",
+  symble:"$",
+  code:"USD"
+},
+{country:"India",
+  symble:"$",
+  code:"USD"
+},
+{country:"India",
+  symble:"$",
+  code:"USD"
+},
+{country:"India",
+  symble:"$",
+  code:"USD"
+},
+{country:"India",
+  symble:"$",
+  code:"USD"
+},
 
-          {
-            link: "",
-            list: "Vilas",
-          },
 
-          {
-            link: "",
-            list: "Homestay",
-          },
+  ];
 
-          {
-            link: "",
-            list: "Transfers",
-          },
+useEffect(()=>{
+  dispatch(getCurrencyDef());
+},[ ])
 
-          {
-            link: "",
-            list: "Bus Tickets",
-          },
-          {
-            link: "",
-            list: "Cruises",
-          },
-          {
-            link: "",
-            list: "Charter Services",
-          },
-          {
-            link: "",
-            list: "Holiday Packages",
-          },
-          {
-            link: "",
-            list: "Elite Lucuary",
-          },
-          {
-            link: "",
-            list: "Visa Services",
-          },
-          {
-            link: "",
-            list: "Forex Currency Exchange",
-          },
-          {
-            link: "",
-            list: "Train Services",
-          },
-          {
-            link: "",
-            list: "Seminars & Conferences",
-          },
-          {
-            link: "",
-            list: "Advertisments",
-          },
-        ],
-      },
-      {
-        heading: "Blogs",
-        listData: [
-          {
-            link: "",
-            list: "Top 10 Must-Visit Destinations in 2024",
-          },
-          {
-            link: "",
-            list: "A Guide to Budget-Friendly Travel",
-          },
-          {
-            link: "",
-            list: "How to Plan a Perfect Family Vacation",
-          },
-          {
-            link: "",
-            list: "Exploring Offbeat Locations in India",
-          },
-        ],
-      },
-    ],
-  };
+
+  const handelCurrencySEt=(info)=>{
+    localStorage.setItem("usercurrency", JSON.stringify(info));
+ 
+  
+setdefaultcurrency(info)
+setcurrencyappled(false)
+
+
+
+  }
+
+
+
   return (
     <div className="bg-red-400 border-b py-3   lg:py-4 relative md:sticky top-0 navbar-main  border-blue-100 px-4  md:px-8 lg:px-16 xl:px-20">
       <div className="container mx-auto flex py-0  flex-row justify-between items-center">
@@ -557,195 +402,31 @@ const [userlogin,setUserLogine]=useState(null);
 
           <div className="flex  justify-between items-center   ">
             <div className="flex items-center space-x-2">
-              {/* <div
-                className="relative hidden  "
-                onMouseEnter={() => handleMouseEnter("support")}
-              >
-                <button className="flex items-center ">
-                  <div className="supportusrico meuicowidth bg-gray-600 p-2 rounded-full"></div>
-                  <FaChevronDown />
-                </button>
-                {openDropdown === "support" && (
-                  <div
-                    className="absolute w-72 z-[999] top-full right-0 mt-2 bg-white text-black rounded-lg shadow-two"
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <div className="flex items-center  border-b p-3">
-                      <span className="menuropos callsupport-roico w-10 h-10 rounded-lg"></span>
-                      <Link href="tel:9877579319" className="">
-                        <span className="font-semibold text-xs">
-                          Call Support
-                        </span>
-                        <span className="block text-sm font-semibold text-blue-600">
-                          Tel : 9877579319
-                        </span>
-                      </Link>
-                    </div>
-                    <div className="flex items-center p-3">
-                      <span className="callsupport-roico mailsupport-roico w-10 h-10 bg-[#f9f8fa] rounded-lg"></span>
-                      <Link href="mailto:care@apkatrip.com" className="">
-                        <span className="font-semibold text-xs">
-                          Mail Support
-                        </span>
-                        <span className="block text-sm font-semibold text-blue-600">
-                          Care@apkatrip.com
-                        </span>
-                      </Link>
-                    </div>
-                  </div>
-                )}
-              </div> */}
+             
 
-              {/* <div
-                className="country selection relative flex gap-3"
-                onMouseEnter={() => handleMouseEnter("langSelect")}
-              >
-                <button className="flex items-center space-x-1">
-                  <img src="/Images/flag_IN.svg" width="18" alt="" />
-                  <span>India</span>
-                  <FaChevronDown />
-                </button>
-                {openDropdown === "langSelect" && (
-                  <div
-                    className="absolute w-72 z-[999] p-2 top-full right-0 mt-2 bg-white text-black rounded-lg shadow-two"
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <div className="flex justify-between">
-                      <div className="">
-                        <p className="font-semibold text-xs">Choose Country</p>
-                        <div className="flex flex-col mt-2 space-y-2">
-                          <div
-                            className="flex items-center cursor-pointer"
-                            onClick={() =>
-                             
-                            }
-                          >
-                            <img src="/Images/flag_INR.svg" width="18" alt="" />
-                            <span className="ml-2 font-semibold text-sm">
-                              India
-                            </span>
-                          </div>
-                          <div
-                            className="flex items-center cursor-pointer"
-                            onClick={() =>
-                            
-                            }
-                          >
-                            <img src="/Images/flag_AED.svg" width="18" alt="" />
-                            <span className="ml-2 font-semibold text-sm">
-                              UAE
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="">
-                        <p className="font-semibold text-xs">Choose Currency</p>
-                        <div className="mt-2">
-                          <div className="flex flex-col space-y-2">
-                            <div className="flex items-center cursor-pointer">
-                              <span className="ml-2 font-semibold text-sm">
-                                INR
-                              </span>
-                            </div>
-                            <div className="flex items-center cursor-pointer">
-                              <span className="ml-2 font-semibold text-sm">
-                                AED
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-3 border-t border-gray-200">
-                      <p className="font-semibold text-xs mt-2">
-                        Choose Language
-                      </p>
-                      <div className="mt-2 h-16 overflow-hidden overflow-y-auto grid grid-cols-3 gap-1 justify-between">
-                        {[
-                          "en",
-                          "hi",
-                          "bn",
-                          "ar",
-                          "pa",
-                          "gu",
-                          "ru",
-                          "sp",
-                          "fr",
-                          "ta",
-                        ].map((langCode) => (
-                          <label
-                            key={langCode}
-                            className="border flex items-center px-2 py-1 cursor-pointer"
-                          >
-                            <input
-                              type="radio"
-                              name="optLang"
-                              value={langCode}
-                              checked={selectedLang === langCode}
-                              onChange={handleLanguageChange}
-                              className="mr-2"
-                            />
-                            <span className="font-semibold text-xs">
-                              {langCode === "en"
-                                ? "English"
-                                : langCode === "hi"
-                                ? "Hindi"
-                                : langCode === "bn"
-                                ? "Bengali"
-                                : langCode === "ar"
-                                ? "Arabic"
-                                : langCode === "pa"
-                                ? "Punjabi"
-                                : langCode === "gu"
-                                ? "Gujarati"
-                                : langCode === "sp"
-                                ? "Spanish"
-                                : langCode === "fr"
-                                ? "French"
-                                : langCode === "ru"
-                                ? "Russian"
-                                : "Tamil"}
-                            </span>
-                          </label>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div> */}
+             
 
               {/* counry selction  */}
               <div className="ContrySection">
-                {/* <button
-                  onClick={() => setCounrtyOpner(!countryOpner)}
-                  className="flex relative z-40 items-center space-x-1"
-                >
-                  <img src="/Images/flag_IN.svg" width="18" alt="" />
-                  <span>India</span>
-                  <FaChevronDown
-                    className={`${countryOpner && "rotate-180"}`}
-                  />
-                </button> */}
-
-                {countryLanguages.map(
-                  (lang) =>
+               {countryLanguages.map(
+                  (lang,ind) =>
                     lang.langCode === selectedLang && (
                       <button
+                      key={ind}
                         onClick={() => setCounrtyOpner(!countryOpner)}
-                        className="flex relative z-40 items-center space-x-1"
+                        className="flex relative z-40 items-center space-x-1 text-[12px]  md:text-md"
                       >
-                        <img src={lang.image}    className="w-8 h-8 rounded-full object-fill max-w-full"  alt="" />
-                        <span>{lang.name}</span>
+                        <img src={lang.image}    className="w-6 h-6   md:w-8 md:h-8 rounded-full object-fill max-w-full"  alt="" />
+                        <span className="text-nowrap">{lang.name}</span>
                         <FaChevronDown
-                          className={`${countryOpner && "rotate-180"}`}
+                          className={`${countryOpner && "rotate-180"} hidden md:block`}
                         />
                       </button>
                     )
                 )}
 
                 {countryOpner && (
-                  <div className="fixed flex justify-center items-center bg-[rgba(0,0,0,0.5)] inset-0" onClick={()=>setCounrtyOpner(false)}>
+                  <div className="fixed flex justify-center items-center bg-[rgba(0,0,0,0.5)] inset-0 p-4" >
                     <div className="h-[40rem] w-[800px] rounded-lg p-3 bg-white overflow-y-scroll">
                       <div className="space-y-5 ">
                         <div className="flex justify-between">
@@ -757,13 +438,17 @@ const [userlogin,setUserLogine]=useState(null);
                             <RxCross2 />
                           </button>
                         </div>
+                        <div className="flex gap-11">
+
+<div >
                         <p className="text-sm font-bold">Cureent Language</p>
-                        {countryLanguages.map(
+                        { countryLanguages.map(
                           (lang) =>
                             lang.langCode === selectedLang && (
                               <div
                                 key={lang.langCode}
-                                className="flex items-center gap-2"
+                                className="flex items-center gap-2 cursor-pointer"
+                                onClick={()=>setcurrencyappled(false)}
                               >
                                 <img
                                   src={lang.image}
@@ -774,8 +459,32 @@ const [userlogin,setUserLogine]=useState(null);
                               </div>
                             )
                         )}
+                        </div>
+
+<div className="">
+<p className="text-sm font-bold">Cureent Currency</p>
+<div
+                            
+                            className="flex items-center gap-2 cursor-pointer"
+                            onClick={()=>setcurrencyappled(true)}
+                          >
+                           <p className="text-2xl font-semibold">{defaultcurrency.symble}</p>
+                            <p>{defaultcurrency.code}</p>
+                          </div>
+
+</div>
+</div>
+
+
                       </div>
+
+
+                     
+
                       <div className="h-[2px] mt-5 bg-gray-200"></div>
+
+{!currencyappled &&
+
                       <div className="Languages-choose">
                         <h4 className="font-bold text-sm">All Languages</h4>
                         <div className="grid grid-cols-2 sm:grid-cols-3  gap-4">
@@ -797,15 +506,44 @@ const [userlogin,setUserLogine]=useState(null);
                           ))}
                         </div>
                       </div>
+}
+
+
+{ currencyappled &&
+   <div className="Languages-choose">
+   <h4 className="font-bold text-sm">All Currency</h4>
+   <div className="grid grid-cols-2 sm:grid-cols-5  gap-4">
+     {currency.map((lang, index) => (
+       <div
+         key={index}
+         className="flex flex-col items-center cursor-pointer  text-xs  gap-2 p-2  "
+         onClick={() =>
+           handelCurrencySEt(lang)
+         }
+       >
+         <p className="text-2xl font-bold">{lang.symble}</p>
+
+        
+         <span>{lang.code} ({lang.country})</span>
+       </div>
+     ))}
+   </div>
+ </div>
+}
+
+
                     </div>
                   </div>
                 )}
-              </div>
 
+
+
+              </div>
+ 
               {/* below md screen  */}
               <div className="">
                 <div
-                  className="md:hidden relative top-[4px] flex ml-5"
+                  className="hidden relative top-[4px]  ml-5"
                   onClick={() => togglePopup(2)} // Toggle popup with ID 2
                 >
                   {hasNewNotification && (
@@ -847,15 +585,15 @@ const [userlogin,setUserLogine]=useState(null);
             </div>
 
             {/* login and singup  */}
-            <div className=" md:flex items-center justify-center space-x-4 mt-1  hidden ">
-{userlogin &&  <Link href={"/user"}><FaUserCircle className="text-3xl mb-2 " /></Link>  }
+            <div className=" flex items-center justify-center space-x-4 mt-1   ">
+{userlogin &&  <Link href={"/user"}><FaUserCircle className="md:text-3xl mb-2 " /></Link>  }
               {!userlogin &&
               <Link
                 className="relative"
                href={"/user/login"}
               >
                 <div className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white px-6 py-2 font-semibold rounded-full text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-300 cursor-pointer">
-                  Login or Signup
+                  Login <span className="hidden md:inline"> or Signup</span>
                 </div>
 {/* 
                 {openDropdown === "signUp" && (

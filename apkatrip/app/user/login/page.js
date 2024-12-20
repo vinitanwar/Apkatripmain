@@ -121,16 +121,18 @@ const page = () => {
   };
 
   return (
-    <div className="min-h-[70vh] bg-[#d4d4d485] flex justify-center items-center">
+    <div className="min-h-[70vh] bg-[#d4d4d485] flex justify-center items-center ">
       <div className="relative">
+
+
         <div
-          className={`absolute md:w-full max-h-full top-0 left-0 bg-white p-5 rounded-md shadow-md flex flex-col items-center gap-3  ${
+          className={`  absolute w-[93.5%] md:w-full max-h-full top-0 left-3 md:left-0 bg-white p-5 rounded-md shadow-md flex flex-col items-center gap-3  ${
             loginpage
               ? "scale-0 origin-top-left"
               : "scale-1 origin-bottom-right"
           } duration-700`}
         >
-          <div className="w-1/4">
+          <div className="w-2/5  md:w-1/4">
             <img src="/Images/newlogo.png" />
           </div>
 
@@ -189,9 +191,9 @@ const page = () => {
             Don't have Account? Signup
           </div>
         </div>
-
+        
         {/* sign up code  */}
-
+<div className="p-3">
         <div
           className={`bg-white p-2 md:p-5 w-full rounded-md shadow-md flex flex-col md:items-center gap-3  ${
             !loginpage
@@ -320,6 +322,9 @@ const page = () => {
             Already have account? Login
           </div>
         </div>
+        </div>
+
+        
       </div>
     </div>
   );

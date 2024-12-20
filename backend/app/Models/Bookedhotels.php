@@ -22,12 +22,13 @@ class Bookedhotels extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
-        'user_name',
+        "user_id",
+        'hotel_id',
+        'user_name', 
         'user_number',
         'hotel_name',
         'location',
-        'address',
+        'address',  
         'check_in_date',
         'check_out_date',
         'room_type',
@@ -38,29 +39,21 @@ class Bookedhotels extends Model
         'response',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array<string, string>
-     */
+    
     protected $casts = [
         'check_in_date' => 'date',
         'check_out_date' => 'date',
         'price' => 'decimal:2',
         'refund' => 'boolean',
-        'date_of_booking' => 'datetime',
+       
     ];
 
-    /**
-     * Relationship to the user (apkatripusers).
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id', 'id')->withDefault([
-            'name' => 'Deleted User',
-            'number' => null,
-        ]);
-    }
+    
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'user_id', 'id')->withDefault([
+    //         'name' => 'Deleted User',
+    //         'number' => null,
+    //     ]);
+    // }
 }

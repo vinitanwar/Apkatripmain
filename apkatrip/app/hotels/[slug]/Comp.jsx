@@ -48,7 +48,9 @@ const renderStars = (rating) => {
     </div>
   );
 };
-
+const currencylist=useSelector(state=>state.currencySlice);
+const defaultcurrency= JSON.parse(localStorage.getItem("usercurrency")) || {symble:"₹",code:"INR",country:"India",}
+const cuntryprice=currencylist?.info?.rates?.[`${defaultcurrency.code}`]
 
 // useEffect(()=>{
 // setallhotels(allhoteldata && !allhoteldata.isLoading && allhoteldata.info && allhoteldata.info.filteredResults
@@ -248,7 +250,7 @@ useEffect(()=>{sethotalbackup(allhoteldata)
             <div className="absolute bottom-2 right-2">
               <button className="bg-blue-600 text-white rounded-full w-20 h-8 flex items-center justify-center">
                 <span className="text-xs flex items-center gap-2">
-                  Share <FaShareAlt />{" "}
+                  Share <FaShareAlt />
                 </span>
               </button>
             </div>
