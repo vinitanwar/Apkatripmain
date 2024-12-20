@@ -263,9 +263,8 @@ useEffect(()=>{sethotalbackup(allhoteldata)
                   src={image}
                   alt={`hotel_image_${index + 1}`}
                   //  onMouseEnter={()=>hotel.HotelDetails.Images[0]=image}
-                  className="object-cover rounded-sm h-[3rem] w-[5rem]"
-                />
-                {index === 3 && (
+                  className="object-cover rounded-sm h-[3rem] w-[5rem]"/>
+                 {index === 3 && (
                   <span onClick={()=>setshowImg(index_num)}  className= " cursor-pointer absolute inset-0 bg-black bg-opacity-50 text-white flex items-center justify-center text-xs rounded-sm">
                     View All
                   </span>
