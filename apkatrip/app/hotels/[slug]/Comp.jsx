@@ -48,7 +48,9 @@ const renderStars = (rating) => {
     </div>
   );
 };
-
+const currencylist=useSelector(state=>state.currencySlice);
+const defaultcurrency= JSON.parse(localStorage.getItem("usercurrency")) || {symble:"₹",code:"INR",country:"India",}
+const cuntryprice=currencylist?.info?.rates?.[`${defaultcurrency.code}`]
 
 // useEffect(()=>{
 // setallhotels(allhoteldata && !allhoteldata.isLoading && allhoteldata.info && allhoteldata.info.filteredResults
@@ -219,7 +221,7 @@ useEffect(()=>{sethotalbackup(allhoteldata)
   {allhotel &&!allhoteldata.isLoading&&  !allhotel.length && <div className='text-center text-4xl p-10 '>
       Hotels not <span className='text-red-800'>Found !</span>
     </div>}
-{allhotel && !allhoteldata.isLoading && allhotel.map((hotel,index_num)=>{
+{allhotel && !allhoteldata.isLoading && allhotel?.map((hotel,index_num)=>{
   
   return(
   <div
@@ -229,7 +231,7 @@ useEffect(()=>{sethotalbackup(allhoteldata)
     {showimg==index_num &&
       <div className='fixed top-16  left-0 z-40 w-full  h-[90vh] border-8 border-white bg-white overflow-scroll grid grid-cols-3 gap-2'>
 <MdOutlineCancel onClick={()=>setshowImg(null)} className='fixed top-24 cursor-pointer right-10 text-orange-500 text-5xl' />
-{hotel.hotelDetails.HotelDetails[0].Images.map((imgs)=>{
+{hotel?.hotelDetails?.HotelDetails[0]?.Images?.map((imgs)=>{
   return(
 <img src={imgs}  className='h-[25rem] w-full'/>
   )
@@ -248,7 +250,7 @@ useEffect(()=>{sethotalbackup(allhoteldata)
             <div className="absolute bottom-2 right-2">
               <button className="bg-blue-600 text-white rounded-full w-20 h-8 flex items-center justify-center">
                 <span className="text-xs flex items-center gap-2">
-                  Share <FaShareAlt />{" "}
+                  Share <FaShareAlt />
                 </span>
               </button>
             </div>
@@ -261,9 +263,8 @@ useEffect(()=>{sethotalbackup(allhoteldata)
                   src={image}
                   alt={`hotel_image_${index + 1}`}
                   //  onMouseEnter={()=>hotel.HotelDetails.Images[0]=image}
-                  className="object-cover rounded-sm h-[3rem] w-[5rem]"
-                />
-                {index === 3 && (
+                  className="object-cover rounded-sm h-[3rem] w-[5rem]"/>
+                 {index === 3 && (
                   <span onClick={()=>setshowImg(index_num)}  className= " cursor-pointer absolute inset-0 bg-black bg-opacity-50 text-white flex items-center justify-center text-xs rounded-sm">
                     View All
                   </span>

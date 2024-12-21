@@ -49,8 +49,8 @@ class FlightController extends Controller
             "PreferredAirlines" => $validatedData['PreferredAirlines'],
             "Segments" => [
                 [
-                    "Origin" => $validatedData['Origin'],
-                    "Destination" => $validatedData['Destination'],
+                    "Origin" => $validatedData['Destination'],
+                    "Destination" => $validatedData['Origin'],
                     "FlightCabinClass" => $validatedData['FlightCabinClass'],
                     "PreferredDepartureTime" => $validatedData['PreferredDepartureTime'],
                     "PreferredArrivalTime" => $validatedData['PreferredDepartureTime']

@@ -55,7 +55,7 @@ class CheckedInsResource extends Resource
                     ->required(),
                 Forms\Components\Textarea::make('response')
                     ->columnSpanFull(),
-            ]);
+            ]);  
     }
 
     public static function table(Table $table): Table

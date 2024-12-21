@@ -166,6 +166,7 @@ const Header = () => {
     });
   }, []);
 
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       const getedate = localStorage.getItem("defaultflight");
@@ -211,6 +212,8 @@ const Header = () => {
     }
   }, []);
 
+
+
   const handleCitySelect = (city) => {
     if (selectedOption === "from") {
       setFromCity(city.properties);
@@ -220,9 +223,13 @@ const Header = () => {
     setIsVisible(false);
   };
 
+
+
   const handleVisibilityChange = (value) => {
     setIsVisible(value);
   };
+
+
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -231,10 +238,14 @@ const Header = () => {
     };
   }, []);
 
+
+
   useEffect(() => {
     dispatch(getTopAirPorts());
     dispatch(getip());
   }, []);
+
+
 
   const handleClick = (option) => {
     setSelectedOption(option);
@@ -255,7 +266,11 @@ const Header = () => {
     // }
   };
 
+
+
   const dropdownRef = useRef(null);
+
+
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -263,12 +278,16 @@ const Header = () => {
     }
   };
 
+
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  
 
   const handelSearch = () => {
     localStorage.setItem(
@@ -316,12 +335,16 @@ const Header = () => {
     route.push(searchUrl);
   };
 
+
+
   const handleRangeChange = (newRange) => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
 
     setSelected(date);
     handleClick("");
   };
+
+
 
   const handelreturn = (newRange) => {
     const date = new Date(newRange.year, newRange.month - 1, newRange.day);
@@ -332,7 +355,6 @@ const Header = () => {
   };
   const t = useTranslations("Navbar2");
 
-  // shubham dev 27-11-2024
 
   const [dropdowns, setDropdowns] = useState({
     coach: {
@@ -507,7 +529,7 @@ const Header = () => {
             list: "Holiday Packages",
           },
           {
-            link: "",
+            link: "/activities",
             list: "Group Tours",
           },
           {
@@ -515,7 +537,7 @@ const Header = () => {
             list: "Car Rental",
           },
           {
-            link: "",
+            link: "/buses",
             list: "Bus Tickets",
           },
         ],
@@ -532,7 +554,7 @@ const Header = () => {
             list: "Check Booking Status",
           },
           {
-            link: "",
+            link: "/web-check",
             list: "Web Check-in",
           },
           {
@@ -598,7 +620,7 @@ const Header = () => {
             list: "Charter Services",
           },
           {
-            link: "",
+            link: "/holidayspackage",
             list: "Holiday Packages",
           },
           {
@@ -614,7 +636,7 @@ const Header = () => {
             list: "Forex Currency Exchange",
           },
           {
-            link: "",
+            link: "/train",
             list: "Train Services",
           },
           {
@@ -653,7 +675,7 @@ const Header = () => {
         heading: "Business Assistance",
         listData: [
           {
-            link: "",
+            link: "/user",
             list: "Extranet Login",
           },
           {
@@ -672,6 +694,7 @@ const Header = () => {
       },
     ],
   };
+
 
   const [topDropdown, setTopDropdown] = useState(null);
   const [bottomDropdown, setBottomDropdown] = useState(null);
@@ -803,11 +826,9 @@ const Header = () => {
       <div className="header relative  md:px-5  lg:px-12 xl:px-24">
         <div className=" bg-[#002043] h-[15rem] absolute inset-0  -z-10" />
         <div className="w-full flex md:justify-end	">
-          <div className="">
-            <ul
-              className="text-black lastNavigation bg-gray-100  px-6 w-full  mx-end   md:px-5  text-sm py-2 gap-3 grid grid-cols-3  md:flex  lg:w-full items-center shadow-md"
-              onMouseLeave={() => setBottomDropdown(null)}
-            >
+        <div className="w-full md:w-fit">
+            <ul className="text-black lastNavigation bg-gray-100   px-2 w-full  md:mx-end   md:px-5   text-sm py-2  gap-0 md:gap-3 grid grid-cols-3  md:flex  lg:w-full items-center justify-between shadow-md"
+             onMouseLeave={() => setBottomDropdown(null)}>
               {topAndBottomDropDown.HomeBookTravelBuinessBottomDropDown.map(
                 (elm, index) => (
                   <li
@@ -816,7 +837,7 @@ const Header = () => {
                     className="relative group"
                   >
                     <div>
-                      <button className="flex text-nowrap items-center gap-1 hover:text-blue-500">
+                      <button className="flex text-[11.5px] md:text-sm text-nowrap items-center md:gap-1 hover:text-blue-500">
                         {elm.heading}
                         <IoIosArrowDown
                           className={`${
@@ -827,7 +848,7 @@ const Header = () => {
                       {bottomDropdown === index && (
                         <ul
                           onMouseLeave={() => setBottomDropdown(null)}
-                          className="   absolute topfull z-40 left-0 bg-white border border-gray-300 rounded-lg shadow-md w-max py-2"
+                          className={`  absolute  z-40  bg-white border border-gray-300 rounded-lg shadow-md w-max py-2 ${index==0 || index==3?"left-0":" right-0"}  `}
                         >
                           {elm.listData?.map((item, idx) => (
                             <li

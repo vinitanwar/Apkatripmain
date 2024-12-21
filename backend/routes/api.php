@@ -138,3 +138,11 @@ Route::post("v1/charter",[CharterController::class,"sendCharterMessage"]);
 
 
 Route::resource('v1/hotels/checkins', CheckinsController::class);
+
+
+
+
+
+use App\Http\Controllers\BookedhotelsController;
+
+Route::post("v1/hotelreg/booked",[BookedhotelsController::class,"bookhotel"]);

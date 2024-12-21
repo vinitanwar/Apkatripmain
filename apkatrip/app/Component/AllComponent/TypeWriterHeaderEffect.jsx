@@ -35,8 +35,8 @@ const TypeWriterHeaderEffect = () => {
             words={["Flights!", "Hotels!", "Cruises!", "Buses!"]}
             loop={Infinity}
             typeSpeed={50}
-            deleteSpeed={50}
-            delaySpeed={1000}
+            deleteSpeed={60}
+            delaySpeed={900}
           />
         )}
 
