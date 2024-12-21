@@ -738,8 +738,7 @@ const Header = () => {
     };
   
     if (fromCity.iata && toCity.iata) {
-      console.log(`From: ${updatedCalData.Segments[0].Origin}`);
-      console.log(`To: ${updatedCalData.Segments[0].Destination}`);
+     
   
       dispatch(getCalendarFare(updatedCalData));
     }
@@ -752,11 +751,9 @@ const Header = () => {
     settoogleBtnn(!toogleBtnn);
   };
 
-  const CaldataOrg = getCal.fares.Response;
+  const CaldataOrg = getCal?.fares?.Response;
 
-  console.log(`from TO  ${fromCity.iata} ${toCity.iata} ------ ${getCal.fares.Response}`)
-  console.log(`from TO ${getCal}`)
-
+  
 
 
 
@@ -789,18 +786,23 @@ const Header = () => {
     }).format(amount);
   }
 
+
   
 
   const tileContent2 = ({ date, view }) => {
     if (view === "month") {
       const dateKey = date.toISOString().split("T")[0]; 
       const getFAreData = CaldataOrg?.SearchResults; 
+      console.log('dwfrefreft4f',CaldataOrg)
+
   
       if (Array.isArray(getFAreData)) {
 
         const fareDataForDate = getFAreData.find(
           (item) => item.DepartureDate.split("T")[0] === dateKey
         );
+
+
   
         if (fareDataForDate) {
           const { Fare,BaseFare, IsLowestFareOfMonth, AirlineCode } = fareDataForDate;

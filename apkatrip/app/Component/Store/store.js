@@ -21,6 +21,7 @@ import farequoteSlice from "./slices/farequateflight";
 import ssrFlightSlice from "./slices/ssrRuleFlight"
 import getRegHotelsSlice from "./slices/getReqHotels"
 import insuranceSlice from "./slices/insuranceSearchSlice"
+import calendarSlice from './slices/calenderData'
 
 export const store = configureStore({
   reducer: { searchFlightslice, Allairport, topPortsSlice, blogslice, ipslice, searchreturn,advanceSearchFlight,
