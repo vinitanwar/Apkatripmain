@@ -71,18 +71,16 @@ const Header = () => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateChange = (date) => {
+
     setSelectedDate(date);
-    console.log("Selected date:", date);
+    setSelected(date)
+
+    setIsVisible(false)
   };
 
-  const tileContent = ({ date, view }) => {
-    if (view === "month") {
-      const dateKey = date.toISOString().split("T")[0];
-      return datePrices[dateKey] ? (
-        <div className="price">{datePrices[dateKey]}</div>
-      ) : null;
-    }
-  };
+  
+
+
 
   const [selectedReturn, setSelectedReturn] = useState();
   const [adultCount, setAdultCount] = useState(1);
@@ -682,6 +680,7 @@ const Header = () => {
 
   const [fromcity, setfromcity] = useState("FromCity");
   const [AnyWhere, setAnyWhere] = useState("anyWhere");
+
   const  getCal = useSelector((state) => state.calendar);
 
 
@@ -693,30 +692,111 @@ const Header = () => {
         Origin: fromCity.iata,
         Destination: toCity.iata,
         PreferredDepartureTime: dateOfJourney,
+        FlightCabinClass: 1
       },
     ],
 
 
   });
 
-
-
   useEffect(() => {
-
-    console.log(`'cwrfrwfrfrr3f43rd43r4 ${dateOfJourney} , ${ fromCity.iata} , ${toCity.iata}`)
-
-
-    dispatch(
-      getCalendarFare(calData)
-    );
-    console.log("dateOfJourney", getCal);
-  }, [dispatch, dateOfJourney, fromCity.iata, toCity.iata]);
+    // Update `calData` dynamically
+    const updatedCalData = {
+      JourneyType: 1,
+      EndUserIp: '223.178.208.151',
+      Segments: [
+        {
+          Origin: fromCity.iata,
+          Destination: toCity.iata,
+          PreferredDepartureTime: dateOfJourney,
+          FlightCabinClass: 1,
+        },
+      ],
+    };
+  
+    if (fromCity.iata && toCity.iata) {
+      console.log(`From: ${updatedCalData.Segments[0].Origin}`);
+      console.log(`To: ${updatedCalData.Segments[0].Destination}`);
+  
+      dispatch(getCalendarFare(updatedCalData));
+    }
+  }, [dispatch, fromCity.iata, toCity.iata, dateOfJourney]); // Add `dateOfJourney` to dependencies if it affects the call
+  
 
   const handelSwap = () => {
     setFromCity(toCity);
     setToCity(fromCity);
     settoogleBtnn(!toogleBtnn);
   };
+
+  const CaldataOrg = getCal.fares.Response;
+
+  console.log(`from TO  ${fromCity.iata} ${toCity.iata} ------ ${getCal.fares.Response}`)
+  console.log(`from TO ${getCal}`)
+
+
+
+
+
+
+
+
+ 
+
+  const tileContent = ({ date, view }) => {
+
+    if (view === "month") {
+      const dateKey = date.toISOString().split("T")[0];
+
+      const getFAreData = CaldataOrg?.SearchResults;
+    
+      return getFAreData[dateKey] ? (
+        <div className="price">{getFAreData[dateKey]}</div>
+      ) : null;
+    }
+  };
+
+
+  function formatPrice(amount, currency = 'INR', locale = 'en-US') {
+    return new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency,
+      minimumFractionDigits: 0, 
+      maximumFractionDigits: 0, 
+    }).format(amount);
+  }
+
+  
+
+  const tileContent2 = ({ date, view }) => {
+    if (view === "month") {
+      const dateKey = date.toISOString().split("T")[0]; 
+      const getFAreData = CaldataOrg?.SearchResults; 
+  
+      if (Array.isArray(getFAreData)) {
+
+        const fareDataForDate = getFAreData.find(
+          (item) => item.DepartureDate.split("T")[0] === dateKey
+        );
+  
+        if (fareDataForDate) {
+          const { Fare,BaseFare, IsLowestFareOfMonth, AirlineCode } = fareDataForDate;
+  
+          // Render the content for the date
+          return (
+            <div className="price">
+              <div>{formatPrice(Fare)}</div>
+            
+            </div>
+          );
+        }
+      }
+    }
+    return null;
+  };
+  
+
+  // tileContent2()
 
   return (
     <>
@@ -1154,6 +1234,8 @@ const Header = () => {
                 </div>
               </div>
 
+
+
               <div className="grid grid-cols-1 gap-2 md:grid-cols-4">
                 <div className="relative">
                   <div
@@ -1193,19 +1275,20 @@ const Header = () => {
 
                   {isVisible && selectedOption === "date" && (
                     <div className="bg-white text-black p-5 shadow-2xl absolute top-full left-0 mt-2 z-10">
-                      <Calendar
+                      {/* <Calendar
                             aria-label="Select a date"
                             value={""}
                             onChange={handleRangeChange}
                             minValue={currentDate}
-                          />
+                          /> */}
 
-                      {/* <Calendar
+                      <Calendar
+                       
                         onChange={handleDateChange}
-                        value={selectedDate}
+                        value={""}
                         minDate={new Date()}
-                        tileContent={tileContent}
-                      /> */}
+                        tileContent={tileContent2}
+                      />
                     </div>
                   )}
                 </div>
